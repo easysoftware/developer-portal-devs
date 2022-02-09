@@ -10,6 +10,7 @@ You can obtain your apiKey in Easy Software or Easy Redmine Account settings.
 For REST API, you can decide whether you want to pass it over either as a header parameter or as a query parameter. There is no difference between these cases so it is up to you which one you select.
 [header]
 [query]
+
 ## Accessible environments
 Access the API through the following URL for cloud solution:
 

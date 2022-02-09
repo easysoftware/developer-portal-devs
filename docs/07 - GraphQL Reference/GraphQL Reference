@@ -45,5 +45,3 @@ Easy Software API will always provide you with HTTP status codes that can tell y
 - `406` - `NOT ACCEPTABLE` - provided data do not match format acceptable by the server for the request
 - `422` - `UNPROCESSABLE ENTITY` - request could not be processed even though it's syntactically correct
 - `429` - `RATE LIMIT EXCEEDED` - were sent too many requests
-
-

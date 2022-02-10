@@ -39,7 +39,7 @@ IV. Monitors and solves bugs from *bugsnag*:
   2. Reassingns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
   3. Critical bugs - make sure they are fixed (solve on your own, process them, delegate them,...)
 
->   Free time left? Solve bugg, do some refactoring and other stuff...
+>   Free time left? Solve buggs, do some refactoring and other stuff...
 
 
 

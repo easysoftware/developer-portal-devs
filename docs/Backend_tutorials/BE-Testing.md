@@ -1,6 +1,6 @@
 # Backend testing
 
-*In this article we will show you how to test your BE services...*
+*In this article we will show you how to test your BE services*
 
 ---
 
@@ -14,13 +14,13 @@ Testing is done automatically by [GitLab CI](https://docs.gitlab.com/ce/ci/) on 
 
 The test framework is [rspec](https://github.com/rspec/rspec) and [rspec-rails](https://github.com/rspec/rspec-rails). For factories, we use [factory_bot](https://github.com/thoughtbot/factory_bot).
 
-In RYSy, all specs are in the `/spec` folder.
+In RYSes, all specs are in the `/spec` folder.
 
 On the platform (devel/devel), tests are in each plugin directory in `test/spec`.
 
 You can run all the tests locally:
 
-1. **In the RYSy**:
+1. **In the RYSes**:
 
 ```ruby
  # all tests
@@ -48,11 +48,11 @@ At the beginning please read some basics about Cypress:
 
 1. [Installing Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress) 
 2. [Assertions](https://docs.cypress.io/guides/references/assertions)
-3. **And most important** - [Best practices](https://docs.cypress.io/guides/references/best-practices). 
+3. And most importantly - [Best practices](https://docs.cypress.io/guides/references/best-practices). 
 
 ### Structure
 
-On the platform, CY tests are located in `/cypress/integration` folder. The main configuration of cypress is in `/cypress.json file`.
+On the platform, Cypress tests are located in `/cypress/integration` folder. The main configuration of cypress is in `/cypress.json file`.
 
 Cypress itself runs JS tests in its own syntax against some running server - this is specified in `/cypress.json`.
 
@@ -67,7 +67,7 @@ For the rest of our tests we use [***FactoryBot***](https://github.com/thoughtbo
 
 We use integration [***cypress-on-rails***](https://github.com/shakacode/cypress-on-rails) which creates something like a "bridge" between FactoryBot and cypress.
 
-> So if you need, for example, to create a user, you just call `cy.FactoryBot(["create", "user"])` after the database cleans and you can use existing users in your tests.
+> If you need, for example, to create a user, you just call `cy.FactoryBot(["create", "user"])` after the database cleans and you can use existing users in your tests.
 
 ### Scenarios
 
@@ -94,11 +94,11 @@ First please read [this guide](https://docs.cypress.io/guides/references/best-pr
 6. Preferably use `subject__action--target` pattern, i.e. `button__open--crm-index`.
 
 <!-- theme: danger -->
->This is valid for views tests, or every other test which expect some CSS. Avoid CSS, use custom data-cy attribute 
+>This is valid for views tests, or every other test which expect some CSS. Avoid CSS, use custom `data-cy` attribute 
 
 ### How to write them?
 
-If HTML is rendered by backend, on rails, you need to pass `"data-cy": "some-value"`, for example:
+If HTML is rendered by backend you need to pass `"data-cy": "some-value"`, for example:
 
 ```ruby
 link_to(l(:label), url, class: 'customize-button', "data-cy": "button-customize_page")
@@ -106,55 +106,44 @@ link_to(l(:label), url, class: 'customize-button', "data-cy": "button-customize_
 link_to(l(:label), url, class: 'customize-button', data: { cy: "button-customize_page" })
 ```
 <!-- theme: warning -->
->This is only valid type of `data-cy` = every other are forbidden - because of consistency!
+>This is only valid type of `data-cy` = in every other case it is forbidden due to consistency!
 
-### How to run locally without pain?
+### How to run tests locally
 
-Lets see something about CYPRESS and locally docker.
+Lets see something about Cypress and local docker.
 
 You need to run application server aside and run against it cypress.
  
 How to do that:
-1. Make sure that you have bundle install && assets precompiled
-2. `bundle install`
-3. `bundle exec rake easyproject:install`
+1. Make sure that you have bundle install and assets precompiled
+2. Run
+```
+bundle install
+```
+3. Run
+```
+bundle exec rake easyproject:install
+```
 4. Run your server aside in the test environment and with CYPRESS enable:
 
 ```ruby
 CYPRESS=1 FORCE_HTTP=1 bundle exec rails s
 ```
 
-> FORCE_HTTP allow puma accept HTTP request (insecure) in production.
+> FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
-5. Run CYPRESS in case you have it installed:
+5. Run Cypress
 ```ruby
 cypress run
 ```
-or by docker:
+or use docker instead:
 
 ```ruby
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.0
 ```
 
 > At GitlabCI there is a cypress stage for running examples "automatically". On platform
-> (devel/devel) is set as a "manual" - so you need to explicitly execute it in your MR.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> (devel/devel) is set as a `manual` - so you need to explicitly execute it in your MR.
 
 
 

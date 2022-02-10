@@ -8,23 +8,17 @@
 
 When developing UI for ER developer should get a basic overview of the following concepts of modular UI design:
 
-1. ***[Atomic design](http://atomicdesign.bradfrost.com/chapter-2/)*** is a well explained concept about how the final design comes together from each and every particle.  
-2. ***[Object Oriented CSS](www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss/)*** is a well accepted abstract methodology of implementing Atomic design onto stylesheets.
-3. ***[Block Element Modifier](https://en.bem.info/)*** is a concrete implementation of OOCSS particularly known for its naming conventions.  
-4. ***[SASS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)*** is CSS preprocessor that makes everything above fit together easily.
+1. [Atomic design](http://atomicdesign.bradfrost.com/chapter-2/) is a well explained concept about how the final design comes together from each and every particle.  
+2. [Object Oriented CSS](https://www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss)*** is a well accepted abstract methodology of implementing Atomic design onto stylesheets.
+3. [Block Element Modifier](https://en.bem.info/) is a concrete implementation of OOCSS particularly known for its naming conventions.  
+4. [SASS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html) is CSS preprocessor that makes everything above fit together easily.
 
 ---
 
 ## Core file structure
 
-The root of the stylesheets (namely the core) is located at:
+The root of the stylesheets (namely the core) is located at:`/plugins/easyproject/easy_plugins/easy_extensions/assets/stylesheet/`
 
-```json
-*-----------------------------------------------------------------------*
-/plugins/easyproject/easy_plugins/easy_extensions/assets/stylesheet/
-*-----------------------------------------------------------------------*
-
-```
 Here you can find the root `*.SCSS` files that link up the whole thing together. Besides files directly located in this folder, most of the code can be found in the SCSS sub-folder. The explanation follows:  
 
 ```json
@@ -64,9 +58,12 @@ Here you can find the root `*.SCSS` files that link up the whole thing together.
 Naming is often referred to as one of the biggest unknowns of programing. Picking the right class name is vital for several reasons:
 
 1. **Consistency** - just by looking at HTML, even non-experienced developers should be able to say what is going on here 
-2. **Performance** - vaguely specific classes lead to overuse of child selectors which negatively affects browser rendering speed 3.Ease of use - SASS provides nesting features which can greatly simplify code one needs to write and make it more modular
+2. **Performance** - vaguely specific classes lead to overuse of child selectors which negatively affects browser rendering speed
+3. Ease of use - SASS provides nesting features which can greatly simplify code one needs to write and make it more modular
 
-The **BEM convention** solves the above mentioned points: BEM is an abbreviation for *Block-Element-Modifier* which comes from the realization that every element on a page is a part of some higher block and also can be subject to a modification. So let's take an illustrative example of search: Search would normally consist of a text field and a button, both are HTML elements but also parts of a common search block, something like this:
+The **BEM convention** solves the above mentioned points: BEM is an abbreviation for *Block-Element-Modifier* which comes from the realization that every element on a page is a part of some higher block and also can be subject to a modification. So let's take an illustrative example of search:
+
+Search would normally consist of a text field and a button, both are HTML elements but also parts of a common search block, something like this:
 
 ```html
 <form class="search">
@@ -85,7 +82,7 @@ Now let's say we want to target the input and button an **apply some styling** t
 
 ```
 
-These are selectors using parent - children relationships and are quite difficult for a browser to pull off, targeting the element with its own class is much faster. So what class should we put there? 
+These are selectors using parent <-> children relationships and are quite difficult for a browser to pull off, targeting the element with its own class is much faster. So what class should we put there? 
 
 That is where naming conventions come in hand. To fast-forward, here is how the Block - Element relationship is working out:  
 
@@ -161,7 +158,6 @@ Which compiles into a nice, fast **CSS** code where all the selectors have the s
 ```
 
 <!-- theme: warning -->
->**REMEMBER!**
 >
 >Use Block-Element-Modificator to form class names.
 >
@@ -171,7 +167,7 @@ Which compiles into a nice, fast **CSS** code where all the selectors have the s
 
 ### CSS Performance
 
-Performance-wise, what is even worse than long-descendant selectors, are repetitive applications of the same style rules, or too many overrides. **SASS** has a neat directive @extend that is of great help when tackling these. Imagine that we have an element in class ="copy" that we want to look at exactly as a paragraph. We can either copy all style declarations, but that would be tedious work with bad performance influences, or we can use @extend:
+Performance-wise, what is even worse than long-descendant selectors, are repetitive applications of the same style rules, or too many overrides. **SASS** has a neat directive `@extend` that is of great help when tackling these. Imagine that we have an element in class `="copy"` that we want to look at exactly as a paragraph. We can either copy all style declarations, but that would be tedious work with bad performance influences, or we can use `@extend`:
 
 ```css
 p{
@@ -203,7 +199,8 @@ That means that a browser will first match all elements with a selector and then
 
 In SASS we have two quite similar, yet quite different structures: 
 **Placeholders** and **Mixins**.
-**Mixin** is a "macro" that can be passed input arguments:
+
+Mixin is a "macro" that can be passed input arguments:
 
 ```css
 @mixin text ($color: black){
@@ -211,7 +208,7 @@ In SASS we have two quite similar, yet quite different structures:
 }
 
 ```
-**Placeholder** on the other hand takes no arguments:
+Placeholder on the other hand takes no arguments:
 
 ```css
 %text{
@@ -261,7 +258,7 @@ compiles into:
 
 So mixins are great for customisation, but will always duplicate the rules they contain, which can have a bad performance influence.
 
-For most UI elements, both mixins and placeholders are available. Then, if you want to make a new customisation, mixin should be used. When you just want to make an element look like another use @extension of placeholder.
+For most UI elements, both mixins and placeholders are available. Then, if you want to make a new customisation, mixin should be used. When you just want to make an element look like another use `@extension` of placeholder.
 
 ---
 
@@ -271,7 +268,11 @@ For most UI elements, both mixins and placeholders are available. Then, if you w
 
 ### Top menu
 
-Top menu consist of: ***main menu, search area, user icon, menu more***.
+Top menu consist of:
+- main menu
+- search area
+- user icon
+- menu More
 
 Top menu provides the main mean of navigation in the application. 
 
@@ -300,18 +301,18 @@ The base structure for the service bar widget is as follows:
 
 Sidebar contains actions relevant to current view, secondary info and other links that have relevancy to current page. Sidebar can be divided into following blocks:
 
-**Primary actions** - contains the most important action on the page - one or two at max! Use to populate:
+- **Primary actions** - contains the most important action on the page - one or two at max! Use to populate:
 
 ```html
 content_for :easy_page_layout_service_box_primary_actions do
 ```
-**Service box**- contains the rest of the actions on a given page and sometimes a quick statistics overview. Use to populate:
+- **Service box**- contains the rest of the actions on a given page and sometimes a quick statistics overview. Use to populate:
 
 ```html
 content_for :easy_page_layout_service_box do
 ```
 
-**Servicebar content** - contains the rest of the sidebar. Use to populate:
+- **Servicebar content** - contains the rest of the sidebar. Use to populate:
 
 ```html
 content_for :sidebar do
@@ -323,7 +324,7 @@ content_for :sidebar do
 
 Since forms are the only native way to input user information, they are heavily used throughout the application.
 
-You can either write forms on your own, following lower guides, or you can leverage **EasyLabeledFormBuilder** as it will take care of all required syntax and semantics.
+You can either write forms on your own, following lower guides, or you can leverage `EasyLabeledFormBuilder` as it will take care of all required syntax and semantics.
 
 Not all forms are visible - some only serve as a backbone for ajax-triggered events. Those forms that are visible to the user should be emphasized, or that we use `class="form-box"` on the form element, which applies styling that makes form sand out more.
 
@@ -418,7 +419,7 @@ When some explanation of the form fields is in order, just append them with elem
 <em class="help">This is a cool hint!</em>
 ```
 
-Explanations following elements with class="block" or having it set on their own will have block behavior, which means they will span 100% of the's width all the time.
+Explanations following elements with `class="block"` or having it set on their own will have block behavior, which means they will span 100% of the's width all the time.
 
 ### Form actions
 
@@ -522,7 +523,7 @@ The last thing to add on account of responsiveness is the possibility to adjust 
 
 #### Lists
 
-Lists are used to display lists of entities (e.g. projects, tasks, users …) with various attributes. The list of records is realized simply with the HTML table with` class="list"`.
+Lists are used to display lists of entities (e.g. projects, tasks, users …) with various attributes. The list of records is realized simply with the HTML table with `class="list"`.
 
 ```html
 <table class="list">
@@ -641,7 +642,7 @@ Tags are visual elements used to display saved filters and other fitting element
 
 ### Alerts / Flashes
 
-Alerts build upon basic Redmine syntax - being identified by class="flash". There are three types of notices: *notice, warning and error*.
+Alerts build upon basic Redmine syntax - being identified by `class="flash"`. There are three types of notices: *notice, warning and error*.
 
 ```html
 <div class="flash notice"> Notice ... </div>
@@ -658,7 +659,7 @@ Optionally alerts have a closing element:
 
 ### Icons
 
-To add an icon to any HTML element, just add `class="icon-XXX"` where XXX is the icon name from the following list. It will be added as a content of :before element of the given element.
+To add an icon to any HTML element, just add `class="icon-XXX"` where XXX is the icon name from the following list. It will be added as a content of `:before` element of the given element.
 
 The list of all icons can be found [here](https://es.easyproject.com/easy_iconset).
 

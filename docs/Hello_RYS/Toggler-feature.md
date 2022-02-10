@@ -14,7 +14,7 @@ Toggle feature is used for... **TODO NA DOPLNĚNÍ**
 
 You can toggle some code based on the database state or by custom definition. 
 
-First of all you need to register features. Put this code into config/initializers.
+First register features. Put this code into `config/initializers`.
 
 ```ruby
 # Basic definition
@@ -27,9 +27,7 @@ Rys::Feature.for_plugin(MyRys::Engine) do
   Rys::Feature.add('my_rys.show')
 end
 ```
-Features have tree structure so if parent is disabled all children are disabled too. For example:
-
-If issue is disabled -> all issue.* are disabled too regardless to theirs state.
+Features have tree structure so if parent is disabled all children are disabled too. For example if issue is disabled -> all issue.* are disabled too regardless to theirs state.
 
 ```ruby
 Rys::Feature.add('issue.show')
@@ -70,24 +68,20 @@ You can define action which will be triggered after a status change.
 Rys::Feature.add('issue.show', status_changed: lambda { |active| ... })
 ```
 
----
-
 ### In routes
 
 You can easily turn on/off routes. 
 
 ```ruby
 get 'path', rys_feature: 'issue.show'
-
 rys_feature 'issue.show' do
   get 'path'
 end
 ```
----
 
 ### In patches
 
-More details can be found at Patch management section.
+More details can be found at [Patch management](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Hello_RYS/Patch-management.md) section.
 
 ```ruby
 instance_methods(feature: 'issue.show') do
@@ -99,12 +93,8 @@ instance_methods(feature: 'issue.show') do
 end
 ```
 
----
-
 ### Custom condition
-
 If you do not want to use DB records for state checking, you can define custom conditions.
-
 ```ruby
 # Ruby block state
 # Will be active on 10% of the case
@@ -121,11 +111,10 @@ Rys::Feature.add('issue.show') do
 end
 ```
 
----
 
 ### Translations
 
-All features have title and description- You can set them via language file or via options.
+All features have title and description. You can set them via language file or via options.
 
 ```ruby
 Rys::Feature.add('issue.show')
@@ -137,31 +126,4 @@ Rys::Feature.add('issue.show', title: :feature_title,
 # => I18n.t 'feature_title'
 # => I18n.t 'feature_description'
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

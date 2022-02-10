@@ -1,6 +1,8 @@
 # GraphQL reference
 
-In this section we will look into how to successfully work with Easy Software GraphQL API. We will cover the basics such as authentication, accessible environments and other necessary topics.
+*In this section we will look into how to successfully work with Easy Software GraphQL API. We will cover the basics such as authentication, accessible environments and other necessary topics.*
+
+---
 
 ## GraphQL documentation and schema builder
 For your convenience we have prepared Easy Project GraphQL interface, where you can query your custom built queries that you can predefine using a visual editor.
@@ -13,12 +15,16 @@ This interface has one more very important feature which is schema documentation
 
 Schema documentation will provide you with types you can query and their definitions - other types or attributes you can query.
 
+---
+
 ## Authentication
 For authentication you will use `apiKey`.
 You can obtain your apiKey in Easy Software or Easy Redmine Account settings.
 [api-key]
 Pass over this api key as a header for every API call you do as follows:
 `apiKey` = `{your-api-key}`
+
+---
 
 ## Accessible environments
 Access the API through the following URL for cloud solution:
@@ -27,13 +33,19 @@ Access the API through the following URL for cloud solution:
 
 In case you run an on-premise version then the URL will correspond with its URL or IP address that can be seen from the Internet.
 
+---
+
 ## When to use REST and GraphQL
 Since Easy Software offers both, REST API and GraphQL, it is important to mention why that is.
 REST API is used for back end to back end communication, so for the cases when some data needs to get from you system to Easy Software and vice versa.
 Contrary to that, GraphQL is used for communication between the front end and back end of Easy Software and thus can be used if you wish to implement your own plugin for it.
 
+---
+
 ## Rate limits
 There are no limits for how many requests you can send via GraphQL calls.
+
+---
 
 
 ## Status and error codes

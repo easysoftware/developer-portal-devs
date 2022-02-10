@@ -1,24 +1,30 @@
 # Release guidelines
-In this article we will look closer at release guidelines for platform, Easy plugins and RYSes.
+
+*In this article we will look closer at release guidelines for platform, Easy plugins and RYSes.*
+
+---
 
 ## Release naming
+
 All releases use [semantic versioning](https://semver.org/).
 
-level - MAJOR - changes are release specific
+**MAJOR** level - changes are release specific
 - whole new features
 - refactoring
 - breaking changes
 
-level - MINOR - includes new small features
+**MINOR** level - includes new small features
 - migrations
 - minor changes of internal logic
 
-level - PATCH (or BUG-FIX) - only for bug-fixing or harmless changes and thus **cannot include migrations and breaking changes**
+**PATCH** (or BUG-FIX) level - only for bug-fixing or harmless changes and thus **cannot include migrations and breaking changes**
 - documentation
 - readme
 
+---
+
 ## Platform and plugins releases
-Releases for platform and Easy plugins are triggered manually, through gitmakers.com.
+Releases for platform and Easy plugins are triggered manually, through www.gitmakers.com.
 
 ### Patch releases
 These releases are released weekly from branch `bug-fixing`
@@ -40,6 +46,8 @@ Before every major relase there is at least a month when focus on:
 - extensive testing (end-to-end, integration)
 - training of sales staff
 - training of our support department
+
+---
 
 ## RYS releases
 RYSes are released and distributed through our [Gem server](gems.easysoftware.com). In order to get RYS there, it has to go through code review and be merged to `master` branch. In this case, change the RYS version accordigly to the [semantic versioning](https://semver.org/) used in Easy.

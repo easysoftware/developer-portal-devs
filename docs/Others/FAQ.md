@@ -7,8 +7,15 @@
 
 ## First steps
 
+### `Bundle install` throws error when installing **mysql2 gem** `library not found for -lzstd` on my MacOS. What should I do? 
 
-### What is RYS? 
+1. Check your `zstd` version that you have installed - `ls /opt/homebrew/Cellar/zstd/`
+2. Install `mysql2` by running `gem install mysql2 -- --with-opt-dir=$(brew --prefix openssl) --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.0/lib` using the correct version in the path at the end.
+
+### What should I do if I have an installation error  cannot load such file `-- enumerator` when running easy project install? 
+
+You are probably using ruby-2.7.5 or higher, switch to 2.7.2 and try again.
+
 
 
 --- 
@@ -38,3 +45,8 @@ On the other hand when you just fix langfile or do some small change (or maybe n
 
 
 ### How to properly release?
+
+
+--- 
+
+## Testing

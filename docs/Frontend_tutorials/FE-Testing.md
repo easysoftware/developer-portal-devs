@@ -38,6 +38,8 @@ npm test -- query.spec.js
 
 User testing is done by our QA team. It is either deployment or release based. For bigger projects, dedicated testers can be assigned.
 
+**// K ODSTRANĚNÍ???**
+
 When you want your work on a task to be user tested, create a deployment a **change the task status to `'testing'` and assign it to an @QA team.**
 
 Deployments are standalone isolated applications in our dev environment in our cloud. They are basically client applications with a copy of the database from "trials" and your source code.

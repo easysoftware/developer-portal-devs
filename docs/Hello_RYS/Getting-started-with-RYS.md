@@ -137,18 +137,33 @@ All engines will have separate GIT repository. It's better to store engines outs
 
 Rails 5 engines are best developed with a dummy application, which doesn't contain a lot of unnecessary code. In RubyMine you only need to open the RYS source, so its fast and easy. 
 
-So you take our `devel` repository, clone it as `dummy` and remove **ALL unnecessary plugins**. - [https://git.easy.cz/easyproject-client/dummy](https://git.easy.cz/easyproject-client/dummy) (`devel` corresponds with [devel/devel.git#devel](https://git.easy.cz/devel/devel/tree/devel), `master` with [devel/devel.git#master](https://git.easy.cz/devel/devel/tree/master)
+So you take our `devel` repository, clone it as `dummy` and remove **ALL unnecessary plugins**. It can be found [here](https://git.easy.cz/easyproject-client/dummy)
+- `devel` corresponds with [devel/devel.git#devel](https://git.easy.cz/devel/devel/tree/devel)
+- `master` with [devel/devel.git#master](https://git.easy.cz/devel/devel/tree/master)
 
 You symlink this dummy to `test/dummy` in the RYS engine.
 
 ### Running tests
 
-1. `bundle install` 
+1. Run
+```
+bundle install
+```
 2. Make sure you have configured `config/database.yml` in your dummy.
-3. rake `app:db:create app:db:migrate && bundle exec rake app:easyproject:install`
-4. rspec
+3. Run migration
+```
+app:db:create app:db:migrate
+```
+4. Build Easy Project
+```
+bundle exec rake app:easyproject:install
+```
+5. Run rspec
+```
+rspec
+```
 
-### Example
+#### Example of geting dummy app and running tests
 
 
 1. Get EasyRedmine
@@ -197,7 +212,7 @@ You symlink this dummy to `test/dummy` in the RYS engine.
    rake app:easyproject:install # this work from ER 05.00
    ```
 
-7. Ready for use
+8. Ready to use
 
 RYS is ready. Open RubyMine and write some code! After that run `rspec`.
 

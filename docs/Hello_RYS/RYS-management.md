@@ -1,6 +1,6 @@
 # RYS Management
 
-*In this article you will learn how RYS Management works...*
+*In this article you will learn how RYS Management works*
 
 ---
 

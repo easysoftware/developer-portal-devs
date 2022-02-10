@@ -1,6 +1,6 @@
- # Feautre Toggler
+ # Feature Toggler
 
-*In this article you will learn what is our new Toggler feature and how to use it...*
+*In this article you will learn what is our new Toggler feature and how to use it*
 
 ---
 

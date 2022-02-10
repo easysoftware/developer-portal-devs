@@ -27,7 +27,7 @@ For your folder structure, use `spec/factorries` for your factories and `spec/su
 
 ### Test dirrectly from RYS
 
-1. You can test directly from RYS but you will need some [dummy application](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Hello_RYS/Getting-started-with-RYS.md#dummy-application). RYSPEC will look for them in `DUMMY_PATH` (which is environment variable) and `test/dummy` directory.
+1. You can test directly from RYS but you will need some [dummy application](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Hello_RYS/Getting-started-with-RYS#dummy-application). RYSPEC will look for them in `DUMMY_PATH` (which is environment variable) and `test/dummy` directory.
 
 2. After that you can run them with `bundle install` and `rspec`. 
 

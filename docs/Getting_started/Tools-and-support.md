@@ -42,15 +42,15 @@ This service alternates between ruby developers. You can see current schedule [h
 
 People who are on duty have to: 
 
-I. Check and respond to chat, especially on channel [Developers help](https://teams.microsoft.com/l/channel/19%3a6c2718cc2fea4e8a974a29b0636c684e%40thread.tacv2/Developers%2520help). This is one of biggest responsibility. 
+- Check and respond to chat, especially on channel [Developers help](https://teams.microsoft.com/l/channel/19%3a6c2718cc2fea4e8a974a29b0636c684e%40thread.tacv2/Developers%2520help). This is one of biggest responsibility. 
 
-II. Follows [Support help](https://teams.microsoft.com/l/channel/19%3ac1a8720bfef54fda996d90e02c3381aa%40thread.tacv2/Support%2520Help) channel and tries to help.
+- Follows [Support help](https://teams.microsoft.com/l/channel/19%3ac1a8720bfef54fda996d90e02c3381aa%40thread.tacv2/Support%2520Help) channel and tries to help.
 
-III. Solves tasks which are assigned to [Easy Developers](https://es.easyproject.com/issues?set_filter=1&amp;f%5Bstatus_id%5D=o1&amp;f%5Bassigned_to_id%5D==375) (Technical Support) group (solve on your own, process them or delegate them...) 
+- Solves tasks which are assigned to [Easy Developers](https://es.easyproject.com/issues?set_filter=1&amp;f%5Bstatus_id%5D=o1&amp;f%5Bassigned_to_id%5D==375) (Technical Support) group (solve on your own, process them or delegate them...) 
 
-IV. Monitors and solves bugs from *bugsnag*:
-  1. Close rare case (and these, which are connected with application restart)
-  2. Reassingns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
-  3. Critical bugs - make sure they are fixed (solve on your own, process them, delegate them,...)
+- Monitors and solves bugs from *bugsnag*:
+  - Close rare case (and these, which are connected with application restart)
+  - Reassingns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
+  - Critical bugs - make sure they are fixed (solve on your own, process them, delegate them,...)
 
 >   Free time left? Solve buggs, do some refactoring and other stuff

@@ -1,6 +1,6 @@
 # Generator
 
-*In this article you will learn how RYS Generator works...*
+*In this article you will learn how RYS Generator works*
 
 ---
 

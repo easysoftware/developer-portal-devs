@@ -1,17 +1,16 @@
 # Patch management
 
-*In this article you will learn how to use correctly Patch management tool...*
+*In this article you will learn how to use correctly Patch management tool*
 
 ---
 
 ## RYS Patch
 
-Patching is quite easy in RYS. 
+Patching RYSes is quite easy. 
 
 First of all you need to **register a path to director**.
 
-<!-- theme: warning -->
->If you generated RYS via `rys:plugin` this step can be skipped. 
+>If you generated RYS via `rys:plugin` then skip the first step. 
 
 
 ```ruby
@@ -64,7 +63,7 @@ Rys::Patcher.add(CLASS_TO_PATCH_IN_STRING) do
 end
 ```
 <!-- theme: warning -->
->Be careful of mixing patching with `alias_method_chain` (try to avoid it).
+>Be careful and try to avoid mixing patching with `alias_method_chain`.
 
 So at the end your patch can look like this: 
 
@@ -87,8 +86,6 @@ end
 ```
 
 <!-- theme: info -->
->**Good to know...**
->
 >Patches are applied via `.preload` so you can call `super`.
 >
->Method insides `instance_methods(feature:)` must have super method!
+>Method insides `instance_methods(feature:)` must have super method

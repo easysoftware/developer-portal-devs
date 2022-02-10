@@ -1,10 +1,6 @@
----
-tags: [RYS]
----
-
 # Getting started with RYS
 
-*In this article you will learn what is and how our new RYS plugin system works...*
+*In this article you will learn what is and how our new RYS plugin system works*
 
 ---
 
@@ -14,33 +10,33 @@ We've introduced a new way of developing plugins for **EasyRedmine**, **Redmine*
 
 RYSes are used for isolated features and allow for on the fly enabling/disabling of it's features. 
 
-RYS is consist of **RYS** (*contain Feature toggler, patch management and generators*), **RYSPEC** (*contain testing ryses*) and **RYS management** (*contain RYS configuration and management*). 
+RYS is consist of:
+- **RYS** (*contains Feature toggler, patch management and generators*)
+- **RYSPEC** (*contains testing ryses*)
+- **RYS management** (*contains RYS configuration and management*). 
 
 <!-- theme: info -->
 >***Where to find RYSes?***
 >
 >Each RYS has its own repository and depending on the platform configuration can be changed and installed if needed. RYS always only changes backend functionality and its controllers.
 >
->Full documentation what RYSes are and how it work, please check our [github page](https://github.com/easysoftware/rys) for more information. You can find source code there as well. 
+> Full documentation what RYSes, including source code can be found in [github](https://github.com/easysoftware/rys).
 
 --- 
-## How RYS works?
+### How RYS works?
 
 It is important to understand how RYSes are built inside so let's look at the way they are structured. The overall structure is driven by what it does, whether it adds new functions or changes existing functionality.
 
 In case of the RYS **adds new functionality** then their structure follows the common Rails architecture and adds new classes into lib folder.
 
 In case of RYS **changes or enhances functionality** then the structure follows this logic:
-1. Into the patch folder go all alterations to existing files that affect any platform files.
-2. Following the same logic, if new RYS alters functionality of another RYS then new code files go in the patch folder and the subfolder of the changed RYS.
+1. Into the `patch` folder go all alterations to existing files that affect any platform files.
+2. Following the same logic, if new RYS alters functionality of another RYS then new code files go in the `patch` folder and the subfolder of the changed RYS.
 
-Each RYS should contain information about its author, version, short description about its functionality and under what license it can be used. All this is saved in its very own .gemspec file.
-
-<!-- theme: info -->
->When you are confident the RYS does what it should be doing, feel free to push it into its own repository in Easy's git.
+Each RYS should contain information about its author, version, short description about its functionality and under what license it can be used. All this is saved in its very own `.gemspec` file.
 
 ---
-## How to install RYS?
+### How to install RYS?
 
 1. As your first step you have to **add to your gem file** (Gemfile, gemfile.local, gems.rb,...)
 
@@ -50,7 +46,7 @@ group :default, :rys do
   gem 'rys', github: 'easysoftware/rys', branch: 'master'
 end
 ```
-2. Now **install your gem file**
+2. Next  **install your gem file**
 ```ruby
   bundle install
 ```
@@ -59,7 +55,7 @@ end
  rails generate rys:redmine:plugin NAME
 ```
 <!-- theme: info -->
->This will generate a new Redmine plugin (plugins/NAME) contains basic plugins (rys-bundler, ryspec, ...) and generate skeleton for adding more ryses (plugins/NAME/Gemfile),.
+>This will generate a new Redmine plugin (plugins/NAME) contains basic plugins (`rys-bundler`, `ryspec`, ...) and generated skeleton for adding more ryses (`plugins/NAME/Gemfile`).
 
 4. And a last step is **generate RYS** with name *NAME* and follow instruction. 
 
@@ -67,35 +63,33 @@ end
  rails generate rys:plugin NAME
 ```
 
-***And that is it... RYS platform is fully installed and ready to use.*** 
+And that is it. RYS platform is fully installed and ready to use.
 
 ---
-
-
-
-## What is RYS Builder?
+## RYS Builder
+### What is RYS Builder?
 
 **TODO NA DOPLNĚNÍ** 
 
 ---
 
-## How to install RYS Builder?
+### How to install RYS Builder?
 
 If you want to download RYS Builder copy/simlink all rys dependecies into your project directory. 
 
-1. First of all **copy gems** into plugins/easysoftware/gems: 
+1. First of all **copy gems** into `plugins/easysoftware/gems` 
 
 ```ruby
 bundle exec rake easybundler:build
 ```
 
-2. **Link gems** into plugins/easysoftware/gems
+2. **Link gems** into `plugins/easysoftware/gems`
 
 ```ruby
 bundle exec rake easybundler:build_local
 ```
 
-3. **Revent gems** from plugins/easysoftware/gems
+3. **Revent gems** from `plugins/easysoftware/gems`
 
 ```ruby
 bundle exec rake easybundler:revert
@@ -107,15 +101,15 @@ bundle exec rake easybundler:revert
 bundle exec rake easybundler:revert_local
 ```
 
-***And that is all Now you call sucessfully use our RYS Builder.***
+And that is all Now you call sucessfully use RYS Builder.
 
 ---
 
 
 
-## How to start developing with RYS? *(Best practice one of our developer)*
+## How to start developing with RYS? *(Best practice one of our developers)*
 
-As a first step you will need **Redmine** or **EasyRedmine(ER)** first. 
+As a first step you will need **Redmine** or **EasyRedmine(ER)**. 
 
 Because RYSes are designed for developing (Easy) Redmine plugins, you need to have it set up first.
 
@@ -137,24 +131,39 @@ We have prepared a simple generator of RYS engines.
 
 All engines will have separate GIT repository. It's better to store engines outside of ER git repository.
 
-> HINT: Use `--path` generator option.
+> Use `--path` generator option.
 
 #### Dummy application
 
 Rails 5 engines are best developed with a dummy application, which doesn't contain a lot of unnecessary code. In RubyMine you only need to open the RYS source, so its fast and easy. 
 
-So you take our `devel` repository, clone it as `dummy` and remove **ALL unnecessary plugins**. - [https://git.easy.cz/easyproject-client/dummy](https://git.easy.cz/easyproject-client/dummy) (`devel` corresponds with [devel/devel.git#devel](https://git.easy.cz/devel/devel/tree/devel), `master` with [devel/devel.git#master](https://git.easy.cz/devel/devel/tree/master)
+So you take our `devel` repository, clone it as `dummy` and remove **ALL unnecessary plugins**. It can be found [here](https://git.easy.cz/easyproject-client/dummy)
+- `devel` corresponds with [devel/devel.git#devel](https://git.easy.cz/devel/devel/tree/devel)
+- `master` with [devel/devel.git#master](https://git.easy.cz/devel/devel/tree/master)
 
 You symlink this dummy to `test/dummy` in the RYS engine.
 
 ### Running tests
 
-1. `bundle install` 
+1. Run
+```
+bundle install
+```
 2. Make sure you have configured `config/database.yml` in your dummy.
-3. rake `app:db:create app:db:migrate && bundle exec rake app:easyproject:install`
-4. rspec
+3. Run migration
+```
+app:db:create app:db:migrate
+```
+4. Build Easy Project
+```
+bundle exec rake app:easyproject:install
+```
+5. Run rspec
+```
+rspec
+```
 
-### Example
+#### Example of geting dummy app and running tests
 
 
 1. Get EasyRedmine
@@ -203,7 +212,7 @@ You symlink this dummy to `test/dummy` in the RYS engine.
    rake app:easyproject:install # this work from ER 05.00
    ```
 
-7. Ready for use
+8. Ready to use
 
 RYS is ready. Open RubyMine and write some code! After that run `rspec`.
 

@@ -79,7 +79,7 @@ Timezones (or just `TZ`) appear in 3 different places.
 2. In the user's profile in Redmine (*eg his preference of interpretation*).
 3. In his environment (*workstation, browser etc*). This is also sometimes called 'local offset'.
 
-The chosen and preferred way for Redmine (and so for EP and ER too) is/should be
+The chosen and preferred way for Redmine (as well as for EP and ER) is/should be:
 
 1. Store values in database in UTC.
 2. Expose dates in API at UTC.
@@ -96,16 +96,16 @@ The chosen and preferred way for Redmine (and so for EP and ER too) is/should be
 2. Not all endpoints behave as expected, so sometimes the FE gets value with TZ, sometimes UTC, sometimes without zone.
 3. The JavaScript date object always displays in the local timezone (*eg timezone set by the location of the browser*), see official documentation or this explanatory article.
 4. A user can set a specific timezone in his profile in ER/EP.
-5. Timezone set in Redmine can be different than his browser/workstation has
+5. Timezone set in Redmine can be different than the one on the browser/workstation
 
 ### Our solutions
 
 At the frontend, use `EASY.utils.parseDate` to wrap the actual value with. The benefits are:
 
-1. It controls the format.
-2. Normalization (*eg deal with local timezone*).
-3. Converts to the desired timezone.
-4. Parses into JavaScript date.
+1. It controls the format
+2. Normalization (*e.g. deals with local timezone*)
+3. Converts to the desired timezone
+4. Parses into JavaScript date
 
 <!-- theme: info -->
 >Because the implementation uses local offset, which is peculiar to set in JavaScript tests, we've set Jest to use 2 different timezones:
@@ -149,9 +149,8 @@ describe("test B", () => {
 
 ```
 
-**and now execute them:**
-
-#### `npm run test` will execute everything under UTC:
+### Execution
+`npm run test` will execute everything under UTC:
 
 ```ruby
  $ npm run test
@@ -170,7 +169,7 @@ describe("test B", () => {
 
 ```
 
-#### `npm run test-all` will run tests under 3 different timezones:
+`npm run test-all` will run tests under 3 different timezones:
 
 ```ruby
 $ npm run test-all

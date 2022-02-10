@@ -1,6 +1,6 @@
 # EasyProject Terminology
 
-*In this article we try to explain the most common business-related words in the company...*
+*In this article we try to explain the most common business-related words in the company*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### EASY VUE
 
-*We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the Vue.js framework.
+*Part of the FE that's written in Vue.js and thus rendered on client. We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the Vue.js framework.
 `easy_vue` is a plugin that contains all you need to get it running.*
 
 ---
 
 ### EP
-*EasyProject, same product as EasyRedmine, bu configured for different audience.*
+*EasyProject, same product as EasyRedmine, but configured for different audience.*
 
 ---
 

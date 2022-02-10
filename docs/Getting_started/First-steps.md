@@ -18,32 +18,42 @@ At the beginning, you have to setup your workspace with generics:
 
 **We also differentiate between what system you currently use:**
 
-#### MacOS
+### MacOS
 
-1. Find and install ***Xcode*** (~15GB). You can find it in the AppStore.
+1. First, you have to install [XCode](https://apps.apple.com/cz/app/xcode/id497799835?mt=12) from the Appstore.
 2. Install ***Xcode Command Line Tools***.
 ```go
 sudo xcode-select --install
 ```
 3. Install version manager ***[RVM](https://rvm.io/rvm/install)*** or ***RBENV***.
-
+```go
+brew install rbenv
+```
 4. Install ***Ruby Bundler***.
-
+```go
+gem install bundler
+```
 5. Install ***Ruby-2.7.2+***. Use 2.7.2 or  for now on MacOS OR 3.0.2 with RBENV as a package manager.
+> 	NOTE: Keep in mind that some newer versions of Ruby do not work flawlessly on MacOS so it is better to use an older version
+6. Next we will install MySQL using command - head [here](https://flaviocopes.com/mysql-how-to-install/) to read more on how to get it running. MySQL server will then run on your workstation.
+```go
+brew install mysql
+```
 
-6. [Install ***mySQL***](https://flaviocopes.com/mysql-how-to-install/).
 
-
-
-#### Linux Ubuntu
-
+### Linux Ubuntu
+The following steps should work flawlessly for any common Linux distribution (Mint, Ubuntu etc.)
 1. Install [***RVM***](https://rvm.io/rvm/install) 
 
 2.  Install ***Ruby-2.7.2+***
 
-3. Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
+3. Next install Ruby bundler using the following command:
+```go
+gem install bundler
+```
+4. Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
 
-4. [Install ***MySQL***](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
+5. [Install ***MySQL***](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
 
 
 

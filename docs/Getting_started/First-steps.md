@@ -8,7 +8,7 @@
 
 At the beginning, you have to setup your workspace with generics: 
 
-- [ ] Encrypt your hard drive.
+1. Encrypt your hard drive.
 2. Use keyring service ([bitwarden](https://es.easyproject.com/easy_knowledge_stories/1419) is in the progress for company use).
 3. Install Email client (example of setting for [thunderbird](https://es.easyproject.com/easy_knowledge_stories/909) or [outlook](https://es.easyproject.com/easy_knowledge_stories/1358).
 4. Install chat client.

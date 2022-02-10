@@ -23,8 +23,8 @@
 
 ### EASY VUE
 
-We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the Vue.js framework.
-`easy_vue` is a plugin that contains all you need to get it running.
+*We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the Vue.js framework.
+`easy_vue` is a plugin that contains all you need to get it running.*
 
 ---
 

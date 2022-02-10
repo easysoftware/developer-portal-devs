@@ -52,25 +52,19 @@ gem install bundler
 bundle install
 ```
 
-5. Generate secret token (*needed for security*)
-
-```ruby
-bundle exec rake generate_secret_token
-```
-
-6. Migrate Redmine
+5. Migrate Redmine
 
 ```ruby
 bundle exec rake db:migrate
 ```
 
-7. Migrate Easy and other plugins
+6. Migrate Easy and other plugins
 
 ```ruby
 bundle exec rake easyproject:install REILS_ENV=development
 ```
 
-8. Start the app
+7. Start the app
 
 ```ruby
 rails s

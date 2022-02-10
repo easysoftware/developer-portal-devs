@@ -82,16 +82,6 @@ Common prefixes:
 <!-- theme: warning -->
 > Do not overwrite lang keys from Redmine or EasyRedmine.
 
-### Inline conditions
-
-```ruby
-# BAD
-check_box_tag :is_default, @model && @model.is_defaut == 'yes' ? '1' : '0', id: 'is_default'
-
-# GOOD
-check_box_tag :is_default, (@model && @model.is_defaut == 'yes' ? '1' : '0'), id: 'is_default'
-
-```
 
 ### Indentation and naming
 

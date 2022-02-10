@@ -1,12 +1,17 @@
 # Backend code styles
 
-*In this article we will show you what is our BE code styles...*
+*In this article we will show you what code style to follow when developing BE*
 
 ---
 
 We want our code to be readable and understandable and since our codebase is large and complex, it's important to follow some basic rules when writing code.
 
-To ensure code style, we use Rubocop. 
+To ensure code style, we use Rubocop.
+
+Install it using this command:
+```
+gem install rubocop
+```
 
 ---
 
@@ -15,12 +20,12 @@ To ensure code style, we use Rubocop.
 <!-- theme: warning -->
 >**Do not change Redmine!**
 >
->Do not change any Redmine files directly. We are a plugin for Redmine, not a fork.
+>Do not change any Redmine files directly. Easy Project is a plugin for Redmine, not a fork.
 
 <!-- theme: info -->
 >**Try to use existing code.**
 >
->Before adding something, inspire yourself with an existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting.
+>Before adding something, inspire yourself within the existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting.
 >
 >Don't be afraid to explore the source code. Look at models, controllers or views and do it similarly - syntax, code style. When you use a method, you have to know what it does.
 
@@ -33,20 +38,20 @@ To ensure code style, we use Rubocop.
 
 ---
 
-## Editor settings
+## Recommended editor settings
 
 1. **Two spaces for indentation**. Use two spaces for indenting your code and swear an oath to never mix tabs and spaces.
 2. **Unix line-endings**. Use UNIX-style newlines (\n), and a newline character as the last character of a file. Windows-style newlines (\r\n) are forbidden inside any repository.
-3. [**UTF-8**](https://es.easyproject.com/issues/8) source coding only
+3. **UTF-8** source coding only
 4. No whitespaces
 5. Spaces around curly braces in hashes
 6. Spaces around curly braces in blocks
 7. Spaces around arrows
 8. Do not indent `when` cases
-9. Do not indent after private / protected
+9. Do not indent after `private` / `protected`
 10. Single quotes `''` for non-interpolated strings
 
-> RubyMine takes care of most of them automatically. 
+> [RubyMine](https://www.jetbrains.com/ruby/) takes care of most of them automatically. 
 
 ## Conventions
 
@@ -54,8 +59,8 @@ To ensure code style, we use Rubocop.
 
 We are using two types of migrations:
 
-1. Schema migrations, located in db/migrate, handles changes to the database schema.
-2. Data migrations, located in db/data, which handles only changes of data.
+1. Schema migrations, located in `db/migrate`, handles changes to the database schema.
+2. Data migrations, located in `db/data`, which handles only changes of data.
 
 ### Overwriting templates / partials
 
@@ -63,7 +68,7 @@ One plugin can completely replace a template or a partial of the platform or a p
 
 In case of small additions, create new or use existing [hooks](https://www.redmine.org/projects/redmine/wiki/Hooks). Hooks must be created in the appropriate repository, generally in the platform.
 
-### Prefixies
+### Prefixes
 
 Prefixes are preferred in order to avoid naming conflicts. For plugin `Abc` for example, use:
 

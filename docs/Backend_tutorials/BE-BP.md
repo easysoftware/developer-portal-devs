@@ -1,6 +1,6 @@
 # Backend best practices
 
-*In this article we will show you some of our best practices...*
+*In this article we will show you some of our best practices*
 
 ---
 

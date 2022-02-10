@@ -1,6 +1,6 @@
 # Backend first steps
 
-The beginning of an awesome article...
+*In this article we focus focus on your first steps to take to start developing backend features*
 
 ---
 
@@ -16,12 +16,12 @@ The beginning of an awesome article...
 
 *Recomended*
 
-1. Imagemagick
-2. Xapian
-3. Wkhtmltopdf
+1. [Imagemagick](https://imagemagick.org/index.php)
+2. [Xapian](https://xapian.org/download)
+3. [Wkhtmltopdf](https://wkhtmltopdf.org/)
 
 
-### Just install and run
+### Install and run
 
 1. Clone a repository.
 
@@ -75,7 +75,7 @@ rails s
 
 ## Docker DEV environment
 
-*This text describes workflow based on our docker image (our compose).*
+*This text describes workflow based on our docker image.*
 
 ### Before you start
 
@@ -87,7 +87,7 @@ rails s
 
 There are two options basically. You can use the official [v10 image](https://git.easy.cz/easyproject_com/stable/container_registry) **OR** build your own image from git.
 
-Because images on www.git.easy.cz are strictly for production use, I will describe how I use my own building...
+Because images on [www.git.easy.cz](www.git.easy.cz) are strictly for production use, we will describe how to build them yourselves.
 
 #### Dockerfile
 
@@ -194,7 +194,7 @@ Here you need remove "`production`" env from puma:
 
 #### .env
 
-Finally you need define `.env` file which contains **ALL** required variables in one place:
+Finally you need to define `.env` file which contains **ALL** required variables in one place:
 
 ```ruby
 DB_HOST=db
@@ -207,11 +207,11 @@ NODES__EASYSOFTWARE__COM=<YOUR TOKEN>
 
 ```
 
-> RubeMine offially support Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
+> RubeMine officially supports Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
 >
->Also you can read the guide [how to use VScode with Docker](https://docs.microsoft.com/en-us/learn/modules/use-docker-container-dev-env-vs-code/2-use-as-development-environment).
+>Also you can read the guide on [how to use VScode with Docker](https://docs.microsoft.com/en-us/learn/modules/use-docker-container-dev-env-vs-code/2-use-as-development-environment).
 >
->And last one check [Docker documentation](https://docs.docker.com/compose/compose-file/compose-file-v3)
+>And lastly, check [Docker documentation](https://docs.docker.com/compose/compose-file/compose-file-v3)
 
 
 

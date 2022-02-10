@@ -56,4 +56,33 @@ gem install bundler
 5. [Install ***MySQL***](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04)
 
 
+### Final steps
+1. Generate your SSH key
+```go
+ssh-keygen -t rsa
+```
+2. Add your generated SSH key into Easy Gitlab in **Profile** > **Preferences** > **SSH Keys**
+3. Download the version of the platform you want to work on. 
+```go
+git clone git@git.easy.cz:devel/devel.git {$TARGET_DIRECTORY}
+```
+4. Download database seed - you can find it here
+> NOTE: the database name you use in the command will be used in all the future commands as well
+5. Install the platform dependencies from the location on your workstation
+```go
+bundle install
+```
+6. Run migrations
+```EasyProject
+bundle exec rake easyproject:install RAILS_ENV=development
+```
+```Redmine
+bundle exec rake db:migrate
+```
+7. Run the platform - it will sit at `http://localhost:3000`
+```
+rails s
+```
 
+
+By now you should have your workstation ready.

@@ -45,8 +45,8 @@ If you want your merge request review as soon as possible, follow these rules:
 
 When you have met all of these criteria, great! Just way for **two approvals** up from reviewers!
 
-> In case of integrating RYS into the platform, there should be prepared MR in the platform repository where you should update the version that is compatible with the given platform version.
-If it's a new rys then it should be disabled in production, new plugin for RYS is required. (Just new easy_plugin with Gemfile definition)
+> In case of integrating RYS into the platform, there should be prepared MR in the platform repository as well, where you  update the version that is compatible with the given platform version.
+> If it's a new rys then it should be disabled in production, new plugin for RYS is required. (Just new easy_plugin with Gemfile definition)
 
 ## Changelogs
 Whenever you merge new changes into code (RYSes, platform or plugins), you have to update changelog.

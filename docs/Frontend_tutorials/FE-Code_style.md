@@ -45,7 +45,7 @@ The rules described here come from three different strengths.
 >
 >**CONSIDER** naming Constant also with lowerCamelCase.
 
-```java
+```javascript
 var myImage = document.getElementById("my_image");
 var $myImage = $("#my_image");
 
@@ -69,12 +69,10 @@ var $myImage = $("#my_image");
 
 ## Blocks
 
-*To prevent the appearance of the pyramid of hell, these rules are given:*
-
 <!-- theme: warning -->
 >**DO** use at most 4 levels of indentation. You can use control statements to flatten the structure:
 
-```java
+```javascript
 // BAD
 var i,j;
 for (i = 0; i < 10; i++) {
@@ -102,7 +100,7 @@ for (i = 0; i < 10; i++) {
 >
 >**AVOID** using very short blocks.
 
-```java
+```javascript
 var a = 5;
 // BAD
 if (a === 5) {
@@ -118,7 +116,7 @@ if (a === 5) return;
 >
 >**AVOID** usage of lines longer than 100 characters
 
-```java
+```javascript
   if (short_condition) break;
   if (short_condition) return variable||primitive;
   if (short_condition) continue;
@@ -136,7 +134,7 @@ if (a === 5) return;
 >
 >**PREFER** using a declaration file for pipeline if multiple .js files are used. The declaration file should be named `{name_of_plugin}`.js and should be located in assets/javascripts in the plugin folder. Rules for are content of the file are specified by Rails Sprockets.
 
-```java
+```javasciprt
 /*
 *   Example file
 * = require external
@@ -149,7 +147,7 @@ if (a === 5) return;
 <!-- theme: warning -->
 >**PREFER** including .js files only in pages where the code is used. If code is necessary everywhere, use easy_extension.js hook: 
 
-```java
+```javascript
 class Hooks < Redmine::Hook::ViewListener
  def easy_extensions_javascripts_hook(context={})
    context[:template].require_asset('name_of_js_file')
@@ -183,7 +181,7 @@ Due to performance optimization, `jQuery` was removed from the header and is now
 
 `EASY.schedule.require` accepts function as a second parameter, which has to be fulfilled before the execution of the init function. 
 
-```java
+```javascript
 /** EASY.schedule.late - For functions, which should be executed after several loops after "DOMContentLoaded" event */
 EASY.schedule.late(function() {
  // executed after EASY.sidebar.init();
@@ -196,7 +194,7 @@ EASY.schedule.main(function() {
 
 ```
 and
-```java
+```javascript
 /** EASY.schedule.require - For functions, which should wait for [prerequisite] fulfillment */
 EASY.schedule.require(function(sidebar) {
  sidebar.init();
@@ -234,7 +232,7 @@ To make the page perform fast, these rules have been set:
 >
 >**DON'T** use multiple calls `$('my_selector')` where one is sufficient.
 
-```java
+```javascript
 // BAD 
 $(".my-image").height($(".my-image").width());
 
@@ -246,7 +244,7 @@ $myImage.height($myImage.width());
 <!-- theme: warning -->
 >**AVOID** layout thrashing.
 
-```java
+```javascript
 // BAD
 $table.find("td.first_column").each(function() {
  var $this = $(this);
@@ -292,7 +290,7 @@ $table.find("td.first_column").each(function() {
 >
 >**PREFER** namespacing in file namespace.js.
 
-```java
+```javascript
 // GOOD
 window.EASY = window.EASY || {};
 EASY.query = EASY.query || {};
@@ -316,7 +314,7 @@ Predict the complexity of your task and choose the proper pattern from the ones 
 >
 >**PREFER** using closure for code separation.
 
-```java
+```javascript
 // GOOD
 (function(){
  /**
@@ -337,7 +335,7 @@ function toggleSubMenu(menu) {
 ### **Middle complex usages**
 
 <!-- theme: warning -->
->DO use *jQueryUI* widget for a middle complex usages, e.g. side menu with single ajax call. *jQueryUI* widgets guidelines will be provided later.
+> **DO** use `*jQueryUI*` widget for a middle complex usages, e.g. side menu with single ajax call `*jQueryUI*` widgets guidelines will be provided later.
 
 ### **Complex usages**
 

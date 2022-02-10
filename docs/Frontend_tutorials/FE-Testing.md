@@ -1,6 +1,6 @@
 # Frontend testing
 
-*In this article we will show you how to test your FE services...*
+*In this article we will show you how to test your FE services*
 
 ---
 
@@ -8,13 +8,14 @@
 
 ## Frontend tests
 
-Nowadays we are using [Jest](https://jestjs.io/), for both platform and plugins (mainly Vue.js)
+We are using [Jest](https://jestjs.io/), for both platform and plugins (mainly Vue.js)
 
 You can run them from the source root as:
 
 ```ruby
 npm test
-# just particular
+
+# or just particular
 npm test -- query.spec.js    
 
 ```
@@ -46,7 +47,7 @@ Deployments are standalone isolated applications in our dev environment in our c
 
 On every task, in the `'more'` menu, there is a button `"New Deployment"`. It opens a modal window with a form:
 
-1. '`URL`' is automatically pre-filled with the ID of the current task,
-2. '`Repository`' is, by default, "devel". You can change it.
-3. '`Branch`' is not limited to the ones in the selected, just copy your **feature branch** to the text field (without `origin/` part)
-4. '`Host name`' is used as DB source,  by default, it's `mother.easyredmine.com` and you can use this in most cases.
+1. '`URL`' is automatically pre-filled with the ID of the current task
+2. '`Repository`' is, by default, `devel`. You can change it
+3. '`Branch` is not limited to the ones in the selected, just copy your **feature branch** to the text field (without `origin/` part)
+4. '`Host name`' is used as DB source,  by default, it's `mother.easyredmine.com` and you can use this in most cases

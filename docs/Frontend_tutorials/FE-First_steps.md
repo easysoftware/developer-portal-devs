@@ -1,10 +1,12 @@
 # Frontend first steps
 
-The beginning of an awesome article...
+*In this article we will guide you through the first steps to develop frontend features*
 
 ---
 
 ## First steps as Frontend developer
+
+> Note that for in order to be able to develop frontend you also have to be able to have backend running on your workstation. Head [here](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Backend_tutorials/BE-First_steps.md) to set it up in case you haven't
 
 We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the [Vue.js](https://vuejs.org/) framework.
 
@@ -13,7 +15,7 @@ Plugin that contains all you need to get it running is `easy_vue`.
 ### How to install EASY VUE? 
 
 1. Install node.js. 
->   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go by `README.md` to install the latest stable version 14 of Node.js. 
+>   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go through `README.md` to install the latest stable version 14 of Node.js. 
 2. Install [npm](https://docs.npmjs.com/getting-started) (Node Package Manager)
 3. Clone the [Easy Vue repository](https://git.easy.cz/devel/easy-vue.js).
 4. To be able to install private Easy npm packages, folow [these instructions](https://nodes.easysoftware.com/-/help).
@@ -30,14 +32,13 @@ This command will install `npm modules` and `compile Vue`. This is used in the p
 
 ### Development on your local machine
 
-
 #### Prepare sources locally
 
 1. Make sure that your platform is in the proper branch.
 2. Make sure that your `easy_vue.js` is in the proper branch (it follows the same branching pattern as a platform, eg. it's not RYS).
-3. [Link](https://git.easy.cz/internal/easy_cli) the `easy_vue` plugin to the platform. 
+3. Link the [easy_vue](https://git.easy.cz/internal/easy_cli) plugin to the platform. 
 
-> You can do it manually via symling the vue repo into [platform]/plugins/easy_vue too. 
+> You can do it manually via symling the vue repo into`¨platform/plugins/easy_vue` too. 
 
 #### Start the webpack for serving frontend
 
@@ -54,7 +55,7 @@ npm --prefix plugins/easy_vue run dev
 ```
 
 <!-- theme: danger -->
-> **Do not kill it!** Keep an eye on the console. Front compilation failures appear here.
+> Do not kill it! Keep an eye on the console. Front compilation failures appear here.
 
 3. Launch rails server in another console
 
@@ -76,4 +77,4 @@ Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](http
 We use Prettier which does removes all original styling and ensures that all outputted code conforms to a consistent style.
 Prettier takes your code and reprints it from scratch by taking the line length into account.
 
-> Find out how to use it [here](https://prettier.io/docs/en/install.html). 
+Find out how to use it [here](https://prettier.io/docs/en/install.html). 

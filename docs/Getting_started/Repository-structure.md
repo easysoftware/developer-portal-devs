@@ -1,6 +1,6 @@
 # Repository structure
 
-*In this article we will show you how to get correct repository structures in the different environments...*
+*In this article we will show you how to get correct repository structures in the different environments*
 
 ---
 
@@ -41,8 +41,6 @@ Most of these plugins have their own separate repositories.
 
 Only own controllers and views handle code execution. Changes to other plugins are permitted only after previous consultation.
 
-Following our code, style is recommended.
-
 > We're moving towards 'product' specific plugins (eg for ER/EP). However, we're still maintaining a few existing, mostly because of marketing potential.
 
 ---
@@ -76,9 +74,9 @@ rails generate redmine_extensions:plugin CLIENT_NAME --customer
 ```
 <!-- theme: warning -->
 >Changes in other plugins will be overwritten during update, so it's critical to only make changes in the folder mentioned above.
-<!-- theme: warning -->
+>
 >Changes in core folders are permitted in only exceptional cases after previous approval. **Author takes sole responsibility in those cases.**
-<!-- theme: warning -->
+>
 >Functionality is checked mostly by the client. Because of minimal changes to core files there is little or no code review.
 
 ---
@@ -122,10 +120,11 @@ There are repositories for adjustments we made for some clients. It's usually a 
 ## RYS repos
 
 In RYS repositories there are always 2 protected branches - `master` and `devel`.
+
 Our idea is that `master` branch contains stable version of the RYS, which is in production (clients application has ~> to this version).
 
 <!-- theme: warning -->
-> `Devel` is a branch for future features. <- do merge-request against `devel`.
+> `Devel` is a branch for future features <- do merge-request against `devel`.
 
 ### Versioning
 
@@ -146,69 +145,4 @@ Thirt level - **PATCH** (or BUG-FIX) - only for bug-fixing or harmless changes:
 2. Readme
 
 <!-- theme: danger -->
->**This version cannot include migrations and breaking changes!**
-
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>**Patch versions cannot include migrations and breaking changes!**

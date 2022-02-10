@@ -100,12 +100,12 @@ The chosen and preferred way for Redmine (and so for EP and ER too) is/should be
 
 ### Our solutions
 
-At the frontend, use `EASY.utils.parseDate` to wrap the actual value with:
+At the frontend, use `EASY.utils.parseDate` to wrap the actual value with. The benefits are:
 
-1. Decides about format.
-2. Normalizes it (*eg deal with local timezone*).
-3. Convert to the desired timezone.
-4. Parse into JavaScript date.
+1. It controls the format.
+2. Normalization (*eg deal with local timezone*).
+3. Converts to the desired timezone.
+4. Parses into JavaScript date.
 
 <!-- theme: info -->
 >Because the implementation uses local offset, which is peculiar to set in JavaScript tests, we've set Jest to use 2 different timezones:

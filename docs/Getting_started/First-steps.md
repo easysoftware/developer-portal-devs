@@ -11,7 +11,7 @@ At the beginning, you have to setup your workspace with generics:
 1. Encrypt your hard drive.
 2. Use keyring service ([bitwarden](https://es.easyproject.com/easy_knowledge_stories/1419) is in the progress for company use).
 3. Install Email client (example of setting for [thunderbird](https://es.easyproject.com/easy_knowledge_stories/909) or [outlook](https://es.easyproject.com/easy_knowledge_stories/1358).
-4. Install chat client.
+4. Install Microsoft Teams.
 5. Prepare for backend and/or frontend development. You can read about it more in this article.
 6. Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
 

@@ -98,11 +98,6 @@
     },
     {
       "type": "item",
-      "title": "Frontend testing",
-      "uri": "docs/Frontend_tutorials/FE-Testing.md"
-    },
-    {
-      "type": "item",
       "title": "Frontend code style",
       "uri": "docs/Frontend_tutorials/FE-Code_style.md"
     },
@@ -110,6 +105,11 @@
       "type": "item",
       "title": "Frontend best practices",
       "uri": "docs/Frontend_tutorials/FE-BP.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend testing",
+      "uri": "docs/Frontend_tutorials/FE-Testing.md"
     },
     {
       "type": "divider",
@@ -122,13 +122,13 @@
     },
     {
       "type": "item",
-      "title": "Code review process",
-      "uri": "docs/Release guides/Code-review-process.md"
+      "title": "How to contribute",
+      "uri": "docs/Release guides/How-to-contribute.md"
     },
     {
       "type": "item",
-      "title": "How to contribute",
-      "uri": "docs/Release guides/How-to-contribute.md"
+      "title": "Code review process",
+      "uri": "docs/Release guides/Code-review-process.md"
     },
     {
       "type": "item",

@@ -26,15 +26,6 @@
     },
     {
       "type": "divider",
-      "title": "GraphQL Reference"
-    },
-    {
-      "type": "item",
-      "title": "GraphQL reference",
-      "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
-    },
-    {
-      "type": "divider",
       "title": "Release guides"
     },
     {
@@ -166,6 +157,15 @@
       "type": "item",
       "title": "EasyProject Terminology",
       "uri": "docs/Others/EasyProject-Terminology.md"
+    },
+    {
+      "type": "divider",
+      "title": "GraphQL Reference"
+    },
+    {
+      "type": "item",
+      "title": "GraphQL reference",
+      "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
     },
     {
       "type": "divider",

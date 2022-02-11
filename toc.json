@@ -35,6 +35,16 @@
     },
     {
       "type": "item",
+      "title": "Generator",
+      "uri": "docs/Hello_RYS/Generator.md"
+    },
+    {
+      "type": "item",
+      "title": "Patch management",
+      "uri": "docs/Hello_RYS/Patch-management.md"
+    },
+    {
+      "type": "item",
       "title": "RYSPEC",
       "uri": "docs/Hello_RYS/RYSPEC.md"
     },
@@ -47,16 +57,6 @@
       "type": "item",
       "title": "Toggler feature",
       "uri": "docs/Hello_RYS/Toggler-feature.md"
-    },
-    {
-      "type": "item",
-      "title": "Patch management",
-      "uri": "docs/Hello_RYS/Patch-management.md"
-    },
-    {
-      "type": "item",
-      "title": "Generator",
-      "uri": "docs/Hello_RYS/Generator.md"
     },
     {
       "type": "divider",
@@ -74,11 +74,6 @@
     },
     {
       "type": "item",
-      "title": "Backend testing",
-      "uri": "docs/Backend_tutorials/BE-Testing.md"
-    },
-    {
-      "type": "item",
       "title": "Backend code style",
       "uri": "docs/Backend_tutorials/BE-Code_style.md"
     },
@@ -86,6 +81,11 @@
       "type": "item",
       "title": "Backend best practices",
       "uri": "docs/Backend_tutorials/BE-BP.md"
+    },
+    {
+      "type": "item",
+      "title": "Backend testing",
+      "uri": "docs/Backend_tutorials/BE-Testing.md"
     },
     {
       "type": "divider",

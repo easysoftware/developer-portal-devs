@@ -20,39 +20,11 @@
       "uri": "docs/Getting_started/Repository-structure.md"
     },
     {
-      "type": "divider",
-      "title": "GraphQL Reference"
-    },
-    {
       "type": "item",
-      "title": "GraphQL reference",
-      "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
+      "title": "Support and tools",
+      "uri": "docs/Getting_started/Support-and-tools.md"
     },
     {
-      "type": "divider",
-      "title": "Release guides"
-    },
-    {
-      "type": "item",
-      "title": "Branch naming conventions",
-      "uri": "docs/Release guides/Branch-naming-conventions.md"
-    },
-    {
-      "type": "item",
-      "title": "Code review process",
-      "uri": "docs/Release guides/Code-review-process.md"
-    },
-    {
-      "type": "item",
-      "title": "How to contribute",
-      "uri": "docs/Release guides/How-to-contribute.md"
-    },
-    {
-      "type": "item",
-      "title": "Release guidelines",
-      "uri": "docs/Release guides/Release-guidelines.md"
-    },
-     {
       "type": "divider",
       "title": "Hello RYS"
     },
@@ -60,6 +32,16 @@
       "type": "item",
       "title": "Getting started with RYS",
       "uri": "docs/Hello_RYS/Getting-started-with-RYS.md"
+    },
+    {
+      "type": "item",
+      "title": "Generator",
+      "uri": "docs/Hello_RYS/Generator.md"
+    },
+    {
+      "type": "item",
+      "title": "Patch management",
+      "uri": "docs/Hello_RYS/Patch-management.md"
     },
     {
       "type": "item",
@@ -77,42 +59,8 @@
       "uri": "docs/Hello_RYS/Toggler-feature.md"
     },
     {
-      "type": "item",
-      "title": "Patch management",
-      "uri": "docs/Hello_RYS/Patch-management.md"
-    },
-    {
-      "type": "item",
-      "title": "Generator",
-      "uri": "docs/Hello_RYS/Generator.md"
-    },
-    {
       "type": "divider",
-      "title": "FrontEnd tutorials"
-    },
-    {
-      "type": "item",
-      "title": "Frontend first steps",
-      "uri": "docs/Frontend_tutorials/FE-First_steps.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend testing",
-      "uri": "docs/Frontend_tutorials/FE-Testing.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend code style",
-      "uri": "docs/Frontend_tutorials/FE-Code_style.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend best practices",
-      "uri": "docs/Frontend_tutorials/FE-BP.md"
-    },
-    {
-      "type": "divider",
-      "title": "Backend tutorials"
+      "title": "Contribution guide for Backend"
     },
     {
       "type": "item",
@@ -126,11 +74,6 @@
     },
     {
       "type": "item",
-      "title": "Backend testing",
-      "uri": "docs/Backend_tutorials/BE-Testing.md"
-    },
-    {
-      "type": "item",
       "title": "Backend code style",
       "uri": "docs/Backend_tutorials/BE-Code_style.md"
     },
@@ -140,13 +83,57 @@
       "uri": "docs/Backend_tutorials/BE-BP.md"
     },
     {
+      "type": "item",
+      "title": "Backend testing",
+      "uri": "docs/Backend_tutorials/BE-Testing.md"
+    },
+    {
       "type": "divider",
-      "title": "REST API reference"
+      "title": "Contribution guide for Frontend"
     },
     {
       "type": "item",
-      "title": "REST API reference",
-      "uri": "docs/REST API reference/REST-API-Reference.md"
+      "title": "Frontend first steps",
+      "uri": "docs/Frontend_tutorials/FE-First_steps.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend code style",
+      "uri": "docs/Frontend_tutorials/FE-Code_style.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend best practices",
+      "uri": "docs/Frontend_tutorials/FE-BP.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend testing",
+      "uri": "docs/Frontend_tutorials/FE-Testing.md"
+    },
+    {
+      "type": "divider",
+      "title": "Release guides"
+    },
+    {
+      "type": "item",
+      "title": "Branch naming conventions",
+      "uri": "docs/Release guides/Branch-naming-conventions.md"
+    },
+    {
+      "type": "item",
+      "title": "How to contribute",
+      "uri": "docs/Release guides/How-to-contribute.md"
+    },
+    {
+      "type": "item",
+      "title": "Code review process",
+      "uri": "docs/Release guides/Code-review-process.md"
+    },
+    {
+      "type": "item",
+      "title": "Release guidelines",
+      "uri": "docs/Release guides/Release-guidelines.md"
     },
     {
       "type": "divider",
@@ -163,9 +150,22 @@
       "uri": "docs/Others/EasyProject-Terminology.md"
     },
     {
+      "type": "divider",
+      "title": "GraphQL Reference"
+    },
+    {
       "type": "item",
-      "title": "If you are lost... ",
-      "uri": "docs/Others/If-you-are-lost.md"
+      "title": "GraphQL reference",
+      "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
+    },
+    {
+      "type": "divider",
+      "title": "REST API reference"
+    },
+    {
+      "type": "item",
+      "title": "REST API reference",
+      "uri": "docs/REST API reference/REST-API-Reference.md"
     },
     {
       "type": "divider",

@@ -26,30 +26,6 @@
     },
     {
       "type": "divider",
-      "title": "Release guides"
-    },
-    {
-      "type": "item",
-      "title": "Branch naming conventions",
-      "uri": "docs/Release guides/Branch-naming-conventions.md"
-    },
-    {
-      "type": "item",
-      "title": "Code review process",
-      "uri": "docs/Release guides/Code-review-process.md"
-    },
-    {
-      "type": "item",
-      "title": "How to contribute",
-      "uri": "docs/Release guides/How-to-contribute.md"
-    },
-    {
-      "type": "item",
-      "title": "Release guidelines",
-      "uri": "docs/Release guides/Release-guidelines.md"
-    },
-     {
-      "type": "divider",
       "title": "Hello RYS"
     },
     {
@@ -84,30 +60,6 @@
     },
     {
       "type": "divider",
-      "title": "FrontEnd tutorials"
-    },
-    {
-      "type": "item",
-      "title": "Frontend first steps",
-      "uri": "docs/Frontend_tutorials/FE-First_steps.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend testing",
-      "uri": "docs/Frontend_tutorials/FE-Testing.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend code style",
-      "uri": "docs/Frontend_tutorials/FE-Code_style.md"
-    },
-    {
-      "type": "item",
-      "title": "Frontend best practices",
-      "uri": "docs/Frontend_tutorials/FE-BP.md"
-    },
-    {
-      "type": "divider",
       "title": "Backend tutorials"
     },
     {
@@ -134,6 +86,54 @@
       "type": "item",
       "title": "Backend best practices",
       "uri": "docs/Backend_tutorials/BE-BP.md"
+    },
+    {
+      "type": "divider",
+      "title": "FrontEnd tutorials"
+    },
+    {
+      "type": "item",
+      "title": "Frontend first steps",
+      "uri": "docs/Frontend_tutorials/FE-First_steps.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend testing",
+      "uri": "docs/Frontend_tutorials/FE-Testing.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend code style",
+      "uri": "docs/Frontend_tutorials/FE-Code_style.md"
+    },
+    {
+      "type": "item",
+      "title": "Frontend best practices",
+      "uri": "docs/Frontend_tutorials/FE-BP.md"
+    },
+    {
+      "type": "divider",
+      "title": "Release guides"
+    },
+    {
+      "type": "item",
+      "title": "Branch naming conventions",
+      "uri": "docs/Release guides/Branch-naming-conventions.md"
+    },
+    {
+      "type": "item",
+      "title": "Code review process",
+      "uri": "docs/Release guides/Code-review-process.md"
+    },
+    {
+      "type": "item",
+      "title": "How to contribute",
+      "uri": "docs/Release guides/How-to-contribute.md"
+    },
+    {
+      "type": "item",
+      "title": "Release guidelines",
+      "uri": "docs/Release guides/Release-guidelines.md"
     },
     {
       "type": "divider",

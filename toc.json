@@ -137,15 +137,6 @@
     },
     {
       "type": "divider",
-      "title": "REST API reference"
-    },
-    {
-      "type": "item",
-      "title": "REST API reference",
-      "uri": "docs/REST API reference/REST-API-Reference.md"
-    },
-    {
-      "type": "divider",
       "title": "Learn more"
     },
     {
@@ -166,6 +157,15 @@
       "type": "item",
       "title": "GraphQL reference",
       "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
+    },
+    {
+      "type": "divider",
+      "title": "REST API reference"
+    },
+    {
+      "type": "item",
+      "title": "REST API reference",
+      "uri": "docs/REST API reference/REST-API-Reference.md"
     },
     {
       "type": "divider",

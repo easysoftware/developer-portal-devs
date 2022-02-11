@@ -20,6 +20,11 @@
       "uri": "docs/Getting_started/Repository-structure.md"
     },
     {
+      "type": "item",
+      "title": "Support and tools",
+      "uri": "docs/Others/Support-and-tools.md"
+    },
+    {
       "type": "divider",
       "title": "GraphQL Reference"
     },
@@ -161,11 +166,6 @@
       "type": "item",
       "title": "EasyProject Terminology",
       "uri": "docs/Others/EasyProject-Terminology.md"
-    },
-    {
-      "type": "item",
-      "title": "If you are lost... ",
-      "uri": "docs/Others/If-you-are-lost.md"
     },
     {
       "type": "divider",

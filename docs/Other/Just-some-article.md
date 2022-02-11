@@ -1,3 +1,0 @@
-# Just-some-article
-
-The beginning of an awesome article...

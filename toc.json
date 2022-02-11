@@ -60,7 +60,7 @@
     },
     {
       "type": "divider",
-      "title": "Backend tutorials"
+      "title": "Contribution guide for Backend"
     },
     {
       "type": "item",
@@ -89,7 +89,7 @@
     },
     {
       "type": "divider",
-      "title": "FrontEnd tutorials"
+      "title": "Contribution guide for Frontend"
     },
     {
       "type": "item",

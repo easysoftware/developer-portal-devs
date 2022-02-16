@@ -202,9 +202,11 @@
       }
    ],
    "paths":{
-      "/attachments/{id}.{format}":{
+      "/attachments/{id}/{format}":{
          "get":{
-            "summary":"Get Attachment",
+            "summary":"Get attachment",
+            "description": "Use this method to get all details of attachment. <br/> To successfully call a method enter an specify format of response (<i>format</i>) and ID of attachment (<i>id</i>) into the <b>Path</b> and correct Security API key (<i>key</i>) into <b>Header</b> as well. <br/> <br/> Response of API call is an object with all details about attachment. Check response schema bellow.",
+            "operationId": "GetAttachment",
             "tags":[
                "Attachment"
             ],
@@ -212,7 +214,7 @@
                {
                   "name":"id",
                   "in":"path",
-                  "description":"ID of Attachment",
+                  "description":"ID of Attachment.",
                   "required":true,
                   "schema":{
                      "type":"integer"
@@ -220,7 +222,7 @@
                },
                {
                   "name":"format",
-                  "description":"specify format of response",
+                  "description":"Specify format of response. Only allowed values are: .json and .xml.",
                   "in":"path",
                   "required":true,
                   "schema":{
@@ -234,13 +236,13 @@
             ],
             "responses":{
                "401":{
-                  "description":"not authorized"
+                  "$ref":"#/components/schemas/Error401"
                },
                "403":{
-                  "description":"not authorized to access this resource"
+                  "description":"Not authorized to access this resource."
                },
                "404":{
-                  "description":"not found"
+                  "description":"Not found."
                },
                "406":{
                   "description":"not allowed"
@@ -24357,7 +24359,7 @@
                "price2":{
                   "type":"number",
                   "format":"double",
-                  "example":"14166.67",
+                  "example": 14166.67,
                   "description":"Price without vat"
                },
                "easy_currency_code":{
@@ -27373,6 +27375,28 @@
                }
             }
          },
+         "Error401": {
+          "properties": {
+            "statusCode": {
+              "description": "401",
+              "type": "number"
+            },
+            "errorCode": {
+              "example": "unauthorized",
+              "description": "The request has not been applied because it lacks valid authentication credentials for the target resource.",
+              "type": "string"
+            },
+            "message": {
+              "description": "Unable to authorized your request. Check your current authorization level. ",
+              "type": "string"
+            }
+          },
+          "required": [
+            "statusCode",
+            "message"
+          ],
+          "type": "object"
+        },   
          "GroupApiRequest":{
             "properties":{
                "easy_external_id":{

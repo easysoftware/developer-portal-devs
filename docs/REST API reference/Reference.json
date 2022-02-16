@@ -236,19 +236,19 @@
             ],
             "responses":{
                "401":{
-                  "$ref":"#/components/schemas/Error401"
+                  "description":"Unable to authorized your request. Check your current authorization level."
                },
                "403":{
                   "description":"Not authorized to access this resource."
                },
                "404":{
-                  "description":"Not found."
+                  "description":"File was not found."
                },
                "406":{
-                  "description":"not allowed"
+                  "description":"Not allowed."
                },
                "429":{
-                  "description":"rate limiting exceeded",
+                  "description":"Rate limiting exceeded.",
                   "content":{
                      "application/json":{
                         "schema":{
@@ -270,14 +270,14 @@
                            "type":"object",
                            "properties":{
                               "attachment":{
-                                 "$ref":"#/components/schemas/AttachmentApiResponse"
+                                 "$ref":"#/components/schemas/AttachmentResponse"
                               }
                            }
                         }
                      },
                      "application/xml":{
                         "schema":{
-                           "$ref":"#/components/schemas/AttachmentApiResponse"
+                           "$ref":"#/components/schemas/AttachmentResponse"
                         }
                      }
                   }
@@ -19184,35 +19184,45 @@
    },
    "components":{
       "schemas":{
-         "Attachment":{
+         "AttachmentResponse":{
             "properties":{
                "id":{
                   "type":"integer",
                   "readOnly":true,
-                  "example":1
+                  "example":1,
+                  "description":"ID of attachment."
                },
                "filename":{
                   "example":"service-agreement.odt",
-                  "type":"string"
+                  "type":"string",
+                  "description":"Filename of attachment in HTTP format."
                },
                "filesize":{
                   "type":"integer",
-                  "example":"451564"
+                  "example": 20,
+                  "description":"Size of an attachment."
                },
                "content_type":{
                   "example":"application/vnd.oasis.opendocument.text",
-                  "type":"string"
+                  "type":"string",
+                  "description":"Type of the content."
                },
                "content_url":{
                   "format":"uri",
-                  "type":"string"
+                  "type":"string",
+                  "description":"Content URL."
                },
                "description":{
-                  "type":"string"
+                  "type":"string",
+                  "example": "This is our xxx attachment.",
+                  "description":"Description of an attachment that you are looking for."
+
                },
                "href_url":{
                   "format":"uri",
-                  "type":"string"
+                  "type":"string",
+                  "description": "The href attribute specifies the URL of the page the link goes to.",
+                  "example": "http://www.example.com/default.htm"
                },
                "thumbnail_url":{
                   "description":"if attachment is a thumbnailable? (its image?)",
@@ -19224,31 +19234,24 @@
                   "type":"object",
                   "properties":{
                      "id":{
-                        "type":"integer"
+                        "type":"integer",
+                        "description": "ID of the user.",
+                        "example": 1115
                      },
                      "name":{
-                        
+                       "type": "string",
+                       "description": "Name of the user.",
+                       "example": "My_User_Name" 
                      }
                   }
                },
                "created_on":{
                   "format":"date-time",
-                  "type":"string"
+                  "type":"string",
+                  "description":"Date and time when author created attachment.",
+                  "example": "2012-04-23T18:25:43"
                }
             },
-            "xml":{
-               "name":"attachment"
-            }
-         },
-         "AttachmentApiResponse":{
-            "properties":{
-               "id":{
-                  "type":"integer",
-                  "readOnly":true,
-                  "example":1
-               }
-            },
-            "$ref":"#/components/schemas/Attachment",
             "xml":{
                "name":"attachment"
             }
@@ -27374,29 +27377,7 @@
                   }
                }
             }
-         },
-         "Error401": {
-          "properties": {
-            "statusCode": {
-              "description": "401",
-              "type": "number"
-            },
-            "errorCode": {
-              "example": "unauthorized",
-              "description": "The request has not been applied because it lacks valid authentication credentials for the target resource.",
-              "type": "string"
-            },
-            "message": {
-              "description": "Unable to authorized your request. Check your current authorization level. ",
-              "type": "string"
-            }
-          },
-          "required": [
-            "statusCode",
-            "message"
-          ],
-          "type": "object"
-        },   
+         }, 
          "GroupApiRequest":{
             "properties":{
                "easy_external_id":{

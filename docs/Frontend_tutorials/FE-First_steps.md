@@ -12,7 +12,7 @@ We are gradually switching from rending everything on the server to using a mode
 
 All you need is contained in platform, except of legacy plugins like Gantt, WBS, or Scheduler.
 
-### How to install Vue? 
+### How to install EASY VUE? 
 
 1. Install node.js. 
 >   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go through `README.md` to install the latest stable version 16 of Node.js.

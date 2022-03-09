@@ -1,6 +1,6 @@
 # Tools and support
 
-*In this article we will look closer at tools used in Easy Software and where you can get support*
+*In this article we will look closer at tools used in Easy Software and where you can get support.*
 
 ---
 

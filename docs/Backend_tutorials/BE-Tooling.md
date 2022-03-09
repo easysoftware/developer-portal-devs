@@ -1,6 +1,6 @@
 # Backend tooling 
 
-*In this article we will show you how we keep our code readable and understandable*
+*In this article we will show you how we keep our code readable and understandable.*
 
 ***
 ### Prerequisites

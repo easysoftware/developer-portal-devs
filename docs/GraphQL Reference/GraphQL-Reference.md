@@ -27,11 +27,18 @@ Pass over this api key as a header for every API call you do as follows:
 ---
 
 ## Accessible environments
-Access the API through the following URL for cloud solution:
+Access the API through the following URL for cloud solution. It depends on what environment you are currently running. For example: 
 
-`https://{your-domain}.easysoftware.com/graphql`
+```http
+// EasyProject 
+`https://{your-domain}.easyproject.com/graphql`
+// EasyRedMine
+`https://{your-domain}.easyredmine.com/graphql`
+```
 
 In case you run an on-premise version then the URL will correspond with its URL or IP address that can be seen from the Internet.
+
+> You can also use our [GraphiQL](https://dev-portal.dev5.easysoftware.com/graphiql) tool for GraphQL requests.
 
 ---
 

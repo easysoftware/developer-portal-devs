@@ -1,11 +1,12 @@
 # Frontend first steps
 
-*In this article we will guide you through the first steps to develop frontend features*
+*In this article we will guide you through the first steps to develop frontend features.*
 
 ---
 
 ## First steps as Frontend developer
 
+<!-- theme: danger -->
 > Note that for in order to be able to develop frontend you also have to be able to have backend running on your workstation. Head [here](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Backend_tutorials/BE-First_steps.md) to set it up in case you haven't
 
 We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the [Vue.js](https://vuejs.org/) framework.

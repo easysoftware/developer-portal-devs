@@ -1,6 +1,6 @@
 # Backend code styles
 
-*In this article we will show you what code style to follow when developing BE*
+*In this article we will show you what code style to follow when developing BE.*
 
 ---
 

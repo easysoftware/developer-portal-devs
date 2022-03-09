@@ -113,6 +113,15 @@
     },
     {
       "type": "divider",
+      "title": "Usertesting"
+    },
+    {
+      "type": "item",
+      "title": "User testing",
+      "uri": "docs/User_testing/User-testing.md"
+    },
+    {
+      "type": "divider",
       "title": "Release guides"
     },
     {

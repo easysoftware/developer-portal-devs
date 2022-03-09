@@ -1,6 +1,6 @@
 # RYSPEC
 
-*In this article you will learn how RYSPEC works*
+*In this article you will learn how RYSPEC works.*
 
 ---
 

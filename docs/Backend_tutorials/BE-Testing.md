@@ -1,6 +1,6 @@
 # Backend testing
 
-*In this article we will show you how to test your BE services*
+*In this article we will show you how to test your BE services.*
 
 ---
 

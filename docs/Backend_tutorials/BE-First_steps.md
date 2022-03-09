@@ -1,6 +1,6 @@
 # Backend first steps
 
-*In this article we focus focus on your first steps to take to start developing backend features*
+*In this article we focus focus on your first steps to take to start developing backend features.*
 
 ---
 

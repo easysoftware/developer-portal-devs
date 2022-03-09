@@ -1,6 +1,6 @@
 # Patch management
 
-*In this article you will learn how to use correctly Patch management tool*
+*In this article you will learn how to use correctly Patch management tool.*
 
 ---
 

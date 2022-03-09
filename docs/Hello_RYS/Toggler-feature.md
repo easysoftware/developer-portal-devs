@@ -1,12 +1,12 @@
- # Feature Toggler
+ # Toggler Feature
 
-*In this article you will learn what is our new Toggler feature and how to use it*
+*In this article you will learn what is our new Toggler feature and how to use it.*
 
 ---
 
-Toggle feature is used for... **TODO NA DOPLNĚNÍ** 
+## What is Toggler Feature?
 
-
+Toggler feature is a feature of RYS functionality. It is designed primarily to satisfy client requirements. Instead of implementing each client functionality required separately, a Toggler is created that contains several different requirements and the end user can choose which one they want to use to implement their own solution. It is an administrator activity. Toggler Feature is not a stand-alone functionality, but an extension of RYS functionality.
 
 --- 
 

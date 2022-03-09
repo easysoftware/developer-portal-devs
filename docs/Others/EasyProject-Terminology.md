@@ -1,6 +1,6 @@
 # EasyProject Terminology
 
-*In this article we try to explain the most common business-related words in the company*
+*In this article we try to explain the most common business-related words in the company.*
 
 ---
 

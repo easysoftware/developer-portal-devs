@@ -1,6 +1,6 @@
 # Getting started with RYS
 
-*In this article you will learn what is and how our new RYS plugin system works*
+*In this article you will learn what is and how our new RYS plugin system works.*
 
 ---
 
@@ -67,11 +67,6 @@ And that is it. RYS platform is fully installed and ready to use.
 
 ---
 ## RYS Builder
-### What is RYS Builder?
-
-**TODO NA DOPLNĚNÍ** 
-
----
 
 ### How to install RYS Builder?
 

@@ -1,6 +1,6 @@
 # Repository structure
 
-*In this article we will show you how to get correct repository structures in the different environments*
+*In this article we will show you how to get correct repository structures in the different environments.*
 
 ---
 

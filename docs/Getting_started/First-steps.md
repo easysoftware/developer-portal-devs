@@ -1,6 +1,6 @@
 # First and setup your device 
 
-*In this article we will show you what to do as your first steps in Easy Software*
+*In this article we will show you what to do as your first steps in Easy Software.*
 
 ---
 

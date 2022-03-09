@@ -1,6 +1,6 @@
 # FAQs
 
-*In this article we try to explain the most frequently asked questions*
+*In this article we try to explain the most frequently asked questions.*
 
 ---
 **TODO: Rozřadit do funkčních bloků, udělat osnovu všech otázek...**

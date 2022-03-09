@@ -10,15 +10,14 @@
 
 We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the [Vue.js](https://vuejs.org/) framework.
 
-Plugin that contains all you need to get it running is `easy_vue`.
+All you need is contained in platform, except of legacy plugins like Gantt, WBS, or Scheduler.
 
 ### How to install EASY VUE? 
 
 1. Install node.js. 
->   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go through `README.md` to install the latest stable version 14 of Node.js. 
-2. Install [npm](https://docs.npmjs.com/getting-started) (Node Package Manager)
-3. Clone the [Easy Vue repository](https://git.easy.cz/devel/easy-vue.js).
-4. To be able to install private Easy npm packages, folow [these instructions](https://nodes.easysoftware.com/-/help).
+>   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go through `README.md` to install the latest stable version 16 of Node.js.
+2. Install [yarn](https://yarnpkg.com/getting-started) as public package (if you dont have it already)
+3. To be able to install private Easy packages, folow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
 
 ### Buillding Vue
 
@@ -28,30 +27,22 @@ Running in the root of platform
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
-This command will install `npm modules` and `compile Vue`. This is used in the pipelines.
+This command will install `yarn modules` and `compile Vue`. This is used in the pipelines.
 
 ### Development on your local machine
 
-#### Prepare sources locally
+> Make sure that your platform is in the proper branch.
 
-1. Make sure that your platform is in the proper branch.
-2. Make sure that your `easy_vue.js` is in the proper branch (it follows the same branching pattern as a platform, eg. it's not RYS).
-3. Link the [easy_vue](https://git.easy.cz/internal/easy_cli) plugin to the platform. 
-
-> You can do it manually via symling the vue repo into`¨platform/plugins/easy_vue` too. 
-
-#### Start the webpack for serving frontend
-
-1. Install dependencies for `plugin/easy_vue` in the platform, or in the original `easy_vue.js` repo directory. 
+1. Install dependencies in the platform. 
 
 ```ruby
-npm --prefix plugins/easy_vue ci
+yarn
 ```
 
-2. Start webpack to serve sources
+2. Start Vite to serve sources
 
 ```ruby
-npm --prefix plugins/easy_vue run dev
+vite dev
 ```
 
 <!-- theme: danger -->
@@ -66,7 +57,7 @@ bundle exec rails server
 
 4. Use the app in the browser 
 
-> Webpack is now serving the assets for `easy_vue` repo. Its watching changes in the filesystem and recompiles new versions on the fly. 
+> Vite is now serving the frontend assets. Its watching changes in the filesystem and recompiles new versions on the fly.
 
 #### Unit tests
 
@@ -74,7 +65,7 @@ Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](http
 
 #### Code formatting
 
-We use Prettier which does removes all original styling and ensures that all outputted code conforms to a consistent style.
-Prettier takes your code and reprints it from scratch by taking the line length into account.
+We use ESLint which does removes all original styling and ensures that all outputted code conforms to a consistent style.
+ESLint takes your code and reprints it from scratch by taking the line length into account.
 
-Find out how to use it [here](https://prettier.io/docs/en/install.html). 
+Find out how to use it [here](https://eslint.org/docs/user-guide/getting-started). 

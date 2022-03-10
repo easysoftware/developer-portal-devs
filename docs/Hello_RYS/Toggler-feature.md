@@ -6,7 +6,9 @@
 
 ## What is Toggler Feature?
 
-Toggler feature is a feature of RYS functionality. It is designed primarily to satisfy client requirements. Instead of implementing each client functionality required separately, a Toggler is created that contains several different requirements and the end user can choose which one they want to use to implement their own solution. It is an administrator activity. Toggler Feature is not a stand-alone functionality, but an extension of RYS functionality.
+Toggler feature is a feature of RYS functionality. It works similarly to feature flagging and can help to turn on specific RYSes on or off and thus adjusting the overall funcitonality. It is designed primarily to satisfy client requirements for expected behaviour, but can be used for testing features separately.
+
+Toggler Feature is not a stand-alone functionality, but rather an extension of RYS functionality.
 
 --- 
 

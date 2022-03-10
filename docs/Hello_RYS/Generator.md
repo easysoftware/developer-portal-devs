@@ -6,7 +6,7 @@
 
 ### What is RYS Generator?
 
-The RYS generator is our product and is primarily for creating a new RYS into the EasySoftware platform. When creating a new RIS using a generator, a new RUBY structure is created in a separate GIT repository.
+The RYS generator is our product and is primarily for creating a new RYS into the EasySoftware platform. When creating a new RYS using a generator, a new RUBY barebone structure is created in a separate GIT repository.
 
 ---
 

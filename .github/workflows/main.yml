@@ -13,8 +13,8 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'docs/REST API reference'
-        target-directory: 'docs/REST API reference'
+        source-directory: 'docs/REST API Reference'
+        target-directory: 'docs/REST API Reference'
         destination-github-username: 'easysoftware'
         destination-repository-name: 'developer-portal-integrators'
         user-email: ${{ secrets.EMAIL }}
@@ -79,8 +79,8 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'docs/REST API reference'
-        target-directory: 'docs/REST API reference'
+        source-directory: 'docs/REST API Reference'
+        target-directory: 'docs/REST API Reference'
         destination-github-username: 'easysoftware'
         destination-repository-name: 'developer-portal-partner-devs'
         user-email: ${{ secrets.EMAIL }}

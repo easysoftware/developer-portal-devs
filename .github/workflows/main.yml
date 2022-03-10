@@ -1,0 +1,138 @@
+name: Push to other repositories
+on: push
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+    - name: Push to integrators - ToC
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'toc.json'
+        destination_repo: 'easysoftware/developer-portal-integrators'
+        # user_email: 'automate@example.com'
+        # user_name: 'dmnemec'
+    - name: Pushes to integrators - Backend_tutorials
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Backend_tutorials'
+        target-directory: 'docs/Backend_tutorials'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-integrators'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to integrators - REST API reference
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/REST API reference'
+        target-directory: 'docs/REST API reference'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-integrators'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Push to partner devs - ToC
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'toc.json'
+        destination_repo: 'easysoftware/developer-portal-partner-devs'
+        # user_email: 'automate@example.com'
+        # user_name: 'dmnemec'
+    - name: Pushes to partner devs - Frontend_tutorials
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Frontend_tutorials'
+        target-directory: 'docs/Frontend_tutorials'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - Getting_started
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Getting_started'
+        target-directory: 'docs/Getting_started'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - GraphQL Reference
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/GraphQL Reference'
+        target-directory: 'docs/GraphQL Reference'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - Hello_RYS
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Hello_RYS'
+        target-directory: 'docs/Hello_RYS'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - Others
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Others'
+        target-directory: 'docs/Others'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - REST API reference
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/REST API reference'
+        target-directory: 'docs/REST API reference'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - Release guides
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Release guides'
+        target-directory: 'docs/Release guides'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main
+    - name: Pushes to partner devs - User_testing
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/User_testing'
+        target-directory: 'docs/User_testing'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        # user-email: automate@example.com
+        target-branch: main

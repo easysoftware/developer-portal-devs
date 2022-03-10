@@ -9,7 +9,6 @@ jobs:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
     - name: Pushes to integrators - REST API reference
-      uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
@@ -81,6 +80,17 @@ jobs:
       with:
         source-directory: 'docs/REST API Reference'
         target-directory: 'docs/REST API Reference'
+        destination-github-username: 'easysoftware'
+        destination-repository-name: 'developer-portal-partner-devs'
+        user-email: ${{ secrets.EMAIL }}
+        target-branch: main
+    - name: Pushes to partner devs - Backend_tutorials
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'docs/Backend_tutorials'
+        target-directory: 'docs/Backend_tutorials'
         destination-github-username: 'easysoftware'
         destination-repository-name: 'developer-portal-partner-devs'
         user-email: ${{ secrets.EMAIL }}

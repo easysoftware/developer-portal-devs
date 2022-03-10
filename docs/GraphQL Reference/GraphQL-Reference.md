@@ -26,14 +26,30 @@ Pass over this api key as a header for every API call you do as follows:
 
 ---
 
+## GraphiQL
+GraphiQL is a good tool for getting to know the schema as well as testing queries or simply building the queries that you want to integrate. Thanks to GraphiQL introspect the schema. This feature is helpful to understand deeper what data you can receive, their types and definitions. This option is accessible through the Docs button in the top right corner.
+
+Depending on whether you run Easy Software products in cloud versions or on premise you will have to navigate to the respective URLs:
+
+```http
+// EasyProject 
+https://{your-domain}.easyproject.com/grapihql
+
+// EasyRedMine
+https://{your-domain}.easyredmine.com/grapihql
+```
+
+---
+
 ## Accessible environments
 Access the API through the following URL for cloud solution. It depends on what environment you are currently running. For example: 
 
 ```http
 // EasyProject 
-`https://{your-domain}.easyproject.com/graphql`
+https://{your-domain}.easyproject.com/graphql
+
 // EasyRedMine
-`https://{your-domain}.easyredmine.com/graphql`
+https://{your-domain}.easyredmine.com/graphql
 ```
 
 In case you run an on-premise version then the URL will correspond with its URL or IP address that can be seen from the Internet.

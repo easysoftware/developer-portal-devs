@@ -20,7 +20,13 @@ or
 ## Accessible environments
 Access the API through the following URL for cloud solution:
 
-`https://{your-domain}.easysoftware.com/{endpoint}`
+```http
+EasyProject 
+https://{your-domain}.easyproject.com/{endpoint}
+
+EasyRedMine
+https://{your-domain}.easyredmine.com/{endpoint}
+```
 
 In case you run an on-premise version then the URL will correspond with its URL or IP address that can be seen from the Internet.
 

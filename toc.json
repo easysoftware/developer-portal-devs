@@ -183,7 +183,7 @@
     {
       "type": "item",
       "title": "Easy Redmine API",
-      "uri": "docs/REST API reference/Reference.json"
+      "uri": "docs/REST API reference/Reference.yaml"
     }
   ]
 }

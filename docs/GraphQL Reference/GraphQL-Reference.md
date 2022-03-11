@@ -5,7 +5,17 @@
 ---
 
 ## GraphQL documentation and schema builder
-For your convenience we have prepared Easy Project GraphQL interface, where you can query your custom built queries that you can predefine using a visual editor.
+For your convenience we have prepared Easy Project GraphQL interface, where you can query your custom built queries that you can predefine using a visual editor. It is called GraphiQL and you can find it sitting at:
+
+```http
+// EasyProject 
+https://{your-domain}.easyproject.com/grapihql
+
+// EasyRedMine
+https://{your-domain}.easyredmine.com/grapihql
+```
+
+> GraphiQL is a powerful tool to help you browse schema and write and test your queries.
 
 This interface provides you with full capabilities for introspection so you can browse the complete schema, its type definition and possible ways to reach data you need. In order to fully take advantage of it, we will go through the elements it provides.
 
@@ -26,21 +36,6 @@ Pass over this api key as a header for every API call you do as follows:
 
 ---
 
-## GraphiQL
-GraphiQL is a good tool for getting to know the schema as well as testing queries or simply building the queries that you want to integrate. Thanks to GraphiQL introspect the schema. This feature is helpful to understand deeper what data you can receive, their types and definitions. This option is accessible through the Docs button in the top right corner.
-
-Depending on whether you run Easy Software products in cloud versions or on premise you will have to navigate to the respective URLs:
-
-```http
-// EasyProject 
-https://{your-domain}.easyproject.com/grapihql
-
-// EasyRedMine
-https://{your-domain}.easyredmine.com/grapihql
-```
-
----
-
 ## Accessible environments
 Access the API through the following URL for cloud solution. It depends on what environment you are currently running. For example: 
 
@@ -54,14 +49,12 @@ https://{your-domain}.easyredmine.com/graphql
 
 In case you run an on-premise version then the URL will correspond with its URL or IP address that can be seen from the Internet.
 
-> You can also use our [GraphiQL](https://dev-portal.dev5.easysoftware.com/graphiql) tool for GraphQL requests.
-
 ---
 
 ## When to use REST and GraphQL
 Since Easy Software offers both, REST API and GraphQL, it is important to mention why that is.
 REST API is used for back end to back end communication, so for the cases when some data needs to get from you system to Easy Software and vice versa.
-Contrary to that, GraphQL is used for communication between the front end and back end of Easy Software and thus can be used if you wish to implement your own plugin for it.
+Contrary to that, GraphQL is used **only** for communication between the front end and back end of Easy Software and thus can be used if you wish to implement your own plugin for it.
 
 ---
 
@@ -71,7 +64,7 @@ There are no limits for how many requests you can send via GraphQL calls.
 ---
 
 
-## Status and error codes
+## GraphQL status and error codes
 Easy Software API will always provide you with HTTP status codes that can tell you more about the response.
 
 - `401` - `UNAUTHORIZED` - provided credentials were incorrect

@@ -48,13 +48,14 @@ There is a limit of requests you can send to the cloud version of Easy Software.
 Easy Software REST API supports sending and receiving messages in JSON and XML format. The format you want to provide and consume has to specified for every call as a path parameter just like this:
 
 JSON → `https://dev-portal.dev5.easysoftware.com/easy_contacts.json`
-or XML → `https://dev-portal.dev5.easysoftware.com/easy_contacts.xml`
+
+XML → `https://dev-portal.dev5.easysoftware.com/easy_contacts.xml`
 
 Keep in mind that depending on the format you chose you have to send the request body in the same format (applicable for POST and PUT request).
 
 ---
 
-## Status and error codes
+## REST API status and error codes
 Easy Software API will always provide you with HTTP status codes that can tell you more about the response.
 
 - `401` - `UNAUTHORIZED` - provided credentials were incorrect

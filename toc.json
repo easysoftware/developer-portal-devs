@@ -170,20 +170,7 @@
     {
       "type": "divider",
       "title": "REST API reference"
-    },
-    {
-      "type": "item",
-      "title": "REST API reference",
-      "uri": "docs/REST API reference/REST-API-Reference.md"
-    },
-    {
-      "type": "divider",
-      "title": "APIS"
-    },
-    {
-      "type": "item",
-      "title": "Easy Redmine API",
-      "uri": "docs/REST API reference/Reference.yaml"
     }
+    
   ]
 }

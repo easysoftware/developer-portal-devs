@@ -21,7 +21,7 @@ or
 Access the API through the following URL for cloud solution:
 
 ```http
-Easy Project 
+Easy Project
 https://{your-domain}.easyproject.com/{endpoint}
 
 Easy Redmine

@@ -179,6 +179,11 @@
     {
       "type": "divider",
       "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "Easy Redmine API",
+      "uri": "docs/REST API Reference/Reference.yaml"
     }
   ]
 }

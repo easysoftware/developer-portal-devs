@@ -207,7 +207,7 @@ NODES__EASYSOFTWARE__COM=<YOUR TOKEN>
 
 ```
 
-> RubeMine officially supports Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
+> RubyMine officially supports Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
 >
 >Also you can read the guide on [how to use VScode with Docker](https://docs.microsoft.com/en-us/learn/modules/use-docker-container-dev-env-vs-code/2-use-as-development-environment).
 >

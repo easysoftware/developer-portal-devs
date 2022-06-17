@@ -17,9 +17,9 @@ rails generate rys:plugin --help
 rails generate rys:plugin NAME
 ```
 
-The targer directory is evaluated in this order: 
+The target directory is evaluated in this order: 
 1.  `--path` options
-2.  `RYS_PLUGINS_PATH` enviroment variable
+2.  `RYS_PLUGINS_PATH` environment variable
 3.  `RAILS_ROOT/rys_plugins`
 
 Gem is also added into `Gemfile.local`

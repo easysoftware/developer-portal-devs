@@ -9,7 +9,7 @@
 At the beginning, you have to setup your workspace with generics: 
 
 1. Encrypt your hard drive.
-2. Use keyring service ([bitwarden](https://es.easyproject.com/easy_knowledge_stories/1419) is in the progress for company use).
+2. Use keyring service ([Bitwarden](https://es.easyproject.com/easy_knowledge_stories/1419) is in the progress for company use).
 3. Install Email client (example of setting for [thunderbird](https://es.easyproject.com/easy_knowledge_stories/909) or [outlook](https://es.easyproject.com/easy_knowledge_stories/1358).
 4. Install Microsoft Teams.
 5. Prepare for [backend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Backend_tutorials/BE-First_steps.md) and/or [frontend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Frontend_tutorials/FE-First_steps.md) development
@@ -73,7 +73,7 @@ git clone git@git.easy.cz:devel/devel.git {$TARGET_DIRECTORY}
 bundle install
 ```
 6. Run migrations
-```EasyProject
+```Easy Project
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 ```Redmine

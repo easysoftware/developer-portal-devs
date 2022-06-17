@@ -6,7 +6,7 @@
 
 ## Development Levels
 
-Development of EasyRedmine is divided into four levels:
+Development of Easy Redmine is divided into four levels:
 
 ### Redmine
 
@@ -139,7 +139,7 @@ Second level - **MINOR** - includes new small features:
 1. Migrations
 2. Minor changes of internal logic
 
-Thirt level - **PATCH** (or BUG-FIX) - only for bug-fixing or harmless changes:
+Third level - **PATCH** (or BUG-FIX) - only for bug-fixing or harmless changes:
 
 1. Documentation
 2. Readme

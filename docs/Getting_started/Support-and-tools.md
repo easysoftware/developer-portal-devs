@@ -50,7 +50,7 @@ People who are on duty have to:
 
 - Monitors and solves bugs from *bugsnag*:
   - Close rare case (and these, which are connected with application restart)
-  - Reassingns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
+  - Reassigns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
   - Critical bugs - make sure they are fixed (solve on your own, process them, delegate them,...)
 
->   Free time left? Solve buggs, do some refactoring and other stuff
+>   Free time left? Solve bugs, do some refactoring and other stuff

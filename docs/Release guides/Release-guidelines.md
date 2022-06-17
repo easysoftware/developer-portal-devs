@@ -61,5 +61,5 @@ Follow these guidelines for successful release:
 - version has been updated accordingly
     - **major** = blocking changes
     - **minor** = smaller changes / new features and migrations
-    - **patch** = fixies without migrations
+    - **patch** = fixes without migrations
 - RYS released to [Gem server](gems.easysoftware.com)

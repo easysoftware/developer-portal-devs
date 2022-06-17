@@ -32,10 +32,10 @@ GraphiQL is a good tool for getting to know the schema as well as testing querie
 Depending on whether you run Easy Software products in cloud versions or on premise you will have to navigate to the respective URLs:
 
 ```http
-// EasyProject 
+// Easy Project 
 https://{your-domain}.easyproject.com/grapihql
 
-// EasyRedMine
+// Easy RedMine
 https://{your-domain}.easyredmine.com/grapihql
 ```
 
@@ -45,10 +45,10 @@ https://{your-domain}.easyredmine.com/grapihql
 Access the API through the following URL for cloud solution. It depends on what environment you are currently running. For example: 
 
 ```http
-// EasyProject 
+// Easy Project 
 https://{your-domain}.easyproject.com/graphql
 
-// EasyRedMine
+// Easy RedMine
 https://{your-domain}.easyredmine.com/graphql
 ```
 

@@ -49,7 +49,7 @@ If you want your merge request review as soon as possible, follow these rules:
 - For that follow the same naming convention as used for branches - `ISSUE_ID-your_feature_in_a_few_words`. If there is no linked task, describe it in more detail in the description since this comes handy for QA department.
 - Always consider using labels to describe the overall state of your task - labels like `Important` will be prioritized over `WIP` ones.
 - Assign the merge request to Merge Request Pool [@gitmakers](https://git.easy.cz/gitmakers).
-- Make sure that CI tests have succesfully passed.
+- Make sure that CI tests have successfully passed.
 - Everything has been tested by QA.
 - Code has passed the code style requirements either for BE or FE.
 

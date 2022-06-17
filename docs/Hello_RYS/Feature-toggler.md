@@ -1,18 +1,18 @@
- # Toggler Feature
+ # Feature toggler
 
-*In this article you will learn what is our new Toggler feature and how to use it.*
+*In this article you will learn what is our new feature toggler and how to use it.*
 
 ---
 
-## What is Toggler Feature?
+## What is Feature toggler?
 
-Toggler feature is a feature of RYS functionality. It works similarly to feature flagging and can help to turn on specific RYSes on or off and thus adjusting the overall funcitonality. It is designed primarily to satisfy client requirements for expected behaviour, but can be used for testing features separately.
+Feature toggler is a RYS functionality. It works similarly to feature flagging and can help to turn on specific RYSes on or off and thus adjusting the overall functionality. It is designed primarily to satisfy client requirements for expected behaviour, but can be used for testing features separately.
 
-Toggler Feature is not a stand-alone functionality, but rather an extension of RYS functionality.
+Feature toggler is not a stand-alone functionality, but rather an extension of RYS functionality.
 
 --- 
 
-## How to work with Toggler? 
+## How to work with it? 
 
 You can toggle some code based on the database state or by custom definition. 
 
@@ -24,7 +24,7 @@ First register features. Put this code into `config/initializers`.
 Rys::Feature.add('issue.show')
 
 # For specific plugin
-# Prefered way because you can controll features directly on plugin settings 
+# Preferred way because you can control features directly on plugin settings 
 Rys::Feature.for_plugin(MyRys::Engine) do
   Rys::Feature.add('my_rys.show')
 end
@@ -128,4 +128,3 @@ Rys::Feature.add('issue.show', title: :feature_title,
 # => I18n.t 'feature_title'
 # => I18n.t 'feature_description'
 ```
-

@@ -10,8 +10,8 @@
 ### Requirements
 
 1. GIT
-2. Ruby >= 2.5
-3. MySQL or PostgreSQL
+2. Ruby >= 3.1.2
+3. MySQL
 4. Enough space on your disk
 
 *Recommended*

@@ -6,10 +6,10 @@
 
 ## Branch naming for platform
 
-The following branches are default for the **Platform** repository. The flow goes as follows: `devel` -> if applicable `release-candidate` -> `bug-fixing` -> `master`.
+The following branches are default for the **Platform** repository. The flow goes as follows: `devel` -> if applicable `release-candidate` -> `next/bugs` -> `master`.
 Each of these stages has its specifics that have to be followed.
 
-**Devel**
+**next/minor**
 - Main development branch for new features
 - Contains all features which are planned for release in the next major version
 - All code here should be working and tests passing
@@ -19,7 +19,7 @@ Each of these stages has its specifics that have to be followed.
 - Only fixes for issues found during testing are accepted here
 - Before the release of a major version, this branch is tested by QA, and their feedback is processed directly into this branch
 
-**Bug-fixing**
+**next/bugs**
 - Bug fixes for released version
 - Bugs which have to be tested or are not critical
 - New features don't belong to this branch

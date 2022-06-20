@@ -20,14 +20,17 @@ gem install rubocop
 <!-- theme: warning -->
 >**Do not change Redmine!**
 >
->Do not change any Redmine files directly. Easy Project is a plugin for Redmine, not a fork.
+> Do not change any Redmine files directly. Easy Project is a plugin for Redmine, not a fork.
+> As we mentioned in [Repository structure]() Redmine is the main Rails app on which our system is built. 
+> It's the forbidden zone, because if a new version of Redmine is released, we replace our Redmine with the new version and all changes are overwritten.
+> That means that your code will be lost.
 
 <!-- theme: info -->
 >**Try to use existing code.**
 >
->Before adding something, inspire yourself within the existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting.
+>Before adding something, inspire yourself within the existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting. When you use a method, you have to know what it does.
 >
->Don't be afraid to explore the source code. Look at models, controllers or views and do it similarly - syntax, code style. When you use a method, you have to know what it does.
+>Don't be afraid to explore the source code. Look at models, controllers or views and do it similarly - try to follow current syntax or code style. We want our codebase to be consistent.
 
 <!-- theme: info -->
 >**Comments**
@@ -95,12 +98,11 @@ Common prefixes:
 issues.map{|x| x.project.versions.map{|y| y.css_classes}}.flatten
 
 # GOOD
-issues.flat_map { |issue|
-  issue.project.versions.map { |version|
+issues.flat_map do |issue|
+  issue.project.versions.map do |version|
     version.css_classes
-  }
-}
-
+  end
+end
 ```
 
 ### `belong_to` relations
@@ -111,7 +113,6 @@ Always specify `optional:true` when defining belongs_to associations which are n
 class Issue < ApplicationRecord
   belongs_to :assigned_to, optional: true
 end
-
 ```
 
 ### HTML & JS
@@ -134,20 +135,3 @@ For the `id` attribute use `_` as separator:
 >For RUBY [try this](https://github.com/rubocop/ruby-style-guide). 
 >
 >For RAILS [try this](https://github.com/rubocop/rails-style-guide).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

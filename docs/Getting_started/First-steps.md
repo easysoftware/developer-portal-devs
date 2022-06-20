@@ -8,12 +8,8 @@
 
 At the beginning, you have to setup your workspace with generics: 
 
-1. Encrypt your hard drive.
-2. Use keyring service ([bitwarden](https://es.easyproject.com/easy_knowledge_stories/1419) is in the progress for company use).
-3. Install Email client (example of setting for [thunderbird](https://es.easyproject.com/easy_knowledge_stories/909) or [outlook](https://es.easyproject.com/easy_knowledge_stories/1358).
-4. Install Microsoft Teams.
-5. Prepare for [backend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Backend_tutorials/BE-First_steps.md) and/or [frontend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Frontend_tutorials/FE-First_steps.md) development
-6. Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
+- Prepare for [backend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Backend_tutorials/BE-First_steps.md) and/or [frontend](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Frontend_tutorials/FE-First_steps.md) development
+- Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
 
 
 **We also differentiate between what system you currently use:**
@@ -33,19 +29,30 @@ brew install rbenv
 ```go
 gem install bundler
 ```
-5. Install ***Ruby-2.7.2+***. Use 2.7.2 or  for now on MacOS OR 3.0.2 with RBENV as a package manager.
+5. Install ***Ruby-3.1.2***. Use 3.1.2 for now on MacOS with RBENV as a package manager.
 > 	NOTE: Keep in mind that some newer versions of Ruby do not work flawlessly on MacOS so it is better to use an older version
 6. Next we will install MySQL using command - head [here](https://flaviocopes.com/mysql-how-to-install/) to read more on how to get it running. MySQL server will then run on your workstation.
 ```go
 brew install mysql
 ```
 
+<!-- theme: warning -->
+> It must be [Percona](https://www.percona.com/doc/percona-server/8.0/index.html)
+
+#### Apple M1 processors
+<!-- theme: info -->
+> Please be aware that on new arm processors you may encounter issues during installation process.
+> To be able to successfully set up everything you may need Rosetta terminal (see [here](https://betterprogramming.pub/5-things-i-have-learned-when-using-the-m1-chip-macbook-air-a77f93c50381#5a64)).
+> Also you may need to use --flags to successfully run MySQL database on project.
+
+NOTE: add here info
+
 
 ### Linux Ubuntu
 The following steps should work flawlessly for any common Linux distribution (Mint, Ubuntu etc.)
 1. Install [***RVM***](https://rvm.io/rvm/install) 
 
-2.  Install ***Ruby-2.7.2+***
+2.  Install ***Ruby-3.1.2***
 
 3. Next install Ruby bundler using the following command:
 ```go

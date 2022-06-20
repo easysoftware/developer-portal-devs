@@ -88,7 +88,7 @@ Common prefixes:
 `button_` `error_` `field_` `label_` `text_` `title_`
 
 <!-- theme: warning -->
-> Do not overwrite lang keys from Redmine or EasyRedmine.
+> Do not overwrite lang keys from Redmine or Easy Redmine.
 
 
 ### Indentation and naming

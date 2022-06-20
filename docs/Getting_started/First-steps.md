@@ -80,7 +80,7 @@ git clone git@git.easy.cz:devel/devel.git {$TARGET_DIRECTORY}
 bundle install
 ```
 6. Run migrations
-```EasyProject
+```Easy Project
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 ```Redmine

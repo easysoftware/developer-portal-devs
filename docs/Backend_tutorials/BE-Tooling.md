@@ -52,7 +52,7 @@ Most IDEs have some kind of support for RUBOCOP such as:
 2. Suggesting fixes
 
 
-#### Install your Rubymine
+#### Install your RubyMine
 
 1. Make sure this is checked: `*Preferences >> Editor >> Inspections >> Ruby | Gems and gem management | RuboCop*` (you can type *Rubocop* to search box in preferences)
 
@@ -89,4 +89,3 @@ alias cop_gen_platform="echo \"source 'https://rubygems.org'\" > Gemfile && echo
 
 - In rys repos: replace content of `gems.rb` with` source 'https://rubygems.org'` and `gem 'easy_style'`
 - In platform: replace content of Gemfile with `source 'https://rubygems.org'` and `gem 'easy_style'`
-

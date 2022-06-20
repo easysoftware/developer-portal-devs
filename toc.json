@@ -184,6 +184,15 @@
       "type": "item",
       "title": "Easy Redmine API",
       "uri": "docs/REST API Reference/Reference.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Easy Developers"
+    },
+    {
+      "type": "item",
+      "title": "Repository",
+      "uri": "docs/Easy_section/package_repository.md"
     }
   ]
 }

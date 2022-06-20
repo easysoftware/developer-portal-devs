@@ -6,15 +6,15 @@
 
 ## What is RYSPEC? 
 
-RYSPEC is part of our RYS software which contain testing RYSes. In our case you can test from main Rails appplication as well as directly from RYS. 
+RYSPEC is part of our RYS software which contain testing RYSes. In our case you can test from main Rails application as well as directly from RYS. 
 
 ---
 
-### Test via Rails aplication
+### Test via Rails application
 
 > Tests are located in `RS_ROOT/spec`.
 
-1. First you have to succesfully run tests you have to use the right frameworks. For test purposes, use these frameworks:
+1. First you have to successfully run tests you have to use the right frameworks. For test purposes, use these frameworks:
       - [rpsec](https://github.com/rspec/rspec-metagem)
       - [rspec-rails](https://github.com/rspec/rspec-rails).
 
@@ -25,7 +25,7 @@ RYSPEC is part of our RYS software which contain testing RYSes. In our case you 
 For your folder structure, use `spec/factorries` for your factories and `spec/support` for your support files. In support directory files are automatically loaded. 
 
 
-### Test dirrectly from RYS
+### Test directly from RYS
 
 1. You can test directly from RYS but you will need some [dummy application](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Hello_RYS/Getting-started-with-RYS.md). RYSPEC will look for them in `DUMMY_PATH` (which is environment variable) and `test/dummy` directory.
 

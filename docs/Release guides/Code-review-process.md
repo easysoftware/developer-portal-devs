@@ -28,7 +28,7 @@ BE developers on the other hand tag their code with tags such as `bug`, `feature
 ---
 
 ## People responsible for merging
-Each repositry has different person or people responsible for the review code to be merged.
+Each repository has different person or people responsible for the review code to be merged.
 - **developers** are responsible for `feature/*` branches and RYS repositories
 - for platform merges is responsible [Petr](https://git.easy.cz/petr)
 

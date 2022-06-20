@@ -12,9 +12,9 @@
 1. GIT
 2. Ruby >= 2.5
 3. MySQL or PostgreSQL
-4. Enought space on your disk
+4. Enough space on your disk
 
-*Recomended*
+*Recommended*
 
 1. [Imagemagick](https://imagemagick.org/index.php)
 2. [Xapian](https://xapian.org/download)
@@ -207,26 +207,8 @@ NODES__EASYSOFTWARE__COM=<YOUR TOKEN>
 
 ```
 
-> RubeMine officially supports Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
+> RubyMine officially supports Docker. There is a way [how to use Docker container](https://www.jetbrains.com/help/ruby/docker.html) as a ruby interpreter.
 >
 >Also you can read the guide on [how to use VScode with Docker](https://docs.microsoft.com/en-us/learn/modules/use-docker-container-dev-env-vs-code/2-use-as-development-environment).
 >
 >And lastly, check [Docker documentation](https://docs.docker.com/compose/compose-file/compose-file-v3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -55,8 +55,8 @@
     },
     {
       "type": "item",
-      "title": "Toggler feature",
-      "uri": "docs/Hello_RYS/Toggler-feature.md"
+      "title": "Feature toggler",
+      "uri": "docs/Hello_RYS/Feature-toggler.md"
     },
     {
       "type": "divider",
@@ -155,7 +155,7 @@
     },
     {
       "type": "item",
-      "title": "EasyProject Terminology",
+      "title": "Easy Project Terminology",
       "uri": "docs/Others/EasyProject-Terminology.md"
     },
     {

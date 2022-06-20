@@ -21,10 +21,10 @@ or
 Access the API through the following URL for cloud solution:
 
 ```http
-EasyProject
+Easy Project
 https://{your-domain}.easyproject.com/{endpoint}
 
-EasyRedmine
+Easy Redmine
 https://{your-domain}.easyredmine.com/{endpoint}
 ```
 

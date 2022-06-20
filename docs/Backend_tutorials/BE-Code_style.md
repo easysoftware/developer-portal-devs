@@ -85,7 +85,7 @@ Common prefixes:
 `button_` `error_` `field_` `label_` `text_` `title_`
 
 <!-- theme: warning -->
-> Do not overwrite lang keys from Redmine or EasyRedmine.
+> Do not overwrite lang keys from Redmine or Easy Redmine.
 
 
 ### Indentation and naming
@@ -134,20 +134,3 @@ For the `id` attribute use `_` as separator:
 >For RUBY [try this](https://github.com/rubocop/ruby-style-guide). 
 >
 >For RAILS [try this](https://github.com/rubocop/rails-style-guide).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

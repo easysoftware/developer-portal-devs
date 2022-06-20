@@ -6,7 +6,7 @@
 
 ## What is RYS? 
 
-We've introduced a new way of developing plugins for **EasyRedmine**, **Redmine** and **EasyProject**. It is almost the same as developing standard rails gems based on [Rails engine system](https://guides.rubyonrails.org/engines.html) .
+We've introduced a new way of developing plugins for **Easy Redmine**, **Redmine** and **Easy Project**. It is almost the same as developing standard rails gems based on [Rails engine system](https://guides.rubyonrails.org/engines.html) .
 
 RYSes are used for isolated features and allow for on the fly enabling/disabling of it's features. 
 
@@ -50,7 +50,7 @@ end
 ```ruby
   bundle install
 ```
-3. As a next step **add additionals**
+3. As a next step **add additional**
 ```ruby
  rails generate rys:redmine:plugin NAME
 ```
@@ -70,7 +70,7 @@ And that is it. RYS platform is fully installed and ready to use.
 
 ### How to install RYS Builder?
 
-If you want to download RYS Builder copy/simlink all rys dependecies into your project directory. 
+If you want to download RYS Builder copy/symlink all rys dependencies into your project directory. 
 
 1. First of all **copy gems** into `plugins/easysoftware/gems` 
 
@@ -96,7 +96,7 @@ bundle exec rake easybundler:revert
 bundle exec rake easybundler:revert_local
 ```
 
-And that is all Now you call sucessfully use RYS Builder.
+And that is all Now you call successfully use RYS Builder.
 
 ---
 
@@ -104,11 +104,11 @@ And that is all Now you call sucessfully use RYS Builder.
 
 ## How to start developing with RYS? *(Best practice one of our developers)*
 
-As a first step you will need **Redmine** or **EasyRedmine(ER)**. 
+As a first step you will need **Redmine** or **Easy Redmine(ER)**. 
 
 Because RYSes are designed for developing (Easy) Redmine plugins, you need to have it set up first.
 
-> [EasyRedmine platform](https://git.easy.cz/devel/devel/tree/devel) version 04.00 and up includes the rys gem.
+> [Easy Redmine platform](https://git.easy.cz/devel/devel/tree/devel) version 04.00 and up includes the rys gem.
 
 #### Generate your engine
 
@@ -158,16 +158,16 @@ bundle exec rake app:easyproject:install
 rspec
 ```
 
-#### Example of geting dummy app and running tests
+#### Example of getting dummy app and running tests
 
 
-1. Get EasyRedmine
+1. Get Easy Redmine
    
    ```ruby
    git clone devel -b devel devel
    ```
 
-2. Setup EasyRedmine (database.yml)
+2. Setup Easy Redmine (database.yml)
    
    ```ruby
    bundle install --without rmagick xapian
@@ -229,13 +229,3 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
 Finished in 0.50731 seconds (files took 2.92 seconds to load)
 2 examples, 0 failures, 1 pending
 ```
-
-
-
-
-
-
-
-
-
-

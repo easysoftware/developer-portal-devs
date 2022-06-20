@@ -1,4 +1,4 @@
-# EasyProject Terminology
+# Easy Project Terminology
 
 *In this article we try to explain the most common business-related words in the company.*
 
@@ -12,7 +12,7 @@
 ---
 
 ### calDav
-*Extension of WebDAV which organizes data (meetings, projects, ...) to collections and it is used for synchronization of calendar from EasyProject to mobile phone, part of Easy calendar.*
+*Extension of WebDAV which organizes data (meetings, projects, ...) to collections and it is used for synchronization of calendar from Easy Project to mobile phone, part of Easy calendar.*
 
 ---
 
@@ -29,12 +29,12 @@
 ---
 
 ### EP
-*EasyProject, same product as EasyRedmine, but configured for different audience.*
+*Easy Project, same product as Easy Redmine, but configured for different audience.*
 
 ---
 
 ### ER
-*EasyRedmine, same product as EasyProject, but configured for different audience.*
+*Easy Redmine, same product as Easy Project, but configured for different audience.*
 
 ---
 

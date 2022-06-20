@@ -144,6 +144,3 @@ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.0
 
 > At GitlabCI there is a cypress stage for running examples "automatically". On platform
 > (devel/devel) is set as a `manual` - so you need to explicitly execute it in your MR.
-
-
-

@@ -33,11 +33,11 @@ Each of these stages has its specifics that have to be followed.
 
 ## Branch naming for Easy plugins and RYSes
 The following branches are default for the **Easy plugins** and `RYS` repositories. Development of new features starts by creating a new branch from your selected branch. This schema is used for naming newly created features in Platform and Easy plugins.
-- **next/major** - used for features to be released in the next major upate
-    - **next/major-rc** - used for **code freeze** for features to be released in the next major upate
-- **next/minor** - used for features to be released in the next minor upate
-    - **next/minor-rc** - used for **code freeze** for features to be released in the next major upate
-- **next/bugs** - used for features to be released in the next patch upate
+- **next/major** - used for features to be released in the next major update
+    - **next/major-rc** - used for **code freeze** for features to be released in the next major update
+- **next/minor** - used for features to be released in the next minor update
+    - **next/minor-rc** - used for **code freeze** for features to be released in the next major update
+- **next/bugs** - used for features to be released in the next patch update
 - **master** - default branch to which is merged
 
 If you are about to start working on a new feature for the next major release, you create a branch from `next/major`.

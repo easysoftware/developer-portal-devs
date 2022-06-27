@@ -111,11 +111,6 @@
       "title": "Usertesting"
     },
     {
-      "type": "item",
-      "title": "User testing",
-      "uri": "docs/User_testing/User-testing.md"
-    },
-    {
       "type": "divider",
       "title": "Release guides"
     },
@@ -193,6 +188,11 @@
       "type": "item",
       "title": "Support and tools",
       "uri": "docs/Easy_section/Support-and-tools.md"
+    },
+    {
+      "type": "item",
+      "title": "User testing",
+      "uri": "docs/Easy_section/User-testing.md"
     }
   ]
 }

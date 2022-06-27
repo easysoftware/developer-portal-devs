@@ -48,3 +48,59 @@ You can use the same generator like in any Rails plugin. Just add prefix `rys` a
 rails generate rys:model RYS_PLUGIN_NAME ...normal arguments...
 rails generate rys:scaffold RYS_PLUGIN_NAME ...normal arguments...
 rails generate rys:controller RYS_PLUGIN_NAME ...normal arguments...
+```
+
+---
+
+### Entity Generator
+
+To generate new entity into RYS you can use our [Entity Generator](https://git.easy.cz/rysy/features/easy_entity_generator)
+
+By default it generate whole CRUD, includes views with builder form, guessed fields and EasyQuery.
+It generate also custom field class and basic tests.
+
+You can install it by running
+```ruby
+bundle add easy_entity_generator --source https://gems.easysoftware.com
+```
+
+or 
+```ruby
+gem 'easy_entity_generator', git: 'git@git.easy.cz:rysy/features/easy_entity_generator.git', branch: 'master'
+```
+
+When you are done you can finally use the generator, by
+- generating new entity
+
+```ruby
+rails g easy_entity_generator:entity [EntityName] [attribute_name:type]
+```
+<!-- theme: info -->
+> Possible options are:
+> --project 
+> --author 
+> --acts_as_customizable 
+> --acts_as_searchable 
+> --acts_as_activity_provider 
+> --acts_as_attachable 
+> --acts_as_event 
+> --acts_as_tree 
+> --acts_as_watchable 
+> note: --author is default. If you want to skip it, use --no-author.
+
+Example:
+```ruby
+rails g easy_entity_generator:entity Post name:string content:text
+```
+
+- Reverting generated entity
+
+```ruby
+rails destroy easy_entity_generator:entity [EntityName]
+```
+
+Example:
+
+```ruby
+rails destroy easy_entity_generator:entity Post
+```

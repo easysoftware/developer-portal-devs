@@ -663,55 +663,147 @@ To add an icon to any HTML element, just add `class="icon-XXX"` where XXX is the
 
 The list of all icons can be found [here](https://es.easyproject.com/easy_iconset).
 
+---
+
+## Timezones
+
+Timezones (or just `TZ`) appear in 3 different places.
+
+1. In the database (*eg how the value is stored*).
+2. In the user's profile in Redmine (*eg his preference of interpretation*).
+3. In his environment (*workstation, browser etc*). This is also sometimes called 'local offset'.
+
+The chosen and preferred way for Redmine (as well as for EP and ER) is/should be:
+
+1. Store values in database in UTC.
+2. Expose dates in API at UTC.
+3. Expose dates in generated HTML in user's Redmine TZ settings.
+4. Expect input including timezone (or interpret them as in local user offset).
 
 
+<!-- theme: warning -->
+>This description is unfortunately just the definition of our vision, not the current/ current state.
 
+### Current problems
 
+1. How the Redmine works with timezones (*see above*).
+2. Not all endpoints behave as expected, so sometimes the FE gets value with TZ, sometimes UTC, sometimes without zone.
+3. The JavaScript date object always displays in the local timezone (*eg timezone set by the location of the browser*), see official documentation or this explanatory article.
+4. A user can set a specific timezone in his profile in ER/EP.
+5. Timezone set in Redmine can be different than the one on the browser/workstation
 
+### Our solutions
 
+At the frontend, use `EASY.utils.parseDate` to wrap the actual value with. The benefits are:
 
+1. It controls the format
+2. Normalization (*e.g. deals with local timezone*)
+3. Converts to the desired timezone
+4. Parses into JavaScript date
 
+<!-- theme: info -->
+>Because the implementation uses local offset, which is peculiar to set in JavaScript tests, we've set Jest to use 2 different timezones:
+>
+>**UTC** - used by default, when you run `npm test`
+>
+>**TZ+-5** - used, when you run `npm run test-all`.  That will execute only tests defined as `test_utc_plus5` (or `test_utc_minus5`). *Other tests in the same file will be **skipped***.
 
+### Examples
 
+#### `test_file_A.js` - usage of TZ tests
 
+```ruby
+import {test_utc_plus5, test_utc_minus5} from "../timezone_setup";
 
+describe("test A", () => {
+ test('got executed under UTC', () => {
+  // foo
+ });
 
+ test_utc_minus5("got executed under -5", () => {
+  // boo
+ });
 
+ test_utc_plus5("got executed under -5", () => {
+  // loo
+ });
+});
 
+```
 
+#### `test_file_B.js `- just regular test
 
+```ruby
+describe("test B", () => {
+ test('got executed under any TZ', () => {
+   // zoo
+ });
 
+});
 
+```
 
+### Execution
+`npm run test` will execute everything under UTC:
 
+```ruby
+ $ npm run test
+ > TZ=UTC jest
+ ..
+ 
+ PASS  test/jest/tests/test_file_B.test.js
+ test B
+ ✓ got executed under any TZ
 
+ PASS  test/jest/tests/test_file_A.test.js
+ test A
+ ✓ got executed under UTC (1 ms)
+ ○ skipped got executed under +5
+ ○ skipped got executed under -5
 
+```
 
+`npm run test-all` will run tests under 3 different timezones:
 
+```ruby
+$ npm run test-all
+..
+> TZ=UTC jest
+..
+ PASS  test/jest/tests/test_file_B.test.js
+  test B
+    ✓ got executed under any TZ
 
+ PASS  test/jest/tests/test_file_A.test.js
+  test A
+    ✓ got executed under UTC
+    ○ skipped got executed under +5
+    ○ skipped got executed under -5
 
+..
+> TZ=America/Cancun jest
+..
+ PASS  test/jest/tests/test_file_B.test.js
+  test B
+    ✓ got executed under any TZ
 
+ PASS  test/jest/tests/test_file_A.test.js
+  test A
+    ✓ got executed under +5
+    ○ skipped got executed under UTC
+    ○ skipped got executed under -5
 
+..
+> TZ=Indian/Maldives jest
+..
+ PASS  test/jest/tests/test_file_B.test.js
+  test B
+    ✓ got executed under any TZ (1 ms)
 
+ PASS  test/jest/tests/test_file_A.test.js
+  test A
+    ✓ got executed under -5
+    ○ skipped got executed under UTC
+    ○ skipped got executed under +5
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```

@@ -55,7 +55,7 @@ If you want your merge request review as soon as possible, follow these rules:
 - Everything has been tested by QA.
 - Code has passed the code style requirements either for [BE]() or [FE]().
 
-It is great, when you have met all of these criteria! Just wait for **two approvals** up from reviewers!
+It is great, when you have met all of these criteria! Just wait for **two approvals** from reviewers!
 
 <!-- theme: info -->
 > In case of integrating RYS into the platform, there should be prepared MR in the platform repository as well, where you  update the version that is compatible with the given platform version. </br>

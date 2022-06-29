@@ -3,18 +3,12 @@
 *In this article we try to explain the most frequently asked questions.*
 
 ---
-**TODO: Rozřadit do funkčních bloků, udělat osnovu všech otázek...**
-
 ## First steps
 
 ### `Bundle install` throws error when installing **mysql2 gem** `library not found for -lzstd` on my MacOS. What should I do? 
 
 1. Check your `zstd` version that you have installed - `ls /opt/homebrew/Cellar/zstd/`
 2. Install `mysql2` by running `gem install mysql2 -- --with-opt-dir=$(brew --prefix openssl) --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.0/lib` using the correct version in the path at the end.
-
-### What should I do if I have an installation error  cannot load such file `-- enumerator` when running easy project install? 
-
-You are probably using ruby-2.7.5 or higher, switch to 2.7.2 and try again.
 
 --- 
 ## Development
@@ -29,6 +23,12 @@ Probable causes:
 4. Webpack doesn't recognize changes in the filesystem (restart webpack)
 5. Problem between the chair and the keyboard.
 
+### How to prepare Merge Request?
+1. Make sure you added link to task which is related to your merge request.
+2. In description of your merge request add everything which may be helpful for others to understand why is your changes about.
+3. Make sure you assigned your merge request to correct branch. See which branch to select [here](https://easysoftware.stoplight.io/docs/developer-portal-devs/bb960b922e208-branch-naming-conventions#branch-naming-for-easy-plugins-and-ryses)
+4. Assign merge request to correct group/person
+5. Make sure your pipeline is green and branch is up to date with the branch you want to merge your changes
 
 ### When is the right time for release? 
 
@@ -38,13 +38,5 @@ If RYS is under heavy development - like a currently prepared feature which mean
 
 On the other hand when you just fix langfile or do some small change (or maybe not so small) in RYS which is "stable" and there is no development - make sense to release it right after merge.
 
-### How to prepare merge-request? 
-
-
-
 ### How to properly release?
-
-
---- 
-
-## Testing
+See our [release guidelines](https://easysoftware.stoplight.io/docs/developer-portal-devs/06d14d61da9fc-release-guidelines)

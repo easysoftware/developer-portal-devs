@@ -4,7 +4,6 @@
 
 ---
 
-
 ### B2B
 
 *New RYS, encapsulating whole CRM/business functionality for Easy in cleaner way than an original attempt of CRM plugin with custom fields. There are plans to divide it into 2 parts, one as a plugin for the customers, other for Easy specific needs.*
@@ -39,7 +38,7 @@
 ---
 
 ### ESko
-*It's instance of RM with various plugins for Easy needs. Also act's as a business evidence for the company (eg customers, deals, environment configuration, devops ..).*
+*It's instance of RM with various plugins for Easy needs. Also act's as a business evidence for the company (eg customers, deals, environment configuration, devops).*
 
 ---
 
@@ -58,25 +57,14 @@
 
 ---
 
-
 ### Quote
 
 *Entity which holds offer of some price for some product&period (defined in a pricebook) . See **EasyPriceBookQuote** in the source codes. Items are in **EasyCrmCaseItem**.*
 
 ---
 
-### RM
-*Redmine, ancestor of our product, it's open-source.*
-
----
-
 ### RYS
-*Plugin for Redmine based on Rails engine, see our documentation.*
-
----
-
-### Timesheet
-*Plugin, adds ability to track spent time on issues.*
+*Plugin for Redmine based on Rails engine, see our [documentation](https://easysoftware.stoplight.io/docs/developer-portal-devs/d6ade35432dd8-getting-started-with-rys#what-is-rys).*
 
 ---
 

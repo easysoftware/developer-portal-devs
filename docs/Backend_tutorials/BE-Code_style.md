@@ -3,7 +3,7 @@
 *In this article we will show you what code style to follow when developing BE.*
 
 ---
-
+## Rubocop
 We want our code to be readable and understandable and since our codebase is large and complex, it's important to follow some basic rules when writing code.
 
 To ensure code style, we use Rubocop.
@@ -12,6 +12,20 @@ Install it using this command:
 ```
 gem install rubocop
 ```
+
+### Dealing with offenses
+#### Fixable offenses
+Every time you see possibility to fix some offenses - please do it.
+You can also generate .rubocop_todo.yml, see: `Notes and known issues` section below
+https://docs.rubocop.org/rubocop/configuration.html#automatically-generated-configuration
+
+#### Unfixable offenses
+If it is not possible to easily fix offenses - refactor the code. It will probably make it looking different, but that's fine.
+If it is too difficult to refactor OR it is not possible for some reason you can disable the cop within source code
+https://docs.rubocop.org/rubocop/configuration.html#disabling-cops-within-source-code
+
+<!-- theme: info -->
+> Please do not overuse disabling!
 
 ---
 

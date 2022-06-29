@@ -53,7 +53,7 @@ If you want your merge request review as soon as possible, follow these rules:
 - Assign the merge request to Merge Request Pool or your Team.
 - Make sure that CI tests have successfully passed.
 - Everything has been tested by QA.
-- Code has passed the code style requirements either for [BE]() or [FE]().
+- Code has passed the code style requirements either for [BE](https://easysoftware.stoplight.io/docs/developer-portal-devs/531d6751e881d-backend-code-styles) or [FE](https://easysoftware.stoplight.io/docs/developer-portal-devs/ZG9jOjM5NzgxNzUz-frontend-code-style).
 
 It is great, when you have met all of these criteria! Just wait for **two approvals** up from reviewers!
 

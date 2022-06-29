@@ -16,7 +16,7 @@ Testing is done automatically by [GitLab CI](https://docs.gitlab.com/ce/ci/) on 
 ### Getting started
 
 Our test framework is [RSpec](https://github.com/rspec/rspec) and [rspec-rails](https://github.com/rspec/rspec-rails).
-For factories, we use [factory_bot](https://github.com/thoughtbot/factory_bot).
+For factories, we use [FactoryBot](https://github.com/thoughtbot/factory_bot).
 
 1. To be more familiar with RSpec we recommend you to visit [this](https://relishapp.com/rspec/) page.
 2. For best practices visit [this](https://www.betterspecs.org/) page.

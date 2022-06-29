@@ -41,11 +41,19 @@ brew install mysql
 
 #### Apple M1 processors
 <!-- theme: info -->
-> Please be aware that on new arm processors you may encounter issues during installation process.
+> Please be aware that on new ARM processors you may encounter issues during installation process.
 > To be able to successfully set up everything you may need Rosetta terminal (see [here](https://betterprogramming.pub/5-things-i-have-learned-when-using-the-m1-chip-macbook-air-a77f93c50381#5a64)).
-> Also you may need to use --flags to successfully run MySQL database on project.
 
-NOTE: add here info
+<!-- theme: info -->
+> To successfully install MySQL gem on your M1 you need to follow those two steps:
+>1. Make sure mysql, openssl and zstd are installed on Mac via Homebrew.
+> ```ruby
+> brew install mysql openssl zstd 
+> ```
+>2. Install mysql2 gem.  
+> ```ruby
+> gem install mysql2 -v '0.5.3' -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" --with-cppflags=-I$(brew --prefix openssl)/include
+>```
 
 
 ### Linux Ubuntu

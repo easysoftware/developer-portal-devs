@@ -38,7 +38,7 @@ The channel to look for in MS Teams is [Developers help](https://teams.microsoft
 
 ## Advanced technical support
 
-This service alternates between Ruby developer.
+This service alternates between Ruby developers.
 
 People who are on duty have to: 
 

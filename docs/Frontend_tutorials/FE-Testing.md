@@ -54,30 +54,6 @@ On the platform, Cypress tests are located in `/cypress/integration` folder. The
 
 Cypress itself runs JS tests in its own syntax against some running server - this is specified in `/cypress.json`.
 
-
-### Database cleaner
-
-Before every test (or suite) you need to call BE database cleaner to clean-up the database. For this, you can use command `cy.app ("clean")` which will clean up the database for you.
-
-### Factories / Fixtures
-
-Server **MUST** contains data for testing - but it can be created directly for tests.
-For the rest of our tests we use [***FactoryBot***](https://github.com/thoughtbot/factory_bot) and all entities have their own factory.
-
-We use integration [***cypress-on-rails***](https://github.com/shakacode/cypress-on-rails) which creates something like a "bridge" between FactoryBot and cypress.
-
-<!-- theme: info -->
-> If you need, for example, to create a User instance, you just call 
-> `cy.FactoryBot(["create", "user"])` after the database cleans and you can use existing users in your tests.
-
-### Scenarios
-
-Usually, complex tests need complex test data. For example, if you want to test how filters are working, you need several different entities for filtering.
-
-For this type of situation [***Scenario***](https://github.com/shakacode/cypress-on-rails#example-of-using-scenarios) is the best choice. You'll create testing data directly through [***FactoryBot***](https://github.com/thoughtbot/factory_bot) - so you can pass relations between entities.
-
-It's in Ruby, but FactoryBot has very common syntax, so we think that everybody can do it.
-
 ### Selectors - using `data-cy`
 
 First please read [this guide](https://docs.cypress.io/guides/references/best-practices) and follow these hints:

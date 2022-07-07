@@ -69,11 +69,6 @@
     },
     {
       "type": "item",
-      "title": "Docker",
-      "uri": "docs/Backend_tutorials/BE-Docker.md"
-    },
-    {
-      "type": "item",
       "title": "Backend code style",
       "uri": "docs/Backend_tutorials/BE-Code_style.md"
     },

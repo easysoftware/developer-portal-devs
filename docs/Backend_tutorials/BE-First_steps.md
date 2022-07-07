@@ -79,7 +79,8 @@ rails s
 
 ### Before you start
 
-1. You need to know the basics about docker (*images, containers, volumes,...*)
+1. You need to know the basics about docker (*images, containers, volumes,...*). 
+   Those information can be found [here](https://docs.docker.com/get-started/overview/).
 2. You need to be familiar with ER/EP.
 3. You need an initial database (*demo data, for example*).
 

@@ -3,14 +3,30 @@
 *In this article we will show you what code style to follow when developing BE.*
 
 ---
-## Rubocop
+## Rubocop & Easy Style
 We want our code to be readable and understandable and since our codebase is large and complex, it's important to follow some basic rules when writing code.
 
-To ensure code style, we use Rubocop.
+To ensure code style, we use Rubocop and our `easy_style` gem.
 
-Install it using this command:
+To deal with the styles you, preferably, needs both of them in your Gemfile/gemspec file. Most of our projects already have this installed.
+Please follow the instruction below.
+
+#### For platform and plugins put this into Gemfile:
+```ruby
+gem 'easy_style'
 ```
-gem install rubocop
+
+#### For Rys plugins put this into rys_name.gemspec:
+```ruby
+ Gem::Specification.new do |spec|
+   spec.add_development_dependency 'easy_style'  
+ end
+```
+
+After this run
+```ruby
+bundle update
+bundle exec rubocop
 ```
 
 ### Dealing with offenses

@@ -21,8 +21,10 @@ Depending on what you work on, either `platform`, `Easy plugins` or `RYSes`, you
 
 Checkout your new branch:
 ```bat
-git checkout -b 1234-add_author_to_project
+git checkout -b features/1234-add_author_to_project
 ```
+
+<!-- theme: warning --> 
 > Always use one branch for one issue in order to speed up delivery. An exception would be if the task requires changes in multiple repositories. In that case use the same name for branches in each repository.
 
 When you are done, commit your changes into the branch.
@@ -46,15 +48,16 @@ Following this naming convention will automatically link merge requests with tas
 
 Whenever you feel like you have progressed and want to validate your code with other team members, then go on and create a merge request.
 If you want your merge request review as soon as possible, follow these rules:
-- For that follow the same naming convention as used for branches - `ISSUE_ID-your_feature_in_a_few_words`. If there is no linked task, describe it in more detail in the description since this comes handy for QA department.
+- For that follow the same naming convention as used for branches - `features/ISSUE_ID-your_feature_in_a_few_words`. If there is no linked task, describe it in more detail in the description since this comes handy for QA department.
 - Always consider using labels to describe the overall state of your task - labels like `Important` will be prioritized over `WIP` ones.
-- Assign the merge request to Merge Request Pool [@gitmakers](https://git.easy.cz/gitmakers).
+- Assign the merge request to Merge Request Pool or your Team.
 - Make sure that CI tests have successfully passed.
 - Everything has been tested by QA.
-- Code has passed the code style requirements either for BE or FE.
+- Code has passed the code style requirements either for [BE](https://easysoftware.stoplight.io/docs/developer-portal-devs/531d6751e881d-backend-code-styles) or [FE](https://easysoftware.stoplight.io/docs/developer-portal-devs/ZG9jOjM5NzgxNzUz-frontend-code-style).
 
-When you have met all of these criteria, great! Just way for **two approvals** up from reviewers!
+It is great, when you have met all of these criteria! Just wait for **two approvals** from reviewers!
 
+<!-- theme: info -->
 > In case of integrating RYS into the platform, there should be prepared MR in the platform repository as well, where you  update the version that is compatible with the given platform version. </br>
 > If it's a new rys then it should be disabled in production, new plugin for RYS is required. (Just new easy_plugin with Gemfile definition)
 

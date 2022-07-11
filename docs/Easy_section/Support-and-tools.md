@@ -28,7 +28,7 @@ Here goes the list of the tools used and what department takes care of it:
 
 For Microsoft services (Teams and Outlook email) you will need to have a Microsoft account - if you do not have one yet, reach out to the backoffice team.
 
-General rule of thumb is to reach out to respective team and ask for access (or alternatively ask [Lukáš Pokorný](mailto:lukas.pokorny@easysoftware.com)) since he knows almost everything)
+General rule of thumb is to reach out to respective team and ask for access.
 
 
 ### MS Teams channel for help from developers
@@ -38,7 +38,7 @@ The channel to look for in MS Teams is [Developers help](https://teams.microsoft
 
 ## Advanced technical support
 
-This service alternates between ruby developers. You can see current schedule [here](https://docs.google.com/spreadsheets/d/1-tPsULFeCNVvff7sMwbDfJ40bkWIi5vp8y3upBR6XOs/edit#gid=1253558721).
+This service alternates between Ruby developers.
 
 People who are on duty have to: 
 
@@ -48,9 +48,9 @@ People who are on duty have to:
 
 - Solves tasks which are assigned to [Easy Developers](https://es.easyproject.com/issues?set_filter=1&amp;f%5Bstatus_id%5D=o1&amp;f%5Bassigned_to_id%5D==375) (Technical Support) group (solve on your own, process them or delegate them...) 
 
-- Monitors and solves bugs from *bugsnag*:
+- Monitors and solves bugs from *Bugsnag*:
   - Close rare case (and these, which are connected with application restart)
-  - Reassigns non-critical bugs to [Vendula Kreuzová](https://es.easyproject.com/users/2237/profile) (so the team can go through them during bug meeting on every Tuesday)
+  - Reassigns non-critical bugs to QA (so the team can go through them during bug meeting on every Tuesday)
   - Critical bugs - make sure they are fixed (solve on your own, process them, delegate them,...)
 
 >   Free time left? Solve bugs, do some refactoring and other stuff

@@ -10,8 +10,8 @@
 ### Requirements
 
 1. GIT
-2. Ruby >= 2.5
-3. MySQL or PostgreSQL
+2. Ruby >= 3.1.2
+3. MySQL
 4. Enough space on your disk
 
 *Recommended*
@@ -79,7 +79,8 @@ rails s
 
 ### Before you start
 
-1. You need to know the basics about docker (*images, containers, volumes,...*)
+1. You need to know the basics about docker (*images, containers, volumes,...*). 
+   Those information can be found [here](https://docs.docker.com/get-started/overview/).
 2. You need to be familiar with ER/EP.
 3. You need an initial database (*demo data, for example*).
 

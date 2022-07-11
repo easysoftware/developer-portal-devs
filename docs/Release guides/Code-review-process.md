@@ -11,11 +11,11 @@ Before conducting code reviews please read [this article](https://blog.palantir.
 ## 'Code' of a good reviewer
 As a reviewer, these are the guidelines you should live by:
 - The goal is to increase the codebase quality so be thorough!
-- Check if the code is on par with code style guidelines for either [FE]() or [BE]().
+- Check if the code match our code style guidelines for either [FE](https://developers.easysoftware.com/docs/developer-portal-devs/ZG9jOjM5NzgxNzUy-frontend-best-practices) or [BE](https://developers.easysoftware.com/docs/developer-portal-devs/ZG9jOjM5NzgxNzU2-backend-best-practices).
 - Be nice to the developer who submitted the MR.
 - Ask questions if you are not sure about something.
 - If possible, do the code review with the developer who created the MR.
-- Spend **one hour a day** doing code review - log this time under [Development project](https://es.easyproject.com/projects/lwc/).
+- Spend **one hour a day** doing code review.
 - If MR is assigned to you, you are responsible for doing the code review.
 
 ---
@@ -28,9 +28,11 @@ BE developers on the other hand tag their code with tags such as `bug`, `feature
 ---
 
 ## People responsible for merging
-Each repository has different person or people responsible for the review code to be merged.
-- **developers** are responsible for `feature/*` branches and RYS repositories
-- for platform merges is responsible [Petr](https://git.easy.cz/petr)
+
+All **developers** are responsible for merging and releasing the Merge Requests.
+
+<!-- theme: warning -->
+> Remember the [general rules](https://developers.easysoftware.com/docs/developer-portal-devs/ZG9jOjM5NDMyMjQ4-how-to-contribute#merge-requests) before you merge.
 
 ---
 

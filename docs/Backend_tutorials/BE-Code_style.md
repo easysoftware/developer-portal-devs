@@ -3,15 +3,45 @@
 *In this article we will show you what code style to follow when developing BE.*
 
 ---
-
+## Rubocop & Easy Style
 We want our code to be readable and understandable and since our codebase is large and complex, it's important to follow some basic rules when writing code.
 
-To ensure code style, we use Rubocop.
+To ensure code style, we use Rubocop and our `easy_style` gem.
 
-Install it using this command:
+To deal with the styles you, preferably, needs both of them in your Gemfile/gemspec file. Most of our projects already have this installed.
+Please follow the instruction below.
+
+#### For platform and plugins put this into Gemfile:
+```ruby
+gem 'easy_style'
 ```
-gem install rubocop
+
+#### For Rys plugins put this into rys_name.gemspec:
+```ruby
+ Gem::Specification.new do |spec|
+   spec.add_development_dependency 'easy_style'  
+ end
 ```
+
+After this run
+```ruby
+bundle update
+bundle exec rubocop
+```
+
+### Dealing with offenses
+#### Fixable offenses
+Every time you see possibility to fix some offenses - please do it.
+You can also generate .rubocop_todo.yml, see: `Notes and known issues` section below
+https://docs.rubocop.org/rubocop/configuration.html#automatically-generated-configuration
+
+#### Unfixable offenses
+If it is not possible to easily fix offenses - refactor the code. It will probably make it looking different, but that's fine.
+If it is too difficult to refactor OR it is not possible for some reason you can disable the cop within source code
+https://docs.rubocop.org/rubocop/configuration.html#disabling-cops-within-source-code
+
+<!-- theme: info -->
+> Please do not overuse disabling!
 
 ---
 
@@ -20,14 +50,17 @@ gem install rubocop
 <!-- theme: warning -->
 >**Do not change Redmine!**
 >
->Do not change any Redmine files directly. Easy Project is a plugin for Redmine, not a fork.
+> Do not change any Redmine files directly. Easy Project is a plugin for Redmine, not a fork.
+> As we mentioned in [Repository structure]() Redmine is the main Rails app on which our system is built. 
+> It's the forbidden zone, because if a new version of Redmine is released, we replace our Redmine with the new version and all changes are overwritten.
+> That means that your code will be lost.
 
 <!-- theme: info -->
 >**Try to use existing code.**
 >
->Before adding something, inspire yourself within the existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting.
+>Before adding something, inspire yourself within the existing code base. Try to find an applicable existing solution, copy and modify it. On the other hand, avoid blind copy-pasting. When you use a method, you have to know what it does.
 >
->Don't be afraid to explore the source code. Look at models, controllers or views and do it similarly - syntax, code style. When you use a method, you have to know what it does.
+>Don't be afraid to explore the source code. Look at models, controllers or views and do it similarly - try to follow current syntax or code style. We want our codebase to be consistent.
 
 <!-- theme: info -->
 >**Comments**
@@ -95,12 +128,11 @@ Common prefixes:
 issues.map{|x| x.project.versions.map{|y| y.css_classes}}.flatten
 
 # GOOD
-issues.flat_map { |issue|
-  issue.project.versions.map { |version|
+issues.flat_map do |issue|
+  issue.project.versions.map do |version|
     version.css_classes
-  }
-}
-
+  end
+end
 ```
 
 ### `belong_to` relations
@@ -111,7 +143,6 @@ Always specify `optional:true` when defining belongs_to associations which are n
 class Issue < ApplicationRecord
   belongs_to :assigned_to, optional: true
 end
-
 ```
 
 ### HTML & JS

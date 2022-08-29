@@ -60,6 +60,41 @@ Form fields are basic building blocks of form and contain infiviual intput field
   </p>
 ```
 
-Forms use 12 columns grid for layout a are separated in 3 major zones: Table of Contets, Form Body and Form Sidebar. TOC and Sidebar are used when appropriate especially for long or multipage forms. Small forms use only 6 colum grid of Form Body.
+Forms use 12 columns grid for layout a are separated in 3 major zones: Table of Contets, Form Body and Form Sidebar. TOC and Sidebar are used when 
+appropriate especially for long or multipage forms. Small forms use only 6 colum grid of Form Body.
+
 Minimal span of individual field is 2 columns so it allows for composition of full width, 50:50, 33:33:33, 33:66, 66:33  fields in one row.
-Classes available to do so are: `form__field--full` `form__field--half` `form__field--third` `form__field--two-thirds` `form__field--sixth`
+
+Classes available to do so are: `form__field--full` `form__field--half` `form__field--third` `form__field--two-thirds` `form__field--sixth`. Without any class the field behaves like `form__field--half` and tries to be self adusting - filling any space left.
+
+```html
+  <p class="form__field form__field--full | form__field--half | form__field--third | ....">
+    <label class="form__field-label">...</label>
+    ...
+  </p>
+```
+
+### Sidebar Structure
+Thtere are multiple positions which can be occupied within a sidebar, influencing how will content behave. `form__side-content` is a default one and will scroll away with the rest of the form. Others are sticky and will folow user when scrolling. `form__side-content-top` `form__side-content-main` `form__side-content-footer` note that if you want anything to stick to bottom `form__side-content-main` and `form__side-footer` are mandatory
+
+```html
+  <div class="form__side--right | form__side--left"> 
+    <div class="form__side-content">
+      ... I will just scroll away ...
+    </div>
+
+    <div class="form__side-content form__side-content--sticky">
+      <div class="form__side-content-top">
+        ... Im a going to stick to the top ...
+      </div>
+      
+      <div class="form__side-content-main">
+        ... IM floating in the middle ...
+      </div>
+      
+      <div class="form__side-content-footer">
+        ... Im sticking to the bottom ...
+      </div>
+    </div>
+  </div>
+```

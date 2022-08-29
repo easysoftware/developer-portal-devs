@@ -50,6 +50,8 @@ Groups are chucks of `form__field`s that have a similar function, usually are ap
   </fieldset>
 ```
 
+Groups can contain only `form__field`s
+
 #### Form fields
 Form fields are basic building blocks of form and contain infiviual intput fields. It is important to note that `form__field` can consist of multiple inputs but has only one label
 

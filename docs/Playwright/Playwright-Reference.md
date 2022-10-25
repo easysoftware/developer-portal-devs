@@ -25,10 +25,10 @@ Zde se nachazi slozky:
 1. Pro testovani pouzivame databazi z [https://cypresssource-minor.easysoftware.com/](https://cypresssource-minor.easysoftware.com/).
 **Tuto databazi je zakazano bez schaleni QA upravovat!**
    Databazi si tedy jednoduse dumpnem a dump importujem do sve lokalni databaze.
-2. Ve vychozim stavu bezi playwright vuci localhostu `yarn|npx playwright test`.
+2. Ve vychozim stavu bezi playwright vuci localhostu `yarn playwright test`.
    Tedy spustime localni server s testovaci databazi a testy spustime pres vyse uvedeny prikaz.
    Pokud chceme playwright spustit vuci deploji(musi obsahovat tesotvaci db) lze pouzit parametr BASE_URL.
-3. Pokud nam testy spadnou playwright napovida at pouzijem prikaz `yarn|npx playwright show-trace` kteremu predame vygenerovany soubor zip.
+3. Pokud nam testy spadnou playwright napovida at pouzijem prikaz `yarn playwright show-trace` kteremu predame vygenerovany soubor zip.
    Lokalne nam playwright vse napovi, ovsem stejny postup lze pouzit i pro testy spadle v GitlabCI. 
    To totiz dane zip soubory uklada lze si je stahnout a spustit, detajlnejsi postup je v sekci napojeni na GitlabCI.
 
@@ -39,7 +39,7 @@ Pro kazdou vetev se vytvari nova docker image, ktera je ulozena v Gitlabu v regi
 Nazev image obsahuje nazev vetve pro kterou byla stvorena.
 
 Kazda spadla pajplajna poskytuje moznost stazeni detailniho back-trace zip souboru v sekci 'Job artifacts'. 
-Tento zip staci stahnout a lokalne spustit prikazem `yarn|npx playwright show-trace`.
+Tento zip staci stahnout a lokalne spustit prikazem `yarn playwright show-trace`.
 
 
 

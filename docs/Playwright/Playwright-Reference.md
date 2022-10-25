@@ -29,7 +29,7 @@ Zde se nachazi slozky:
    Databazi si tedy jednoduse dumpnem a dump importujem do sve lokalni databaze.
 2. Ve vychozim stavu bezi playwright vuci localhostu `yarn|npx playwright test`.
    Tedy spustime local s testovaci databazi a testy spustime pres vyse uvedeny prikaz.
-   Pokud chceme playwright spustit vuci deploji(musi obsahovat tesotvaci db) lze pouzit parametr BASE_URL. KRIRL PRIKAZ
+   Pokud chceme playwright spustit vuci deploji(musi obsahovat tesotvaci db) lze pouzit parametr BASE_URL.
 3. Pokud nam testy spadnou playwright napovida at pouzijem prikaz `yarn|npx playwright show-trace` kteremu predame vygenerovany soubor zip.
    Lokalne nam playwright vse napovi, ovsem stejny postup lze pouzit i pro testy spadle v GitlabCI. 
    To totiz dane zip soubory uklada lze si je stahnout a spustit, detajlnejsi postup je v sekci napojeni na GitlabCI.

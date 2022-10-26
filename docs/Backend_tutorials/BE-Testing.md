@@ -28,7 +28,7 @@ Be mindful of the different RSpec types and their purpose when writing tests. Av
 * instance variables assigned in the controller to be shared with views
 * cookies sent back with the response
 
-So if there is a job performed or a service called, controller tests should test that they are performed or called with correct parameters, not their implementation.
+So if there is a job performed or a service called, controller tests should just test that they are performed or called with correct parameters, not their implementation.
 
 ### Structure
 

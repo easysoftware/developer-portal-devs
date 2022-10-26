@@ -1,28 +1,26 @@
-# The service object pattern
+# The Service object pattern
 
-*We loved organized code so this article is about how and when we use services.*
+*We love organized code and so this article is about how and when we use Services.*
 
-We following https://dev.to/joker666/ruby-on-rails-pattern-service-objects-b19 basically. But we agreed on some follow roles and specifics.
+We are following https://dev.to/joker666/ruby-on-rails-pattern-service-objects-b19 with some changes specific to our codebase.
 
-## What is service
-> execute one single action in your domain logic and do it well
+## What is a Service
+> it executes one single action in your domain logic and does it well
 
-Instead of large blocks of code in controller / model which do something, create new service for that. 
+Instead of large blocks of code in controllers / models, which do something, you can create a Service class for that. 
 
-Service action is called by `.call` method and its inherited from `EasyExtensions::BaseService` or `EasyExtensions::Callable` module is prepended.
+Service action is executed by calling the `.call` method which is inherited from `EasyExtensions::BaseService` where the `EasyExtensions::Callable` module is included.
 
 ## Naming
 
-Name of service class should be plain command like `CreateUser` or `RegisterAccount`.
+The name of the service class should have the form of a plain command like `CreateUser` or `RegisterAccount`.
 
-Classes must be placed in `services` folder. No "Service" tail is needed. => So nothing like ~~`CreateUserService` or `RegisterAccountService`~~.
+Classes must be placed in `services\` folder. No "Service" suffix is needed -> ~~`CreateUserService` or `RegisterAccountService`~~.
 
-## Return object
+## Return value
 
-`.call` method of service can return:
+The `.call` method should return one of the following:
 * Boolean `true`/`false`
-* `self`
-* or Object
+* `Object` or `self`
 
-We have no preference and result depends of use case. If service creating something, or retrieving some data it should return result object.
-
+The result depends on specific use case. For example, if a service is creating something, or retrieving some data, it should return an Object.

@@ -22,14 +22,13 @@ For factories, we use [FactoryBot](https://github.com/thoughtbot/factory_bot).
 2. For best practices visit [this](https://www.betterspecs.org/) page.
 
 #### Controller tests
-Use RSpec types for what they purpose. Avoid to test behaviour of job throuht controller test for example. If you need to test job - use `:job` test. In controller test just behaviour in controller, not what services, jobs or models do. 
-Controller tests should do
-* rendered templates
+Be mindful of the different RSpec types and their purpose when writing tests. Avoid testing behaviour of jobs using a controller test for example. If you need to test a job - use `type: :job` test. Controller tests should only test what the controller is responsible for, specifically:
+* templates rendering (not their content)
 * redirects
-* instance variables assigned in the controller to be shared with the view
+* instance variables assigned in the controller to be shared with views
 * cookies sent back with the response
 
-So if there is job performed or service called, controller test should just test that they are performed or called, not about what they do.
+So if there is a job performed or a service called, controller tests should test that they are performed or called with correct parameters, not their implementation.
 
 ### Structure
 

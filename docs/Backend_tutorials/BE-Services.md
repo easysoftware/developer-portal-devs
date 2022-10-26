@@ -5,7 +5,7 @@
 We are following https://dev.to/joker666/ruby-on-rails-pattern-service-objects-b19 with some changes specific to our codebase.
 
 ## What is a Service
-> it executes one single action in your domain logic and does it well
+> it executes a single action in your domain logic and does it well
 
 Instead of large blocks of code in controllers / models, which do something, you can create a Service class for that. 
 
@@ -15,7 +15,7 @@ Service action is executed by calling the `.call` method which is inherited from
 
 The name of the service class should have the form of a plain command like `CreateUser` or `RegisterAccount`.
 
-Classes must be placed in `services\` folder. No "Service" suffix is needed -> ~~`CreateUserService` or `RegisterAccountService`~~.
+Classes must be placed in `services/` folder. No "Service" suffix is needed -> ~~`CreateUserService` or `RegisterAccountService`~~.
 
 ## Return value
 

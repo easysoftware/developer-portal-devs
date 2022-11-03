@@ -22,7 +22,7 @@ Main configuration is done in apollo client - `app/frontend/src/shared/plugins/a
 ### Back-end
 
 - `gem 'graphql'`
-- working websockets (one is enough) -> GraphQL subscriptions use [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) internally so `cable.yml` needs to be configured
+- working websockets (one is enough) -> our graphql subscriptions use [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) so `cable.yml` needs to be configured
 
 ## Implementation
 
@@ -106,18 +106,33 @@ export const useProductBacklogBoardMovePbi = (easyProductBacklogBoardId: string)
 
 ### Back-end
 
+For documentation, https://graphql-ruby.org/subscriptions/overview.html is a very good source. We strongly recommend going over it since it's short and gives a good overview of all the main features.
+
 ##### Define the subscription class
 
 ```ruby
 # plugins/easyproject/easy_plugins/easy_agile/api/easy_graphql/subscriptions/easy_product_backlog_board_move_pbi.rb
 module EasyGraphql
   module Subscriptions
-    class EasyProductBacklogBoardMovePbi < ::EasyGraphql::Subscriptions::EasyProductBacklogBoard
+    class EasyProductBacklogBoardMovePbi < ::EasyGraphql::Subscriptions::Base
 
       description 'Subscription for receiving updates about PBI position/status in EasyProductBacklogBoard'
 
+      argument :easy_product_backlog_board_id, ID, required: true
+
       field :result, Subscriptions::Results::MovePbiResult, null: true
 
+      def subscribe(easy_product_backlog_board_id:)
+        {
+          easy_product_backlog_board: find_board(easy_product_backlog_board_id)
+        }
+      end
+
+      private
+
+      def find_board(id)
+        ::EasyProductBacklogBoard.find_by(id: id)
+      end
     end
   end
 end

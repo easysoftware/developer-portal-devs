@@ -1,6 +1,6 @@
 # Playwright Reference
 
-In this part we will investigate how to succesfully work with Playwright in EasySoftware. 
+In this part we will go through the topic of how to succesfully work with Playwright in EasySoftware. 
 
 To create Playwright test we are using original documentation: https://playwright.dev/. 
 
@@ -12,17 +12,17 @@ Following parts explain description, quick start, connection to GitlabCI and how
 
 We create all Playwright tests in “Playwright” folder in core. 
 
-Here is the location of folders: 
+Here is the structure of folders: 
 
-1. Fixtures
+1. fixtures
 
 - This folder contains JSON files representing entities of our system. Both existing once and the new ones. 
 
-2. Pages 
+2. pages 
 
 - For creating playwright test we use “Page pattern”. In short, the logic of finding elements in a page is enclosed in files with file name extension .page. These are imported into the test and their methods are called. 
 
-3. Tests 
+3. tests 
 
 - This folder contains purely Playwright tests with defined expectations. 
 

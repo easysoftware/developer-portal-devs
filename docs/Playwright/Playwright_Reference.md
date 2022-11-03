@@ -14,15 +14,15 @@ We create all Playwright tests in “playwright” folder in core.
 
 Here is the structure of folders: 
 
-1. fixtures
+1. ./playwright/fixtures
 
 - This folder contains JSON files representing entities of our system. Both existing once and the new ones. 
 
-2. pages 
+2. ./playwright/pages 
 
 - For creating playwright test we use “Page pattern”. In short, the logic of finding elements in a page is enclosed in files with file name extension .page. These are imported into the test and their methods are called. 
 
-3. tests 
+3. ./playwright/tests 
 
 - This folder contains purely Playwright tests with defined expectations. 
 

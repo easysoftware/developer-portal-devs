@@ -136,6 +136,15 @@
     },
     {
       "type": "divider",
+      "title": "Feature guides"
+    },
+    {
+      "type": "item",
+      "title": "Real-time updates",
+      "uri": "docs/Feature_guides/Real-time_updates"
+    },
+    {
+      "type": "divider",
       "title": "Learn more"
     },
     {

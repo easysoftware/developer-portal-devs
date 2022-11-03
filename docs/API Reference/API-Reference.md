@@ -43,7 +43,7 @@ There is a limit of requests you can send to the cloud version of Easy Software.
 
 ---
 
-## request and response formats
+## Request and response formats
 Easy Software API supports sending and receiving messages in JSON and XML format. The format you want to provide and consume has to specified for every call as a path parameter just like this:
 
 JSON → `https://dev-portal.dev5.easysoftware.com/easy_contacts.json`

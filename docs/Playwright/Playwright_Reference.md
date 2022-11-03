@@ -10,7 +10,7 @@ Following parts explain description, quick start, connection to GitlabCI and how
 
 ## Structure
 
-We create all Playwright tests in “Playwright” folder in core. 
+We create all Playwright tests in “playwright” folder in core. 
 
 Here is the structure of folders: 
 

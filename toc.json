@@ -79,6 +79,11 @@
     },
     {
       "type": "item",
+      "title": "The Service object pattern",
+      "uri": "docs/Backend_tutorials/BE-Services.md"
+    },
+    {
+      "type": "item",
       "title": "Backend testing",
       "uri": "docs/Backend_tutorials/BE-Testing.md"
     },

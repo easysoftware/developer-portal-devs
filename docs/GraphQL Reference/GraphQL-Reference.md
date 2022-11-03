@@ -58,10 +58,10 @@ In case you run an on-premise version then the URL will correspond with its URL 
 
 ---
 
-## When to use REST and GraphQL
-Since Easy Software offers both, REST API and GraphQL, it is important to mention why that is.
-REST API is used for back end to back end communication, so for the cases when some data needs to get from you system to Easy Software and vice versa.
-Contrary to that, GraphQL is used for communication between the front end and back end of Easy Software and thus can be used if you wish to implement your own plugin for it.
+## When to use GraphQL
+Since EP/ER offer both, HTTP API (json, xml) and GraphQL, it is important to mention why that is.
+Regular API is used for back end to back end communication, so for the cases when some data needs to get from you system to Easy Software and vice versa.
+Contrary to that, GraphQL is used for communication between the front end and back end of EP/ER and thus can be used if you wish to implement your own plugin for it.
 
 ---
 

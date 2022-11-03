@@ -35,7 +35,7 @@ In case you run an on-premise version then the URL will correspond with its URL 
 ## When to use "REST-like API" and GraphQL
 Since Easy Software offers both, HTTP API (json, xml) and GraphQL, it is important to mention why that is.
 Regular API is used for back end to back end communication, so for the cases when some data needs to get from you system to Easy Software and vice versa.
-Contrary to that, GraphQL is used for communication between the front end and back end of Easy Software and thus can be used if you wish to implement your own plugin for it.
+Contrary to that, GraphQL is used for communication between the front end and back end of EP/ER and thus can be used if you wish to implement your own plugin for it.
 ---
 
 ## Rate limits
@@ -44,7 +44,7 @@ There is a limit of requests you can send to the cloud version of Easy Software.
 ---
 
 ## Request and response formats
-Easy Software API supports sending and receiving messages in JSON and XML format. The format you want to provide and consume has to specified for every call as a path parameter just like this:
+EP/ER API supports sending and receiving messages in JSON and XML format. The format you want to provide and consume has to specified for every call as a path parameter just like this:
 
 JSON → `https://dev-portal.dev5.easysoftware.com/easy_contacts.json`
 or XML → `https://dev-portal.dev5.easysoftware.com/easy_contacts.xml`

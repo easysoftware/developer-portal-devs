@@ -7,6 +7,7 @@ In the following articles you will get familiar with the following:
 - How to work with RYSes
 - How to contribute to the codebase
 - How to properly release new RYSes and features
+- Feature guides
 - API reference
 - GraphQL reference
 

@@ -21,6 +21,15 @@ For factories, we use [FactoryBot](https://github.com/thoughtbot/factory_bot).
 1. To be more familiar with RSpec we recommend you to visit [this](https://relishapp.com/rspec/) page.
 2. For best practices visit [this](https://www.betterspecs.org/) page.
 
+#### Controller tests
+Be mindful of the different RSpec types and their purpose when writing tests. Avoid testing behaviour of jobs using a controller test for example. If you need to test a job - use `type: :job` test. Controller tests should only test what the controller is responsible for, specifically:
+* templates rendering (not their content)
+* redirects
+* instance variables assigned in the controller to be shared with views
+* cookies sent back with the response
+
+So if there is a job performed or a service called, controller tests should just test that they are performed or called with correct parameters, not their implementation.
+
 ### Structure
 
 In RYSes, all specs are in the `/spec` folder.

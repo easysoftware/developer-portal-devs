@@ -79,6 +79,11 @@
     },
     {
       "type": "item",
+      "title": "The Service object pattern",
+      "uri": "docs/Backend_tutorials/BE-Services.md"
+    },
+    {
+      "type": "item",
       "title": "Backend testing",
       "uri": "docs/Backend_tutorials/BE-Testing.md"
     },
@@ -163,12 +168,12 @@
     },
     {
       "type": "divider",
-      "title": "REST API reference"
+      "title": "API reference"
     },
     {
       "type": "item",
-      "title": "REST API reference",
-      "uri": "docs/REST API Reference/REST-API-Reference.md"
+      "title": "API reference",
+      "uri": "docs/API Reference/API-Reference.md"
     },
     {
       "type": "divider",
@@ -177,7 +182,7 @@
     {
       "type": "item",
       "title": "Easy Redmine API",
-      "uri": "docs/REST API Reference/Reference.yaml"
+      "uri": "docs/API Reference/Reference.yaml"
     },
     {
       "type": "divider",

@@ -187,7 +187,8 @@ EasyGraphql::AppSchema.subscriptions.trigger('easy_product_backlog_board_move_pb
                                              } })
 ```
 
-The first parameter is the name of the subscription as seen in the previous step, the second is a hash of arguments also defined there. The third is the result object which will be sent to the websocket.
+The first parameter is the name of the subscription as seen in the previous step, the second is a hash of arguments also defined there.\
+The third is the result object which will be sent to the websocket. It's structure must match the **subscription result type** above.
 
 ## Automated Testing
 

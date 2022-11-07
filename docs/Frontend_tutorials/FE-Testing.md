@@ -35,24 +35,36 @@ npm test -- query.spec.js
 
 ---
 
-## Cypress tests
+## Playwright tests
 
-We are using Cypress for testing our Frontend.
+We are using Playwright for testing our Frontend.
 In this section we will try to answer few questions, for example:
-*How to write CY tests? How we manage them and how to run them?*
+*How to write Playwright tests? How we manage them and how to run them?*
 
-### Getting started with Cypress
-At the beginning please read some basics about Cypress:
+### Getting started with Playwright
+At the beginning please read some basics about Playwright:
 
-1. [Installing Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
-2. [Assertions](https://docs.cypress.io/guides/references/assertions)
-3. And most importantly - [Best practices](https://docs.cypress.io/guides/references/best-practices).
+1. [Installing Playwright](https://playwright.dev/docs/intro#installing-playwright)
+2. [Assertions](https://playwright.dev/docs/test-assertions)
+3. And most importantly - [Best practices](https://playwright.dev/docs/selectors#best-practices).
 
 ### Structure
 
-On the platform, Cypress tests are located in `/cypress/integration` folder. The main configuration of cypress is in `/cypress.json file`.
+On the platform, Playwright tests are located in `/playwright` folder. The main configuration of Playwright is in `/playwright.config.ts` file.
 
-Cypress itself runs JS tests in its own syntax against some running server - this is specified in `/cypress.json`.
+Playwright itself runs JS tests in its own syntax against some running server - this is specified in `/playwright.config.ts`.
+
+1. ./playwright/fixtures
+
+- This folder contains JSON files representing entities of our system. Both existing once and the new ones.
+
+2. ./playwright/pages
+
+- For creating playwright test we use “Page pattern”. That means the logic of finding elements in a page is enclosed in files with `.page`. These are imported into the test and their methods are called.
+
+3. ./playwright/tests
+
+- This folder contains Playwright tests with defined expectations.
 
 ### Selectors - using `data-cy`
 
@@ -78,18 +90,18 @@ First please read [this guide](https://docs.cypress.io/guides/references/best-pr
 If HTML is rendered by backend you need to pass `"data-cy": "some-value"`, for example:
 
 ```ruby
-link_to(l(:label), url, class: 'customize-button', "data-cy": "button-customize_page")
+link_to(l(:label), url, class: 'customize-button', "data-cy": "button__customize_page")
 # OR
-link_to(l(:label), url, class: 'customize-button', data: { cy: "button-customize_page" })
+link_to(l(:label), url, class: 'customize-button', data: { cy: "button__customize_page" })
 ```
 <!-- theme: warning -->
 >This is only valid type of `data-cy` = in every other case it is forbidden due to consistency!
 
 ### How to run tests locally
 
-Lets see something about Cypress and local docker.
+Lets see something about Playwright.
 
-You need to run application server aside and run against it cypress.
+You need to run application server aside and run against it Playwright.
 
 How to do that:
 Make sure that you have bundle install and assets precompiled
@@ -97,27 +109,45 @@ Make sure that you have bundle install and assets precompiled
 ```
 bundle install
 ```
-2. Run
+
+2. Create new database for playwright.
+example:
+```
+test:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: playwright_test
+  pool: 5
+  username: blog
+  password:
+```
+
+3. For testing, we use database from [https://cypresssource-minor.easysoftware.com](https://cypresssource-minor.easysoftware.com) .
+   **It is forbidden to edit it without permission from QA!** We just simply dump the database and import dump into new database.
+
+4. Run
 ```
 bundle exec rake easyproject:install
 ```
-3. Run your server aside in the test environment and with CYPRESS enable:
 
+5. Run your server aside in the test environment:
 ```ruby
-CYPRESS=1 FORCE_HTTP=1 bundle exec rails s
+FORCE_HTTP=1 bundle exec rails s -e test
 ```
 
 > FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
-4. Run Cypress
+6. Run Playwright
 ```ruby
-cypress run
-```
-or use docker instead:
-
-```ruby
-docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.0
+yarn playwright test
 ```
 
-> At GitlabCI there is a cypress stage for running examples "automatically". On platform
-> (devel/devel) is set as a `manual` - so you need to explicitly execute it in your MR.
+## Connection to GitlabCI – internal usage
+
+> At GitlabCI there is a playwright stage for running examples "automatically".
+
+To execute a playwright test in GitlabCI we use docker image. For each branch, new docker image is being created, which is saved in Gitlab registers: https://git.easy.cz/devel/devel/container_registry.
+
+The name of the image contains the name of the branch for which it was created.
+
+Each failed pipeline provides an option to download detailed back-trace zip file in 'Job artifacts' section. You can execute this zip file after downloading it with `yarn playwright show-trace` command. 

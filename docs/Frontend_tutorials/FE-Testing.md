@@ -155,4 +155,4 @@ To execute playwright tests in GitlabCI we use docker images. For each branch, n
 
 The name of the image contains the name of the branch for which it was created.
 
-Each failed pipeline provides an option to download detailed back-trace zip file in 'Job artifacts' section. You can execute this zip file after downloading it with `yarn playwright show-trace` command. 
+For debugging, each failed pipeline provides an option to download detailed backtrace zip file in 'Job artifacts' section. You can execute this zip file after downloading it with `yarn playwright show-trace` command. 

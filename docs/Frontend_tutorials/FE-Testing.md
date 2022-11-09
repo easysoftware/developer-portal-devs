@@ -151,7 +151,7 @@ yarn playwright test
 
 > In GitlabCI there is a playwright stage for running examples "automatically".
 
-To execute a playwright test in GitlabCI we use docker image. For each branch, new docker image is being created, which is saved in Gitlab registers: https://git.easy.cz/devel/devel/container_registry.
+To execute playwright tests in GitlabCI we use docker images. For each branch, new docker image is created, which is saved in Gitlab registry: https://git.easy.cz/devel/devel/container_registry.
 
 The name of the image contains the name of the branch for which it was created.
 

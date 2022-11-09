@@ -101,7 +101,7 @@ link_to(l(:label), url, class: 'customize-button', data: { cy: "button__customiz
 
 Lets see something about Playwright.
 
-You need to run application server aside and run against it Playwright.
+You need to run an application server aside and run Playwright against it.
 
 How to do that:
 Make sure that you have bundle install and assets precompiled

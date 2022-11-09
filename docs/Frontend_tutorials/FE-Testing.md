@@ -56,7 +56,7 @@ Playwright itself runs JS tests in its own syntax against some running server - 
 
 1. ./playwright/fixtures
 
-- This folder contains JSON files representing entities of our system. Both existing once and the new ones.
+- This folder contains JSON files representing entities in our system. If a JSON contains an ID the entity exists in the testing database, otherwise they're mostly used for filling inputs.
 
 2. ./playwright/pages
 

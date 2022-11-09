@@ -110,34 +110,39 @@ Make sure that you have bundle install and assets precompiled
 bundle install
 ```
 
-2. Create new database for playwright.
+2. Define new database for playwright. In the file `./config/database.yml` 
 example:
 ```
-test:
+development:
   adapter: mysql2
   encoding: utf8mb4
   database: playwright_test
   pool: 5
-  username: blog
+  username: playwright
   password:
 ```
 
-3. For testing, we use database from [https://cypresssource-minor.easysoftware.com](https://cypresssource-minor.easysoftware.com) .
+3. Run
+```
+rails db:create
+```
+
+4. For testing, we use database from [https://cypresssource-minor.easysoftware.com](https://cypresssource-minor.easysoftware.com) .
    **It is forbidden to edit it without permission from QA!** We just simply dump the database and import dump into new database.
 
-4. Run
+5. Run
 ```
 bundle exec rake easyproject:install
 ```
 
-5. Run your server aside in the test environment:
+6. Run your server aside in the test environment:
 ```ruby
-FORCE_HTTP=1 bundle exec rails s -e test
+bundle exec rails s
 ```
 
 > FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
-6. Run Playwright
+7. Run Playwright
 ```ruby
 yarn playwright test
 ```

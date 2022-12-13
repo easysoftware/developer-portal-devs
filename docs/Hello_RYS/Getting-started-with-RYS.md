@@ -47,11 +47,11 @@ group :default, :rys do
 end
 ```
 2. Next  **install your gem file**
-```ruby
+```
   bundle install
 ```
 3. As a next step **add additional**
-```ruby
+```
  rails generate rys:redmine:plugin NAME
 ```
 <!-- theme: info -->
@@ -59,7 +59,7 @@ end
 
 4. And a last step is **generate RYS** with name *NAME* and follow instruction. 
 
-```ruby
+```
  rails generate rys:plugin NAME
 ```
 
@@ -74,25 +74,25 @@ If you want to download RYS Builder copy/symlink all rys dependencies into your 
 
 1. First of all **copy gems** into `plugins/easysoftware/gems` 
 
-```ruby
+```
 bundle exec rake easybundler:build
 ```
 
 2. **Link gems** into `plugins/easysoftware/gems`
 
-```ruby
+```
 bundle exec rake easybundler:build_local
 ```
 
 3. **Revent gems** from `plugins/easysoftware/gems`
 
-```ruby
+```
 bundle exec rake easybundler:revert
 ```
 
 4. **Revent gems** from plugins/easysoftware/local
 
-```ruby
+```
 bundle exec rake easybundler:revert_local
 ```
 
@@ -118,7 +118,7 @@ We have prepared a simple generator of RYS engines.
 
 2. Run rails generator
    
-   ```ruby
+   ```
    rails generate rys:plugin NAME
    ```
 
@@ -163,13 +163,13 @@ rspec
 
 1. Get Easy Redmine
    
-   ```ruby
+   ```
    git clone devel -b devel devel
    ```
 
 2. Setup Easy Redmine (database.yml)
    
-   ```ruby
+   ```
    bundle install --without rmagick xapian
    ```
 
@@ -181,27 +181,27 @@ rspec
 
 4. Prepare dummy
    
-   ```ruby
+   ```
    git clone git@git.easy.cz:easyproject-client/dummy.git -b devel dummy
    vim config/database.yml
    ```
 
 5. Link dummy to RYS
    
-   ```ruby
+   ```
    cd ../pink_unicorn
    mkdir test
    ```
    
 6. test folder is in `.gitignore` by default
   
-   ```ruby
+   ```
    ln -s [~/projects/ or absolute path]dummy test/dummy
    ```
 
 7. Put it together
    
-   ```ruby
+   ```
    bundle install --without rmagick xapian
    rake app:db:create app:db:migrate
    rake app:easyproject:install # this work from ER 05.00
@@ -211,7 +211,7 @@ rspec
 
 RYS is ready. Open RubyMine and write some code! After that run `rspec`.
 
-```ruby
+```
 .*
 
 Pending: (Failures listed here are expected and do not affect your suite's status)

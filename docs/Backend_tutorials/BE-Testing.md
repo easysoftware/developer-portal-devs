@@ -42,7 +42,7 @@ You can run all the tests locally:
 
 1. **In the RYSes**:
 
-```ruby
+```
  # all tests
  bundle exec rspec
  # just particular
@@ -51,7 +51,7 @@ You can run all the tests locally:
 
 2. **In the platform**:
 
-```ruby
+```
 rake easyproject:tests:spec RAILS_ENV=test
 # OR by native rspec, similar to RYSy
 bundle exec rspec plugins/easyproject/easy_plugins/easy_extensions/test/spec/models/user_spec.rb

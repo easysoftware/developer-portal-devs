@@ -24,7 +24,7 @@ All you need is contained in platform, except of legacy plugins like Gantt, WBS,
 
 Running in the root of platform 
 
-```ruby
+```
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
@@ -51,13 +51,13 @@ window.Rails.start();
 
 1. Install dependencies in the platform. 
 
-```ruby
+```
 yarn
 ```
 
 2. Start Vite to serve sources
 
-```ruby
+```
 vite dev
 ```
 
@@ -66,7 +66,7 @@ vite dev
 
 3. Launch rails server in another console
 
-```ruby
+```
 bundle exec rails server
 ```
 > From this point, you don't have to do anything with the backend. As long as it's running, it's fine. The server listens by default at http://localhost:3000/.

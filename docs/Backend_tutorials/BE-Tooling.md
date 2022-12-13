@@ -4,8 +4,8 @@
 
 ***
 ### Prerequisites
-You have finished the first steps settings according to [this guide](
-https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Getting_started/First-steps.md)
+You have finished the [Initial setup](
+https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Getting_started/Initial-setup.md) guide.
 
 ---
 

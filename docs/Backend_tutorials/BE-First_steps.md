@@ -25,7 +25,7 @@
 
 1. Clone a repository.
 
-```ruby
+```
 git clone git@git.easy.cz:devel/devel.git TARGET_DIRECTORY
 cs TARGET_DIRECTORY
 ```
@@ -47,26 +47,26 @@ gem 'pry-doc'
 
 4. Install dependencies
 
-```ruby
+```
 gem install bundler
 bundle install
 ```
 
 5. Migrate Redmine
 
-```ruby
+```
 bundle exec rake db:migrate
 ```
 
 6. Migrate Easy and other plugins
 
-```ruby
-bundle exec rake easyproject:install REILS_ENV=development
+```
+bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
 7. Start the app
 
-```ruby
+```
 rails s
 ```
 > Your app should be running at http://localhost:3000.
@@ -94,7 +94,7 @@ Because images on [www.git.easy.cz](www.git.easy.cz) are strictly for production
 
 From repository `Dockerfile` remove `"production"`-related config
 
-```ruby
+```dockerfile
 ENV RAILS_DIR="${HOME}/current" \
     RAILS_DATA="${HOME}/files" \
     RAILS_LOG="${HOME}/log" \
@@ -109,7 +109,7 @@ ENV RAILS_DIR="${HOME}/current" \
 
 Use your own docker-compose file:
 
-```ruby
+```yaml
 # development-compose.yml
 version: '3'
 services:
@@ -161,8 +161,8 @@ If you are a `Vue.js` developer, you will need node and run DEV npm (yarn). For 
 > Make sure that you have in .env `NODES__EASYSOFTWARE__COM` token from [here](https://nodes.easysoftware.com).
 
 
-```ruby
-FROM node:lts
+```dockerfile
+FROM node:18.8.0
 ENV HOME "/opt/easy_vue"
 VOLUME "/opt/easy_vue"
 WORKDIR ${HOME}
@@ -185,7 +185,7 @@ CMD npm run dev
 
 Here you need remove "`production`" env from puma:
 
-```ruby
+```
 "server" | "start")
     export RAILS_LOG_TO_STDOUT=1
     bundle exec puma --dir "${RAILS_DIR}"[- -e production-] -p 3000 -C "${RAILS_DIR}/config/easy_puma.rb"
@@ -197,7 +197,7 @@ Here you need remove "`production`" env from puma:
 
 Finally you need to define `.env` file which contains **ALL** required variables in one place:
 
-```ruby
+```dockerfile
 DB_HOST=db
 MYSQL_DATABASE=easy
 MYSQL_ROOT_PASSWORD=root

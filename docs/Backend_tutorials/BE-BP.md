@@ -22,7 +22,7 @@ You want the platform with:
 
 First, you must clone everything:
 
-```ruby
+```
 # Platform
 git clone PLATFORM apps/platform
 
@@ -37,7 +37,7 @@ git clone EASY_WBS external_plugins/easy_wbs
 
 1. Remove old plugin:
 
-```ruby
+```
 rm -rf APP_ROOT/plugins/easy_gantt
 rm -rf APP_ROOT/plugins/easyproject/easy_plugins/easy_resource
 
@@ -45,14 +45,14 @@ rm -rf APP_ROOT/plugins/easyproject/easy_plugins/easy_resource
 
 2. Link the new ones:
 
-```ruby
+```
 ln -s external_plugins/easy_gantt APP_ROOT/plugins
 ln -s external_plugins/easy_resource APP_ROOT/plugins/easyproject/easy_plugins
 
 ```
 3. Remove from git status (optional):
 
-```ruby
+```
 # APP_ROOT/.git/info/exclude
 
 APP_ROOT/plugins/easy_gantt
@@ -63,7 +63,7 @@ APP_ROOT/plugins/easyproject/easy_plugins/easy_resource
 
 Since a RYS is a gem and gem dependencies are managed by a bundler, all you need to do is add it to your `Gemfile.local` using a `path` option or:
 
-```ruby
+```
 bundle config local.easy_wbs external_plugins/easy_wbs
 bundle install
 

@@ -19,7 +19,7 @@ This is the main Rails app on which our system is built. It's the forbidden zone
 Changes for a specific client according to his needs. Coding takes place only in a generated folder `/plugins/easyproject/easy_plugins/modification_*`. Usage of own controllers and views is preferred. Modification of existing views is done by calling hooks.
 Modification plugin can by generated using:
 
-```ruby
+```
 rails generate redmine_extensions:plugin CLIENT_NAME --customer
 ```
 <!-- theme: warning -->

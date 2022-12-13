@@ -24,7 +24,7 @@ gem 'easy_style'
 ```
 
 After this run
-```ruby
+```
 bundle update
 bundle exec rubocop
 ```
@@ -150,13 +150,13 @@ end
 Javascript use **ES6** from next/major (ES5 before in case you need some historical bugfix)
 For the `class` attribute use use [BEM](https://en.bem.info/methodology/quick-start/) convention `- Block__Element_Modifier / multi-word-block-name__multi-word-element-name_modifier-name_modifier-value:`
 
-```ruby
+```html
  <div class="easy-query__heading-title_state_selected"></div>
 ```
 
 For the `id` attribute use `_` as separator:
 
-```ruby
+```html
 <div id="easy_entity_import_dialog"></div>
 ```
 

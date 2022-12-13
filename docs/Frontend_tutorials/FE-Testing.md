@@ -12,7 +12,7 @@ We are using [Jest](https://jestjs.io/), for both platform and plugins (mainly V
 
 You can run them from the source root as:
 
-```ruby
+```
 npm test
 
 # or just particular
@@ -136,14 +136,14 @@ bundle exec rake easyproject:install
 ```
 
 6. Run your server aside in the test environment:
-```ruby
+```
 bundle exec rails s
 ```
 
 > FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
 7. Run Playwright
-```ruby
+```
 yarn playwright test
 ```
 

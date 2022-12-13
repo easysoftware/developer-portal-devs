@@ -712,7 +712,7 @@ At the frontend, use `EASY.utils.parseDate` to wrap the actual value with. The b
 
 #### `test_file_A.js` - usage of TZ tests
 
-```ruby
+```javascript
 import {test_utc_plus5, test_utc_minus5} from "../timezone_setup";
 
 describe("test A", () => {
@@ -733,7 +733,7 @@ describe("test A", () => {
 
 #### `test_file_B.js `- just regular test
 
-```ruby
+```javascript
 describe("test B", () => {
  test('got executed under any TZ', () => {
    // zoo
@@ -746,7 +746,7 @@ describe("test B", () => {
 ### Execution
 `npm run test` will execute everything under UTC:
 
-```ruby
+```
  $ npm run test
  > TZ=UTC jest
  ..
@@ -765,7 +765,7 @@ describe("test B", () => {
 
 `npm run test-all` will run tests under 3 different timezones:
 
-```ruby
+```
 $ npm run test-all
 ..
 > TZ=UTC jest

@@ -12,7 +12,7 @@ The RYS generator is our product and is primarily for creating a new RYS into th
 
 ### Plugin
 
-```ruby
+```
 rails generate rys:plugin --help
 rails generate rys:plugin NAME
 ```
@@ -27,7 +27,7 @@ Gem is also added into `Gemfile.local`
 ---
 
 ### Patches
-```ruby
+```
 rails generate rys:patch TYPE PLUGIN NAME
 rails generate rys:patch m RYS_PLUGIN_NAME Issue
 rails generate rys:patch model RYS_PLUGIN_NAME Issue
@@ -35,7 +35,7 @@ rails generate rys:patch helper RYS_PLUGIN_NAME Issues
 ```
 
 Or you can use interactive generator:
-```ruby
+```
 rails generate rys:ipatch
 ```
 ---
@@ -44,7 +44,7 @@ rails generate rys:ipatch
 
 You can use the same generator like in any Rails plugin. Just add prefix `rys` and specify Rys plugin name.
 
-```ruby
+```
 rails generate rys:model RYS_PLUGIN_NAME ...normal arguments...
 rails generate rys:scaffold RYS_PLUGIN_NAME ...normal arguments...
 rails generate rys:controller RYS_PLUGIN_NAME ...normal arguments...
@@ -60,7 +60,7 @@ By default it generate whole CRUD, includes views with builder form, guessed fie
 It generate also custom field class and basic tests.
 
 You can install it by running
-```ruby
+```
 bundle add easy_entity_generator --source https://gems.easysoftware.com
 ```
 
@@ -72,7 +72,7 @@ gem 'easy_entity_generator', git: 'git@git.easy.cz:rysy/features/easy_entity_gen
 When you are done you can finally use the generator, by
 - generating new entity
 
-```ruby
+```
 rails g easy_entity_generator:entity [EntityName] [attribute_name:type]
 ```
 <!-- theme: info -->
@@ -89,18 +89,18 @@ rails g easy_entity_generator:entity [EntityName] [attribute_name:type]
 > note: --author is default. If you want to skip it, use --no-author.
 
 Example:
-```ruby
+```
 rails g easy_entity_generator:entity Post name:string content:text
 ```
 
 - Reverting generated entity
 
-```ruby
+```
 rails destroy easy_entity_generator:entity [EntityName]
 ```
 
 Example:
 
-```ruby
+```
 rails destroy easy_entity_generator:entity Post
 ```

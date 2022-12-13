@@ -5,7 +5,7 @@
 ---
 ## First steps
 
-### `Bundle install` throws error when installing **mysql2 gem** `library not found for -lzstd` on my MacOS. What should I do? 
+### `bundle install` throws the error `library not found for -lzstd` when installing **mysql2 gem** on my MacOS. What should I do? 
 
 1. Check your `zstd` version that you have installed - `ls /opt/homebrew/Cellar/zstd/`
 2. Install `mysql2` by running `gem install mysql2 -- --with-opt-dir=$(brew --prefix openssl) --with-ldflags=-L/opt/homebrew/Cellar/zstd/1.5.0/lib` using the correct version in the path at the end.

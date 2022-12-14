@@ -15,8 +15,14 @@ All you need is contained in platform, except of legacy plugins like Gantt, WBS,
 
 ### How to install EASY VUE? 
 
-1. Install node.js. 
->   Please [install `nvm`](https://github.com/nvm-sh/nvm) as a first step and go through `README.md` to install the latest stable version 16 of Node.js.
+1. Install node.js.
+
+>   Please [install `nvm`](https://github.com/nvm-sh/nvm), version of node is defined in `.nvmrc`
+```
+nvm use
+```
+Command above will switch the node version to the version that is defined in `.nvmrc`. You may need to install the version of the node according to nvm, please see [README.md](https://github.com/nvm-sh/nvm/blob/master/README.md)
+
 2. Install [yarn](https://yarnpkg.com/getting-started) as public package (if you dont have it already)
 3. To be able to install private Easy packages, folow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
 

@@ -18,7 +18,7 @@ All you need is contained in platform, except of legacy plugins like Gantt, WBS,
 1. Install node.js.
 
 >   Please [install `nvm`](https://github.com/nvm-sh/nvm), version of node is defined in `.nvmrc`
-```
+```bash
 nvm use
 ```
 Command above will switch the node version to the version that is defined in `.nvmrc`. You may need to install the version of the node according to nvm, please see [README.md](https://github.com/nvm-sh/nvm/blob/master/README.md)

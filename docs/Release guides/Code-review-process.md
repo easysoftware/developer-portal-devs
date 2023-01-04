@@ -1,15 +1,19 @@
 # Code review process
+
 *In this article we will look into the code review process through the eyes of the reviewer.*
 
 ---
 
 ## Code review best practices
+
 Before conducting code reviews please read [this article](https://blog.palantir.com/code-review-best-practices-19e02780015f) about code review best practices.
 
 ---
 
 ## 'Code' of a good reviewer
+
 As a reviewer, these are the guidelines you should live by:
+
 - The goal is to increase the codebase quality so be thorough!
 - Check if the code match our code style guidelines for either [FE](https://developers.easysoftware.com/docs/developer-portal-devs/ZG9jOjM5NzgxNzUy-frontend-best-practices) or [BE](https://developers.easysoftware.com/docs/developer-portal-devs/ZG9jOjM5NzgxNzU2-backend-best-practices).
 - Be nice to the developer who submitted the MR.
@@ -21,6 +25,7 @@ As a reviewer, these are the guidelines you should live by:
 ---
 
 ## Reviews of BE and FE code
+
 In case you are BE developer you should not review FE code and vice versa.
 Keep noted that FE developers should tag their MRs using tags like `vue` or `javascript`, depending on the case.
 BE developers on the other hand tag their code with tags such as `bug`, `feature` or `change`.
@@ -38,11 +43,21 @@ All **developers** are responsible for merging and releasing the Merge Requests.
 
 ## Common errors to watch out for
 
+### New external dependencies
+
+External dependencies should always be locked to a fixed version.
+```ruby
+# example 
+gem 'audited', '5.1.0'
+```
+
+
 ### Rails find
 
 - Calling `.find` should be rescued in case it throws an exception.
 
 ```ruby
+
 begin
   @issue = Issue.find(params[:id])
 rescue ActiveRecord::RecordNotFound

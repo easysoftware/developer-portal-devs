@@ -104,7 +104,7 @@ gem install bundler
    ```
    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
    ```
-   It sets authentication method and a password(feel free to change it). More info at https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04
+   It sets authentication method and a password(feel free to change it). More info at https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04#step-2-configuring-mysql
 
 ### Docker
 

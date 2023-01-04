@@ -147,7 +147,7 @@ if (a === 5) return;
 <!-- theme: warning -->
 >**PREFER** including .js files only in pages where the code is used. If code is necessary everywhere, use easy_extension.js hook: 
 
-```javascript
+```ruby
 class Hooks < Redmine::Hook::ViewListener
  def easy_extensions_javascripts_hook(context={})
    context[:template].require_asset('name_of_js_file')

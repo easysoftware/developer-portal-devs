@@ -106,19 +106,20 @@ gem install bundler
    ```
    It sets authentication method and a password(feel free to change it). More info at https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04#step-2-configuring-mysql
 
-### Docker
+### Docker(Experimental)
 
-⚠️ Under construction ⚠️
+https://git.easy.cz/devel/devel/-/tree/next/bugs/docker
 
 ### Final steps
 
 1. Generate your SSH key
 
 ```
-ssh-keygen -t rsa
+ssh-keygen -t ed25519
 ```
 
 2. Add your generated SSH key into Easy Gitlab in **Profile** > **Preferences** > **SSH Keys**
+
 3. Download the version of the platform you want to work on.
 
 ```

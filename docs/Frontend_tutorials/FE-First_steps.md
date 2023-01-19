@@ -13,22 +13,29 @@ We are gradually switching from rending everything on the server to using a mode
 
 All you need is contained in platform, except of legacy plugins like Gantt, WBS, or Scheduler.
 
-### How to install EASY VUE? 
+### How to install EASY VUE?
 
 1. Install node.js.
 
->   Please [install `nvm`](https://github.com/nvm-sh/nvm), version of node is defined in `.nvmrc`
+> Please [install `nvm`](https://github.com/nvm-sh/nvm), version of node is defined in `.nvmrc`
+
 ```bash
 nvm use
 ```
+
 Command above will switch the node version to the version that is defined in `.nvmrc`. You may need to install the version of the node according to nvm, please see [README.md](https://github.com/nvm-sh/nvm/blob/master/README.md)
 
-2. Install [yarn](https://yarnpkg.com/getting-started) as public package (if you dont have it already)
-3. To be able to install private Easy packages, folow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
+2. Install as public package (if you don't have it already)
 
-### Buillding Vue
+```
+npm install --global yarn
+```
 
-Running in the root of platform 
+3. To be able to install private Easy packages, follow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
+
+### Building Vue
+
+Running in the root of platform
 
 ```
 bundle exec rake easyproject:install RAILS_ENV=development
@@ -40,6 +47,7 @@ This command will install `yarn modules` and `compile Vue`. This is used in the 
 
 Rails-ujs is a javascript library that allows non-GET requests from HTML links, Ajax integration with Rails, and more.
 To make Rails-ujs work on localhost with Vite we need to replace the content `/app/frontend/src/rails_ujs.js` with:
+
 ```javascript
 // without vite dev server running
 
@@ -48,14 +56,16 @@ To make Rails-ujs work on localhost with Vite we need to replace the content `/a
 // with vite dev server running
 
 import Rails from "@rails/ujs"
+
 window.Rails = Rails;
 window.Rails.start();
 ```
+
 ### Development on your local machine
 
 > Make sure that your platform is in the proper branch.
 
-1. Install dependencies in the platform. 
+1. Install dependencies in the platform.
 
 ```
 yarn
@@ -75,19 +85,20 @@ vite dev
 ```
 bundle exec rails server
 ```
+
 > From this point, you don't have to do anything with the backend. As long as it's running, it's fine. The server listens by default at http://localhost:3000/.
 
-4. Use the app in the browser 
+4. Use the app in the browser
 
 > Vite is now serving the frontend assets. Its watching changes in the filesystem and recompiles new versions on the fly.
 
 #### Unit tests
 
-Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](https://jestjs.io/). 
+Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](https://jestjs.io/).
 
 #### Code formatting
 
 We use ESLint which does removes all original styling and ensures that all outputted code conforms to a consistent style.
 ESLint takes your code and reprints it from scratch by taking the line length into account.
 
-Find out how to use it [here](https://eslint.org/docs/user-guide/getting-started). 
+Find out how to use it [here](https://eslint.org/docs/user-guide/getting-started).

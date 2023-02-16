@@ -30,7 +30,7 @@ Here is the structure of folders:
 
 ## Quick start 
 
-1. For testing, we use database from https://cypresssource-minor.easysoftware.com/ .
+1. For testing, we use database from https://e2e-testing-source.easysoftware.com/ .
 **It is forbidden to edit it without permission from QA!** We just simply dump the database instead and import dump into our locale database. 
 
 2. In the default setting Playwright tests are executed in accordance with `yarn playwright test`.

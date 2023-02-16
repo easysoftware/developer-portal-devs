@@ -127,7 +127,7 @@ development:
 rails db:create
 ```
 
-4. For testing, we use database from [https://cypresssource-minor.easysoftware.com](https://cypresssource-minor.easysoftware.com) .
+4. For testing, we use database from [https://e2e-testing-source.easysoftware.com](https://e2e-testing-source.easysoftware.com) .
    **It is forbidden to edit it without permission from QA!** We just simply dump the database and import dump into new database.
 
 5. Run

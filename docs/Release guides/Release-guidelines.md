@@ -50,16 +50,25 @@ Before every major release there is at least a month when focus on:
 ---
 
 ## RYS releases
-RYSes are released and distributed through our [Gem server](gems.easysoftware.com) or [Ruby Gems](https://rubygems.org/). In order to get RYS there, it has to go through code review and be merged to `master` branch. In this case, change the RYS version accordigly to the [semantic versioning](https://semver.org/) used in Easy.
+RYSes are released and distributed through our [Gem server](gems.easysoftware.com) or [Ruby Gems](https://rubygems.org/). In order to get a RYS there, it has to go through code review and be merged into the `master` branch. Once it's in `master` and you want to release it you need to (locally):
+1. **Increase version**, according to the [semantic versioning](https://semver.org/)
+   - using EasyCLI
+     ```
+     easy increase-version
+     ```
+   - manually - inside `/lib/RYS_NAME/version.rb`
+2. **Merge changelogs**
+   - using EasyCLI
+     ```
+     easy changelog-merge
+     ```
+   - manually - copy changes from all files inside `/changelogs` into appropriate sub-sections inside the `Unreleased` section of `CHANGELOG.MD` file in RYS ROOT
+3. **Commit and Push the changes**
+4. **Release**
+    > Most RYSes have _release_ as a part of their Gitlab-ci pipeline for `master` and will be released automatically _once the pipeline passes_.
+   - using EasyCLI
+     ```
+     easy gems-release
+     ```
 
-> Always keep in mind that Easy products use RYSes in specific major and minor versions. This is due to Gemfile specification and thus should be patch versions used without any changes.
-
-### Guidelines to follow to successfully release RYS
-Follow these guidelines for successful release:
-- passed code review and merged into RYS `master` branch
-- changelog has been updated accordingly through [easy_cli](https://git.easy.cz/internal/easy_cli#-changelog-merge)
-- version has been updated accordingly
-    - **major** = blocking changes
-    - **minor** = smaller changes / new features and migrations
-    - **patch** = fixes without migrations
-- RYS released to [Gem server](gems.easysoftware.com) or [Ruby Gems](https://rubygems.org/)
+> Keep in mind that Easy products lock RYS versions, usually to a minor version, so you should increase the version in relevant Gemfile in platform if needed (when releasing minor version and above, patch versions should be fine).

@@ -20,6 +20,11 @@
       "uri": "docs/Getting_started/Repository-structure.md"
     },
     {
+      "type": "item",
+      "title": "File structure",
+      "uri": "docs/Getting_started/File-structure.md"
+    },
+    {
       "type": "divider",
       "title": "Hello RYS"
     },

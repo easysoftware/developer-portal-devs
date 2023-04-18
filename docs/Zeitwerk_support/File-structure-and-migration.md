@@ -97,3 +97,5 @@ Notable changes:
 - Migrations
     - Old migration files starting with a three digit number sequence instead of a timestamp were incompatible
       and we use a different system for applying them.
+- Tests
+    - `rails_helper` has been moved to `/easy_engines/easy_extensions/spec/`

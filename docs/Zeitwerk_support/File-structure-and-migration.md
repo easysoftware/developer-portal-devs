@@ -1,4 +1,4 @@
-# File structure
+# File structure and Migration
 
 *This guide describes our file structure (old and new), and also some steps for making it work*
 
@@ -24,23 +24,26 @@ Redmine already supports Zeitwerk from version `5.0.0` so there are only a few c
 
 ###### Plugins (legacy)
 
-The idea is that when this transition is over all legacy **plugins** will have been moved from the `plugins/` directory into
+The idea is that when this transition is over all legacy **plugins** will have been moved from the `plugins/` directory
+into
 the `easy_engines/` directory.
 
 ###### Engines
 
-**Engines** are our legacy plugins in a new coat, after they go through the migration steps below. They reside in 
+**Engines** are our legacy plugins in a new coat, after they go through the migration steps below. They reside in
 the `easy_engines/` directory in app ROOT.
 
 ###### RYSes
 
-**RYSes** keep their current structure, but some migration steps below might be necessary to keep zeitwerk compatibility.
+**RYSes** keep their current structure, but some migration steps below might be necessary to keep zeitwerk
+compatibility.
 
 ### Load order
 
 With these changes we need to again reevaluate and ensure correct load order, mainly concerning patches.\
 A couple of points to follow:
-- `RedmineExtensions::Reloader.to_prepare` has been deprecated, replace it based on order you need, 
+
+- `RedmineExtensions::Reloader.to_prepare` has been deprecated, replace it based on order you need,
   usually `Rails.application.config.after_initialize` works fine
 
 ### Plugin-to-Easy-Engine migration steps
@@ -60,7 +63,7 @@ Point-by-point guide to turning a _plugin_ into a zeitwerk compatible _engine_.
           end
           ```
         - **Exceptions** can be defined in `easy_engines/my_cool_plugin/lib/my_cool_plugin/engine.rb`\
-          This way you can get around module scoping, which we used for these most used models to avoid rewriting 
+          This way you can get around module scoping, which we used for these most used models to avoid rewriting
           everything in `easy_extensions`
           ```ruby
           paths['app/models'] << 'app/models/api_services_for_exchange_rates'
@@ -70,29 +73,27 @@ Point-by-point guide to turning a _plugin_ into a zeitwerk compatible _engine_.
           paths['app/models'] << 'app/models/easy_rakes'
           ```
 - Initializers
-  - `easy_extensions` initializers (`easy_engines/easy_extensions/config/initializers/`) have been refactored into 
-    many smaller files that serve as a template for **where to put each initialization step**
-    
-  - Default `EasySetting` values are set in `easy_engines/easy_extensions/config/initializers/08_easy_settings.rb`, 
-    DON'T use migrations. If you find `EasySetting` being created inside a migration move it to an initializer named
-    `08_easy_settings.rb`(don't be afraid to move other ones down if they already use `08` and higher)
-  - 
+    - `easy_extensions` initializers (`easy_engines/easy_extensions/config/initializers/`) have been refactored into
+      many smaller files that serve as a template for **where to put each initialization step**
+    - Default `EasySetting` values are set in `easy_engines/easy_extensions/config/initializers/08_easy_settings.rb`,
+      DON'T use migrations. If you find `EasySetting` being created inside a migration move it to an initializer named
+      `08_easy_settings.rb`(don't be afraid to move other ones down if they already use `08` and higher)
 - Dependencies
 - Migrations
-  - 
 - Tests
 
 ### Extra info for context
 
-This section contains more details about the changes done during zeitwerk migration.
+This section contains more details about the changes done during core zeitwerk migration to provide more context as to
+why certain changes were made.
 
 Notable changes:
 
 - Initializers
-  - Two new initializers have been added to the root `config/initializers/` and are used to control the load order
+    - Two new initializers have been added to the root `config/initializers/` and are used to control the load order
 - Dependencies
-  - Gem [redmine_extensions](https://github.com/easyredmine/redmine_extensions) has been gutted with most of 
-    the functionality moved into `easy_extensions` engine
+    - Gem [redmine_extensions](https://github.com/easyredmine/redmine_extensions) has been gutted with most of
+      the functionality moved into `easy_extensions` engine
 - Migrations
     - Old migration files starting with a three digit number sequence instead of a timestamp were incompatible
       and we use a different system for applying them.

@@ -21,8 +21,8 @@
     },
     {
       "type": "item",
-      "title": "File structure",
-      "uri": "docs/Getting_started/File-structure.md"
+      "title": "File structure and Migration",
+      "uri": "docs/Zeitwerk_support/File-structure-and-migration"
     },
     {
       "type": "divider",

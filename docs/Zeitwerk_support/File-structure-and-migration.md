@@ -96,6 +96,7 @@ Notable changes:
       the functionality moved into `easy_extensions` engine
 - Migrations
     - Old migration files starting with a three digit number sequence instead of a timestamp were incompatible
-      and we use a different system for applying them.
+      and are remapped and updated when running migration tasks. Script used -`bin/upgrade_easy_plugin_migrations.rb`
+    - A new module for controlling easy engine migrations has been defined in `easy_engines/lib/easy_data_migrations.rb`
 - Tests
     - `rails_helper` has been moved to `/easy_engines/easy_extensions/spec/`

@@ -6,9 +6,9 @@
 
 ## What is Feature toggler?
 
-Feature toggler is a RYS functionality. It works similarly to feature flagging and can help to turn on specific RYSes on or off and thus adjusting the overall functionality. It is designed primarily to satisfy client requirements for expected behaviour, but can be used for testing features separately.
+Feature toggler is a RYS functionality. It works similarly to feature flagging and allows you to turn on/off parts or an entire RYS and thus adjusting the overall functionality. It is designed primarily to satisfy client requirements for expected behaviour, but can be used for testing features separately.
 
-Feature toggler is not a stand-alone functionality, but rather an extension of RYS functionality.
+Each RYS specifies parts that can be toggled using feature toggler.
 
 --- 
 

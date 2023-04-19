@@ -1,12 +1,13 @@
 # RYS Generator
 
-*In this article you will learn how RYS Generator works.*
+*In this article you will learn how the RYS Generator works.*
 
 ---
 
-### What is RYS Generator?
+### What is the RYS Generator?
 
-The RYS generator is our product and is primarily for creating a new RYS into the EasySoftware platform. When creating a new RYS using a generator, a new RUBY barebone structure is created in a separate GIT repository.
+The RYS generator is our product and is primarily for creating a new RYS into the EasySoftware platform. When creating a
+new RYS using a generator, a new bare-bone rails engine structure is created.
 
 ---
 
@@ -17,16 +18,18 @@ rails generate rys:plugin --help
 rails generate rys:plugin NAME
 ```
 
-The target directory is evaluated in this order: 
-1.  `--path` options
-2.  `RYS_PLUGINS_PATH` environment variable
-3.  `RAILS_ROOT/rys_plugins`
+The target directory is evaluated in this order:
+
+1. `--path` options
+2. `RYS_PLUGINS_PATH` environment variable
+3. `RAILS_ROOT/rys_plugins`
 
 Gem is also added into `Gemfile.local`
 
 ---
 
 ### Patches
+
 ```
 rails generate rys:patch TYPE PLUGIN NAME
 rails generate rys:patch m RYS_PLUGIN_NAME Issue
@@ -35,9 +38,11 @@ rails generate rys:patch helper RYS_PLUGIN_NAME Issues
 ```
 
 Or you can use interactive generator:
+
 ```
 rails generate rys:ipatch
 ```
+
 ---
 
 ### Rails generators
@@ -54,41 +59,47 @@ rails generate rys:controller RYS_PLUGIN_NAME ...normal arguments...
 
 ### Entity Generator
 
-To generate new entity into RYS you can use our [Entity Generator](https://git.easy.cz/rysy/features/easy_entity_generator)
+To generate new entity into RYS you can use
+our [Entity Generator](https://git.easy.cz/rysy/features/easy_entity_generator)
 
 By default it generate whole CRUD, includes views with builder form, guessed fields and EasyQuery.
 It generate also custom field class and basic tests.
 
 You can install it by running
+
 ```
 bundle add easy_entity_generator --source https://gems.easysoftware.com
 ```
 
-or 
+or
+
 ```ruby
 gem 'easy_entity_generator', git: 'git@git.easy.cz:rysy/features/easy_entity_generator.git', branch: 'master'
 ```
 
 When you are done you can finally use the generator, by
+
 - generating new entity
 
 ```
 rails g easy_entity_generator:entity [EntityName] [attribute_name:type]
 ```
+
 <!-- theme: info -->
 > Possible options are:
-> --project 
-> --author 
-> --acts_as_customizable 
-> --acts_as_searchable 
-> --acts_as_activity_provider 
-> --acts_as_attachable 
-> --acts_as_event 
-> --acts_as_tree 
-> --acts_as_watchable 
+> --project
+> --author
+> --acts_as_customizable
+> --acts_as_searchable
+> --acts_as_activity_provider
+> --acts_as_attachable
+> --acts_as_event
+> --acts_as_tree
+> --acts_as_watchable
 > note: --author is default. If you want to skip it, use --no-author.
 
 Example:
+
 ```
 rails g easy_entity_generator:entity Post name:string content:text
 ```

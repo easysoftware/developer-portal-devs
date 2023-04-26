@@ -169,6 +169,11 @@
       "uri": "docs/Easy_section/EasyProject-terminology.md"
     },
     {
+      "type": "item",
+      "title": "Rubymine plugins",
+      "uri": "docs/Easy_section/Rubymine-plugins.md"
+    },
+    {
       "type": "divider",
       "title": "Learn more"
     },

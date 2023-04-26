@@ -1,6 +1,6 @@
 # Welcome to Developer section
 
-Welcome to developer section. Here you onboarding journey into Easy Software begins!
+This is where your onboarding journey into Easy Software begins!
 
 In the following articles you will get familiar with the following:
 - How to setup your machine
@@ -11,4 +11,4 @@ In the following articles you will get familiar with the following:
 - API reference
 - GraphQL reference
 
-Please navigate to the section you want to learn more about from the menu on the left handside.
+Please navigate to the section you want to learn more about from the menu on the left hand side.

@@ -21,8 +21,7 @@ _⚠️ Might not be needed at some point_
 <!-- theme: info -->
 > Please be aware that on new ARM processors you may encounter issues during installation process.
 > To be able to successfully set up everything you may need Rosetta terminal (
->
-see [here](https://betterprogramming.pub/5-things-i-have-learned-when-using-the-m1-chip-macbook-air-a77f93c50381#5a64)).
+> see https://betterprogramming.pub/5-things-i-have-learned-when-using-the-m1-chip-macbook-air-a77f93c50381#5a64 ).
 
 <!-- theme: info -->
 > To successfully install MySQL gem on your M1 you need to follow those two steps:
@@ -137,7 +136,7 @@ bundle install
       ```
     - Prepare your development database
         - From an sql dump:
-            - Use your own or download demo dump - [demo_database_dump.sql.gz](../../files/demo_dump_20232704.sql.gz)
+            - Use your own or download demo dump - [demo_database_dump.sql.gz](https://github.com/easysoftware/developer-portal-devs/raw/unify_and_improve_be_setup/files/demo_dump_20232704.sql.gz)
         - OR a clean database
           ```
           bundle exec rake db:migrate

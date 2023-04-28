@@ -193,8 +193,8 @@
     },
     {
       "type": "item",
-      "title": "Swagger reference",
-      "uri": "docs/APIs/Swagger-reference.yaml"
+      "title": "REST-like API reference",
+      "uri": "docs/APIs/REST-like-API-reference.yaml"
     }
   ]
 }

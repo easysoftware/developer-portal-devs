@@ -34,6 +34,8 @@ _⚠️ Might not be needed at some point_
 > gem install mysql2 -v '0.5.3' -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" --with-cppflags=-I$(brew --prefix openssl)/include
 >```
 
+---
+
 ### Linux Ubuntu
 
 The following steps should work flawlessly for any common Linux distribution (Mint, Ubuntu etc.)
@@ -48,6 +50,8 @@ sudo apt-get install libmysqlclient-dev
 ```
 
 3. Continue to [Next steps](#next-steps)
+
+---
 
 ### Windows using WSL(Windows Subsystem for Linux)
 
@@ -78,6 +82,8 @@ sudo apt-get install libmysqlclient-dev
 
 https://git.easy.cz/devel/devel/-/tree/next/bugs/docker (For now there are some performance problems on some
 configurations)
+
+---
 
 ## Next steps
 

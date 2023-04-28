@@ -136,7 +136,12 @@ bundle install
       ```
     - Prepare your development database
         - From an sql dump:
-            - Use your own or download demo dump - [demo_database_dump.sql.gz](https://github.com/easysoftware/developer-portal-devs/raw/unify_and_improve_be_setup/files/demo_dump_20232704.sql.gz)
+            - Use your own or download demo
+              dump - [demo_database_dump](https://github.com/easysoftware/developer-portal-devs/raw/unify_and_improve_be_setup/files/demo_dump_20232704.sql.gz),
+              and load it into your database
+            ```
+            gunzip -c PATH_TO_DUMP | mysql MY_DB_NAME
+            ```
         - OR a clean database
           ```
           bundle exec rake db:migrate

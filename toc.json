@@ -118,10 +118,6 @@
     },
     {
       "type": "divider",
-      "title": "Usertesting"
-    },
-    {
-      "type": "divider",
       "title": "Release guides"
     },
     {
@@ -155,48 +151,12 @@
     },
     {
       "type": "divider",
-      "title": "Learn more"
-    },
-    {
-      "type": "item",
-      "title": "FAQs",
-      "uri": "docs/Others/FAQs.md"
-    },
-    {
-      "type": "divider",
-      "title": "GraphQL Reference"
-    },
-    {
-      "type": "item",
-      "title": "GraphQL reference",
-      "uri": "docs/GraphQL Reference/GraphQL-Reference.md"
-    },
-    {
-      "type": "divider",
-      "title": "API reference"
-    },
-    {
-      "type": "item",
-      "title": "API reference",
-      "uri": "docs/API Reference/API-Reference.md"
-    },
-    {
-      "type": "divider",
-      "title": "APIS"
-    },
-    {
-      "type": "item",
-      "title": "Easy Redmine API",
-      "uri": "docs/API Reference/Reference.yaml"
-    },
-    {
-      "type": "divider",
       "title": "Easy Developers"
     },
     {
       "type": "item",
-      "title": "Repository",
-      "uri": "docs/Easy_section/package_repository.md"
+      "title": "Package repositories",
+      "uri": "docs/Easy_section/Package-repositories.md"
     },
     {
       "type": "item",
@@ -210,8 +170,36 @@
     },
     {
       "type": "item",
-      "title": "Easy Project Terminology",
-      "uri": "docs/Easy_section/EasyProject-Terminology.md"
+      "title": "Easy Project terminology",
+      "uri": "docs/Easy_section/EasyProject-terminology.md"
+    },
+    {
+      "type": "divider",
+      "title": "Learn more"
+    },
+    {
+      "type": "item",
+      "title": "FAQs",
+      "uri": "docs/Others/FAQs.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIs"
+    },
+    {
+      "type": "item",
+      "title": "GraphQL",
+      "uri": "docs/APIs/GraphQL.md"
+    },
+    {
+      "type": "item",
+      "title": "REST-like API",
+      "uri": "docs/APIs/REST-like-API.md"
+    },
+    {
+      "type": "item",
+      "title": "REST-like API reference",
+      "uri": "docs/APIs/REST-like-API-reference.yaml"
     }
   ]
 }

@@ -44,6 +44,7 @@ Regular API is used for back end to back end communication, so for the cases whe
 to Easy Software and vice versa.
 Contrary to that, GraphQL is used for communication between the front end and back end of EP/ER and thus can be used if
 you wish to implement your own plugin for it.
+
 ---
 
 ## Rate limits

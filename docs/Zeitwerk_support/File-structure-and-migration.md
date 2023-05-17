@@ -60,9 +60,11 @@ need to be addressed.
 
 Point-by-point (in no particular order) guide to turning a _plugin_ into a Zeitwerk compatible _engine_.
 <!-- theme: danger -->
-> To keep **git history** for files moved between directories, use `git mv` or _drag&drop_ instead of copying and
-> pasting
-> which in most IDEs will create a new file **losing all previous history**.
+> To keep **git history** for files moved between directories use:
+> - ✅ `git mv`
+> - ✅ _drag&drop_
+> - ✅ `ctrl + x` into `ctrl + v`
+> - ❌ `ctrl + c` into `ctrl + v`
 
 - **App directory**
     - All modules/classes must be properly named

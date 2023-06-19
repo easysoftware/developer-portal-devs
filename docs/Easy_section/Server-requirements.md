@@ -38,11 +38,10 @@
 
 ### Internet connection requirements
 
-The connection from the user to the server where Easy Redmine is located must be at least **10 Mbit**. You need to take
-into
-account the whole route from the user to the server, so with geographically distant locations, the response of the
-server may take a longer time, regardless of the user's declared internet connection from their provider. The bandwidth
-of the server is also a factor.
+The connection from the user to the server where Easy Redmine is located must be at least **10 Mbit/s**. You need to
+take into account the whole route from the user to the server, so with geographically distant locations, the response of
+the server may take a longer time, regardless of the user's declared internet connection from their provider. The
+bandwidth of the server is also a factor.
 
 ### Supported Browsers
 

@@ -44,11 +44,14 @@ compatibility.
 
 ### Load order
 
-With these changes we need to again reevaluate and ensure correct load order, mainly concerning patches.\
-A couple of points to follow:
+With these changes we need to again reevaluate and ensure correct load order, mainly concerning patches.
 
-- `RedmineExtensions::Reloader.to_prepare` has been deprecated. Replace it based on order you need,
-  usually `Rails.application.config.after_initialize` or `ActiveSupport::Reloader.to_prepare` works fine
+`RedmineExtensions::Reloader.to_prepare` has been deprecated. Replace it based on the order you need,
+usually:
+
+- `ActiveSupport::Reloader.to_prepare` - executes first, also, content is **reloaded** in development mode
+- `Rails.application.config.after_initialize` - executes some time after `to_prepare`, content is **not reloaded** in
+  development mode
 
 ### Deprecation warnings
 

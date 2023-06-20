@@ -174,6 +174,11 @@
       "uri": "docs/Easy_section/Rubymine-plugins.md"
     },
     {
+      "type": "item",
+      "title": "Server requirements",
+      "uri": "docs/Easy_section/Server-requirements.md"
+    },
+    {
       "type": "divider",
       "title": "Learn more"
     },

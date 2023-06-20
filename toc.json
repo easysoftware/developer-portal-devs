@@ -64,11 +64,6 @@
     },
     {
       "type": "item",
-      "title": "Backend first steps",
-      "uri": "docs/Backend_tutorials/BE-First_steps.md"
-    },
-    {
-      "type": "item",
       "title": "Backend tooling",
       "uri": "docs/Backend_tutorials/BE-Tooling.md"
     },
@@ -91,6 +86,11 @@
       "type": "item",
       "title": "Backend testing",
       "uri": "docs/Backend_tutorials/BE-Testing.md"
+    },
+    {
+      "type": "item",
+      "title": "Development in Docker",
+      "uri": "docs/Backend_tutorials/BE-Docker.md"
     },
     {
       "type": "divider",
@@ -172,6 +172,16 @@
       "type": "item",
       "title": "Easy Project terminology",
       "uri": "docs/Easy_section/EasyProject-terminology.md"
+    },
+    {
+      "type": "item",
+      "title": "Rubymine plugins",
+      "uri": "docs/Easy_section/Rubymine-plugins.md"
+    },
+    {
+      "type": "item",
+      "title": "Server requirements",
+      "uri": "docs/Easy_section/Server-requirements.md"
     },
     {
       "type": "divider",

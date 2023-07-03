@@ -1,4 +1,4 @@
-# FAQs
+# Easy Project initialization process
 
 *In this article we try to explain the order in which is EasyProject initialized*
 

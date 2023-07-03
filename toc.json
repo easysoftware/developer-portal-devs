@@ -205,6 +205,11 @@
       "type": "item",
       "title": "REST-like API reference",
       "uri": "docs/APIs/REST-like-API-reference.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Easy Project initialization process",
+      "uri": "docs/others/Easy-Project-Initialization.md"
     }
   ]
 }

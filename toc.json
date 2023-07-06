@@ -113,6 +113,20 @@
     },
     {
       "type": "divider",
+      "title": "End-to-end testing"
+    },
+    {
+      "type": "item",
+      "title": "Playwright tests",
+      "uri": "docs/e2e_tutorials/Playwright.md"
+    },
+    {
+      "type": "item",
+      "title": "Connection to GitlabCI",
+      "uri": "docs/e2e_tutorials/Gitlab-CI.md"
+    },
+    {
+      "type": "divider",
       "title": "Release guides"
     },
     {

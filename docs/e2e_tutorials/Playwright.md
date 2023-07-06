@@ -109,3 +109,55 @@ bundle exec rails s
 ```
 yarn playwright test
 ```
+
+## Recommendation for writing tests
+
+- After reload/redirect/open new page use `waitForNavigation` function, that is defined in playwright/pages/base.page.ts. It waits for the page to be loaded and ready for interaction. For example:
+
+```ts
+async navigateToUrl(url: string) {
+  await this.page.goto(url);
+  await this.page.waitForURL(url);
+  await this.waitForDocumentReady();
+}
+```
+
+- If you need use [waitForResponse](https://playwright.dev/docs/api/class-page#page-wait-for-response)  method, use it inside Promise.all with action that trigger this request. For example:
+
+```ts
+async clickOnSaveButton() {
+  await Promise.all([
+    this.page.waitForResponse("**/easy_wbs.json?*"),
+    this.clickOnButton("submit--mindmup"),
+  ]);
+}
+```
+
+- Don't use innerText to test text in an element. Use the [toHaveText](https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-have-text) assertion instead. Because innerText returns the current text of the element, but toHaveText waits for an element that has text. InnerText can cause a problem when dynamically rerender the content of the element.
+
+- bad:
+```ts
+expect(await this.page.locator("[data-cy='button__submit']").innerText()).toBe("Submit");
+```
+
+good:
+```ts
+await expect(this.page.locator("[data-cy='button__submit']")).toHaveText("Submit");
+```
+
+- If you are running playwright tests on a deployment, you can use the `throttleNetwork` method from playwright/pages/base.page.ts. It slows down your network speed so you can make sure your tests are stable. But eventually remove it when the tests pass. For example:
+
+```ts
+test.beforeAll(async ({ browser }) => {
+   const pageContext = await browser.newContext();
+   page = await pageContext.newPage();
+
+   adminPage = new AdminPage(page);
+   layoutPage = new LayoutPage(page);
+
+   // Remove next line, before merge it into next/... branches
+   adminPage.throttleNetwork(page);
+
+   await autologin(page);
+});
+```

@@ -15,7 +15,7 @@ Here goes the list of the tools used and what department takes care of it:
     - Easy Project - our own instance of our own product
     - [Bitwarden](https://bitwarden.com/download/) - password management tool
 - Quality assurance - ask QA team
-    - [Cypress](https://www.cypress.io/) - tool for automated testing
+    - [Playwright](https://playwright.dev/) - tool for e2e automated testing
 - DevOps tools - ask operations' team
     - [Easy Git](https://git.easy.cz/) - Easy Software git
     - [Gitmakers](https://gitmakers.com/) - package manager

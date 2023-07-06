@@ -68,7 +68,7 @@ Playwright itself runs JS tests in its own syntax against some running server - 
 
 ### Selectors - using `data-cy`
 
-First please read [this guide](https://docs.cypress.io/guides/references/best-practices) and follow these hints:
+First please read [this guide](https://playwright.dev/docs/best-practices) and follow these hints:
 
 1. Targeting elements by css selectors such as: `id` and `class`, is allowed only in combination with `data-cy` attribute.
 

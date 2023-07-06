@@ -8,15 +8,15 @@
 
 ## Frontend tests
 
-We are using [Jest](https://jestjs.io/), for both platform and plugins (mainly Vue.js)
+We are using [Vitest](https://vitest.dev/), for both platform and plugins (mainly Vue.js)
 
 You can run them from the source root as:
 
 ```
-npm test
+yarn test
 
-# or just particular
-npm test -- query.spec.js    
+# or tests with coverage
+yarn test:coverage    
 
 ```
 

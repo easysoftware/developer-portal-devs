@@ -20,6 +20,11 @@
       "uri": "docs/Getting_started/Repository-structure.md"
     },
     {
+      "type": "item",
+      "title": "File structure and Migration",
+      "uri": "docs/Zeitwerk_support/File-structure-and-migration"
+    },
+    {
       "type": "divider",
       "title": "Hello RYS"
     },

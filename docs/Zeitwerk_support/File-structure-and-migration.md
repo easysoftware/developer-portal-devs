@@ -49,9 +49,19 @@ With these changes we need to again reevaluate and ensure correct load order, ma
 `RedmineExtensions::Reloader.to_prepare` has been deprecated. Replace it based on the order you need,
 usually:
 
-- `ActiveSupport::Reloader.to_prepare` - executes first, also, content is **reloaded** in development mode
-- `Rails.application.config.after_initialize` - executes some time after `to_prepare`, content is **not reloaded** in
-  development mode
+- `Rails.application.config.to_prepare` - executes first, also, content is **reloaded** in development mode
+- `Rails.application.config.after_initialize` - executes always at the end of initialization process, content is **not
+  reloaded** in development mode
+
+##### Hooks
+
+Hooks are placed at specific points of the initialization process to allow us to run code at a specific time. In order
+of execution:
+
+- `ActiveSupport.on_load(:easy_project_loaded)`
+    - All plugins and easy engines are in load paths and all easy patches are applied
+    - Is **not** run when running migrations
+    - Used for: menus, permissions, manipulating constants, factories, etc.
 
 ### Deprecation warnings
 
@@ -113,8 +123,7 @@ Point-by-point (in no particular order) guide to turning a _plugin_ into a Zeitw
 - **Dependencies**
 - **Migrations**
     - Make sure your migrations are divided to **schema** and **data** migrations and inherit from the respective
-      classes to
-      ensure migration order:
+      classes to ensure migration order:
         - schema migrations in `db/migrate/` directory inheriting from `ActiveRecord::Migration[6.1]`
         - data migrations in `db/data/` directory inheriting from `EasyExtensions::EasyDataMigration`
         - **RYSes** have an extra directory `db/after_plugins/` where you should put all **schema** migrations that need

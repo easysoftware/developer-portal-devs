@@ -20,9 +20,13 @@
       "uri": "docs/Getting_started/Repository-structure.md"
     },
     {
+      "type": "divider",
+      "title": "Zeitwerk support"
+    },
+    {
       "type": "item",
       "title": "File structure and Migration",
-      "uri": "docs/Zeitwerk_support/File-structure-and-migration"
+      "uri": "docs/Zeitwerk_support/File-structure-and-migration.md"
     },
     {
       "type": "divider",

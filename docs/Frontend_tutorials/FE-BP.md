@@ -702,12 +702,12 @@ At the frontend, use `EASY.utils.parseDate` to wrap the actual value with. The b
 4. Parses into JavaScript date
 
 <!-- theme: info -->
->Because the implementation uses local offset, which is peculiar to set in JavaScript tests, we've set Jest to use 2 different timezones:
+>Because the implementation uses local offset, which is peculiar to set in JavaScript tests, we've set Vitest to use 2 different timezones:
 >
->**UTC** - used by default, when you run `npm test`
+>**UTC** - used by default, when you run `yarn test`
 >
->**TZ+-5** - used, when you run `npm run test-all`.  That will execute only tests defined as `test_utc_plus5` (or `test_utc_minus5`). *Other tests in the same file will be **skipped***.
-
+>**TZ+-5** - used, when you run `yarn test-all`.  That will execute only tests defined as `test_utc_plus5` (or `test_utc_minus5`). *Other tests in the same file will be **skipped***.
+ 
 ### Examples
 
 #### `test_file_A.js` - usage of TZ tests
@@ -744,18 +744,18 @@ describe("test B", () => {
 ```
 
 ### Execution
-`npm run test` will execute everything under UTC:
+`yarn test` will execute everything under UTC:
 
 ```
- $ npm run test
- > TZ=UTC jest
+ $ yarn test
+ > TZ=UTC vitest
  ..
  
- PASS  test/jest/tests/test_file_B.test.js
+ PASS  tests/test_file_B.test.js
  test B
  ✓ got executed under any TZ
 
- PASS  test/jest/tests/test_file_A.test.js
+ PASS  tests/test_file_A.test.js
  test A
  ✓ got executed under UTC (1 ms)
  ○ skipped got executed under +5
@@ -763,44 +763,48 @@ describe("test B", () => {
 
 ```
 
-`npm run test-all` will run tests under 3 different timezones:
+"test-tz+5": "TZ=America/Cancun vitest",
+"test-tz-5": "TZ=Indian/Maldives vitest",
+"test-all": "yarn test && yarn test-tz+5 && yarn test-tz-5",
+yarn test vitest --silent && yarn TZ=America/Cancun vitest --silent && yarn TZ=America/Cancun vitest --silent
+`yarn test-all` will run tests under 3 different timezones:
 
 ```
-$ npm run test-all
+$ yarn test-all
 ..
-> TZ=UTC jest
+> TZ=UTC vitest
 ..
- PASS  test/jest/tests/test_file_B.test.js
+ PASS  tests/test_file_B.test.js
   test B
     ✓ got executed under any TZ
 
- PASS  test/jest/tests/test_file_A.test.js
+ PASS  tests/test_file_A.test.js
   test A
     ✓ got executed under UTC
     ○ skipped got executed under +5
     ○ skipped got executed under -5
 
 ..
-> TZ=America/Cancun jest
+> TZ=America/Cancun vitest
 ..
- PASS  test/jest/tests/test_file_B.test.js
+ PASS  tests/test_file_B.test.js
   test B
     ✓ got executed under any TZ
 
- PASS  test/jest/tests/test_file_A.test.js
+ PASS  tests/test_file_A.test.js
   test A
     ✓ got executed under +5
     ○ skipped got executed under UTC
     ○ skipped got executed under -5
 
 ..
-> TZ=Indian/Maldives jest
+> TZ=Indian/Maldives vitest
 ..
- PASS  test/jest/tests/test_file_B.test.js
+ PASS  tests/test_file_B.test.js
   test B
     ✓ got executed under any TZ (1 ms)
 
- PASS  test/jest/tests/test_file_A.test.js
+ PASS  tests/test_file_A.test.js
   test A
     ✓ got executed under -5
     ○ skipped got executed under UTC

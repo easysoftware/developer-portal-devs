@@ -94,7 +94,7 @@ bundle exec rails server
 
 #### Unit tests
 
-Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](https://jestjs.io/).
+Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](https://vitest.dev/).
 
 #### Code formatting
 

@@ -112,6 +112,11 @@
     },
     {
       "type": "item",
+      "title": "Frontend code generator",
+      "uri": "docs/Frontend_tutorials/FE-Codegen.md"
+    },
+    {
+      "type": "item",
       "title": "Frontend best practices",
       "uri": "docs/Frontend_tutorials/FE-BP.md"
     },

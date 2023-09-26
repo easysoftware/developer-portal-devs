@@ -96,6 +96,18 @@ Without any class the field behaves like `form__field--half` and tries to be sel
 </p>
 ```
 
+#### Form action buttons
+
+PRIMARY buttons are on the **LEFT** followed by a SECONDARY button and then a NEGATIVE button ("Close" || "Cancel" ||
+etc.)
+
+Special cases:
+
+1. In _standalone confirm dialog_, PRIMARY and NEGATIVE buttons are switched
+2. In _wizard-style dialog_, PRIMARY and NEGATIVE buttons are also switched ("Next" button is on the **RIGHT** side)
+
+-> [Visual representation of the buttons in Figma](https://www.figma.com/proto/HYcYyhZFwwNfwgx94TfBsS/UI-Style-Guide?page-id=0%3A1&type=design&node-id=49-104&viewport=-1023%2C-964%2C0.35&t=FjYlLcwpLpjrVMlq-1&scaling=min-zoom)
+
 ### Sidebar Structure
 
 There are multiple positions which can be occupied within a sidebar, influencing how it's content will

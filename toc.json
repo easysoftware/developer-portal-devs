@@ -29,6 +29,11 @@
       "uri": "docs/Zeitwerk_support/File-structure-and-migration.md"
     },
     {
+      "type": "item",
+      "title": "Easy Project initialization process with zeitwerk",
+      "uri": "docs/Zeitwerk_support/Easy-Project-Initialization.md"
+    },
+    {
       "type": "divider",
       "title": "Hello RYS"
     },
@@ -233,11 +238,6 @@
       "type": "item",
       "title": "REST-like API reference",
       "uri": "docs/APIs/REST-like-API-reference.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Easy Project initialization process",
-      "uri": "docs/Others/Easy-Project-Initialization.md"
     }
   ]
 }

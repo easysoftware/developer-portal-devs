@@ -44,7 +44,7 @@
    end
    ```
 2. ```ruby
-   # Rails.root/config/30-redmine.rb
+   # Rails.root/config/initializers/30-redmine.rb
     puts "This is where plugins/PLUGIN_NAME/app/* + lib is added to autoload_paths"
    ```
 3. ```ruby
@@ -60,7 +60,7 @@
     puts "Enqueued but runs very early"
    ```
 5. ```ruby
-   # Rails.root/config/00_core_plugins.rb
+   # Rails.root/config/initializers/00_core_plugins.rb
     ActiveSupport::Reloader.to_prepare do
       puts "This is before easy patch application"
     end
@@ -80,7 +80,7 @@
    end
    ```
 8. ```ruby
-    # Rails.root/config/30_redmine.rb
+    # Rails.root/config/initializers/30_redmine.rb
     # inside Redmine::PluginLoader.load
     Rails.application.config.to_prepare do
       puts "In this block redmine plugin initializers are run"

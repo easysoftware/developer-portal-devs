@@ -66,7 +66,7 @@
     end
    ```
 6. ```ruby
-   # Rys/lib/EngineName/03_hooks.rb
+   # Rys/config/initializers/03_hooks.rb
     ActiveSupport::Reloader.to_prepare do
       puts "This is before easy patch application"
     end
@@ -91,7 +91,7 @@
     end
    ```
 9. ```ruby
-    # Rys/lib/EngineName/03_hooks.rb
+    # Rys/config/initializers/03_hooks.rb
     Rys::Engine.config.to_prepare do
       puts "Runs as #1 out of these 3"
     end
@@ -117,7 +117,7 @@
     end
     ```
 12. ```ruby
-    # Rys/lib/EngineName/03_hooks.rb
+    # Rys/config/initializers/03_hooks.rb
     Rails.application.config.to_prepare do
       puts "After initialize block from engine initializer files"
     end

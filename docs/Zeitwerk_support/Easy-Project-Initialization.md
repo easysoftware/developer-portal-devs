@@ -85,7 +85,7 @@
     Rails.application.config.to_prepare do
       puts "In this block redmine plugin initializers are run"
     end
-    # Rails.root/config/33_patches.rb
+    # Rails.root/config/initializers/33_patches.rb
     Rails.application.config.to_prepare do
       puts "In this block we apply easy_patches"
     end

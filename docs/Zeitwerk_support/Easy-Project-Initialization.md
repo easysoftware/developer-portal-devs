@@ -44,7 +44,7 @@
    end
    ```
 2. ```ruby
-   # Rails.root/config/30-redmine.rb
+   # Rails.root/config/initializers/30-redmine.rb
     puts "This is where plugins/PLUGIN_NAME/app/* + lib is added to autoload_paths"
    ```
 3. ```ruby
@@ -60,13 +60,13 @@
     puts "Enqueued but runs very early"
    ```
 5. ```ruby
-   # Rails.root/config/00_core_plugins.rb
+   # Rails.root/config/initializers/00_core_plugins.rb
     ActiveSupport::Reloader.to_prepare do
       puts "This is before easy patch application"
     end
    ```
 6. ```ruby
-   # Rys/lib/EngineName/03_hooks.rb
+   # Rys/config/initializers/03_hooks.rb
     ActiveSupport::Reloader.to_prepare do
       puts "This is before easy patch application"
     end
@@ -80,18 +80,18 @@
    end
    ```
 8. ```ruby
-    # Rails.root/config/30_redmine.rb
+    # Rails.root/config/initializers/30_redmine.rb
     # inside Redmine::PluginLoader.load
     Rails.application.config.to_prepare do
       puts "In this block redmine plugin initializers are run"
     end
-    # Rails.root/config/33_patches.rb
+    # Rails.root/config/initializers/33_patches.rb
     Rails.application.config.to_prepare do
       puts "In this block we apply easy_patches"
     end
    ```
 9. ```ruby
-    # Rys/lib/EngineName/03_hooks.rb
+    # Rys/config/initializers/03_hooks.rb
     Rys::Engine.config.to_prepare do
       puts "Runs as #1 out of these 3"
     end
@@ -117,7 +117,7 @@
     end
     ```
 12. ```ruby
-    # Rys/lib/EngineName/03_hooks.rb
+    # Rys/config/initializers/03_hooks.rb
     Rails.application.config.to_prepare do
       puts "After initialize block from engine initializer files"
     end

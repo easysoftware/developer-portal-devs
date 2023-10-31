@@ -103,6 +103,22 @@
     },
     {
       "type": "divider",
+      "title": "Contribution guide for Backend"
+    },
+    {
+      "type": "group",
+      "title": "Features & implementations",
+      "uri": "docs/Backend_tutorials/features/_readme.md",
+      "items": [
+        {
+          "type": "item",
+          "title": "Easy Page - own dashboard",
+          "uri": "docs/Backend_tutorials/features/easy_pages.md"
+        }
+      ]
+    },
+    {
+      "type": "divider",
       "title": "Contribution guide for Frontend"
     },
     {

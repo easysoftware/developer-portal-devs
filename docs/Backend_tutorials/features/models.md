@@ -1,6 +1,6 @@
 # How to create new Model
 
-This section provide basic information what needs to be implement for new working model.
+This section provide basic information what needs to be implemented for new working model.
 
 ## Model
 Models source codes are located in directory `app/models`. 

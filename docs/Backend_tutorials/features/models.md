@@ -5,6 +5,7 @@ This section provide basic information what needs to be implemented for new work
 ## Model
 Models source codes are located in directory `app/models`. 
 Model must be inherited from `ActiveRecord::Base` and must be named in singular form. 
+
 Namespace of model should reflect its path to the source code. Example: `EasyModule::MyModel` should be implemented in `app/models/easy_module/my_model.rb`. 
 The name of the model should describe the real object it represents as accurately as possible.
 
@@ -15,6 +16,7 @@ module EasyModule
     include Redmine::SafeAttributes
     
     belongs_to :author, class_name: "::User", inverse_of: :my_models
+    belongs_to :collection, class_name: "::Collection", inverse_of: :my_models, optional: true
 
     has_many :items, class_name: "::EasyModule::MyItem", dependent: :destroy, inverse_of: :my_model
 
@@ -148,6 +150,7 @@ class CreateMyModel < ActiveRecord::Migration[6.1]
   def change
     create_table :my_models do |t|
       t.belongs_to :author, null: false
+      t.belongs_to :collection, null: true
       t.string :name, null: false
       t.text :description, null: false
       t.integer :status, null: false
@@ -272,6 +275,7 @@ FactoryBot.define do
     description { "MyModel description" }
     status { :active }
     association :author, factory: :user
+    association :collection, factory: :collection
   end
 end
 ```
@@ -286,6 +290,7 @@ FactoryBot.define do
     description { "MyModel description" }
     status { :active }
     association :author, factory: :user
+    association :collection, factory: :collection
 
     trait :disabled do
       status { :disabled }

@@ -7,6 +7,7 @@ Controllers source codes are located in directory `app/controllers`. Controller 
 Usual controller name is pluralized name of model, which is used in controller, with suffix `Controller`. 
 For example `MyModelsController` for model `MyModel`. There are some special occasions, when controller doesn't work with model,
 but some other object instead. In this case, controller name is name of object with suffix `Controller`. For example EasyPages.
+
 Namespacing of controllers does not work well with routes in redmine. If controller works with model in namespace, prefix should be used.
 For example `MyNamespaceMyModelsController` for model `MyNamespace::MyModel`.
 

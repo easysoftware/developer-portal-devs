@@ -127,6 +127,7 @@ Values of this options are also chunk of SQL containing `table_name` with name o
 If the defined easy query column name corresponds with table name and database column of queried entity, value `true` is possible to use.
 * `most_used`: Self describing option of boolean kind. Default value is `false`.
 * `preload`/`includes`: Define additional load of associated classes for joins purpose. Value is array of symbols of snake_case class names.
+If sortable trough another table is defined, it is necessary to define `includes` for that association as well.
 
 ```ruby
 

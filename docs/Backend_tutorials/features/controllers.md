@@ -44,7 +44,7 @@ class MyModelsController < ApplicationController
   end
   
   def create
-    @my_model = MyModel.new(params[:my_model])
+    @my_model = MyModel.new
     @my_model.safe_attributes = params[:my_model]
     respond_to do |format|
       format.html do
@@ -168,12 +168,12 @@ Method is a REST method or `match`. Options can be:
 
 ```ruby
 resources :my_models do
-    member do
-      match :my_model_action, via: %i[get put]
-    end
-    collection do
-        get :my_models_action
-    end
+  member do
+    match :my_model_action, via: %i[get put]
+  end
+  collection do
+    get :my_models_action
+  end
 end
 
 match 'my_models/:id/my_model_action', to: 'my_models#my_model_action', via: %i[get put]
@@ -186,6 +186,49 @@ get 'my_models/my_models_action', controller: 'my_models', action: 'my_models_ac
 
 ### Tests
 
-<!--
-  -- TODO: describe controller tests & request tests
--->
+Rspec allows two way how to test controllers. First are controller specs, which are defined in `spec/controllers` directory.
+This kind of tests are no longer recommended by authors of Rspec. They will become deprecated soon. Nonetheless, they are still used in application.
+Second and recommended way to test controllers are request specs. These are defined in `spec/requests` directory.
+Within request spec should be tested each endpoint, handled by controller under test.
+
+```ruby
+Rspec.describe "MyModels", logged: true do
+  subject { response }
+
+  describe "GET index" do
+    let!(:request) { get my_models_path }
+
+    it { is_expected.to have_http_status(:success) }
+  end
+
+  describe "GET show" do
+    let(:my_model) { FactoryBot.create(:my_model) }
+    let!(:request) { get my_model_path(my_model) }
+
+    it { is_expected.to have_http_status(:success) }
+  end
+
+  describe "GET new" do
+    # implementation
+  end
+
+  describe "POST create" do
+    let(:my_model_params) { { name: "new model name" } }
+    let(:request) { get my_models_path(my_model: my_model_params) }
+
+    it { expect { request }.to change(MyModel, :count).by(1) }
+  end
+
+  describe "GET edit" do
+    # implementation
+  end
+
+  describe "PUT update" do
+    # implementation
+  end
+
+  describe "DELETE destroy" do
+    # implementation
+  end
+end
+```

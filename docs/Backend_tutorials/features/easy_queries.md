@@ -3,13 +3,18 @@
 This section provide basic information what needs to be implemented for new working easy query.
 
 ## Easy Query
+Easy Query is tool which allows user to display and filter records of specific model within web page.
+Each Easy Query has defined available filters and columns. User may use them, along with grouping and ordering,
+combine it all together to achieve desired results and display records he wants to see.
+
+Easy Query is also used by `EasyGraphql` extension to easily define GraphQL queries for various types.
+
 Easy queries source codes are located in directory `app/easy_queries`. Easy query must be inherited from `EasyQuery` class.
 New easy query name is name of model with suffix `EasyQuery`. For example `MyModelEasyQuery` for model `MyModel`. 
-Every easy query need to be registered to be able use it within dashboards. 
+Every easy query need to be registered to be able use it within dashboards.
 
 Although it is possible to namespace easy queries, for now `EasyGraphql::Extensions::EasyQuery` extension does not support it.
-In such terms namespacing would dive queries into two groups - queries with namespace (those not used by graphql) and without namespace (those used by graphql).
-In case of query represents model in namespace, prefix should be used. For example `MyNamespaceMyModelEasyQuery` for model `MyNamespace::MyModel`.
+So it is recommended to keep corresponding with controllers and use prefixes.
 
 Base easy query definition:
 ```ruby

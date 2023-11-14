@@ -34,7 +34,7 @@ class MyModelQuery < EasyQuery
   end
 
   def initialize_available_columns
-    tbl = ::MyModel.table_name
+    tbl = queried_class.table_name
 
     add_column :id,
                :integer,

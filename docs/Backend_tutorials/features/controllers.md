@@ -6,7 +6,7 @@ This section provide basic information what needs to be implemented for new work
 Controllers source codes are located in directory `app/controllers`. Controller must be inherited from `ApplicationController`.
 Usual controller name is pluralized name of model, which is used in controller, with suffix `Controller`. 
 For example `MyModelsController` for model `MyModel`. There are some special occasions, when controller doesn't work with model,
-but some other object instead. In this case, controller name is name of object with suffix `Controller`. For example EasyPages.
+but some other object instead. In this case, controller name is name of object with suffix `Controller`. For example [EasyPages](./easy_pages.md).
 
 Namespacing of controllers does not work well with routes in redmine. If controller works with model in namespace, prefix should be used.
 For example `MyNamespaceMyModelsController` for model `MyNamespace::MyModel`.
@@ -186,13 +186,11 @@ get 'my_models/my_models_action', controller: 'my_models', action: 'my_models_ac
 
 ### Tests
 
-Rspec allows two way how to test controllers. First are controller specs, which are defined in `spec/controllers` directory.
-This kind of tests are no longer recommended by authors of Rspec. They will become deprecated soon. Nonetheless, they are still used in application.
-Second and recommended way to test controllers are request specs. These are defined in `spec/requests` directory.
-Within request spec should be tested each endpoint, handled by controller under test.
+Our best-practice is to describe controller tests in `request` specs. These are defined in `spec/requests` directory.
+Within request spec should be tested each endpoint, handled by controller under test including "render".
 
 ```ruby
-Rspec.describe "MyModels", logged: true do
+Rspec.describe "MyModels", type: :request, logged: true do
   subject { response }
 
   describe "GET index" do
@@ -214,9 +212,19 @@ Rspec.describe "MyModels", logged: true do
 
   describe "POST create" do
     let(:my_model_params) { { name: "new model name" } }
-    let(:request) { get my_models_path(my_model: my_model_params) }
+    let!(:request) { post my_models_path(my_model: my_model_params) }
 
-    it { expect { request }.to change(MyModel, :count).by(1) }
+    it { is_expected.to redirect_to(/my_models\/\d+/) }
+
+    context "with invalid request" do
+      let(:my_model_params) { { name: "" } }
+
+      it "Handle validation error" do
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template(:new)
+      end
+    end
+
   end
 
   describe "GET edit" do
@@ -224,11 +232,34 @@ Rspec.describe "MyModels", logged: true do
   end
 
   describe "PUT update" do
-    # implementation
+    let(:my_model) { FactoryBot.create(:my_model, name: "Super name") }
+    let(:my_model_params) { { name: "changed model name" } }
+    let!(:request) { patch my_model_path(my_model, my_model: my_model_params) }
+
+    it { is_expected.to redirect_to(my_model_path(my_model)) }
+
+    it "name was changed" do
+      expect { my_model.reload }.to change { my_model.name }.from("Super name").to("changed model name")
+    end
+
+    context "with invalid name" do
+      let(:my_model_params) { { name: "" } }
+
+      it "Handle validation error" do
+        expect(response).to render_template(:edit)
+      end
+    end
   end
 
   describe "DELETE destroy" do
-    # implementation
+    let(:my_model) { FactoryBot.create(:my_model) }
+    let!(:request) { delete my_model_path(my_model) }
+
+    it { is_expected.to redirect_to(my_models_path) }
+
+    it "record was really deleted" do
+      expect { my_model.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
 ```

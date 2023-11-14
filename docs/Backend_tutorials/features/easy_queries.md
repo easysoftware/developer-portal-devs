@@ -11,10 +11,10 @@ Easy Query is also used by `EasyGraphql` extension to easily define GraphQL quer
 
 Easy queries source codes are located in directory `app/easy_queries`. Easy query must be inherited from `EasyQuery` class.
 New easy query name is name of model with suffix `EasyQuery`. For example `MyModelEasyQuery` for model `MyModel`. 
-Every easy query need to be registered to be able use it within dashboards.
+Every easy query need to be registered to be able use it within [dashboards](./easy_pages.md).
 
 Although it is possible to namespace easy queries, for now `EasyGraphql::Extensions::EasyQuery` extension does not support it.
-So it is recommended to keep corresponding with controllers and use prefixes.
+So it is recommended to keep corresponding with [controllers](./controllers.md) and use prefixes.
 
 Base easy query definition:
 ```ruby
@@ -218,4 +218,3 @@ ActiveSupport.on_load(:easy_project_start) do
   end
 end
 ```
-

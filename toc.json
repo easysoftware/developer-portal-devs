@@ -102,10 +102,6 @@
       "uri": "docs/Backend_tutorials/BE-Docker.md"
     },
     {
-      "type": "divider",
-      "title": "Contribution guide for Backend"
-    },
-    {
       "type": "group",
       "title": "Features & implementations",
       "uri": "docs/Backend_tutorials/features/_readme.md",

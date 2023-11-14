@@ -9,8 +9,7 @@ Model must be inherited from `ActiveRecord::Base` and must be named in singular 
 Namespace of model should reflect its path to the source code. Example: `EasyModule::MyModel` should be implemented in `app/models/easy_module/my_model.rb`. 
 The name of the model should describe the real object it represents as accurately as possible.
 
-Base model definition:
-```ruby
+```ruby title="Base model definition" lineNumbers
 module EasyModule
   class MyModel < ActiveRecord::Base
     include Redmine::SafeAttributes
@@ -140,8 +139,7 @@ See [How to create new migration](./migrations.md) section.
 Model tests are located in `spec/models` directory. Name convention of model test is `model_name_spec.rb`. Model spec should test all model methods (including public and private methods), 
 scopes, validations and callbacks (including custom callbacks and callbacks defined within associations).
 
-Example of `my_model_spec.rb`:
-```ruby
+```ruby title="Example of my_model_spec.rb" lineNumbers
 require "easy_extensions/spec_helper"
 
 describe EasyModule::MyModel, type: :model do

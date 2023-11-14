@@ -11,8 +11,7 @@ but some other object instead. In this case, controller name is name of object w
 Namespacing of controllers does not work well with routes in redmine. If controller works with model in namespace, prefix should be used.
 For example `MyNamespaceMyModelsController` for model `MyNamespace::MyModel`.
 
-Base controller definition:
-```ruby
+```ruby title="Base controller definition" lineNumbers
 class MyModelsController < ApplicationController
   before_action :authorize_global
   before_action :custom_before_action, only: %i[index show]
@@ -166,7 +165,7 @@ Method is a REST method or `match`. Options can be:
 * `controller` - controller name
 * `action` - action name
 
-```ruby
+```ruby title="routes.rb" lineNumbers
 resources :my_models do
   member do
     match :my_model_action, via: %i[get put]
@@ -189,7 +188,7 @@ get 'my_models/my_models_action', controller: 'my_models', action: 'my_models_ac
 Our best-practice is to describe controller tests in `request` specs. These are defined in `spec/requests` directory.
 Within request spec should be tested each endpoint, handled by controller under test including "render".
 
-```ruby
+```ruby title="request spec example" lineNumbers
 Rspec.describe "MyModels", type: :request, logged: true do
   subject { response }
 

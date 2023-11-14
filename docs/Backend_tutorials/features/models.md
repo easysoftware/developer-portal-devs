@@ -30,7 +30,7 @@ module EasyModule
 
     enum status: { active: 0, disabled: 1 }, _prefix: true
 
-    safe_attributes "name", "description", "status"
+    safe_attributes "name", "description", "status", if: proc { editable? }
 
     # public methods implementation
 

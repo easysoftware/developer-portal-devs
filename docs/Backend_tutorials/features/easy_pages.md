@@ -4,7 +4,8 @@ This section provide basic information what needs to be implement for working Ea
 
 ## Controller
 Controller just call registration EasyPageHandler which provide all necessary DSL for future dashboard.
-```ruby
+
+```ruby title="Example of dashboard controller" lineNumbers
 class DashboardController < ApplicationController
   EasyExtensions::EasyPageHandler.register_for(self, {
     page_name: 'my-dashboard',
@@ -26,6 +27,7 @@ For complete list see method definition.
 
 ## Routes
 Routes are defined in `config/routes.rb`.
+
 ```ruby
 resources :my_dashboard, only: [:index], path: "/super-dashboard" do
   match :layout, action: :index_layout, via: %i[get post], on: :collection
@@ -36,7 +38,8 @@ Views are defined in `app/views/my_dashboard` folder. There must exists `index.h
 
 ## Migration
 Generate new **data** migration which creates EasyPage object in database.
-```ruby
+
+```ruby lineNumbers
 class CreateMyDashboard < EasyExtensions::EasyDataMigration
 
   def up
@@ -73,7 +76,8 @@ easy_page_available_zone_0069:
 
 ### Test
 in `spec/requests/dashboard_controller_spec.rb`
-```ruby
+
+```ruby title="requests spec example" lineNumbers
 require "easy_extensions/spec_helper"
 
 RSpec.describe "My Dashboard", logged: true do

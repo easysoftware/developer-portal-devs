@@ -187,7 +187,7 @@ To achieve testing of all aspects of model, there is also needed to test behavio
 Factories should be located in `spec/factories` directory. Name convention of factory is `model_name.rb`. Factory should be defined for each model. 
 
 Example of `my_model.rb`:
-```ruby
+```ruby title="spec/factories" lineNumbers
 FactoryBot.define do
   factory :my_model, class: EasyModule::MyModel do
     sequence(:name) { |n| "MyModel #{n}" }
@@ -202,7 +202,7 @@ Uniq values should be defined as sequence, to avoid collision with existing inst
 To create objects with specific unusual properties or behaviour, should be used traits. Traits are defined with `trait` keyword and block of implementation.
 
 Example of `my_model.rb` with trait:
-```ruby
+```ruby title="example with trait" lineNumbers
 FactoryBot.define do
   factory :my_model, class: EasyModule::MyModel do
     sequence(:name) { |n| "MyModel #{n}" }

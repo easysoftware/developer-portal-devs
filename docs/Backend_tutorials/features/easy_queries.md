@@ -16,8 +16,7 @@ Every easy query need to be registered to be able use it within [dashboards](./e
 Although it is possible to namespace easy queries, for now `EasyGraphql::Extensions::EasyQuery` extension does not support it.
 So it is recommended to keep corresponding with [controllers](./controllers.md) and use prefixes.
 
-Base easy query definition:
-```ruby
+```ruby title="Base easy query definition" lineNumbers
 class MyModelQuery < EasyQuery
   self.queried_class = ::MyModel
 
@@ -211,7 +210,7 @@ Query registration should be defined in one of initializers. For plugins its fil
 For `easy_engines` and `rys` its file `config/initializers/08_others.rb`.
 Registration should be defined in `ActiveSupport.on_load(:easy_project_start)` block
 
-```ruby
+```ruby title="config/initializers/08_others.rb" lineNumbers
 ActiveSupport.on_load(:easy_project_start) do
   EasyQuery.map do |query|
     query.register "MyModelQuery"

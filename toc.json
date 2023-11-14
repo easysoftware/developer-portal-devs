@@ -103,6 +103,42 @@
     },
     {
       "type": "divider",
+      "title": "Contribution guide for Backend"
+    },
+    {
+      "type": "group",
+      "title": "Features & implementations",
+      "uri": "docs/Backend_tutorials/features/_readme.md",
+      "items": [
+        {
+          "type": "item",
+          "title": "Model",
+          "uri": "docs/Backend_tutorials/features/models.md"
+        },
+        {
+          "type": "item",
+          "title": "Migrations",
+          "uri": "docs/Backend_tutorials/features/migrations.md"
+        },
+        {
+          "type": "item",
+          "title": "Controller",
+          "uri": "docs/Backend_tutorials/features/controllers.md"
+        },
+        {
+          "type": "item",
+          "title": "Easy Page - own dashboard",
+          "uri": "docs/Backend_tutorials/features/easy_pages.md"
+        },
+        {
+          "type": "item",
+          "title": "Easy Query - table list with filters",
+          "uri": "docs/Backend_tutorials/features/easy_queries.md"
+        }
+      ]
+    },
+    {
+      "type": "divider",
       "title": "Contribution guide for Frontend"
     },
     {

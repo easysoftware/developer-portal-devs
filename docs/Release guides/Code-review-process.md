@@ -8,6 +8,26 @@
 
 Before conducting code reviews please read [this article](https://blog.palantir.com/code-review-best-practices-19e02780015f) about code review best practices.
 
+## Essential Practices for Merge Requests (MRs)
+
+* Assignment of Reviewers:
+
+Reviewer Pool: Merge Requests (MR) should be assigned to a 'reviewer pool' rather than individual reviewers. This approach ensures a broader perspective and more efficient review process, as it allows any available and qualified reviewer within the pool to pick up the MR for review.
+
+* Pipeline Status:
+
+Mandatory Pipeline Success: A crucial requirement for any MR is the successful completion of all associated pipeline checks. MRs with failed pipeline checks will not be considered for merging. This rule is non-negotiable and ensures the integrity and stability of our codebase. It is imperative that all contributors ensure their code passes all pipeline checks before requesting a review.
+ 
+* Handling Draft MRs:
+
+Draft Status and Merging: MRs marked as 'Draft' are not eligible for merging. The primary purpose of a Draft MR is to seek early feedback. Contributors are encouraged to use this status for preliminary reviews and discussions. However, it's important to note that while in Draft status, the MR is solely for feedback purposes and will not be merged until it is marked as ready for review and meets all other criteria.
+
+<!-- theme: warning -->
+
+> #### If pipeline fails, fix it !
+>
+> If its failing for any reason, ask technical support or guild. But pipeline MUST passed.
+
 ---
 
 ## 'Code' of a good reviewer
@@ -48,7 +68,7 @@ All **developers** are responsible for merging and releasing the Merge Requests.
 External dependencies should always be locked to a fixed version.
 ```ruby
 # example 
-gem 'audited', '5.1.0'
+gem "audited", "5.1.0"
 ```
 
 
@@ -57,9 +77,8 @@ gem 'audited', '5.1.0'
 - Calling `.find` should be rescued in case it throws an exception.
 
 ```ruby
-
 begin
-  @issue = Issue.find(params[:id])
+  @issue ||= Issue.find(params[:id])
 rescue ActiveRecord::RecordNotFound
   render_404
 end

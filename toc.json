@@ -130,6 +130,11 @@
           "type": "item",
           "title": "Easy Query - table list with filters",
           "uri": "docs/Backend_tutorials/features/easy_queries.md"
+        },
+        {
+          "type": "item",
+          "title": "Easy Journals",
+          "uri": "docs/Backend_tutorials/features/journals.md"
         }
       ]
     },

@@ -41,18 +41,19 @@ def update
   end
 end
 ```
-
+For rendering journals we prepared concern `EasyControllersConcerns::EasyJournals` which render journals on ajax. You need include it into your controller and call `render_easy_journals` method with your instance.
 ```ruby title="Example of journals action for render history" lineNumbers
-helper :easy_journal
+include EasyControllersConcerns::EasyJournals
 
 def journals
-  tab_manager = EasyExtensions::JournalsTabsManager.new my_model, tab: params[:tab], no_limit: params[:journals] == "all"
-  @journals = tab_manager.journals
-  @journals_count = tab_manager.journals_count
-  render partial: "easy_journals/entity_history", locals: { entity: my_model }
+  render_easy_journals(my_model)
 end
 ```
-
+## Users permissions
+Every action in controller should have properly permission. Do not forget extend `view_` permission by your new action "journals".
+```ruby title="Example of permissions" lineNumbers
+  permission :view_my_models, { my_models: %i[index show journals] }
+```
 ## Routes
 
 You need define route for journals action. For example:
@@ -92,3 +93,4 @@ end
 Or render directly
 
 TODO: add example
+

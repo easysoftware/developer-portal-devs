@@ -52,7 +52,14 @@
     - Fix this accordingly - we have quite a lot of typos in our codebase
   - Constant is defined inside of lib folder
     - either require this file where you need it or move it to a folder inside of app folder, e.g. app/utils
-    
+- defining constant inside of a block
+  - ```ruby
+    if Redmine::Plugin.installed?(:easy_crm)
+      class EasyMoneyCrmCasesBudgetQuery < EasyCrmCaseQuery
+      end
+    end
+    ```
+  - move this file to lib and require it in after_init.rb or other initializer inside of `Rails.application.config.after_initialize` block
 ### Notes
 - initialization process with zeitwerk will probably change in the future
   - the plan is to split after_init.rb to multiple files similar to initializers in easy_engines and require them during the adding easy_plugins to autoload_paths

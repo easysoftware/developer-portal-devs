@@ -1,6 +1,6 @@
 # Frontend code generator
 
-*Automatic generating typescript type from graphql schema.*
+*Automatic generating typescript types from graphql and swagger schema.*
 
 ---
 
@@ -8,15 +8,15 @@
 
 Graphql codegenerator is a package, that provide feature of generating typescript files from graphql schema. [doc](https://the-guild.dev/graphql/codegen/docs/getting-started)
 
-## How to generate types
-
+### How to generate types
 
 ```bash
 rake easyproject:graphql_generate
 ```
 
-With this command, we generate git-ignored files in the `app/frontend/src/shared/graphql_schema` folder. These files contain GraphQL schema from which we generate TypeScript types into `app/frontend/src/shared/types/schemaTypes.generated.ts`. Additionally, for each GraphQL query/mutation definition file, a separate type file is generated. These generated types can be used in the TypeScript code. Each generated file has the .generated.ts suffix. After generating the types, we can commit and push them with Git."
-## Using generated types
+With this command, we generate git-ignored files in the `app/frontend/src/shared/graphql_schema` folder. This file contains GraphQL schema from which we generate TypeScript types into `app/frontend/src/shared/types/schemaTypes.generated.ts`. Additionally, for each GraphQL query/mutation definition file, a separate type file is generated. These generated types can be used in the TypeScript code. Each generated file has the .generated.ts suffix. After generating the types, we can commit and push them with Git."
+
+### Using generated types
 
 Example of using `EasyProductBacklogItemMutation` and `EasyProductBacklogItemAttrs` generated types in api service `PbiApi`:
 
@@ -51,4 +51,33 @@ export class PbiApi {
 
 const pbiApi = new PbiApi(apolloClient);
 export default pbiApi;
+```
+
+---
+
+## Openapi Code Generator
+
+Openapi codegenerator is a package, that provide feature of generating typescript types and api services from swagger schema. [doc](https://openapi-generator.tech/docs/generators/typescript-fetch)
+
+### How to generate types
+
+```bash
+rake easyproject:openapi_generate
+```
+
+With this command, we clean the app/frontend/src/shared/openapi folder and generate a git-ignored file named easy_swagger.yml. This file contains the Swagger schema from which we generate TypeScript types and services into app/frontend/src/shared/openapi/. The last step performed by the rake task is to edit the file app/frontend/src/shared/openapi/runtime.ts to support window.urlPrefix.
+
+### Using generated files
+
+Example of using `IssueApi`
+
+```ts
+import { GetIssueFormatEnum, IssueApi, IssueApiResponse } from "@/src/shared/openapi";
+
+const issueId = 1;
+const issueApi = new IssueApi();
+const { issue }: { issue: IssueApiResponse } = await issueApi.getIssue({
+  id: issueId,
+  format: GetIssueFormatEnum.Json,
+});
 ```

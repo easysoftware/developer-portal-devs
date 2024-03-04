@@ -168,6 +168,11 @@
       "uri": "docs/Frontend_tutorials/FE-Testing.md"
     },
     {
+      "type": "item",
+      "title": "Vuetify styles",
+      "uri": "docs/Frontend_tutorials/Vuetify_styles.md"
+    },
+    {
       "type": "divider",
       "title": "End-to-end testing"
     },

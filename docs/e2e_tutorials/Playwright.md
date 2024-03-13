@@ -66,7 +66,7 @@ export default config;
 #### Notes:
 - In this example configuration, you can uncomment and adjust the browsers array to specify which browsers to use for testing. However, for your testing, we only use the Chrome browser. Do not use any other browser without discussing it with your lead or manager.
 - For the baseURL: If you don't have the possibility to run the application locally, use testing applications. 
-- Replace 'http://localhost:3000' with the URL of your testing application when you are working with the tests.
+Replace 'http://localhost:3000' with the URL of your testing application when you are working with the tests.
 
 **Important:** Never add and push changes from playwright.config.ts without discussing them with your lead or manager. These changes are intended for local testing purposes only and should not be pushed to the repository without approval.
 
@@ -106,7 +106,7 @@ export const CURSOR_POSITION_DEFAULT = 5;
 - For our tests in Playwright, we adhere to the Page Object Pattern. This methodology centralizes the logic for identifying and interacting with elements within files named with a .page extension.
 
 - These .page files serve as integral components of the Page Object Model (POM), housing methods, and elements essential for test automation. 
-- They encompass functionality for interacting with various components of the application, including pages, modals pop-ups, forms, and other elements pertinent to the pages under test.
+They encompass functionality for interacting with various components of the application, including pages, modals pop-ups, forms, and other elements pertinent to the pages under test.
 
 **Also have two important pages within our project:**
 
@@ -243,7 +243,7 @@ bundle install
 ```
 
 2. Define new database for playwright. In the file `./config/database.yml` 
-- example:
+example:
 ```
 development:
   adapter: mysql2

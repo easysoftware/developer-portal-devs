@@ -1,6 +1,6 @@
 # Playwright tests
 
-We are utilizing Playwright for testing our Frontend. In this section, 
+We are utilizing Playwright for testing our Frontend. In this section,
 we will address several key questions, including:
 
 - How to write Playwright tests?
@@ -8,18 +8,18 @@ we will address several key questions, including:
 - How do we run them?*
 
 ## What is Playwright?
-Before diving into writing tests with Playwright, 
-it's essential to familiarize yourself with the basics of the tool. 
+Before diving into writing tests with Playwright,
+it's essential to familiarize yourself with the basics of the tool.
 Here's a primer to help you get started:
 
-Playwright is an open-source automation tool developed by Microsoft that allows you to automate interactions with web browsers. 
-It provides a high-level API for automating browsers such as Chromium, Firefox, and WebKit, 
+Playwright is an open-source automation tool developed by Microsoft that allows you to automate interactions with web browsers.
+It provides a high-level API for automating browsers such as Chromium, Firefox, and WebKit,
 enabling developers to write reliable and maintainable end-to-end tests for web applications.
 
 ## Important Links for Getting Started with Playwright
 
-To kickstart your journey with Playwright, 
-here are a few essential links to help you navigate through the installation process, 
+To kickstart your journey with Playwright,
+here are a few essential links to help you navigate through the installation process,
 understand assertions, and adopt best practices:
 
 1. [Installing Playwright](https://playwright.dev/docs/intro#installing-playwright): Learn how to install Playwright in your project and set up the necessary dependencies to begin writing tests.
@@ -29,6 +29,13 @@ understand assertions, and adopt best practices:
 ## Structure
 
 In our project, Playwright tests are organized within the /playwright folder. The main configuration for Playwright resides in the /playwright.config.ts file.
+To enhance our testing structure and workflow, we've made significant updates:
+
+**Separating Playwright from Core**:
+- **Overview**: Playwright functionality has been separated from the Core of our application, improving organization and maintenance.
+- **Changes Made**:
+   - Playwright functionality has been relocated to its folder within the Core repository.
+   - The Playwright folder now manages its dependencies independently with its package.json file.
 
 ### File Structure
 
@@ -58,22 +65,22 @@ export default config;
 ```
 #### Notes:
 - In this example configuration, you can uncomment and adjust the browsers array to specify which browsers to use for testing. However, for your testing, we only use the Chrome browser. Do not use any other browser without discussing it with your lead or manager.
-- For the baseURL: If you don't have the possibility to run the application locally, use testing applications. 
-Replace 'http://localhost:3000' with the URL of your testing application when you are working with the tests.
+- For the baseURL: If you don't have the possibility to run the application locally, use testing applications.
+  Replace 'http://localhost:3000' with the URL of your testing application when you are working with the tests.
 
 **Important:** Never add and push changes from playwright.config.ts without discussing them with your lead or manager. These changes are intended for local testing purposes only and should not be pushed to the repository without approval.
 
 3. ./playwright/constants
    This folder contains main constants that are used exclusively within testing files.
 
-**example:** 
+**example:**
 ```ts
 export const CURSOR_POSITION_DEFAULT = 5;
 ```
 
 4. ./playwright/fixtures
 
-- This folder contains JSON files representing entities in our system. 
+- This folder contains JSON files representing entities in our system.
 - If a JSON file contains an ID, it indicates that the corresponding entity exists in the testing database. Otherwise, these JSON files are primarily used for filling inputs.
 
 **example**
@@ -98,8 +105,8 @@ export const CURSOR_POSITION_DEFAULT = 5;
 
 - For our tests in Playwright, we adhere to the Page Object Pattern. This methodology centralizes the logic for identifying and interacting with elements within files named with a .page extension.
 
-- These .page files serve as integral components of the Page Object Model (POM), housing methods, and elements essential for test automation. 
-They encompass functionality for interacting with various components of the application, including pages, modals pop-ups, forms, and other elements pertinent to the pages under test.
+- These .page files serve as integral components of the Page Object Model (POM), housing methods, and elements essential for test automation.
+  They encompass functionality for interacting with various components of the application, including pages, modals pop-ups, forms, and other elements pertinent to the pages under test.
 
 **Also have two important pages within our project:**
 
@@ -235,8 +242,8 @@ Make sure that you have bundle install and assets precompiled
 bundle install
 ```
 
-2. Define new database for playwright. In the file `./config/database.yml` 
-example:
+2. Define new database for playwright. In the file `./config/database.yml`
+   example:
 ```
 development:
   adapter: mysql2
@@ -267,7 +274,17 @@ bundle exec rails s
 
 > FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
-7. Run Playwright
+7. Navigate to the Playwright folder within the Core repository.
+```
+cd playwright
+```
+
+8. Install dependencies using yarn.
+```
+yarn install
+```
+
+9. Run Playwright
 ```
 yarn playwright test
 ```
@@ -305,9 +322,9 @@ git commit -m "refs #001: #002 Created a new project"
 
 ```ts
 async navigateToUrl(url: string) {
-  await this.page.goto(url);
-  await this.page.waitForURL(url);
-  await this.waitForDocumentReady();
+   await this.page.goto(url);
+   await this.page.waitForURL(url);
+   await this.waitForDocumentReady();
 }
 ```
 
@@ -315,10 +332,10 @@ async navigateToUrl(url: string) {
 
 ```ts
 async clickOnSaveButton() {
-  await Promise.all([
-    this.page.waitForResponse("**/easy_wbs.json?*"),
-    this.clickOnButton("submit--mindmup"),
-  ]);
+   await Promise.all([
+      this.page.waitForResponse("**/easy_wbs.json?*"),
+      this.clickOnButton("submit--mindmup"),
+   ]);
 }
 ```
 

@@ -25,13 +25,13 @@ nvm use
 
 Command above will switch the node version to the version that is defined in `.nvmrc`. You may need to install the version of the node according to nvm, please see [README.md](https://github.com/nvm-sh/nvm/blob/master/README.md)
 
-2. Install as public package (if you don't have it already)
+2. Switch to the right version of Yarn package manager
 
 ```
-npm install --global yarn
+corepack enable
 ```
 
-3. To be able to install private Easy packages, follow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
+Command above will switch to Yarn version that is defined in `package.json` in field `packageManager`.
 
 ### Building Vue
 
@@ -41,7 +41,7 @@ Running in the root of platform
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
-This command will install `yarn modules` and `compile Vue`. This is used in the pipelines.
+This command will install `node modules` and `compile Vue`. This is used in the pipelines.
 
 ### Rails ujs
 
@@ -68,7 +68,7 @@ window.Rails.start();
 1. Install dependencies in the platform.
 
 ```
-yarn
+yarn install --immutable
 ```
 
 2. Start Vite to serve sources

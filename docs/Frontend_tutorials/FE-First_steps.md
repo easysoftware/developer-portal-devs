@@ -43,7 +43,7 @@ Running in the root of platform
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
-This command will install `yarn modules` and `compile Vue`. This is used in the pipelines.
+This command will install `node modules` and `compile Vue`. This is used in the pipelines.
 
 ### Rails ujs
 
@@ -70,7 +70,7 @@ window.Rails.start();
 1. Install dependencies in the platform.
 
 ```
-yarn
+yarn install --immutable
 ```
 
 2. Start Vite to serve sources

@@ -33,8 +33,6 @@ corepack enable
 
 Command above will switch to Yarn version that is defined in `package.json` in field `packageManager`.
 
-3. To be able to install private Easy packages, follow [these instructions](https://nodes.easysoftware.com/-/help). (instructions are now for npm but commands are same for yarn)
-
 ### Building Vue
 
 Running in the root of platform

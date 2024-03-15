@@ -29,6 +29,13 @@ understand assertions, and adopt best practices:
 ## Structure
 
 In our project, Playwright tests are organized within the /playwright folder. The main configuration for Playwright resides in the /playwright.config.ts file.
+To enhance our testing structure and workflow, we've made significant updates:
+
+**Separating Playwright from Core**:
+- **Overview**: Playwright functionality has been separated from the Core of our application, improving organization and maintenance.
+- **Changes Made**:
+   - Playwright functionality has been relocated to its folder within the Core repository.
+   - The Playwright folder now manages its dependencies independently with its package.json file.
 
 ### File Structure
 
@@ -267,7 +274,17 @@ bundle exec rails s
 
 > FORCE_HTTP allows puma accept HTTP request (insecure) in production.
 
-7. Run Playwright
+7. Navigate to the Playwright folder within the Core repository.
+```
+cd playwright
+```
+
+8. Install dependencies using yarn.
+```
+yarn install
+```
+
+9. Run Playwright
 ```
 yarn playwright test
 ```

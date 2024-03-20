@@ -145,25 +145,27 @@ require "easy_extensions/spec_helper"
 describe EasyModule::MyModel, type: :model do
   
   describe "#create" do
-    subject { described_class.create(params) }
+    subject(:create) { described_class.create(params) }
     # definition of necessary objects
 
     it "assign author" do
-      # test implementation
+      expect(create).to have_attributes author_id: /\d+/
     end
   end
 
   describe "#editable?" do
-    subject { entity.editable? }
+    subject(:editable?) { entity.editable? }
     # definition of necessary objects
 
+    it { is_expected.to eq false }
+    
     it "tests editable method" do
       # test implementation
     end
   end
 
   describe ".visible" do
-    subject { described_class.visible }
+    subject(:visible) { described_class.visible }
     # definition of necessary objects
 
     it "tests visible scope" do
@@ -172,7 +174,7 @@ describe EasyModule::MyModel, type: :model do
   end
 
   describe ".like" do
-    subject { described_class.like(term) }
+    subject(:like) { described_class.like(term) }
     # definition of necessary objects
 
     it "tests like scope" do

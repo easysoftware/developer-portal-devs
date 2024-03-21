@@ -18,6 +18,20 @@ Types are used for defining the structure of the data that can be queried. We ar
 > [!IMPORTANT]
 > Every new type should inherit from `Base` !
 
+### ID vs. Int vs. Integer
+https://graphql-ruby.org/type_definitions/scalars.html
+
+We are using `ID` for all our primary keys and relations. We are using `Integer` for all our integer values.
+
+Do not use `Int` type, we are prefer `Integer` type instead for "integer" values.
+
+### Enums
+https://graphql-ruby.org/type_definitions/enums.html
+
+Enums are used for defining a type with a limited set of possible values. We are using `enum` method for defining enums. We are using `Types::BaseEnum` for all our enums. This class is defined in `app/api/easy_graphql/types/base_enum.rb`.
+
+Enum represent one field => so use singular name for enum. For example `IssueStatus` or `IssueCategory`.
+
 ### Inputs (arguments)
 https://graphql-ruby.org/type_definitions/input_objects.html
 
@@ -27,6 +41,15 @@ Please inputs into `app/api/easy_graphql/types/inputs` directory. Name conventio
 
 > [!WARNING]
 > `_attrubtes` suffix is used to distinguish input from type.
+
+### Best-practice
+1. **Use `field` method for defining fields of the type.**
+2. **Use `argument` method for defining fields of the type.** Do not forget specify `required` option for argument.
+3. **Use `enum` method for defining enums.**
+4. **Use `Types::Base` for all our types.**
+5. **Use `Types::BaseEnum` for all our enums.**
+6. **Use `ID` for all our primary keys and relations.**
+7. **Use `Integer` for all our integer values.** Do not use `Int` shortcut.
 
 ## Resolvers
 https://graphql-ruby.org/fields/resolvers.html
@@ -80,7 +103,7 @@ Mutations are used for defining how to change the data. We are using `argument` 
 
 We are using `Mutations::Base` for all our mutations. This class is defined in `app/api/easy_graphql/mutations/base.rb`.
 
-Place mutations into `app/api/easy_graphql/mutations` directory. Name convention of mutation should describe "what mutation does" OR if its change entity, just use entity name **with action suffix**. For example `IssueCreate` or `IssueUpdate`.
+Place mutations into `app/api/easy_graphql/mutations` directory. Name convention of mutation should describe "what mutation does" OR if its change entity, just use entity name **with action prefix**. For example `CreateIssue` or `UpdateIssue` or `DestroyIssue`.
 
 > [!CAUTION]
 > NEVER ever do more actions in one mutations.
@@ -129,11 +152,12 @@ errors.add_entity_errors(entity) unless entity.save
 
 ### Best-practice
 
-1. **Use `resolve` method for changing data.**
-2. **Use `field` errors aside your returns.**
-3. **Always return `errors` field.** If there is no error, return empty array.
-4. **Use `argument` method for defining fields of the type.** Do not forget specify `required` option for argument.
-5. If you find specify entity, use `find` method for fetching entity. It raise `ActiveRecord::RecordNotFound` if entity not found = This is correct.
-6. Do not forget `init_journal` if entity is journalized.
-7. Use `safe_attributes` for assign attributes to entity.
-8. If you create new entity and its not valid, return `errors` and `nil` for entity.
+1. **Use `prefix` in mutation name for action.** (like `Create`, `Update`, `Destroy`)
+2. **Use `resolve` method for changing data.**
+3. **Use `field` errors aside your returns.**
+4. **Always return `errors` field.** If there is no error, return empty array.
+5. **Use `argument` method for defining fields of the type.** Do not forget specify `required` option for argument.
+6. If you find specify entity, use `find` method for fetching entity. It raise `ActiveRecord::RecordNotFound` if entity not found = This is correct.
+7. Do not forget `init_journal` if entity is journalized.
+8. Use `safe_attributes` for assign attributes to entity.
+9. If you create new entity and its not valid, return `errors` and `nil` for entity.

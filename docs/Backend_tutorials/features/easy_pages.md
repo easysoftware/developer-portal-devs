@@ -53,7 +53,7 @@ class CreateMyDashboard < EasyExtensions::EasyDataMigration
 end
 ```
 ## Tests
-in specs you can define fixtures with your new easy_page and of course test itself. My recommandation:
+in specs you can define fixtures with your new easy_page and of course test itself. My recommendation:
 
 ### Fixtures
 in `spec/fixtures/easy_pages.yml`

@@ -37,7 +37,7 @@ https://graphql-ruby.org/type_definitions/input_objects.html
 
 Inputs are subset of types. They are used for defining arguments of the type. We are using `argument` method for defining arguments of the type. In Easy we are using `Types::BaseInput` for all our inputs. This class is defined in `app/api/easy_graphql/types/base_input.rb`. Input represents a hash of *entity* attributes, primarily for `Mutations`.
 
-Please inputs into `app/api/easy_graphql/types/inputs` directory. Name convention of input is `model_name_attributes.rb`.
+Place inputs into `app/api/easy_graphql/types/inputs` directory. Name convention of input is `model_name_attributes.rb`.
 
 > [!WARNING]
 > `_attrubtes` suffix is used to distinguish input from type.

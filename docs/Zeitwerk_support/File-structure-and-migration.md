@@ -66,7 +66,6 @@ If you want to keep backwards compatibility we recommend this approach (always m
 
 ```mermaid
 graph TD
-;
     classDef fail stroke: #FF474C
     classDef pass stroke: #1FD655
     id1(Run tests without Zeitwerk) -- pass --> id2(Run tests with Zeitwerk);

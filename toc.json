@@ -34,11 +34,6 @@
       "uri": "docs/Zeitwerk_support/Easy-Project-Initialization.md"
     },
     {
-      "type": "item",
-      "title": "How to make EasyPlugin compatible with Zeitwerk",
-      "uri": "docs/Zeitwerk_support/Easy-Plugin-To-Zeitwerk.md"
-    },
-    {
       "type": "divider",
       "title": "Hello RYS"
     },

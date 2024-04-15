@@ -110,7 +110,7 @@ Otherwise, you can just focus on making Zeitwerk work.
       paths["app/models"] << "app/models/easy_queries"
       paths["app/models"] << "app/models/easy_rakes"
       ```
-      This is **not desired** anymore a offending files/directories should be moved to a valid location, usually
+      This is **not desired** anymore and offending files/directories should be moved to a valid location, usually
       into `app/`.\
       `easy_plugins/my_cool_plugin/app/models/easy_page_modules` --> `easy_plugins/my_cool_plugin/app/easy_page_modules`
 - **Initializers**

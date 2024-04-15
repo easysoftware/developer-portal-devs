@@ -153,7 +153,7 @@ Otherwise, you can just focus on making Zeitwerk work.
           require "my_cool_plugin/hooks"
         end
         ```
-
+        ---
         ```ruby hooks.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/hooks.rb
         module MyCoolPlugin
@@ -214,6 +214,7 @@ Otherwise, you can just focus on making Zeitwerk work.
           require "my_cool_plugin/easy_swagger" if Redmine::Plugin.installed?(:easy_attendances)
         end
         ```
+        ---
         ```ruby easy_graphql.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_graphql.rb
         EasyGraphql.patch("EasyGraphql::Types::Issue") do
@@ -224,6 +225,7 @@ Otherwise, you can just focus on making Zeitwerk work.
           field :new_mutation, mutation: EasyGraphql::Mutations::NewMutation
         end
         ```
+        ---
         ```ruby easy_swagger.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_swagger.rb
         EasySwagger::EasyAttendance.response_schema do

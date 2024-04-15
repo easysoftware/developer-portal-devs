@@ -94,7 +94,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - Each file needs to contain only a **single module/class matching the file's name**
     - **Module scoping**\
       File inside `easy_plugins/my_cool_plugin/models/pages/first_page.rb` needs to look like:
-      ```ruby
+      ```ruby first_page.rb
       # easy_plugins/my_cool_plugin/models/pages/first_page.rb
       module Pages
         class FirstPage
@@ -119,7 +119,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `01_access_control.rb` - for defining permissions
       - _Common fixes_: wrap content in `Rails.application.config.after_initialize`
       - Example:
-        ```ruby
+        ```ruby 01_access_control.rb
         # easy_plugins/my_cool_plugin/config/initializers/01_access_control.rb
         Rails.application.config.after_initialize do
           Redmine::AccessControl.map do |map|
@@ -132,7 +132,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `02_menu_manager.rb` - for defining menus
       - _Common fixes_: wrap content in `Rails.application.config.after_initialize`
       - Example:
-        ```ruby
+        ```ruby 02_menu_manager.rb
         # easy_plugins/my_cool_plugin/config/initializers/02_menu_manager.rb
         Rails.application.config.after_initialize do
           Redmine::MenuManager.map :top_menu do |menu|
@@ -147,13 +147,14 @@ Otherwise, you can just focus on making Zeitwerk work.
       - _Common fixes_: wrap content in `Rails.application.config.to_prepare`, defining hooks in a separate lib file is
         recommended.
       - Example:
-        ```ruby
+        ```ruby 03_hooks.rb
         # easy_plugins/my_cool_plugin/config/initializers/03_hooks.rb
         Rails.application.config.to_prepare do
           require "my_cool_plugin/hooks"
         end
         ```
-        ```ruby
+
+        ```ruby hooks.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/hooks.rb
         module MyCoolPlugin
           class Hooks < ::Redmine::Hook::ViewListener
@@ -167,7 +168,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `04_features.rb` - for defining features
     - `05_assets.rb` - usually used to define asset paths
       - Example:
-        ```ruby
+        ```ruby 05_assets.rb
         # easy_plugins/my_cool_plugin/config/initializers/05_assets.rb
         Rails.application.configure do
           asset_paths = EasyAssets.plugin_asset_paths("plugins/easyproject/easy_plugins/my_cool_plugin")
@@ -179,7 +180,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `07_jobs.rb` - for defining jobs
       - _Common fixes_: wrap content in `Rails.application.config.after_initialize`
       - Example:
-        ```ruby
+        ```ruby 07_jobs.rb
         # easy_plugins/my_cool_plugin/config/initializers/07_jobs.rb
         Rails.application.config.after_initialize do
           MyCoolPlugin::CalculationJob.repeat("0 22 * * *").perform_later
@@ -188,7 +189,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `08_easy_settings.rb` - for defining default settings
       - _Common fixes_: wrap content in `Rails.application.config.after_initialize`
       - Example:
-        ```ruby
+        ```ruby 08_easy_settings.rb
         # easy_plugins/my_cool_plugin/config/initializers/08_easy_settings.rb
         Rails.application.config.after_initialize do
           EasySetting.map do
@@ -205,7 +206,7 @@ Otherwise, you can just focus on making Zeitwerk work.
     - `10_api.rb` - for extending API endpoints
       - _Common fixes_: wrap content in `Rails.application.config.after_initialize` if needed
       - Example:
-        ```ruby
+        ```ruby 10_api.rb
         # easy_plugins/my_cool_plugin/config/initializers/10_api.rb
         require "my_cool_plugin/easy_graphql"
 
@@ -213,7 +214,7 @@ Otherwise, you can just focus on making Zeitwerk work.
           require "my_cool_plugin/easy_swagger" if Redmine::Plugin.installed?(:easy_attendances)
         end
         ```
-        ```ruby
+        ```ruby easy_graphql.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_graphql.rb
         EasyGraphql.patch("EasyGraphql::Types::Issue") do
           field :new_int_field, GraphQL::Types::Int, null: true
@@ -223,7 +224,7 @@ Otherwise, you can just focus on making Zeitwerk work.
           field :new_mutation, mutation: EasyGraphql::Mutations::NewMutation
         end
         ```
-        ```ruby
+        ```ruby easy_swagger.rb
         # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_swagger.rb
         EasySwagger::EasyAttendance.response_schema do
           relation "new_relation"

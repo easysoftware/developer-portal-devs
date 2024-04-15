@@ -13,7 +13,8 @@ on what the new structure should look like and some steps to help you with makin
 EP/ER will support both old and new structure with Zeitwerk **disabled** and deprecation warnings in place. In `v14` we
 plan a hard switch to **enabled** Zeitwerk and will no longer support the old structure.
 
-> To enable Zeitwerk in your local environment set the `ZEITWERK_POWERED` environment variable to `1`.
+> To enable Zeitwerk in your local environment set the `ZEITWERK_POWERED` environment variable to `1`. When you are
+> ready to test your plugin add it to `easy_lib/easy_plugin_loader.rb#supported_plugins`.
 
 ### Directory structure
 
@@ -60,7 +61,8 @@ need to be addressed.
 
 ### Plugin-to-Easy-Plugin transition steps
 
-> To enable Zeitwerk in your local environment set the `ZEITWERK_POWERED` environment variable to `1`.
+> To enable Zeitwerk in your local environment set the `ZEITWERK_POWERED` environment variable to `1`. When you are
+> ready to test your plugin add it to `easy_lib/easy_plugin_loader.rb#supported_plugins`.
 
 If you want to keep backwards compatibility we recommend this approach (always make sure classic works):
 

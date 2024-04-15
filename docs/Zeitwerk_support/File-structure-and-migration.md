@@ -102,16 +102,17 @@ Otherwise, you can just focus on making Zeitwerk work.
         end
       end
       ```
-    - **Exceptions** can be defined in `easy_plugins/my_cool_plugin/lib/my_cool_plugin/engine.rb`\
-      This way you can get around module scoping, which we used for these most used models to avoid rewriting
-      everything in `easy_extensions`
+    - **Legacy workarounds**\
+      Some plugins currently use a workaround in `easy_plugins/my_cool_plugin/lib/my_cool_plugin/engine.rb`, where they
+      define paths explicitly and get around module scoping:
       ```ruby
-      paths["app/models"] << "app/models/api_services_for_exchange_rates"
-      paths["app/models"] << "app/models/easy_entity_actions"
       paths["app/models"] << "app/models/easy_page_modules"
       paths["app/models"] << "app/models/easy_queries"
       paths["app/models"] << "app/models/easy_rakes"
       ```
+      This is **not desired** anymore a offending files/directories should be moved to a valid location, usually
+      into `app/`.\
+      `easy_plugins/my_cool_plugin/app/models/easy_page_modules` --> `easy_plugins/my_cool_plugin/app/easy_page_modules`
 - **Initializers**
   - `easy_extensions` initializers (`easy_engines/easy_extensions/config/initializers/`) have been refactored into
     many smaller files that serve as a template for **where to put each initialization step**

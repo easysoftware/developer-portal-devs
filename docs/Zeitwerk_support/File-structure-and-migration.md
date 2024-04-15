@@ -164,14 +164,12 @@ Otherwise, you can just focus on making Zeitwerk work.
         ```
     - `04_features.rb` - for defining features
     - `05_assets.rb` - usually used to define asset paths
-      - _Common fixes_: wrap content in `Rails.application.config.before_initialize`
       - Example:
         ```ruby
         # easy_plugins/my_cool_plugin/config/initializers/05_assets.rb
-        Rails.application.config.before_initialize do
-          Rails.application.configure do
-            config.assets.paths << File.join(__dir__, "../assets")
-          end
+        Rails.application.configure do
+          asset_paths = EasyAssets.plugin_asset_paths("plugins/easyproject/easy_plugins/my_cool_plugin")
+          config.assets.paths.concat asset_paths
         end
         ```
     - `06_tests.rb` - usually used to skip unwanted tests
@@ -203,25 +201,37 @@ Otherwise, you can just focus on making Zeitwerk work.
         end
         ```
     - `10_api.rb` - for extending API endpoints
-      - _Common fixes_: wrap content in `Rails.application.config.after_initialize`
+      - _Common fixes_: wrap content in `Rails.application.config.after_initialize` if needed
       - Example:
         ```ruby
         # easy_plugins/my_cool_plugin/config/initializers/10_api.rb
+        require "my_cool_plugin/easy_graphql"
+
         Rails.application.config.after_initialize do
-          require "api/extends/extend_easy_attendance" if Redmine::Plugin.installed?(:easy_attendances)
+          require "my_cool_plugin/easy_swagger" if Redmine::Plugin.installed?(:easy_attendances)
         end
         ```
         ```ruby
-        # easy_plugins/my_cool_plugin/lib/api/extends/extend_easy_attendance.rb
+        # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_graphql.rb
+        EasyGraphql.patch("EasyGraphql::Types::Issue") do
+          field :new_int_field, GraphQL::Types::Int, null: true
+        end
+
+        EasyGraphql.patch("EasyGraphql::Types::Mutation") do
+          field :new_mutation, mutation: EasyGraphql::Mutations::NewMutation
+        end
+        ```
+        ```ruby
+        # easy_plugins/my_cool_plugin/lib/my_cool_plugin/easy_swagger.rb
         EasySwagger::EasyAttendance.response_schema do
-          relation 'new_relation'
+          relation "new_relation"
         end
 
         EasySwagger::EasyAttendance.request_schema do
           property "new_relation_id" do
             key :type, "integer"
             key :description, "ID of new_relation entity"
-            key :example, '42'
+            key :example, "42"
           end
         end
         ```

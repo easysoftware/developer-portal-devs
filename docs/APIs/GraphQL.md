@@ -3,6 +3,8 @@
 *In this section we will look into how to work with Easy Software GraphQL API. We will cover the basics such as
 authentication, accessible environments and other key topics.*
 
+This page is for consumers, if you looking for ruby implementation of GraphQL in Easy and how to develop, see [Backend_tutorials / features / graphql](../Backend_tutorials/features/graphql.md).
+
 ---
 
 ## GraphQL documentation and schema builder

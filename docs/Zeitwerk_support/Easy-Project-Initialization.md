@@ -19,7 +19,7 @@
      ```
 4. Engines Initializers #3
    * `config/initializers/*`
-5. `ActiveSupport::Reloader.to_prepare` blocks
+5. `Rails.application.config.to_prepare` blocks
    * These are run on every code reload in development mode
    * This block runs before patches are applied !!
 6. `Railtie.config.to_prepare` blocks
@@ -28,13 +28,7 @@
      * in Rails.application.config.to_prepare 
      * this means that EasyB2b::Engine.config.to_prepare will be called after plugin application if defined in easy_b2b/config/initializers
      * if defined in easy_b2b/lib/easy_b2b/engine.rb then it will run before patches
-   * These blocks are pushed to the end of `ActiveSupport::Reloader.to_prepare` blocks right before `ActiveSupport::Reloader.to_prepare` blocks are executed
-   1. `ActiveSupport.run_load_hooks :after_plugins_loaded`
-      * Easy hack to call our code right after redmine loaded plugins
-      1. `ActiveSupport.run_load_hooks(:easyproject)`
-      2. `ActiveSupport.run_load_hooks(:after_apply_easy_patches, self)`
-      3. `ActiveSupport.run_load_hooks(:easy_project_loaded)`
-7. `Railtie.config.after_initialize` blocks
+7. `Rails.application.config.after_initialize` blocks
 
 ### Example
 1. ```ruby
@@ -61,13 +55,13 @@
    ```
 5. ```ruby
    # Rails.root/config/initializers/00_core_plugins.rb
-    ActiveSupport::Reloader.to_prepare do
+    Rails.application.config.to_prepare do
       puts "This is before easy patch application"
     end
    ```
 6. ```ruby
    # Rys/config/initializers/03_hooks.rb
-    ActiveSupport::Reloader.to_prepare do
+    Rails.application.config.to_prepare do
       puts "This is before easy patch application"
     end
    ```

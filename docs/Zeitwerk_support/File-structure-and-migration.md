@@ -145,12 +145,12 @@ Otherwise, you can just focus on making Zeitwerk work.
         end
         ```
     - `03_hooks.rb` - for defining hooks
-      - _Common fixes_: wrap content in `Rails.application.config.to_prepare`, defining hooks in a separate lib file is
+      - _Common fixes_: wrap content in `Rails.application.config.after_initialize`, defining hooks in a separate lib file is
         recommended.
       - Example:
         ```ruby 03_hooks.rb
         # easy_plugins/my_cool_plugin/config/initializers/03_hooks.rb
-        Rails.application.config.to_prepare do
+        Rails.application.config.after_initialize do
           require "my_cool_plugin/hooks"
         end
         ```

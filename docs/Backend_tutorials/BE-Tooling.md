@@ -20,16 +20,7 @@ You need to have `easy_style` gem in your `Gemfile/gemspec`, most projects shoul
 To do so for platform and plugins, put this into `Gemfile`:
 
 ```ruby
-gem 'easy_style'
-```
-
-For RYS plugins put this into `rys_name.gemspec`:
-
-```ruby
-Gem::Specification.new do |spec|
-   spec.add_development_dependency 'easy_style'  
- end
-
+gem "easy_style"
 ```
 
 ### Dealing with offenses

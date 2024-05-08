@@ -13,14 +13,7 @@ Please follow the instruction below.
 
 #### For platform and plugins put this into Gemfile:
 ```ruby
-gem 'easy_style'
-```
-
-#### For Rys plugins put this into rys_name.gemspec:
-```ruby
- Gem::Specification.new do |spec|
-   spec.add_development_dependency 'easy_style'  
- end
+gem "easy_style"
 ```
 
 After this run
@@ -82,7 +75,7 @@ https://docs.rubocop.org/rubocop/configuration.html#disabling-cops-within-source
 7. Spaces around arrows
 8. Do not indent `when` cases
 9. Do not indent after `private` / `protected`
-10. Single quotes `''` for non-interpolated strings
+10. Use double quotes `"` for strings, we prefer consistency
 
 > [RubyMine](https://www.jetbrains.com/ruby/) takes care of most of them automatically. 
 

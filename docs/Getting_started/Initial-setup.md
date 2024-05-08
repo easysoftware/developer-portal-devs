@@ -90,7 +90,7 @@ configurations)
 1. Install a version manager [***RBENV***](https://github.com/rbenv/rbenv#installation) or
    [***RVM***](https://rvm.io/rvm/install).
 
-2. Install ***Ruby-3.1.2***
+2. Install ***Ruby-3.1.4***
 
 > On newer Macs, the latest versions of Ruby might not work flawlessly so you might need to use an older version of ruby
 
@@ -154,13 +154,13 @@ bundle install
           ```
           > When using **WSL** use `bundle exec rake db:migrate NAME=''` instead
 
-11. Run **easyproject install** script
+11. Run **easyinstall** script
 
 ```
-bundle exec rake easyproject:install RAILS_ENV=development
+bundle exec rake easy:install RAILS_ENV=development
 ```
 
-> When using **WSL** use `bundle exec rake easyproject:install RAILS_ENV=development NAME=''` instead
+> When using **WSL** use `bundle exec rake easy:install RAILS_ENV=development NAME=''` instead
 
 12. Start a rails server - it will be available at `http://localhost:3000`
 

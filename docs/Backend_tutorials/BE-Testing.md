@@ -13,10 +13,10 @@ definition in `.gitlab-ci.yml` in the repo.
 
 ### Getting started
 
-Our test framework is [RSpec](https://github.com/rspec/rspec) and [rspec-rails](https://github.com/rspec/rspec-rails).
+Our test framework is [RSpec](https://github.com/rspec) and [rspec-rails](https://github.com/rspec/rspec-rails).
 For factories, we use [FactoryBot](https://github.com/thoughtbot/factory_bot).
 
-1. To be more familiar with RSpec we recommend you to visit [this](https://relishapp.com/rspec/) page.
+1. To be more familiar with RSpec we recommend you to visit [this](https://rspec.info/documentation) page.
 2. For best practices visit [this](https://www.betterspecs.org/) page.
 
 #### Controller tests

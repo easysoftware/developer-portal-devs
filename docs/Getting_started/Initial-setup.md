@@ -14,14 +14,7 @@ sudo xcode-select --install
 
 3. Continue to [Next steps](#next-steps)
 
-#### Apple M1 processors (for next steps #8)
-
-_⚠️ Might not be needed at some point_
-
-<!-- theme: info -->
-> Please be aware that on new ARM processors you may encounter issues during installation process.
-> To be able to successfully set up everything you may need Rosetta terminal (
-> see https://betterprogramming.pub/5-things-i-have-learned-when-using-the-m1-chip-macbook-air-a77f93c50381#5a64 ).
+#### Apple M* processors
 
 <!-- theme: info -->
 > To successfully install MySQL gem on your M1 you need to follow those two steps:
@@ -31,7 +24,7 @@ _⚠️ Might not be needed at some point_
 > ```
 >2. Install mysql2 gem.
 > ```
-> gem install mysql2 -v '0.5.3' -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" --with-cppflags=-I$(brew --prefix openssl)/include
+> gem install mysql2 -v '0.5.6' -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" --with-cppflags=-I$(brew --prefix openssl)/include
 >```
 
 ---

@@ -168,30 +168,43 @@ https://graphql-ruby.org/subscriptions/subscription_classes.html
 Subscriptions could be considered as specific type of Resolvers. They are supposed to fetch data resolver-like, 
 but the main difference is in the way of fetching the data. 
 
-Resolvers are used to fetch data on demand by client side of application. Subscriptions on the other hand, are just initialized by client side of application as channel that provides information for client about changes in data on server side. 
-And the fetching part is triggered on server side, when specific event occurs (trigger is called).
+Resolvers are used to fetch data on demand by client side of application. Subscriptions on the other hand, are just initialized by client side of application as channel that provides information when data change. 
+Data fetching part is triggered on server side, when specific event occurs (trigger is called).
 
-We are using `Subscriptions::Base` for all our subscriptions. This class is defined in `easy_extensions/app/api/easy_graphql/subscriptions/base.rb`.
+We are using `Subscriptions::Base` to inherit for all our subscriptions. This class is defined in `easy_extensions/app/api/easy_graphql/subscriptions/base.rb`.
 
 Place subscriptions into `*/app/api/easy_graphql/subscriptions` directory. Name convention of subscription is `TBD`.
 
 Subscription classes do not use own implementation of `resolve` method, but `subscribe` and `update` methods instead. Method `resolve` is implemented within `graphql` gem and its role is to decide what method should be called, `subscribe` or `update`.
 
-Subscription can use `arguments` to define inputs as well.
+Subscription use `arguments` to define inputs and these arguments are necessary to determine which subscription(s) should be updated when trigger is called.
+
+Thanks to similarity with resolvers, we can use either `type` method to define output type, or we can use `field` as well to define fields of subscriptions.
 
 ### Subscribe
-Method `subscribe` is executed when client side of application initializes subscription. Basically, it is executed only for the first hit of subscription. 
-By default this method does **no response** and just establishes the channel. It can be overriden to provide some initial data to client side of application.
+Method `subscribe` is executed when client side of application initializes subscription. Basically, it is executed only for the first time we touch the subscription. 
+By default this method does **no response** and just establishes the channel. It can be overriden to provide some initial data for client side of application.
 
 ### Update
 Method `update` is executed when server side of application triggers the subscription. It is executed every time the trigger is called and fires data to the client side. 
-By default this method returns **object** passed to `trigger` method.
+By default this method returns **object** passed to `trigger` method. It can be overriden as well to execute custom logic.
+
+```ruby title="Default update method"
+def update(args = {})
+  object
+end
+```
 
 ### Trigger
 https://graphql-ruby.org/subscriptions/triggers
 
-Trigger is the way we notify client side of application, that expected event has occurred, with new data to display. This trigger has three mandatory arguments: 
-`event_name`, `object` and `arguments` and two optional arguments: `scope` and `context`.
+Trigger is the way we notify client side of application about expected event has occurred. Trigger method has three mandatory arguments: 
+`event_name`, `object` and `arguments` and two optional arguments: `scope` and `context`. 
+
+Combination of `event_name` and `arguments` is used to determine which subscription(s) should be updated.
+To determine correct subscription(s) with `event_name`, we have to pass exactly the same `arguments` as were used when subscribe was executed. In case of multiple arguments, all of them have to match.
+
+Argument `object` is passed to `update` method of subscription and by default it is fired to client side. If we stick to the default implementation of `update` method, `object` have to match output type of subscription.
 
 ```ruby title="Example of subscription trigger"
 EasyGraphql::AppSchema.subscriptions.trigger(event_name, argumnents, object, scope:, context:)
@@ -199,32 +212,25 @@ EasyGraphql::AppSchema.subscriptions.trigger(event_name, argumnents, object, sco
 
 ### Best-practice
 
-1. **Use `type` resolver-like for definition of subscription response - to test**
+1. **Use `type` for definition of subscription response if subscription returns ActiveRecord object**
 2. **Use `subscribe` method to define initial subscription response.**
-3. **Use `update` method to define data passed to client side.**
-4. **Subscription should fetch data not change them.**
-5. **Try to use `type` resolver-like for definition of subscription response. - to test**
-6. **Use `arguments` to define inputs for subscriptions.** Do not forget specify `required` option for argument.
+3. **Try to avoid overriding `update` method and pass data through `object` method.**
+4. **Use `arguments` to define inputs for subscriptions.** To determine correct subscription all arguments have to match first call. Do not forget specify `required` option for argument where needed.
+5. **Subscription should fetch data, not change them.**
+6. **Use `find` method for fetching entity.** It raise `ActiveRecord::RecordNotFound` if entity not found = This is correct.
 7. **Avoid `field` errors if possible.**
-8. If you find specify entity, use `find` method for fetching entity. It raise `ActiveRecord::RecordNotFound` if entity not found = This is correct.
-9. **Return data for subscribe method as well.**
-10. **Try to stick to default `update` implementation.**
 
-```ruby title="example usage of subscription" lineNumbers
+```ruby title="example default update aubscription and their trigger" lineNumbers
 module EasyGraphql
   module Subscriptions
     class IssueUpdated < Subscriptions::Base
-      description "Return Issue object based on given ID."
+      description "Return updated Issue object based on given ID."
 
       type Types::Issue, null: false
 
       argument :id, ID, required: true
 
       def subscribe(**_args)
-        issue
-      end
-      
-      def update(**_args)
         issue
       end
 
@@ -237,4 +243,42 @@ module EasyGraphql
     end
   end
 end
+
+# Trigger
+EasyGraphql::AppSchema.subscriptions.trigger("issue_updated", { id: 1 }, issue)
+```
+
+```ruby title="example custom update aubscription and their trigger" lineNumbers
+module EasyGraphql
+  module Subscriptions
+    class IssueUpdated < Subscriptions::Base
+      description "Return updated Issue object based on given ID."
+
+      field :issue, Types::Issue, null: false
+      field :issue_editable, Boolean, null: false
+
+      argument :id, ID, required: true
+
+      def subscribe(**_args)
+        issue
+      end
+
+      # if we need to prepare some data after trigger was called, we can override update method.
+      # def update(**_args)
+      #   # CUSTOM LOGIC
+      # end
+
+      private
+      
+      def issue
+        @issue ||= ::Issue.preload(journals: :details).visible.find(arguments[:id])
+      end
+
+    end
+  end
+end
+
+# Trigger
+response = { issue:, issue_editable: issue.editable? }
+EasyGraphql::AppSchema.subscriptions.trigger("issue_updated", { id: 1 }, response)
 ```

@@ -173,7 +173,7 @@ Data fetching part is triggered on server side, when specific event occurs (trig
 
 We are using `Subscriptions::Base` to inherit for all our subscriptions. This class is defined in `easy_extensions/app/api/easy_graphql/subscriptions/base.rb`.
 
-Place subscriptions into `*/app/api/easy_graphql/subscriptions` directory. Name convention of subscription is `TBD`.
+Place subscriptions into `*/app/api/easy_graphql/subscriptions` directory. Name convention of subscription should describe triggering event and associated object in pattern: `object_event`, e.g.: IssueUpdated.
 
 Subscription classes do not use own implementation of `resolve` method, but `subscribe` and `update` methods instead. Method `resolve` is implemented within `graphql` gem and its role is to decide what method should be called, `subscribe` or `update`.
 

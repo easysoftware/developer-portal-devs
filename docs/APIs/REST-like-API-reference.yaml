@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  version: 3.7.4
+  version: 4.3.1
   title: Easy Project API
   description: https://app.swaggerhub.com/apis/easysoftware/EasyProject
   contact:
@@ -16,14 +16,22 @@ security:
 tags:
 - name: Attachment
   description: Attachment API
+- name: Blue spice
+  description: Blue Spice API
+- name: Custom entity
+  description: CustomEntity API
 - name: Custom field
   description: CustomField API
+- name: Custom table
+  description: CustomTable API
 - name: Document
   description: Document object with all its details
 - name: Easy async export
   description: EasyAsyncExports API
 - name: Easy attendance
   description: Easy Attendances API
+- name: Easy campaign
+  description: EasyCampaign API
 - name: Easy checklist
   description: Easy Checklists API
 - name: Easy checklist item
@@ -42,10 +50,12 @@ tags:
   description: EasyHelpdeskProjects API
 - name: Easy helpdesk user
   description: EasyHelpdeskUser API
-- name: Easy knowledge story
-  description: Knowledge posts API
+- name: Easy kanban
+  description: Easy Agile API
 - name: Easy lead
   description: EasyLead API
+- name: Easy menu item
+  description: MenuItem API
 - name: Easy mind map
   description: Easy Mind Maps API
 - name: Easy money expected expense
@@ -408,6 +418,494 @@ paths:
                 "$ref": "#/components/schemas/ErrorModel"
         '200':
           description: ok
+  "/blue_spice_oauth/setup.{format}":
+    post:
+      summary: Setup API connection for BS in Easy
+      tags:
+      - Blue spice
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      requestBody:
+        description: Connection tokens from BS to EASY
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              xml:
+                name: oauth_configuration
+                wrapped: true
+              properties:
+                base_url:
+                  type: string
+                  description: OAuth base url
+                client_id:
+                  type: string
+                  description: OAuth client ID/key
+                client_secret:
+                  type: string
+                  description: OAuth client secret token
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: oauth_configuration
+                wrapped: true
+              properties:
+                base_url:
+                  type: string
+                  description: OAuth base url
+                client_id:
+                  type: string
+                  description: OAuth client ID/key
+                client_secret:
+                  type: string
+                  description: OAuth client secret token
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '204':
+          description: ok
+  "/custom_entities.{format}":
+    get:
+      summary: List of CustomEntities
+      description: For filtering send parameter `set_filter=1` and specify filters
+      tags:
+      - Custom entity
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_query_q
+        description: free-text filter of current entity
+        in: query
+        schema:
+          type: string
+      - name: set_filter
+        description: enable filter through Easy Query
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        description: the number of items to be present in the response (default is
+          25, maximum is 100)
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        description: the offset of the first object to retrieve
+        in: query
+        schema:
+          type: integer
+      - name: custom_table_id
+        in: query
+        description: Custom table ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                xml:
+                  name: custom_entities
+                  wrapped: true
+                properties:
+                  custom_entities:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CustomEntityApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+            application/xml:
+              schema:
+                type: object
+                xml:
+                  name: custom_entities
+                  wrapped: true
+                properties:
+                  custom_entities:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CustomEntityApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+        '401':
+          description: not authorized
+    post:
+      summary: Create CustomEntity
+      tags:
+      - Custom entity
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      requestBody:
+        description: Create CustomEntity
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                custom_entity:
+                  "$ref": "#/components/schemas/CustomEntityApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/CustomEntityApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_entity:
+                    "$ref": "#/components/schemas/CustomEntityApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomEntityApiResponse"
+  "/custom_entities/{id}.{format}":
+    get:
+      summary: Get CustomEntity
+      tags:
+      - Custom entity
+      operationId: getCustomEntity
+      parameters:
+      - name: id
+        in: path
+        description: ID of the customentity
+        required: true
+        schema:
+          type: integer
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: detail of the customentity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_entity:
+                    "$ref": "#/components/schemas/CustomEntityApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomEntityApiResponse"
+    put:
+      summary: Update CustomEntity
+      tags:
+      - Custom entity
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of the customentity
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Update given CustomEntity
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                custom_entity:
+                  "$ref": "#/components/schemas/CustomEntityApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/CustomEntityApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '200':
+          description: updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_entity:
+                    "$ref": "#/components/schemas/CustomEntityApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomEntityApiResponse"
+    delete:
+      summary: Destroy of the CustomEntity
+      tags:
+      - Custom entity
+      operationId: deleteCustomEntity
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of the customentity
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '204':
+          description: ok
   "/custom_fields.{format}":
     post:
       summary: Create CustomField
@@ -707,6 +1205,393 @@ paths:
       - name: id
         in: path
         description: ID of the customfield
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '204':
+          description: ok
+  "/custom_tables.{format}":
+    get:
+      summary: List of CustomTables
+      description: For filtering send parameter `set_filter=1` and specify filters
+      tags:
+      - Custom table
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_query_q
+        description: free-text filter of current entity
+        in: query
+        schema:
+          type: string
+      - name: set_filter
+        description: enable filter through Easy Query
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        description: the number of items to be present in the response (default is
+          25, maximum is 100)
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        description: the offset of the first object to retrieve
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                xml:
+                  name: custom_tables
+                  wrapped: true
+                properties:
+                  custom_tables:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CustomTableApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+            application/xml:
+              schema:
+                type: object
+                xml:
+                  name: custom_tables
+                  wrapped: true
+                properties:
+                  custom_tables:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CustomTableApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+        '401':
+          description: not authorized
+    post:
+      summary: Create CustomTable
+      tags:
+      - Custom table
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      requestBody:
+        description: Create CustomTable
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                custom_table:
+                  "$ref": "#/components/schemas/CustomTableApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/CustomTableApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_table:
+                    "$ref": "#/components/schemas/CustomTableApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomTableApiResponse"
+  "/custom_tables/{id}.{format}":
+    get:
+      summary: Get CustomTable
+      tags:
+      - Custom table
+      operationId: getCustomTable
+      parameters:
+      - name: id
+        in: path
+        description: ID of the customtable
+        required: true
+        schema:
+          type: integer
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: detail of the customtable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_table:
+                    "$ref": "#/components/schemas/CustomTableApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomTableApiResponse"
+    put:
+      summary: Update CustomTable
+      tags:
+      - Custom table
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of the customtable
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Update given CustomTable
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                custom_table:
+                  "$ref": "#/components/schemas/CustomTableApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/CustomTableApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '200':
+          description: updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_table:
+                    "$ref": "#/components/schemas/CustomTableApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/CustomTableApiResponse"
+    delete:
+      summary: Destroy of the CustomTable
+      tags:
+      - Custom table
+      operationId: deleteCustomTable
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of the customtable
         required: true
         schema:
           type: integer
@@ -1656,6 +2541,401 @@ paths:
                 "$ref": "#/components/schemas/ErrorResponse"
         '204':
           description: ok
+  "/easy_campaigns.{format}":
+    get:
+      summary: List of EasyCampaigns
+      description: For filtering send parameter `set_filter=1` and specify filters
+      tags:
+      - Easy campaign
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_query_q
+        description: free-text filter of current entity
+        in: query
+        schema:
+          type: string
+      - name: set_filter
+        description: enable filter through Easy Query
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        description: the number of items to be present in the response (default is
+          25, maximum is 100)
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        description: the offset of the first object to retrieve
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                xml:
+                  name: easy_campaigns
+                  wrapped: true
+                properties:
+                  easy_campaigns:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/EasyCampaignApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+            application/xml:
+              schema:
+                type: object
+                xml:
+                  name: easy_campaigns
+                  wrapped: true
+                properties:
+                  easy_campaigns:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/EasyCampaignApiResponse"
+                  total_count:
+                    type: number
+                    example: 75
+                    xml:
+                      attribute: true
+                  offset:
+                    type: number
+                    example: 0
+                    xml:
+                      attribute: true
+                  limit:
+                    type: number
+                    example: 25
+                    xml:
+                      attribute: true
+        '401':
+          description: not authorized
+    post:
+      summary: Create EasyCampaign
+      tags:
+      - Easy campaign
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      requestBody:
+        description: Create EasyCampaign
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                easy_campaign:
+                  "$ref": "#/components/schemas/EasyCampaignApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/EasyCampaignApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  easy_campaign:
+                    "$ref": "#/components/schemas/EasyCampaignApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/EasyCampaignApiResponse"
+    delete:
+      summary: Remove Campaign
+      tags:
+      - Easy campaign
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: query
+        description: ID of EasyCampaign
+        required: true
+        schema:
+          type: string
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '204':
+          description: ok
+  "/easy_campaigns/{id}.{format}":
+    get:
+      summary: Get EasyCampaign
+      tags:
+      - Easy campaign
+      operationId: getEasyCampaign
+      parameters:
+      - name: id
+        in: path
+        description: ID of the easycampaign
+        required: true
+        schema:
+          type: integer
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: detail of the easycampaign
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  easy_campaign:
+                    "$ref": "#/components/schemas/EasyCampaignApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/EasyCampaignApiResponse"
+    put:
+      summary: Update EasyCampaign
+      tags:
+      - Easy campaign
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of the easycampaign
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Update given EasyCampaign
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                easy_campaign:
+                  "$ref": "#/components/schemas/EasyCampaignApiRequest"
+          application/xml:
+            schema:
+              "$ref": "#/components/schemas/EasyCampaignApiRequest"
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '200':
+          description: updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  easy_campaign:
+                    "$ref": "#/components/schemas/EasyCampaignApiResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/EasyCampaignApiResponse"
   "/easy_checklist_items.{format}":
     post:
       summary: Create EasyChecklistItem
@@ -2174,6 +3454,406 @@ paths:
                 "$ref": "#/components/schemas/ErrorResponse"
         '204':
           description: ok
+  "/easy_cloud_updates/trials.{format}":
+    get:
+      summary: Update BigDemo servers
+      description: Request for update all related trial servers, BigDemo servers
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_product_release_id
+        description: ID of product release
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/EasyCloudUpdateApiResponse"
+    post:
+      summary: Schedule update for all BigDemo servers of selected product release
+      description: Process given Easy Servers for update and plan update via node-api
+        service on trial_server
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+      requestBody:
+        description: Schedule update request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schedule_time:
+                  example: '16:00'
+                  description: Time of update in format HH:MM. Use `now` for immediate
+                    update.
+                docker_image:
+                  example: docker.registry.easy.cz/stable:v12.9.0
+                  description: Docker image to be used for update
+                easy_server_ids:
+                  type: array
+                  items:
+                    type: integer
+                    example: '123'
+                    description: EasyServers::Application (bigdemo) ID
+  "/easy_cloud_updates/clients.{format}":
+    get:
+      summary: Update client instances
+      description: Request for update all client instances related to this release
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_product_release_id
+        description: ID of product release
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/EasyCloudUpdateApiResponse"
+    post:
+      summary: Schedule update for all applications of selected product release
+      description: Process given Easy Web Applications for update and plan update
+        via node-api service
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+      requestBody:
+        description: Schedule update request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schedule_time:
+                  example: '16:00'
+                  description: Time of update in format HH:MM. Use `now` for immediate
+                    update.
+                docker_image:
+                  example: docker.registry.easy.cz/stable:v12.9.0
+                  description: Docker image to be used for update
+                easy_web_application_ids:
+                  type: array
+                  items:
+                    type: integer
+                    example: '123'
+                    description: Easy web application ID
+  "/easy_cloud_updates/easy_web_application/{easy_web_application_id}.{format}":
+    get:
+      summary: Update single EWA
+      description: Request for update one Easy Web Application, usually called by
+        tools button
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_web_application_id
+        description: ID of Easy Web Application for ep-update
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/EasyCloudUpdateApiResponse"
+    post:
+      summary: Schedule update for all applications of selected product release
+      description: Process given Easy Web Applications for update and plan update
+        via node-api service
+      tags:
+      - EasyCloudUpdate API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: easy_web_application_id
+        description: ID of Easy Web Application for ep-update
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '200':
+          description: ok
+      requestBody:
+        description: Schedule update request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                schedule_time:
+                  example: '16:00'
+                  description: Time of update in format HH:MM. Use `now` for immediate
+                    update.
+                docker_image:
+                  example: docker.registry.easy.cz/stable:v12.9.0
+                  description: Docker image to be used for update
   "/easy_contacts.{format}":
     get:
       summary: List of EasyContacts
@@ -2972,6 +4652,86 @@ paths:
                 "$ref": "#/components/schemas/ErrorResponse"
         '204':
           description: ok
+  "/easy_deployments.json":
+    post:
+      summary: Creates dockerized deployment for developed branch.
+      description: Process given parameters and creates EWA with dockerized deployment
+        of developed branch.
+      tags:
+      - EasyDeployment API
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '204':
+          description: ok
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/EasyWebApplicationApiResponse"
+      requestBody:
+        description: Creates EWA with dockerized deployment.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gitlab_branch:
+                  example: next/major
+                  description: Name of branch to be deployed. Not necessarily valid
+                    domain name.
+                docker_image:
+                  example: docker.registry.easy.cz/stable:v12.9.0
+                  description: Docker image to be used for deployment.
+                issue_id:
+                  example: docker.registry.easy.cz/stable:v12.9.0
+                  description: Docker image to be used for deployment.
+                source_ewa_id:
+                  example: '123456'
+                  description: ID of source EWA.
+                source_ewa_url:
+                  example: mother-v13.easysoftware.com
+                  description: Url of source EWA.
   "/documents.{format}":
     get:
       summary: Retrieve documents
@@ -3998,7 +5758,6 @@ paths:
               type: object
               properties:
                 easy_helpdesk_user:
-                  type: object
                   "$ref": "#/components/schemas/HelpdeskUserApiRequest"
           application/xml:
             schema:
@@ -4141,7 +5900,6 @@ paths:
               type: object
               properties:
                 easy_helpdesk_user:
-                  type: object
                   "$ref": "#/components/schemas/HelpdeskUserApiRequest"
           application/xml:
             schema:
@@ -4251,12 +6009,11 @@ paths:
             application/xml:
               schema:
                 "$ref": "#/components/schemas/ErrorModel"
-  "/easy_knowledge_stories.{format}":
+  "/projects/{id}/easy_kanban.{format}":
     get:
-      summary: List of EasyKnowledgeStories
-      description: For filtering send parameter `set_filter=1` and specify filters
+      summary: List of issues and columns for kanban board by project
       tags:
-      - Easy knowledge story
+      - Easy kanban
       parameters:
       - name: format
         description: Specify format of response. Only allowed values are .json and
@@ -4268,28 +6025,53 @@ paths:
           enum:
           - json
           - xml
-      - name: easy_query_q
-        description: free-text filter of current entity
-        in: query
+      - name: id
+        in: path
+        description: ID of project
+        required: true
         schema:
           type: string
-      - name: set_filter
-        description: enable filter through Easy Query
-        in: query
-        schema:
-          type: boolean
-      - name: limit
-        description: the number of items to be present in the response (default is
-          25, maximum is 100)
-        in: query
-        schema:
-          type: integer
-      - name: offset
-        description: the offset of the first object to retrieve
-        in: query
-        schema:
-          type: integer
       responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
         '200':
           description: ok
           content:
@@ -4297,60 +6079,45 @@ paths:
               schema:
                 type: object
                 xml:
-                  name: easy_knowledge_stories
+                  name: kanban
                   wrapped: true
                 properties:
-                  easy_knowledge_stories:
+                  issues:
                     type: array
+                    xml:
+                      wrapped: true
                     items:
-                      "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
-                  total_count:
-                    type: number
-                    example: 75
+                      "$ref": "#/components/schemas/IssueApiResponseForKanban"
+                  columns:
+                    type: array
                     xml:
-                      attribute: true
-                  offset:
-                    type: number
-                    example: 0
-                    xml:
-                      attribute: true
-                  limit:
-                    type: number
-                    example: 25
-                    xml:
-                      attribute: true
+                      wrapped: true
+                    items:
+                      "$ref": "#/components/schemas/KanbanColumn"
             application/xml:
               schema:
                 type: object
                 xml:
-                  name: easy_knowledge_stories
+                  name: kanban
                   wrapped: true
                 properties:
-                  easy_knowledge_stories:
+                  issues:
                     type: array
+                    xml:
+                      wrapped: true
                     items:
-                      "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
-                  total_count:
-                    type: number
-                    example: 75
+                      "$ref": "#/components/schemas/IssueApiResponseForKanban"
+                  columns:
+                    type: array
                     xml:
-                      attribute: true
-                  offset:
-                    type: number
-                    example: 0
-                    xml:
-                      attribute: true
-                  limit:
-                    type: number
-                    example: 25
-                    xml:
-                      attribute: true
-        '401':
-          description: not authorized
-    post:
-      summary: Create EasyKnowledgeStory
+                      wrapped: true
+                    items:
+                      "$ref": "#/components/schemas/KanbanColumn"
+  "/projects/{project_id}/issues/{id}/easy_kanban_issues.{format}":
+    patch:
+      summary: Assign/remove issue to kanban board with phase and position
       tags:
-      - Easy knowledge story
+      - Easy kanban
       parameters:
       - name: format
         description: Specify format of response. Only allowed values are .json and
@@ -4362,29 +6129,29 @@ paths:
           enum:
           - json
           - xml
+      - name: id
+        in: path
+        description: ID of issue
+        required: true
+        schema:
+          type: string
       - name: project_id
-        description: The ID of associated project if you want to associate any
-        in: query
-        schema:
-          type: integer
-      - name: source_issue_id
-        description: The ID of the source issue if there is any
-        in: query
-        schema:
-          type: integer
-      requestBody:
-        description: Create EasyKnowledgeStory
+        in: path
+        description: ID of Project with kanban board
         required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                easy_knowledge_story:
-                  "$ref": "#/components/schemas/EasyKnowledgeStoryApiRequest"
-          application/xml:
-            schema:
-              "$ref": "#/components/schemas/EasyKnowledgeStoryApiRequest"
+        schema:
+          type: string
+      - name: phase
+        description: Phase ID of issue on kanban board. 0 - for remove task from kanban
+          board. -1 - for add task to project backlog.
+        in: query
+        schema:
+          type: string
+      - name: position
+        description: Position of issue on kanban board's phase
+        in: query
+        schema:
+          type: integer
       responses:
         '401':
           description: not authorized
@@ -4426,524 +6193,73 @@ paths:
             application/xml:
               schema:
                 "$ref": "#/components/schemas/ErrorModel"
-        '201':
-          description: created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  easy_knowledge_story:
-                    "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
-  "/easy_knowledge_stories/{id}.{format}":
-    get:
-      summary: Get EasyKnowledgeStory
-      tags:
-      - Easy knowledge story
-      operationId: getEasyKnowledgeStory
-      parameters:
-      - name: id
-        in: path
-        description: ID of the easyknowledgestory
-        required: true
-        schema:
-          type: integer
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: include
-        description: |-
-          explicitly specify the associations you want to be included in the query result (separated by a comma)
-
-          * **journals** ()
-          * **attachments** ()
-        in: query
-        schema:
-          type: array
-          items:
-            type: string
-            enum:
-            - journals
-            - attachments
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
         '200':
-          description: detail of the easyknowledgestory
+          description: ok
           content:
             application/json:
               schema:
                 type: object
+                xml:
+                  name: kanban
+                  wrapped: true
                 properties:
-                  easy_knowledge_story:
-                    "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
+                  positions:
+                    type: array
+                    xml:
+                      wrapped: true
+                    items:
+                      "$ref": "#/components/schemas/KanbanPosition"
+                  workflow_settings:
+                    type: object
+                    properties:
+                      possible_phases:
+                        type: array
+                        description: Phase values
+                        items:
+                          type: integer
+                      required_attribute_names:
+                        type: array
+                        items:
+                          type: string
+                      read_only_attribute_names:
+                        type: array
+                        items:
+                          type: string
+                  issue:
+                    type: object
+                    "$ref": "#/components/schemas/IssueApiResponse"
             application/xml:
               schema:
-                "$ref": "#/components/schemas/EasyKnowledgeStoryApiResponse"
-    put:
-      summary: Update EasyKnowledgeStory
-      tags:
-      - Easy knowledge story
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of the easyknowledgestory
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        description: Update given EasyKnowledgeStory
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                easy_knowledge_story:
-                  "$ref": "#/components/schemas/EasyKnowledgeStoryApiRequest"
-          application/xml:
-            schema:
-              "$ref": "#/components/schemas/EasyKnowledgeStoryApiRequest"
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '422':
-          description: unprocessable entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-        '204':
-          description: ok
-    delete:
-      summary: Destroy of the EasyKnowledgeStory
-      tags:
-      - Easy knowledge story
-      operationId: deleteEasyKnowledgeStory
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of the easyknowledgestory
-        required: true
-        schema:
-          type: integer
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '204':
-          description: ok
-  "/easy_knowledge_stories/{id}/add_to_favorite.{format}":
-    post:
-      summary: Add EasyKnowledgeStory to favorites
-      tags:
-      - Easy knowledge story
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of EasyKnowledgeStory
-        required: true
-        schema:
-          type: string
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '422':
-          description: unprocessable entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-        '204':
-          description: ok
-  "/easy_knowledge_stories/{id}/remove_from_favorite.{format}":
-    post:
-      summary: Remove EasyKnowledgeStory from favorites
-      tags:
-      - Easy knowledge story
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of EasyKnowledgeStory
-        required: true
-        schema:
-          type: string
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '422':
-          description: unprocessable entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-        '204':
-          description: ok
-  "/easy_knowledge_stories/{id}/restore.{format}":
-    get:
-      summary: Revert EasyKnowledgeStory to the specified version
-      tags:
-      - Easy knowledge story
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of EasyKnowledgeStory
-        required: true
-        schema:
-          type: string
-      - name: version_id
-        in: query
-        description: ID of the version (mutually exclusive with "version"; only one
-          argument must be specified)
-        required: true
-        schema:
-          type: string
-      - name: version
-        in: query
-        description: Number of the version (mutually exclusive with "version_id";
-          only one argument must be specified)
-        required: true
-        schema:
-          type: string
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '422':
-          description: unprocessable entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-        '204':
-          description: ok
-  "/easy_knowledge_stories/{id}/update_category.{format}":
-    post:
-      summary: Add or remove categories from EasyKnowledgeStory
-      tags:
-      - Easy knowledge story
-      parameters:
-      - name: format
-        description: Specify format of response. Only allowed values are .json and
-          .xml.
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-          - json
-          - xml
-      - name: id
-        in: path
-        description: ID of EasyKnowledgeStory
-        required: true
-        schema:
-          type: string
-      - name: category_id
-        in: query
-        description: ID of category to be added or removed
-        required: true
-        schema:
-          type: string
-      - name: add
-        in: query
-        description: set to 1 to add category (mutually exclusive with "remove")
-        required: true
-        schema:
-          type: string
-      - name: remove
-        in: query
-        description: set to 1 to remove category (mutually exclusive with "add")
-        required: true
-        schema:
-          type: string
-      responses:
-        '401':
-          description: not authorized
-        '403':
-          description: forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse403"
-        '404':
-          description: not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse404"
-        '406':
-          description: not allowed
-        '429':
-          description: rate limiting exceeded
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorResponse"
-        '422':
-          description: unprocessable entity
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/ErrorModel"
-        '204':
-          description: ok
+                type: object
+                xml:
+                  name: kanban
+                  wrapped: true
+                properties:
+                  positions:
+                    type: array
+                    xml:
+                      wrapped: true
+                    items:
+                      "$ref": "#/components/schemas/KanbanPosition"
+                  workflow_settings:
+                    type: object
+                    properties:
+                      possible_phases:
+                        type: array
+                        description: Phase values
+                        items:
+                          type: integer
+                      required_attribute_names:
+                        type: array
+                        items:
+                          type: string
+                      read_only_attribute_names:
+                        type: array
+                        items:
+                          type: string
+                  issue:
+                    type: object
+                    "$ref": "#/components/schemas/IssueApiResponse"
   "/easy_leads.{format}":
     get:
       summary: List of EasyLeads
@@ -5754,6 +7070,8 @@ paths:
             enum:
             - easy_meeting_calendar
             - easy_meeting_author_calendar
+            - issue_calendar
+            - version_calendar
             example: easy_meeting_calendar
       responses:
         '200':
@@ -5766,6 +7084,83 @@ paths:
                   "$ref": "#/components/schemas/EasyCalendarMeeting"
         '401':
           description: not authorized
+  "/easy_menu_items.{format}":
+    get:
+      summary: Get MenuItem
+      description: Returns MenuItem Instance
+      tags:
+      - Easy menu item
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: name
+        in: query
+        description: Name of MenuItem
+        schema:
+          type: string
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  easy_menu_item:
+                    "$ref": "#/components/schemas/EasyMenuItemApiResponse"
+            application/xml:
+              schema:
+                xml:
+                  name: easy_menu_item
+                "$ref": "#/components/schemas/EasyMenuItemApiResponse"
   "/easy_mind_maps.{format}":
     get:
       summary: List of EasyMindMaps
@@ -12909,6 +14304,155 @@ paths:
                 "$ref": "#/components/schemas/ErrorModel"
         '204':
           description: ok
+  "/issues/{id}/watchers.{format}":
+    post:
+      summary: Add watcher to Issue
+      tags:
+      - Issue
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of Issue
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                user_id:
+                  type: integer
+          application/xml:
+            schema:
+              properties:
+                user_id:
+                  type: integer
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '204':
+          description: ok
+  "/issues/{id}/watchers/{user_id}.{format}":
+    delete:
+      summary: Remove watcher from Issue
+      tags:
+      - Issue
+      parameters:
+      - name: format
+        description: Specify format of response. Only allowed values are .json and
+          .xml.
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+      - name: id
+        in: path
+        description: ID of Issue
+        required: true
+        schema:
+          type: string
+      - name: user_id
+        in: path
+        description: ID of user
+        required: true
+        schema:
+          type: string
+      responses:
+        '401':
+          description: not authorized
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse403"
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse404"
+        '406':
+          description: not allowed
+        '429':
+          description: rate limiting exceeded
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+            application/xml:
+              schema:
+                "$ref": "#/components/schemas/ErrorModel"
+        '204':
+          description: ok
   "/journals/{id}.{format}":
     put:
       summary: Update or delete journal
@@ -13451,7 +14995,10 @@ paths:
 
           * **trackers** (List of enabled trackers on project)
           * **issue_categories** (List of IssueCategories)
+          * **issue_custom_fields** (List of enabled IssueCustomFields)
           * **enabled_modules** (List of enabled project modules)
+          * **completed_percent** (Project progress)
+          * **journals** (Project history)
           * **easy_stakeholders** (List of Stakeholders included on project)
         in: query
         schema:
@@ -13461,7 +15008,10 @@ paths:
             enum:
             - trackers
             - issue_categories
+            - issue_custom_fields
             - enabled_modules
+            - completed_percent
+            - journals
             - easy_stakeholders
       responses:
         '200':
@@ -13631,7 +15181,10 @@ paths:
 
           * **trackers** (List of enabled trackers on project)
           * **issue_categories** (List of IssueCategories)
+          * **issue_custom_fields** (List of enabled IssueCustomFields)
           * **enabled_modules** (List of enabled project modules)
+          * **completed_percent** (Project progress)
+          * **journals** (Project history)
           * **easy_stakeholders** (List of Stakeholders included on project)
         in: query
         schema:
@@ -13641,7 +15194,10 @@ paths:
             enum:
             - trackers
             - issue_categories
+            - issue_custom_fields
             - enabled_modules
+            - completed_percent
+            - journals
             - easy_stakeholders
       responses:
         '401':
@@ -17695,6 +19251,94 @@ components:
                 type: string
       xml:
         name: attach
+    CustomEntityApiRequest:
+      properties:
+        name:
+          type: string
+          example: Production server
+          description: ''
+        author_id:
+          type: integer
+        custom_table_id:
+          type: integer
+        project_id:
+          type: integer
+        custom_fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/CustomFieldValueApiRequest"
+      xml:
+        name: custom_entity
+    CustomEntityApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: Production server
+          description: ''
+        author:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        custom_table:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        project:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        custom_fields:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        journals:
+          type: array
+          description: if you specify `include=journals`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/JournalApiResponse"
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: custom_entity
     CustomFieldApiRequest:
       properties:
         name:
@@ -17718,19 +19362,21 @@ components:
           - user
           - version
           - attachment
+          - dmsf_file_revision
           - easy_lookup
-          - dependent_list
-          - easy_computed_from_query
+          - custom_table
           - amount
           - autoincrement
           - country_select
           - datetime
           - easy_google_map_address
-          - easy_percent
           - easy_rating
           - email
+          - easy_percent
           - value_tree
           - easy_computed_token
+          - easy_computed_from_query
+          - dependent_list
           - flag
         regexp:
           type: string
@@ -17855,19 +19501,21 @@ components:
           - user
           - version
           - attachment
+          - dmsf_file_revision
           - easy_lookup
-          - dependent_list
-          - easy_computed_from_query
+          - custom_table
           - amount
           - autoincrement
           - country_select
           - datetime
           - easy_google_map_address
-          - easy_percent
           - easy_rating
           - email
+          - easy_percent
           - value_tree
           - easy_computed_token
+          - easy_computed_from_query
+          - dependent_list
           - flag
         regexp:
           type: string
@@ -18043,19 +19691,21 @@ components:
           - user
           - version
           - attachment
+          - dmsf_file_revision
           - easy_lookup
-          - dependent_list
-          - easy_computed_from_query
+          - custom_table
           - amount
           - autoincrement
           - country_select
           - datetime
           - easy_google_map_address
-          - easy_percent
           - easy_rating
           - email
+          - easy_percent
           - value_tree
           - easy_computed_token
+          - easy_computed_from_query
+          - dependent_list
           - flag
           type: string
         value:
@@ -18063,6 +19713,79 @@ components:
           type: string
       xml:
         name: custom_field_value
+    CustomTableApiRequest:
+      properties:
+        name:
+          type: string
+          example: Organization
+          description: ''
+        icon:
+          type: string
+          example: ''
+          description: Icon
+        description:
+          type: string
+          example: ''
+          description: Description
+        author_id:
+          type: integer
+        custom_table_type_id:
+          type: integer
+      xml:
+        name: custom_table
+    CustomTableApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: Organization
+          description: ''
+        icon:
+          type: string
+          example: ''
+          description: Icon
+        description:
+          type: string
+          example: ''
+          description: Description
+        author:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        custom_table_type:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: custom_table
     DocumentApiRequest:
       properties:
         title:
@@ -18134,7 +19857,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_on:
           type: string
           format: date-time
@@ -18191,7 +19914,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         author:
           type: object
           readOnly: true
@@ -18554,6 +20277,12 @@ components:
           - scheme-9
           - scheme-10
           - scheme-11
+          - scheme-12
+          - scheme-13
+          - scheme-14
+          - scheme-15
+          - scheme-16
+          - scheme-17
           type: string
         approval_required:
           type: boolean
@@ -18698,6 +20427,132 @@ components:
           type: string
       xml:
         name: easy_billing_info
+    EasyCampaignApiRequest:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+          example: ''
+          description: Description
+        start_date:
+          type: string
+          example: '2020-12-24'
+          format: date
+        end_date:
+          type: string
+          example: '2020-12-24'
+          format: date
+        costs:
+          type: number
+          example: '14166.67'
+          format: double
+        currency:
+          type: string
+          example: CZK
+        easy_external_id:
+          type: string
+          description: ''
+        project_id:
+          type: integer
+        easy_campaign_status_id:
+          type: integer
+        custom_fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/CustomFieldValueApiRequest"
+      xml:
+        name: easy_campaign
+    EasyCampaignApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+        description:
+          type: string
+          example: ''
+          description: Description
+        start_date:
+          type: string
+          example: '2020-12-24'
+          format: date
+        end_date:
+          type: string
+          example: '2020-12-24'
+          format: date
+        costs:
+          type: number
+          example: '14166.67'
+          format: double
+        currency:
+          type: string
+          example: CZK
+        easy_external_id:
+          type: string
+          description: ''
+        project:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        easy_campaign_status:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        custom_fields:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        author:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        journals:
+          type: array
+          description: if you specify `include=journals`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/JournalApiResponse"
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: easy_campaign
     EasyChecklistApiRequest:
       properties:
         name:
@@ -18925,6 +20780,70 @@ components:
           readOnly: true
       xml:
         name: easy_checklist
+    EasyCloudUpdateApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        docker_image:
+          type: string
+          example: docker.registiry.easy.cz/stable:v12.9.0
+          description: Docker Image
+        docker_image_editable:
+          type: boolean
+          example: 'true'
+          description: Indicates whether Docker Image can be altered.
+        warning_text_product_release_conflict:
+          type: string
+          example: This application is associated to product release "Easyredmine
+            v12". Please switch it to "update-in-request" mode first.
+          description: If EWA is associated with ProductRelease, show user message
+            that updates out of release process needs switch EWA to "update-on-request".
+        suggested_images:
+          type: array
+          description: List of latest docker images according to current image and
+            its brand.
+          items:
+            type: string
+        data_to_update:
+          type: array
+          description: List of applications to be updated grouped by their server
+          items:
+            type: object
+            properties:
+              easy_server:
+                type: object
+                description: Easy server specifications
+                properties:
+                  id:
+                    type: integer
+                    example: '123'
+                    description: Easy server ID
+                  url:
+                    type: string
+                    example: client233.de.easy
+                    description: Url or host name of easy server
+                  time_zone:
+                    example: Europe/Prague
+                    description: Time zone of easy server
+              easy_web_applications:
+                type: array
+                description: List of applications on server
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: '123'
+                      description: Easy web application ID
+                    url:
+                      type: string
+                      example: devtest.easysoftware.com
+                      description: Url of easy web application
+      xml:
+        name: easy_cloud_update
     EasyContactApiRequest:
       properties:
         author_note:
@@ -18982,10 +20901,6 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiRequest"
-        primary_easy_billing_info_attributes:
-          "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
-        contact_easy_billing_info_attributes:
-          "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
         tag_list:
           type: array
           description: List of tags associated with entity
@@ -18997,12 +20912,16 @@ components:
             type: string
         guid:
           format: uuid
-          example: cdfe9c4b-cf2e-4997-980c-968809e7ecf1
+          example: ae799853-29d7-449e-b3da-18bde99a2145
           type: string
         type_id:
           type: integer
           description: ID of easy contact type(EasyContactType), 'easy_contact_type'
             in response
+        primary_easy_billing_info_attributes:
+          "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
+        contact_easy_billing_info_attributes:
+          "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
       required:
       - firstname
       - lastname
@@ -19157,6 +21076,66 @@ components:
             wrapped: true
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
+        eu_member:
+          type: boolean
+          readOnly: true
+        author:
+          type: object
+          readOnly: true
+          description: If you pass `include=author` in request parameters
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        guid:
+          type: string
+          example: 3169464e-3115-4884-a01f-c61fbd6cf145
+          readOnly: true
+        latitude:
+          type: number
+          example: '41.681'
+          format: float
+          readOnly: true
+        longitude:
+          type: number
+          example: '44.0287'
+          format: float
+          readOnly: true
+        time_zone:
+          type: string
+          example: Asia/Tbilisi
+          description: Time zone
+          readOnly: true
+        score:
+          type: integer
+          example: ''
+          readOnly: true
+        fullname:
+          type: string
+          example: John Smith
+          readOnly: true
+        account_duration:
+          type: number
+          readOnly: true
+        expected_revenues_this_year:
+          type: number
+          readOnly: true
+        last_year_revenues:
+          type: number
+          readOnly: true
+        lifetime_revenues:
+          type: number
+          readOnly: true
         organization:
           example: Easy Software s.r.o.
           type: string
@@ -19220,73 +21199,13 @@ components:
           type: string
         billing_info:
           "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
-        tag_list:
-          type: array
-          description: List of tags associated with entity
-          example:
-          - deployment
-          - gantt
-          - ldap
-          items:
-            type: string
-        eu_member:
-          type: boolean
-          readOnly: true
-        author:
-          type: object
-          readOnly: true
-          description: If you pass `include=author` in request parameters
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        guid:
-          type: string
-          example: 3169464e-3115-4884-a01f-c61fbd6cf145
-          readOnly: true
-        latitude:
-          type: number
-          example: '41.681'
-          format: float
-          readOnly: true
-        longitude:
-          type: number
-          example: '44.0287'
-          format: float
-          readOnly: true
-        time_zone:
-          type: string
-          example: Asia/Tbilisi
-          description: Time zone
-          readOnly: true
-        score:
-          type: integer
-          example: ''
-          readOnly: true
-        fullname:
-          type: string
-          example: John Smith
-          readOnly: true
-        account_duration:
-          type: number
-          readOnly: true
-        expected_revenues_this_year:
-          type: number
-          readOnly: true
-        last_year_revenues:
-          type: number
-          readOnly: true
-        lifetime_revenues:
-          type: number
-          readOnly: true
         attachments:
           type: array
           description: if you specify `include=attachments`
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         journals:
           type: array
           description: if you specify `include=journals`
@@ -19717,7 +21636,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         journals:
           type: array
           description: if you specify `include=journals`
@@ -20062,6 +21981,77 @@ components:
       format: float
       xml:
         name: easy_gantt_resources_advance_hours_limit
+    EasyGitRepositoryApiRequest:
+      properties:
+        name:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Repository name
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true repository is active for use & synchronization
+          readOnly: true
+        external_id:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Original Repository ID in the service
+          readOnly: false
+        git_web_url:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Repository name
+          readOnly: false
+        git_ssh_url:
+          type: string
+          example: https://github.com/easyredmine/redmine_extensions
+          description: Url for git clone command
+          readOnly: false
+      xml:
+        name: easy_git_repository
+    EasyGitRepositoryApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Repository name
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true repository is active for use & synchronization
+          readOnly: true
+        external_id:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Original Repository ID in the service
+          readOnly: false
+        git_web_url:
+          type: string
+          example: easyredmine/redmine_extensions
+          description: Repository name
+          readOnly: false
+        git_ssh_url:
+          type: string
+          example: https://github.com/easyredmine/redmine_extensions
+          description: Url for git clone command
+          readOnly: false
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: easy_git_repository
     EasyHelpdeskProjectApiResponse:
       properties:
         id:
@@ -20329,140 +22319,43 @@ components:
       - project_id
       xml:
         name: easy_helpdesk_user
-    EasyKnowledgeStoryApiRequest:
+    KanbanPosition:
       properties:
-        name:
-          example: Please read me
-          type: string
-        entity_type:
-          type: string
-          example: Issue
-        entity_id:
-          type: integer
-        description:
-          example: ''
-          type: string
-        custom_fields:
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomFieldValueApiRequest"
-        tag_list:
-          type: array
-          description: List of tags associated with entity
-          example:
-          - deployment
-          - gantt
-          - ldap
-          items:
-            type: string
-        author_id:
-          type: integer
-        easy_knowledge_category_ids:
-          type: array
-          description: IDs of categories
-          items:
-            type: integer
-        references_by_ids:
-          type: array
-          description: IDs of categories
-          items:
-            type: integer
-      xml:
-        name: easy_knowledge_story
-    EasyKnowledgeStoryApiResponse:
-      properties:
-        id:
-          type: integer
-          readOnly: true
-          example: 1
-          description: ID of the .
-        name:
-          example: Please read me
-          type: string
-        entity_type:
-          type: string
-          example: Issue
-        entity_id:
-          type: integer
-        description:
-          example: ''
-          type: string
-        custom_fields:
-          type: array
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/CustomFieldValueApiResponse"
-        tag_list:
-          type: array
-          description: List of tags associated with entity
-          example:
-          - deployment
-          - gantt
-          - ldap
-          items:
-            type: string
-        author:
-          title: User
-          type: object
-          properties:
-            id:
-              type: integer
-            name: {}
-        references:
-          type: array
-          readOnly: true
-          items:
-            title: EasyKnowledgeStory
-            type: object
-            readOnly: true
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              entity_id:
-                type: integer
-              entity_type:
-                type: string
-              storyviews:
-                type: integer
-              author:
-                title: User
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name: {}
-              description:
-                type: string
-        storyviews:
+        'issue_id ':
           type: integer
           example: 1
-        attachments:
-          type: array
-          description: if you specify `include=attachments`
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/Attachment"
-        journals:
-          type: array
-          description: if you specify `include=journals`
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/JournalApiResponse"
-        created_on:
+        phase:
+          description: Kanban phase ID
+          type: integer
+          example: '4'
+        position:
+          type: integer
+          example: '10'
+    IssueApiResponseForKanban:
+      allOf:
+      - "$ref": "#/components/schemas/IssueApiResponse"
+      - properties:
+          kanban_phase:
+            description: Kanban phase ID
+            type: integer
+            example: '4'
+          agile_column_position:
+            type: integer
+            example: '1'
+    KanbanColumn:
+      properties:
+        name:
           type: string
-          format: date-time
-          readOnly: true
-        updated_on:
-          type: string
-          format: date-time
-          readOnly: true
-      xml:
-        name: easy_knowledge_story
+          example: Code Review
+        entity_value:
+          description: Kanban phase ID
+          type: integer
+          example: '4'
+        max_entities:
+          type: integer
+        issue_limit:
+          type: integer
+          example: 1
     EasyLeadApiRequest:
       properties:
         company_name:
@@ -20524,6 +22417,15 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiRequest"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
         author_id:
           type: integer
         easy_crm_case_id:
@@ -20622,6 +22524,15 @@ components:
             wrapped: true
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
         author:
           type: object
           readOnly: true
@@ -21254,6 +23165,36 @@ components:
         bigRecurringChildren:
           type: boolean
           description: Meeting is recurrent - this is repeated meeting of `parent`
+    EasyMenuItemApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: project_menu
+          description: Menu name
+        url:
+          type: string
+          example: www.example.com
+          description: Already resolved URL
+        active:
+          type: boolean
+          example: true
+          description: Indicates if the menu item is the currently active one
+        html_options:
+          type: object
+          properties:
+            class:
+              type: string
+            aria:
+              type: string
+            data:
+              type: string
+      xml:
+        name: easy_menu_item
     EasyMindMapApiRequest:
       properties:
         project_id:
@@ -21395,7 +23336,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21458,7 +23399,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21519,7 +23460,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -21550,7 +23491,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21613,7 +23554,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21674,7 +23615,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -21705,7 +23646,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21768,7 +23709,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21829,7 +23770,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -21860,7 +23801,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21923,7 +23864,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -21984,7 +23925,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -22015,7 +23956,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -22084,7 +24025,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -22151,7 +24092,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -22182,7 +24123,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -22247,7 +24188,7 @@ components:
         price2:
           type: number
           format: double
-          example: '14166.67'
+          example: '13600.0'
           description: Price without vat
         easy_currency_code:
           example: CZK
@@ -22320,7 +24261,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         created_at:
           type: string
           format: date-time
@@ -22331,6 +24272,278 @@ components:
           readOnly: true
       xml:
         name: easy_money_travel_expense
+    EasyOauth2ClientApplicationApiRequest:
+      properties:
+        name:
+          type: string
+          example: BitWarden
+          description: OAuth2 consumer name
+          readOnly: false
+        app_url:
+          type: string
+          format: uri
+          example: https://sso.bitwarden.com/oidc-signin
+          description: URL of OAuth2 consumer
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true OAuth2 consumer may ask for authentication
+          readOnly: false
+        app_id:
+          type: string
+          example: ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3
+          description: Generated client ID
+          readOnly: false
+        app_secret:
+          type: string
+          example: 248ef02a-695b-49b2-b6a2-9f8bed64ae94
+          description: Generated client secret
+          readOnly: false
+        callback_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/auth/easy_oauth2_applications/5a9237e9-e868-442b-9ca2-5387d265d4be/callback
+          description: Generated Callback url
+          readOnly: false
+        authorize_url:
+          type: string
+          format: uri
+          example: https://login.microsoftonline.com/ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3/oauth2/v2.0/authorize
+          description: OAuth2 url for authorization
+          readOnly: false
+        token_url:
+          type: string
+          format: uri
+          example: https://login.microsoftonline.com/ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3/oauth2/v2.0/token
+          description: OAuth2 url for receive authenticated token
+          readOnly: false
+        user_info_url:
+          type: string
+          format: uri
+          example: https://graph.microsoft.com/v1.0/me
+          description: OAuth2 url for receive authenticated user's metadata
+          readOnly: false
+        app_scope:
+          type: string
+          example: Application scope
+          description: offline_access email openid profile User.Read.All Calendars.Read
+          readOnly: false
+        user_sso_uuid_attribute:
+          type: string
+          example: mail
+          description: UUID attribute
+          readOnly: false
+        user_login_attribute:
+          type: string
+          example: mail
+          description: Login attribute
+          readOnly: false
+        user_email_attribute:
+          type: string
+          example: mail
+          description: Email attribute
+          readOnly: false
+        user_language_attribute:
+          type: string
+          example: en
+          description: Language attribute
+          readOnly: false
+        onthefly_creation:
+          type: boolean
+          example: 'true'
+          description: Allow to automatically creation of user in database
+          readOnly: false
+        login_button:
+          type: boolean
+          example: 'true'
+          description: Add OAuth2 provider as new button to login page
+          readOnly: false
+      xml:
+        name: easy_oauth2_client_application
+    EasyOauth2ClientApplicationApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: BitWarden
+          description: OAuth2 consumer name
+          readOnly: false
+        app_url:
+          type: string
+          format: uri
+          example: https://sso.bitwarden.com/oidc-signin
+          description: URL of OAuth2 consumer
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true OAuth2 consumer may ask for authentication
+          readOnly: false
+        app_id:
+          type: string
+          example: ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3
+          description: Generated client ID
+          readOnly: false
+        app_secret:
+          type: string
+          example: 248ef02a-695b-49b2-b6a2-9f8bed64ae94
+          description: Generated client secret
+          readOnly: false
+        callback_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/auth/easy_oauth2_applications/5a9237e9-e868-442b-9ca2-5387d265d4be/callback
+          description: Generated Callback url
+          readOnly: false
+        authorize_url:
+          type: string
+          format: uri
+          example: https://login.microsoftonline.com/ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3/oauth2/v2.0/authorize
+          description: OAuth2 url for authorization
+          readOnly: false
+        token_url:
+          type: string
+          format: uri
+          example: https://login.microsoftonline.com/ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3/oauth2/v2.0/token
+          description: OAuth2 url for receive authenticated token
+          readOnly: false
+        user_info_url:
+          type: string
+          format: uri
+          example: https://graph.microsoft.com/v1.0/me
+          description: OAuth2 url for receive authenticated user's metadata
+          readOnly: false
+        app_scope:
+          type: string
+          example: Application scope
+          description: offline_access email openid profile User.Read.All Calendars.Read
+          readOnly: false
+        user_sso_uuid_attribute:
+          type: string
+          example: mail
+          description: UUID attribute
+          readOnly: false
+        user_login_attribute:
+          type: string
+          example: mail
+          description: Login attribute
+          readOnly: false
+        user_email_attribute:
+          type: string
+          example: mail
+          description: Email attribute
+          readOnly: false
+        user_language_attribute:
+          type: string
+          example: en
+          description: Language attribute
+          readOnly: false
+        onthefly_creation:
+          type: boolean
+          example: 'true'
+          description: Allow to automatically creation of user in database
+          readOnly: false
+        login_button:
+          type: boolean
+          example: 'true'
+          description: Add OAuth2 provider as new button to login page
+          readOnly: false
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: easy_oauth2_client_application
+    EasyOauth2ServerApplicationApiRequest:
+      properties:
+        name:
+          type: string
+          example: BitWarden
+          description: OAuth2 consumer name
+          readOnly: false
+        app_url:
+          type: string
+          format: uri
+          example: https://sso.bitwarden.com/oidc-signin
+          description: URL of OAuth2 consumer
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true OAuth2 consumer may ask for authentication
+          readOnly: false
+      xml:
+        name: easy_oauth2_server_application
+    EasyOauth2ServerApplicationApiResponse:
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+          description: ID of the .
+        name:
+          type: string
+          example: BitWarden
+          description: OAuth2 consumer name
+          readOnly: false
+        app_url:
+          type: string
+          format: uri
+          example: https://sso.bitwarden.com/oidc-signin
+          description: URL of OAuth2 consumer
+          readOnly: false
+        active:
+          type: boolean
+          example: '1'
+          description: If true OAuth2 consumer may ask for authentication
+          readOnly: false
+        app_id:
+          type: string
+          example: ecf8a7f0-74fd-4f02-bb26-4645b4b3d2d3
+          description: Generated client ID
+          readOnly: false
+        app_secret:
+          type: string
+          example: 248ef02a-695b-49b2-b6a2-9f8bed64ae94
+          description: Generated client secret
+          readOnly: false
+        authorize_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/oauth2/authorize
+          description: Authorize URL
+          readOnly: true
+        token_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/oauth2/token
+          description: Token URL
+          readOnly: true
+        user_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/oauth2/user
+          description: User URL
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      xml:
+        name: easy_oauth2_server_application
     EasyOneTimeContractApiResponse:
       properties:
         id:
@@ -22470,6 +24683,15 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiRequest"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
         primary_easy_billing_info_attributes:
           "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
         contact_easy_billing_info_attributes:
@@ -22584,6 +24806,47 @@ components:
             wrapped: true
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
+        guid:
+          type: string
+          description: ''
+          format: uuid
+          readOnly: true
+        affiliate_uuid:
+          type: string
+          example: bc8995e169d97555
+          format: uuid
+          readOnly: true
+        journals:
+          type: array
+          description: if you specify `include=journals`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/JournalApiResponse"
+        attachments:
+          type: array
+          description: if you specify `include=attachments`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/UploadResponse"
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
         organization:
           example: Easy Software s.r.o.
           type: string
@@ -22647,38 +24910,6 @@ components:
           type: string
         billing_info:
           "$ref": "#/components/schemas/EasyBillingInfoApiRequest"
-        guid:
-          type: string
-          description: ''
-          format: uuid
-          readOnly: true
-        affiliate_uuid:
-          type: string
-          example: bc8995e169d97555
-          format: uuid
-          readOnly: true
-        journals:
-          type: array
-          description: if you specify `include=journals`
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/JournalApiResponse"
-        attachments:
-          type: array
-          description: if you specify `include=attachments`
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/Attachment"
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
       xml:
         name: easy_partner
     EasyPersonalContactApiResponse:
@@ -22797,6 +25028,15 @@ components:
             wrapped: true
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiResponse"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
         account:
           type: object
           readOnly: true
@@ -22865,7 +25105,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         journals:
           type: array
           description: if you specify `include=journals`
@@ -22992,6 +25232,15 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/CustomFieldValueApiRequest"
+        tag_list:
+          type: array
+          description: List of tags associated with entity
+          example:
+          - deployment
+          - gantt
+          - ldap
+          items:
+            type: string
         account_id:
           type: integer
         easy_personal_contact_type_id:
@@ -23680,6 +25929,9 @@ components:
         easy_external_id:
           type: string
           example: ''
+        rack_uid:
+          type: string
+          description: OVH uid of rack location
         host_name:
           type: string
           example: localhost
@@ -23716,27 +25968,33 @@ components:
           example: Debian
           description: Only for HW servers
         server_type:
-          type: integer
+          type: string
           example: client_server
           enum:
           - client_server
-          - client_server_v11
-          - client_server_v12
           - trial_server
           - bigdemo
-          - bigclient
           - bigstaging
           - deployment
           - service
           - internal
-          - ha
           - nomad
+          - easy_ai
+        purpose:
+          type: string
+          example: private
+          enum:
+          - common
+          - private
+          - blue_spice
+          - gpu_powered
         server_status:
-          type: integer
+          type: string
           example: running
           enum:
           - running
           - stopped
+          - deleted
         easy_proxmox_id:
           type: integer
           description: ID of entity internal Proxmox
@@ -23746,9 +26004,6 @@ components:
         custom_config:
           type: string
           description: Ruby serialized object
-        adam_oauth2_id:
-          type: integer
-          description: ''
         easy_data_center_id:
           type: integer
         custom_fields:
@@ -23773,6 +26028,9 @@ components:
         easy_external_id:
           type: string
           example: ''
+        rack_uid:
+          type: string
+          description: OVH uid of rack location
         host_name:
           type: string
           example: localhost
@@ -23809,27 +26067,33 @@ components:
           example: Debian
           description: Only for HW servers
         server_type:
-          type: integer
+          type: string
           example: client_server
           enum:
           - client_server
-          - client_server_v11
-          - client_server_v12
           - trial_server
           - bigdemo
-          - bigclient
           - bigstaging
           - deployment
           - service
           - internal
-          - ha
           - nomad
+          - easy_ai
+        purpose:
+          type: string
+          example: private
+          enum:
+          - common
+          - private
+          - blue_spice
+          - gpu_powered
         server_status:
-          type: integer
+          type: string
           example: running
           enum:
           - running
           - stopped
+          - deleted
         easy_proxmox_id:
           type: integer
           description: ID of entity internal Proxmox
@@ -23839,9 +26103,6 @@ components:
         custom_config:
           type: string
           description: Ruby serialized object
-        adam_oauth2_id:
-          type: integer
-          description: ''
         easy_data_center:
           type: object
           readOnly: true
@@ -23880,11 +26141,6 @@ components:
         monitored:
           type: boolean
           example: ''
-          readOnly: true
-        adam_settings:
-          type: string
-          example: "{}"
-          description: Ruby serialized object
           readOnly: true
         hardware:
           type: object
@@ -24149,7 +26405,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         journals:
           type: array
           description: if you specify `include=journals`
@@ -24545,6 +26801,8 @@ components:
         monitored:
           readOnly: true
           type: boolean
+        external_monitored:
+          type: boolean
         version:
           example: EP 08.05.01
           type: string
@@ -24559,25 +26817,12 @@ components:
           type: integer
         easy_crm_case_id:
           type: integer
-        internal_user_limit:
+        source_easy_web_application_id:
           type: integer
-        external_user_limit:
+        internal_user_limit:
           type: integer
         internal_user_count:
           type: integer
-        external_user_count:
-          type: integer
-        active_project_count:
-          type: integer
-        logins_count_in_last_week:
-          type: integer
-        last_activity_at:
-          type: integer
-        activities_count_in_last_week:
-          type: integer
-        last_login_at:
-          format: date
-          type: string
         expire_at:
           format: date
           type: string
@@ -24587,8 +26832,23 @@ components:
         last_files_backup_url:
           type: string
           format: uri
+        docker_image:
+          type: string
+          example: registry.git.easy.cz:latest
+        chromadb_docker_image:
+          type: string
+          example: registry.git.easy.cz/public-images/chromadb:0.4.14
+        easy_ai_chain_docker_image:
+          type: string
+          example: registry.git.easy.cz/devel/ai/easy_ai_chain:0.1.18
         custom_repository:
           type: boolean
+        extra_env_variables:
+          type: object
+          description: Environment variables for the application
+          example:
+            RAILS_ENV: production
+            RAILS_LOG_TO_STDOUT: 'true'
         custom_ssl:
           type: string
         activated_plugins:
@@ -24611,6 +26871,16 @@ components:
           type: string
         callback_url:
           type: string
+        server:
+          type: string
+        port:
+          type: string
+        user:
+          type: string
+        password:
+          type: string
+        path:
+          type: string
         move_to_server_id:
           type: string
         move_to_url:
@@ -24621,11 +26891,15 @@ components:
           type: string
         previous_status:
           type: string
+        restore_to_server_id:
+          type: string
+        restore_to_url:
+          type: string
+        restore_to_docker_image:
+          type: string
         git_repository:
           type: string
         git_branch:
-          type: string
-        image:
           type: string
         template:
           type: string
@@ -24683,6 +26957,8 @@ components:
         monitored:
           readOnly: true
           type: boolean
+        external_monitored:
+          type: boolean
         version:
           example: EP 08.05.01
           type: string
@@ -24737,25 +27013,22 @@ components:
               type: string
               xml:
                 attribute: true
+        source_easy_web_application:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
         internal_user_limit:
-          type: integer
-        external_user_limit:
           type: integer
         internal_user_count:
           type: integer
-        external_user_count:
-          type: integer
-        active_project_count:
-          type: integer
-        logins_count_in_last_week:
-          type: integer
-        last_activity_at:
-          type: integer
-        activities_count_in_last_week:
-          type: integer
-        last_login_at:
-          format: date
-          type: string
         expire_at:
           format: date
           type: string
@@ -24765,8 +27038,23 @@ components:
         last_files_backup_url:
           type: string
           format: uri
+        docker_image:
+          type: string
+          example: registry.git.easy.cz:latest
+        chromadb_docker_image:
+          type: string
+          example: registry.git.easy.cz/public-images/chromadb:0.4.14
+        easy_ai_chain_docker_image:
+          type: string
+          example: registry.git.easy.cz/devel/ai/easy_ai_chain:0.1.18
         custom_repository:
           type: boolean
+        extra_env_variables:
+          type: object
+          description: Environment variables for the application
+          example:
+            RAILS_ENV: production
+            RAILS_LOG_TO_STDOUT: 'true'
         custom_ssl:
           type: string
         activated_plugins:
@@ -24789,6 +27077,16 @@ components:
           type: string
         callback_url:
           type: string
+        server:
+          type: string
+        port:
+          type: string
+        user:
+          type: string
+        password:
+          type: string
+        path:
+          type: string
         move_to_server_id:
           type: string
         move_to_url:
@@ -24799,11 +27097,15 @@ components:
           type: string
         previous_status:
           type: string
+        restore_to_server_id:
+          type: string
+        restore_to_url:
+          type: string
+        restore_to_docker_image:
+          type: string
         git_repository:
           type: string
         git_branch:
-          type: string
-        image:
           type: string
         template:
           type: string
@@ -24833,18 +27135,42 @@ components:
               type: string
               enum:
               - client_server
-              - client_server_v11
-              - client_server_v12
               - trial_server
               - bigdemo
-              - bigclient
               - bigstaging
               - deployment
               - service
               - internal
-              - ha
               - nomad
+              - easy_ai
               example: deployment
+        plugins:
+          type: array
+          description: List of bought plugins - these should be activated
+          xml:
+            wrapped: true
+          items:
+            type: string
+        rsync_daemon_config:
+          type: object
+          properties:
+            server:
+              type: string
+              example: rsync://internal1.cz.easy
+            port:
+              type: integer
+              example: 10001
+            user:
+              type: string
+              example: azatoth
+            password:
+              type: string
+              example: in-nomine-lucifer-ex
+            path:
+              type: string
+              example: "/files/tenant_big_demo"
+              description: Absolute path from entrypoint of rsync daemon. For client
+                just `files`, in case of tenant its include subdir
         created_at:
           type: string
           format: date-time
@@ -25173,6 +27499,16 @@ components:
         notes:
           type: string
           description: a comment
+        copy_from:
+          type: integer
+          example: '123'
+          description: the new issue will be copied from an existing one if copy_from
+            parameter is given
+        watcher_user_ids:
+          type: array
+          description: User ids to add as watchers. Ignored in PUT requests.
+          items:
+            type: integer
         easy_sprint_id:
           type: integer
           description: ID of EasySprint
@@ -25392,7 +27728,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
         relations:
           type: array
           description: if you specify `include=relations`
@@ -25478,12 +27814,6 @@ components:
                     type: integer
                   name:
                     type: string
-        easy_checklists:
-          type: array
-          xml:
-            wrapped: true
-          items:
-            "$ref": "#/components/schemas/EasyChecklistApiResponse"
         easy_sprint:
           type: object
           properties:
@@ -25494,6 +27824,10 @@ components:
             due_date:
               type: string
               format: date
+        easy_sprint_phase:
+          type: integer
+        easy_sprint_position:
+          type: integer
         easy_story_points:
           type: string
         easy_helpdesk_ticket_owner:
@@ -25508,6 +27842,12 @@ components:
               type: string
               xml:
                 attribute: true
+        easy_checklists:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/EasyChecklistApiResponse"
       xml:
         name: issue
     JournalApiResponse:
@@ -25653,16 +27993,20 @@ components:
         description:
           example: I can’t abide these Jawas. Disgusting creatures.
           type: string
+        is_public:
+          type: boolean
         parent_id:
           type: integer
         author_id:
           type: integer
         manager_id:
           type: integer
+        default_assignee_id:
+          type: integer
+        default_version_id:
+          type: integer
         owner_id:
           type: integer
-        is_planned:
-          type: boolean
         easy_is_easy_template:
           type: boolean
           description: Is this project a template?
@@ -25685,11 +28029,20 @@ components:
           - ldap
           items:
             type: string
+        journals:
+          type: array
+          description: if you specify `include=journals`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/JournalApiResponse"
         easy_currency_code:
           minLength: 3
           maxLength: 3
           example: EUR
           type: string
+        is_planned:
+          type: boolean
         easy_priority_id:
           type: object
           readOnly: true
@@ -25698,6 +28051,17 @@ components:
               type: integer
             name:
               type: string
+        tracker_ids:
+          type: array
+          description: Enable trackers on a given project. Expect array of IDs
+          items:
+            type: integer
+        issue_custom_field_ids:
+          type: array
+          description: Enable issue custom fields on a given project. Expect array
+            of IDs
+          items:
+            type: integer
       required:
       - name
       - author_id
@@ -25722,6 +28086,8 @@ components:
         description:
           example: I can’t abide these Jawas. Disgusting creatures.
           type: string
+        is_public:
+          type: boolean
         parent:
           type: object
           readOnly: true
@@ -25758,6 +28124,30 @@ components:
               type: string
               xml:
                 attribute: true
+        default_assignee:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
+        default_version:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: integer
+              xml:
+                attribute: true
+            name:
+              type: string
+              xml:
+                attribute: true
         owner:
           type: object
           readOnly: true
@@ -25770,8 +28160,6 @@ components:
               type: string
               xml:
                 attribute: true
-        is_planned:
-          type: boolean
         easy_is_easy_template:
           type: boolean
           description: Is this project a template?
@@ -25796,6 +28184,13 @@ components:
           - ldap
           items:
             type: string
+        journals:
+          type: array
+          description: if you specify `include=journals`
+          xml:
+            wrapped: true
+          items:
+            "$ref": "#/components/schemas/JournalApiResponse"
         status:
           readOnly: true
           enum:
@@ -25845,6 +28240,11 @@ components:
         due_date:
           format: date
           type: string
+        completed_percent:
+          type: number
+          format: float
+          readOnly: true
+          description: if you specify `include=completed_percent`
         trackers:
           type: array
           description: if you specify `include=trackers`
@@ -25889,6 +28289,18 @@ components:
                 type: integer
               name:
                 type: string
+        issue_custom_fields:
+          type: array
+          description: if you specify `include=issue_custom_fields`
+          items:
+            title: IssueCustomField
+            type: object
+            readOnly: true
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
         enabled_modules:
           type: array
           description: if you specify `include=enabled_modules`
@@ -25922,18 +28334,18 @@ components:
               id:
                 type: integer
                 example: 1
-              first_name:
+              full_name:
                 type: string
                 example: Alex
-              last_name:
-                type: string
-                example: Wolf
               email:
                 type: string
                 example: a.wolf@example.com
-              author_id:
+              telephone:
                 type: integer
                 example: 1
+              description:
+                type: string
+                example: description
       xml:
         name: project
     ProjectDocumentApiRequest:
@@ -26104,7 +28516,6 @@ components:
       properties:
         id:
           type: integer
-          format: int64
           example: 1
         type:
           type: string
@@ -26154,7 +28565,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
       required:
       - project_id
       - name
@@ -26217,7 +28628,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
       xml:
         name: test_case
     TestCaseIssueExecutionApiRequest:
@@ -26238,7 +28649,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
       required:
       - issue_id
       xml:
@@ -26306,7 +28717,7 @@ components:
           xml:
             wrapped: true
           items:
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/UploadResponse"
       xml:
         name: test_case_issue_execution
     TestCaseIssueExecutionResultApiRequest:
@@ -26659,6 +29070,9 @@ components:
           - 0.0
           xml:
             wrapped: true
+          items:
+            type: number
+            format: float
         supervisor_id:
           type: integer
         supervisor_user_id:
@@ -26743,6 +29157,10 @@ components:
           - ldap
           items:
             type: string
+        api_key:
+          type: string
+          example: 79955657c4ef977d1f55f2e6b24c56b6231dba
+          description: Api_key for current user in active state
         utc_offset:
           type: integer
           example: 3600
@@ -26856,6 +29274,9 @@ components:
           - 8.0
           - 0.0
           - 0.0
+          items:
+            type: number
+            format: float
         supervisor:
           type: object
           readOnly: true

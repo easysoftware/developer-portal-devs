@@ -83,7 +83,7 @@ configurations)
 1. Install a version manager [***RBENV***](https://github.com/rbenv/rbenv#installation) or
    [***RVM***](https://rvm.io/rvm/install).
 
-2. Install ***Ruby-3.1.4***
+2. Install ***Ruby-3.3.4***
 
 > On newer Macs, the latest versions of Ruby might not work flawlessly so you might need to use an older version of ruby
 

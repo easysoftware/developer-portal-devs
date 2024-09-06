@@ -140,6 +140,11 @@
           "type": "item",
           "title": "EasyGraphQL",
           "uri": "docs/Backend_tutorials/features/graphql.md"
+        },
+        {
+          "type": "item",
+          "title": "EasyFeature",
+          "uri": "docs/Backend_tutorials/features/feature_toggler.md"
         }
       ]
     },

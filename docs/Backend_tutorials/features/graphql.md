@@ -158,9 +158,102 @@ errors.add_entity_errors(entity) unless entity.save
 4. **Always return `errors` field.** If there is no error, return empty array.
 5. **Use `argument` method for defining fields of the type.** Do not forget specify `required` option for argument.
 6. If you find specify entity, use `find` method for fetching entity. It raise `ActiveRecord::RecordNotFound` if entity not found = This is correct.
-7. Do not forget `init_journal` if entity is journalized.
-8. Use `safe_attributes` for assign attributes to entity.
-9. If you create new entity and its not valid, return `errors` and `nil` for entity.
+7. **Always authorize manipulation with object** If actor has not permission raise `Unauthorized` exception.
+8. Do not forget `init_journal` if entity is journalized.
+9. Use `safe_attributes` for assign attributes to entity.
+10. If you create new entity and its not valid, return `errors` and `nil` for entity.
+
+### Mutation Example
+
+```ruby title="example of mutation" lineNumbers
+module EasyGraphql
+  module Mutations
+    # Please replace "entity" for specific object,
+    # to avoid usage of mutation for multiple entities.
+    class UpdateEntity < Mutations::Base
+      description "Update an Entity."
+
+      argument :id, ID, required: true
+      argument :attributes, Types::Inputs::EntityAttributes, required: true
+
+      field :entity, Types::Entity, null: false
+      field :errors, [Types::Error]
+
+      def resolve(**_args)
+        raise Unauthorized unless entity.editable?
+
+        entity.init_journal(User.current)
+        entity.safe_attributes = arguments[:attributes].to_hash
+
+        unless entity.save
+          errors.add_entity_errors(entity)
+        end
+
+        { entity:, errors: }
+      end
+
+      private
+
+      def entity
+        @entity ||= Entity.visible.find(arguments[:id])
+      end
+
+    end
+  end
+end
+```
+
+### Delete Mutations
+Delete mutations are special case of mutations. Their response slightly differs from other mutations. Best practice often suggest that, 
+this kind of mutation should return deleted object, or at least its ID. 
+
+In Easy we are using graphql to support our front-end solutions, instead of official API. So we are trying to keep mutations response as simple as possible, to minimize possibility of failure. 
+If front end does not need the object or its ID we just return errors to inform front-end about the result of the operation.
+
+Error handling is also slightly different. While other mutations check validation errors, in ActiveRecord destroy process will success even with invalid object.
+If destroy fails it will raise `ActiveRecord::RecordNotDestroyed` exception. Exception must be rescued and handled by like validation error.
+
+#### Additional Best-practice
+
+1. **Return object or its ID only if necessary.**
+2. **To indicate success or failure use `errors` field.**
+3. **Destroy method doesn't rely on object validity.** Invalid object will be destroyed as well.
+4. **Use `ActiveRecord::RecordNotDestroyed` exception for error handling.** Return exception message as error message of attribute `:base`.
+
+#### Delete Mutation Example
+
+```ruby title="example of delete mutation" lineNumbers
+module EasyGraphql
+  module Mutations
+    # Please replace "entity" for specific object,
+    # to avoid usage of mutation for multiple entities.
+    class DeleteEntity < Mutations::Base
+      description "Destroys entity."
+
+      argument :id, ID, required: true
+
+      field :errors, [Types::Error], null: true
+
+      def resolve(**_args)
+        raise Unauthorized unless entity.deletable?
+
+        entity.destroy
+        { errors: }
+      rescue ActiveRecord::RecordNotDestroyed => e
+        errors.add_error(attribute: :base, messages: [e.message])
+        { errors: }
+      end
+
+      private
+
+      def entity
+        @entity ||= Entity.visible.find(arguments[:id])
+      end
+
+    end
+  end
+end
+```
 
 ## Subscriptions
 https://graphql-ruby.org/subscriptions/subscription_classes.html

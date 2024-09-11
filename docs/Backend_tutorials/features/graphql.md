@@ -210,8 +210,8 @@ this kind of mutation should return deleted object, or at least its ID.
 In Easy we are using graphql to support our front-end solutions, instead of official API. So we are trying to keep mutations response as simple as possible, to minimize possibility of failure. 
 If front end does not need the object or its ID we just return errors to inform front-end about the result of the operation.
 
-Error handling is also slightly different. While other mutations check validation errors, in ActiveRecord destroy process will success even with invalid object.
-If destroy fails it will raise `ActiveRecord::RecordNotDestroyed` exception. Exception must be rescued and handled by like validation error.
+Error handling is also slightly different. While action in other mutations should check validation errors, in **ActiveRecord destroy method will success even with invalid object**.
+Failed destroy will raise `ActiveRecord::RecordNotDestroyed` exception. This exception must be handled and returned like validation error to front-end.
 
 #### Additional Best-practice
 

@@ -273,6 +273,11 @@
       "uri": "docs/Others/FAQs.md"
     },
     {
+      "type": "item",
+      "title": "How to prepare repository for custom theme",
+      "uri": "docs/Others/Prepare_repository_for_custom_theme.md"
+    },
+    {
       "type": "divider",
       "title": "APIs"
     },

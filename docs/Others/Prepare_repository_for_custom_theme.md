@@ -42,13 +42,13 @@
     - plugins/easyproject/easy_plugins/modification_*
    ```
 
-We commit and push this template to the Repo-bot master. We wait for the Repo-bot pipeline  
-[RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines)  
-to release the Docker image.
+   We commit and push this template to the Repo-bot master. We wait for the Repo-bot pipeline  
+   [RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines)  
+   to release the Docker image.
 
 4) Running the client repository update
 
-   Using the `repobotUpdate` action  
+   Using the `Update Repository` action  
    [RepoBot Update](https://git.easy.cz/devops/repo-bot-actions/update-repository/-/pipelines/new)  
    we trigger the update of the client's repository. Before submitting, we again fill in the `CONTRACT_ID` value just
    like during the repository creation.

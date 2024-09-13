@@ -264,6 +264,11 @@
       "uri": "docs/Easy_section/Server-requirements.md"
     },
     {
+      "type": "item",
+      "title": "Custom branding",
+      "uri": "docs/Others/Prepare_repository_for_custom_theme.md"
+    },
+    {
       "type": "divider",
       "title": "Learn more"
     },
@@ -271,11 +276,6 @@
       "type": "item",
       "title": "FAQs",
       "uri": "docs/Others/FAQs.md"
-    },
-    {
-      "type": "item",
-      "title": "How to prepare repository for custom theme",
-      "uri": "docs/Others/Prepare_repository_for_custom_theme.md"
     },
     {
       "type": "divider",

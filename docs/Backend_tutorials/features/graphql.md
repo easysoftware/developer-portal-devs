@@ -161,7 +161,7 @@ errors.add_entity_errors(entity) unless entity.save
 7. **Always authorize manipulation with object** If actor has not permission raise `Unauthorized` exception.
 8. Do not forget `init_journal` if entity is journalized.
 9. Use `safe_attributes` for assign attributes to entity.
-10. If you create new entity and its not valid, return `errors` and `nil` for entity.
+10. If you create new entity and it's not valid, return `errors` and `nil` for entity.
 
 ### Mutation Example
 

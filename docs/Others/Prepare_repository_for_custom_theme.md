@@ -79,58 +79,10 @@
    ```
 
 6) Creating a modification plugin
-
-   We clone the client's repository and create a modification plugin in the updated code at the path
-   `plugins/easyproject/easy_plugins`.
-   The structure and content of the file:
-   ```
-   modification_CLIENT_NAME/
-   ├── config/
-   │   └── initializers/
-   │       └── logos_config.rb
-   ├── images/
-   │   └── .keep
-   ├── lib/
-   │   └── modification_CLIENT_NAME.rb
-   └── init.rb
-   ```
-
-   #### logos_config.rb
-   ```ruby
-   # Rails.application.config.after_initialize do
-   #   require "easy_extensions/logo"
-   #   EasyExtensions::Logo.configure do |config|
-   #     config.logos_folder_path = File.expand_path(File.join(__dir__, "../../images")) # path into logos folder
-   #     config.path = Rails.root.join(config.logos_folder_path, "client_logo.jpeg") # email logo
-   #     config.variables = {
-   #       logo_url: "client_logo.jpeg",
-   #       logo_inverted_url: "client_logo.jpeg",
-   #       logo_mark_url: "client_logo.jpeg",
-   #       logo_inverted_mark_url: "client_logo.jpeg",
-   #       logo_mutation_url: "client_logo.jpeg",
-   #       login_bg_url: "client_logo.jpeg",
-   #     }
-   #   end
-   # end
-   ```
-   #### modification_CLIENT_NAME.rb
-   ```ruby
-   module ModificationClientName
-   end
-   ```
-   #### init.rb
-   ```ruby
-   Redmine::Plugin.register :modification_CLIENT_NAME do
-    name "CLIENT NAME"
-    author "Easy Software Ltd"
-    description ""
-    url "www.easyredmine.com"
-    author_url "www.easysoftware.cz"
-    should_be_disabled false
-    
-    plugin_in_relative_subdirectory File.join("easyproject", "easy_plugins")
-   end
-   ```
+   
+   Fill in the `CONTRACT_ID` value at the following link and submit the form.
+   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-modification-plugin/-/pipelines/new)
+   This step will trigger a GitLab pipeline that creates the modification plugin.
 
 ## Customization Theme Design for V14
 

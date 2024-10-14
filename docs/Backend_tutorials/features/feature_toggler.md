@@ -25,6 +25,8 @@ e.g.: `my_feature_active?`.
 
 This module can also be used straight in the code, but with long feature names it could be distracting and unpleasant to read. So it is not recommended.
 
+Expected values for each ENV variable are either `true` or `1` for active state. Empty value or any other string will result in inactive state.
+
 ```ruby title="engine module" lineNumbers
 module MyEngine
   class << self

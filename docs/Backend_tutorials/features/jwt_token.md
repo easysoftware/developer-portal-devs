@@ -1,10 +1,10 @@
-# What is JWT Token
+# What is a JWT Token
 A JWT (JSON Web Token) is a compact, URL-safe token format used for securely transmitting information between parties as a JSON object. 
 It is commonly used for authentication and authorization purposes. The token is signed using a secret or public/private key to prevent tampering, 
 allowing the server to trust the data it contains without needing to store session state. Each token has expiration time and becomes invalid after time passes.
 
 # Easy JWT Module
-Easy JWT is a simple module that allows you to transform a content into a JWT token and vice versa. 
+Easy JWT is a simple module that allows you to transform a payload into a JWT token and vice versa. 
 This is achieved by `encode` and `decode` methods. Module also defines method `secret` that returns a secret key used for encoding and decoding.
 This key is stored in the `EASY_JWT_SECRET` environment variable to prevent hardcoding this information into code, 
 while also achieve sharing it among other services within docker environment. This variable is mandatory for the module to work properly.
@@ -56,5 +56,5 @@ request_headers = {
 }
 ```
 
-It is mandatory to define `accept_api_auth` for selected endpoints in controller, to achieve authentication user by JWT token. No further implementation is required.
+It is mandatory to define `accept_api_auth` for selected endpoints in controllers to enable authentication by JWT token. No further implementation is required.
 Retrieving user from token is already implemented within `application_controller_patch.rb` method `find_current_user` in `easy_extensions` engine.

@@ -56,5 +56,5 @@ request_headers = {
 }
 ```
 
-To authenticate by JWT token in controller it is mandatory to define `accept_api_auth` for selected endpoints. No further implementation is required.
+It is mandatory to define `accept_api_auth` for selected endpoints in controller, to achieve authentication user by JWT token. No further implementation is required.
 Retrieving user from token is already implemented within `application_controller_patch.rb` method `find_current_user` in `easy_extensions` engine.

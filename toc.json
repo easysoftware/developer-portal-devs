@@ -145,6 +145,11 @@
           "type": "item",
           "title": "EasyFeature",
           "uri": "docs/Backend_tutorials/features/feature_toggler.md"
+        },
+        {
+          "type": "item",
+          "title": "JWT Token",
+          "uri": "docs/Backend_tutorials/features/jwt_token.md"
         }
       ]
     },

@@ -27,10 +27,14 @@ This module can also be used straight in the code, but with long feature names i
 
 Expected values for each ENV variable are either `true` or `1` for active state. Empty value or any other string will result in inactive state.
 
+Feature toggler is not adapted for development environment. It is recommended to take care of this case in methods defined within engine/plugin module.
+
 ```ruby title="engine module" lineNumbers
 module MyEngine
   class << self
     def my_feature_active?
+      return true if Rails.env.development?
+
       EasyFeature.active?("EASY_FEATURE_MY_FEATURE_ACTIVE")
     end
   end
@@ -64,6 +68,23 @@ This name should be followed by `_ACTIVE` suffix.
 ## ENV exceptions
 There are some exceptions in usage of our feature toggler. So far there are only two of them:
 - `EASY_FEATURE_ALL_ACTIVE` - this ENV variable is used to enable all features at once. It is useful for deployment purposes.
-- `CI` - this ENV variable is used to enable all features at once in CI environment. To prevent frustrating situations when pipeline fails due to feature being toggled off.
-It should be present by default in gitlab pipelines.
 
+## Testing environment
+To prevent any complications with testing environment, all features are active by default. 
+To inactivate feature it is required to mock either `EasyFeature` methods or your method within  engine/plugin module. 
+
+```ruby title="easy feature always active" lineNumbers
+module EasyFeature
+  
+  # ...
+
+  def always_active?
+    test_environment? || ENV.fetch("EASY_FEATURE_ALL_ACTIVE", "false").to_boolean
+  end
+
+  def test_environment?
+    Rails.env.test?
+  end
+
+end
+```

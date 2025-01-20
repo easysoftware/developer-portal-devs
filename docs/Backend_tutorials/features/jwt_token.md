@@ -32,24 +32,24 @@ token = "token_generated_by_my_secret"
 payload_as_hash = EasyExtensions::JWT.decode(token)
 ```
 
-# East JWT Generator
-Easy JWT Generator is service that use Easy JWT module to generate user JWT token. Input for this service is instance of user. By current standards `User.current` is taken by default. 
+# User authentication with JWT token
+EasyExtensions::JWT::GenerateAuthToken is service that use Easy JWT module to generate user JWT token. Input for this service is instance of user. By current standards `User.current` is taken by default. 
 On call service prepares payload for JWT token and requests for encode. This token allows user to pass through authentication process without api key or other credentials. 
 
-```ruby title="usage of EasyExtensions::JWT::Generator"
+```ruby title="usage of EasyExtensions::JWT::GenerateAuthToken"
 # token for specific user
 my_user = User.find("id")
-token = EasyExtensions::JWT::Generator.call(user: my_user)
+token = EasyExtensions::JWT::GenerateAuthToken.call(user: my_user)
 
 # token for current user
-token = EasyExtensions::JWT::Generator.call
+token = EasyExtensions::JWT::GenerateAuthToken.call
 ```
 
 # Usage of user JWT token
 Generated token can be used in headers of request. To achieve authentication, it is necessary to use it in `Authorization` header with `Bearer` prefix.
 
 ```ruby title="usage of user JWT token"
-token = EasyExtensions::JWT::Generator.call
+token = EasyExtensions::JWT::GenerateAuthToken.call
 request_headers = {
   "Content-Type" => "application/json",
   "Authorization" => "Bearer #{token}",

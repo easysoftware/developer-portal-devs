@@ -71,7 +71,7 @@ There are some exceptions in usage of our feature toggler. So far there are only
 
 ## Testing environment
 To prevent any complications with testing environment, all features are active by default. 
-To inactivate feature it is required to mock either `EasyFeature` methods or your method within  engine/plugin module. 
+To deactivate a feature it is required to mock either `EasyFeature` methods or your method within engine/plugin module. 
 
 ```ruby title="easy feature always active" lineNumbers
 module EasyFeature

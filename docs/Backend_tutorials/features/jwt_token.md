@@ -32,8 +32,8 @@ token = "token_generated_by_my_secret"
 payload_as_hash = EasyExtensions::JWT.decode(token)
 ```
 
-# User authentication with JWT token
-EasyExtensions::JWT::GenerateAuthToken is service that use Easy JWT module to generate user JWT token. Input for this service is instance of user. By current standards `User.current` is taken by default. 
+# User authentication using JWT token
+EasyExtensions::JWT::GenerateAuthToken is a service that uses Easy JWT module to generate user JWT token. Input for this service is an instance of User. By current standards `User.current` is taken as default. 
 On call service prepares payload for JWT token and requests for encode. This token allows user to pass through authentication process without api key or other credentials. 
 
 ```ruby title="usage of EasyExtensions::JWT::GenerateAuthToken"

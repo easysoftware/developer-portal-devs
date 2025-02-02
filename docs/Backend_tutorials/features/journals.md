@@ -109,7 +109,7 @@ TODO: add example
 
 ## User reactions
 
-Keep in mind that users can react to comments with emojis. To fully support this feature, you need to ensure the proper loading of journals past the basic limit (clicking the "Show all" button). This is done using GraphQL and all you need is to define a GraphQL `Query` field and `Type` for your entity.
+Keep in mind that users can react to comments with emojis. To fully support this feature, you need to ensure that reaction components and initialized after loading of journals past the basic limit (clicking the "Show all" button). This is done using GraphQL. All you need is to define a GraphQL `Type` and `Query` field for your entity.
 
 For the `Type` just use the `has_journals`. You can also override the default methods it adds as needed.
 ```ruby title="Example of journals usage in GraphQL" lineNumbers

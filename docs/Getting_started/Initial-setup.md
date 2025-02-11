@@ -66,10 +66,13 @@ These steps work for most Debian-based distributions (Ubuntu, Mint, etc.).
 
 ---
 
-## Docker
+## 🐳 Docker
 
+> **The easiest way to set up your development environment!**  
+> Avoid dependency issues and manual installations—just run Docker and start coding.
 
-Docker is now the easiest way to set up your environment. Follow the guide here: [Docker Setup Guide](https://git.easy.cz/devel/devel/-/tree/next/bugs/docker).
+To get started, follow the official guide here:  
+📖 [Docker Setup Guide](https://git.easy.cz/devel/devel/-/tree/next/bugs/docker)
 
 ---
 

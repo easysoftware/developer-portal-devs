@@ -1,167 +1,142 @@
-# Initial setup
+# Initial Setup
 
-*In this article we will show you what to do as your first steps in before you start coding.*
+*This guide walks you through the first steps before you start coding.*
 
-### MacOS
+---
 
-1. Install ***Xcode Command Line Tools***.
+## macOS Setup
 
-```
-sudo xcode-select --install
-```
-
+1. Install ***Xcode Command Line Tools***:
+   ```sh
+   sudo xcode-select --install
+   ```
 2. Install [***MySQL***](https://flaviocopes.com/mysql-how-to-install/).
+3. Continue to [Next Steps](#next-steps).
 
-3. Continue to [Next steps](#next-steps)
+### Apple Silicon (All M-Series Processors)
 
-#### Apple M* processors
+> **Note:** Installing the MySQL gem on Apple Silicon Macs requires additional steps:
 
-<!-- theme: info -->
-> To successfully install MySQL gem on your M1 you need to follow those two steps:
->1. Make sure mysql, openssl and zstd are installed on Mac via Homebrew.
-> ```
-> brew install mysql openssl zstd 
-> ```
->2. Install mysql2 gem.
-> ```
-> gem install mysql2 -v '0.5.6' -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" --with-cppflags=-I$(brew --prefix openssl)/include
->```
-
----
-
-### Linux Ubuntu
-
-The following steps should work flawlessly for any common Linux distribution (Mint, Ubuntu etc.)
-
-1. Install [***MySQL***](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04) \
-   ⚠️ Pay attention to the warning in "Step 2 — Configuring MySQL" section of the guide. ⚠️
-
-2. Install Mysql client library
-
-```
-sudo apt-get install libmysqlclient-dev
-```
-
-3. Continue to [Next steps](#next-steps)
+1. Install dependencies via Homebrew:
+   ```sh
+   brew install mysql openssl zstd
+   ```
+2. Install the `mysql2` gem with the following command:
+   ```sh
+   gem install mysql2 -v '0.5.6' \
+     -- --with-mysql-config=$(brew --prefix mysql)/bin/mysql_config \
+     --with-ldflags="-L$(brew --prefix zstd)/lib -L$(brew --prefix openssl)/lib" \
+     --with-cppflags="-I$(brew --prefix openssl)/include"
+   ```
 
 ---
 
-### Windows using WSL(Windows Subsystem for Linux)
+## Linux (Ubuntu) Setup
 
-1. Use the latest Ubuntu LTS version in your WSL and continue inside it's terminal
+These steps work for most Debian-based distributions (Ubuntu, Mint, etc.).
 
-2. Install [***MySQL***](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-mysql) \
-   ⚠️ Before running `mysql_secure_installation` open up the MySQL prompt with `sudo mysql` and run:
+1. Install [***MySQL***](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04).  
+   ⚠️ **Important:** Review the "Step 2 — Configuring MySQL" section in the guide.
 
-```
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-```
-
-> It sets authentication method and a password(feel free to change it). More info
-> at https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04#step-2-configuring-mysql
-
-3. Install Mysql client library
-
-```
-sudo apt-get install libmysqlclient-dev
-```
-
-4. Continue to [Next steps](#next-steps)
-
-5. (Optional) Set Ruby interpreter for Rubymine \
-   https://dev.to/ericksk/rubymine-add-a-ruby-interpreter-using-wsl-553p
-
-### Docker(Experimental)
-
-https://git.easy.cz/devel/devel/-/tree/next/bugs/docker (For now there are some performance problems on some
-configurations)
+2. Install the MySQL client library:
+   ```sh
+   sudo apt-get install libmysqlclient-dev
+   ```
+3. Continue to [Next Steps](#next-steps).
 
 ---
 
-## Next steps
+## Windows (WSL - Windows Subsystem for Linux)
 
-1. Install a version manager [***RBENV***](https://github.com/rbenv/rbenv#installation) or
-   [***RVM***](https://rvm.io/rvm/install).
+1. Use the latest Ubuntu LTS version in WSL and open its terminal.
+2. Install [***MySQL***](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-mysql).  
+   ⚠️ Before running `mysql_secure_installation`, configure MySQL authentication:
+   ```sh
+   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+   ```
+   > This sets the authentication method and password (feel free to modify it). More details are available in the
+   > [DigitalOcean guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04#step-2-configuring-mysql).
 
-2. Install ***Ruby-3.3.4***
+3. Install the MySQL client library:
+   ```sh
+   sudo apt-get install libmysqlclient-dev
+   ```
+4. Continue to [Next Steps](#next-steps).
+5. *(Optional)* Configure Ruby interpreter for RubyMine: [Guide](https://dev.to/ericksk/rubymine-add-a-ruby-interpreter-using-wsl-553p).
 
-> On newer Macs, the latest versions of Ruby might not work flawlessly so you might need to use an older version of ruby
+---
 
-3. Generate your SSH key
-
-```
-ssh-keygen -t ed25519
-```
-
-4. Add your generated SSH key into Easy Gitlab in **Profile** > **Preferences** > **SSH Keys**
-
-5. Download the version of the platform you want to work on.
-
-```
-git clone git@git.easy.cz:devel/devel.git
-```
-
-6. Switch to `devel` directory you just cloned
-
-```
-cd devel
-```
-
-7. Install ***Ruby Bundler***.
-
-```
-gem install bundler
-```
-
-8. Add our gemserver to your bundler
-
-    - Go to https://gems.easysoftware.com/ and login via Esko
-    - Go to https://gems.easysoftware.com/help and use one of the three options
+## Docker
 
 
-9. Install platform dependencies
+Docker is now the easiest way to set up your environment. Follow the guide here: [Docker Setup Guide](https://git.easy.cz/devel/devel/-/tree/next/bugs/docker).
 
-```
-bundle install
-```
+---
 
-10. Setup your database
-    - Copy `config/database.yml.example` and remove `.example` to create `config/database.yml` configuration file
-    - Modify database name and credentials in `config/database.yml` to match your own, based
-      on [Configuring a database](https://guides.rubyonrails.org/configuring.html#configuring-a-database).
-    - Create your databases
-      ```
+## Next Steps
+
+1. Install a Ruby version manager: [***rbenv***](https://github.com/rbenv/rbenv#installation) or [***RVM***](https://rvm.io/rvm/install).
+2. Install **Ruby 3.3.7**.
+3. Generate an SSH key:
+   ```sh
+   ssh-keygen -t ed25519
+   ```
+4. Add your SSH key to Easy GitLab: **Profile** > **Preferences** > **SSH Keys**.
+5. Clone the platform repository:
+   ```sh
+   git clone git@git.easy.cz:devel/devel.git
+   ```
+6. Navigate to the cloned directory:
+   ```sh
+   cd devel
+   ```
+7. Install ***Bundler***:
+   ```sh
+   gem install bundler
+   ```
+8. Install platform dependencies:
+   ```sh
+   bundle install
+   ```
+9. **Set up the database:**
+    - Copy `config/database.yml.example` and rename it to `config/database.yml`.
+    - Update database credentials in `config/database.yml` ([Configuration Guide](https://guides.rubyonrails.org/configuring.html#configuring-a-database)).
+    - Create the databases:
+      ```sh
       rake db:create
       ```
-    - Prepare your development database
-        - From an sql dump:
-            - Use your own or download demo
-              dump - [demo_database_dump](https://github.com/easysoftware/developer-portal-devs/raw/unify_and_improve_be_setup/files/demo_dump_20232704.sql.gz),
-              and load it into your database
-            ```
-            gunzip -c PATH_TO_DUMP | mysql MY_DB_NAME
-            ```
-        - OR a clean database
+    - **Prepare your development database:**
+        - Using an SQL dump:
+          ```sh
+          gunzip -c PATH_TO_DUMP | mysql MY_DB_NAME
           ```
-          bundle exec rake db:migrate
+          *(Download a sample dump: [demo_database_dump](https://github.com/easysoftware/developer-portal-devs/raw/unify_and_improve_be_setup/files/demo_dump_20232704.sql.gz).)*
+        - OR create a clean database:
+          ```sh
+          bundle exec rake db:create RAILS_ENV=development
           ```
-          > When using **WSL** use `bundle exec rake db:migrate NAME=''` instead
+          > **WSL Users:** Use `bundle exec rake db:migrate NAME=''` instead.
+10. **Run database migrations:**
+    ```sh
+    bundle exec rake db:migrate RAILS_ENV=development
+    ```
 
-11. Run **easyinstall** script
+11. **Run EasyInstall script:**
+    ```sh
+    bundle exec rake easy:install RAILS_ENV=development
+    ```
+    > **WSL Users:** Use `bundle exec rake easy:install RAILS_ENV=development NAME=''` instead.
 
-```
-bundle exec rake easy:install RAILS_ENV=development
-```
+12. Start the Rails server (available at `http://localhost:3000`):
+    ```sh
+    rails s
+    ```
 
-> When using **WSL** use `bundle exec rake easy:install RAILS_ENV=development NAME=''` instead
+13. (**Bonus**) Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) *(highly recommended)*.
+    > It automates tasks like creating merge requests and simplifying SSH access.
+---
 
-12. Start a rails server - it will be available at `http://localhost:3000`
+### 🚂 Choo-Choo! Your Rails Server is Leaving the Station! 
 
-```
-rails s
-```
 
-13. (**BONUS**) Install [***EasyCLI***](https://git.easy.cz/internal/easy_cli) (highly recommended). Shortens the amount
-    of clicks you have to do. For example, it automatically creates merge requests, simplifies SSH access, etc...
-
-**At this point you should have your workstation ready.**
+Your development environment is now ready!

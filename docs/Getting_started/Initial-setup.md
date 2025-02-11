@@ -104,10 +104,6 @@ To get started, follow the official guide here:
 9. **Set up the database:**
     - Copy `config/database.yml.example` and rename it to `config/database.yml`.
     - Update database credentials in `config/database.yml` ([Configuration Guide](https://guides.rubyonrails.org/configuring.html#configuring-a-database)).
-    - Create the databases:
-      ```sh
-      rake db:create
-      ```
     - **Prepare your development database:**
         - Using an SQL dump:
           ```sh

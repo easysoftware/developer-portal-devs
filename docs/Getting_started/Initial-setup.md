@@ -115,12 +115,12 @@ Docker is now the easiest way to set up your environment. Follow the guide here:
           ```sh
           bundle exec rake db:create RAILS_ENV=development
           ```
-          > **WSL Users:** Use `bundle exec rake db:migrate NAME=''` instead.
+          > **WSL Users:** Use `bundle exec rake db:create RAILS_ENV=development NAME=''` instead.
 10. **Run database migrations:**
     ```sh
     bundle exec rake db:migrate RAILS_ENV=development
     ```
-
+    > **WSL Users:** Use `bundle exec rake db:migrate RAILS_ENV=development NAME=''` instead.**
 11. **Run EasyInstall script:**
     ```sh
     bundle exec rake easy:install RAILS_ENV=development

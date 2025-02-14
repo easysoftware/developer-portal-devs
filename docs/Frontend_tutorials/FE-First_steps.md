@@ -43,24 +43,6 @@ bundle exec rake easyproject:install RAILS_ENV=development
 
 This command will install `node modules` and `compile Vue`. This is used in the pipelines.
 
-### Rails ujs
-
-Rails-ujs is a javascript library that allows non-GET requests from HTML links, Ajax integration with Rails, and more.
-To make Rails-ujs work on localhost with Vite we need to replace the content `/app/frontend/src/rails_ujs.js` with:
-
-```javascript
-// without vite dev server running
-
-// import "@rails/ujs";
-
-// with vite dev server running
-
-import Rails from "@rails/ujs"
-
-window.Rails = Rails;
-window.Rails.start();
-```
-
 ### Development on your local machine
 
 > Make sure that your platform is in the proper branch.

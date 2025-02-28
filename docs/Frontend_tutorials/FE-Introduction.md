@@ -1,76 +1,75 @@
-# Frontend first steps
+# Frontend Introduction
 
-*In this article we will guide you through the first steps to develop frontend features.*
+*This guide walks you through the initial steps required to set up and develop frontend features in our project.*
 
 ---
 
-## First steps as Frontend developer
+## Getting Started as a Frontend Developer
+
+We are transitioning from server-side rendering to a modern frontend stack using [Vue.js](https://vuejs.org/) alongside GraphQL on the backend.
 
 <!-- theme: danger -->
-> Note that for in order to be able to develop frontend you also have to be able to have backend running on your workstation. Head [here](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Getting_started/Initial-setup.md) to set it up in case you haven't
+> Note: To develop frontend features, you must also have the backend running on your workstation. Follow the [Initial Setup Guide](https://easysoftware.stoplight.io/docs/developer-portal-devs/docs/Getting_started/Initial-setup.md) if you haven't set it up yet.
 
-We are gradually switching from rending everything on the server to using a modern JS framework in combination with GraphQL on the back-end. For that we picked the [Vue.js](https://vuejs.org/) framework.
+---
 
-All you need is contained in platform, except of legacy plugins like Gantt, WBS, or Scheduler.
+## Setting Up the Frontend Environment
 
-### How to install EASY VUE?
+### 1. Install Node.js.
 
-1. Install node.js.
-
-> Please [install `nvm`](https://github.com/nvm-sh/nvm), version of node is defined in `.nvmrc`
+We use [**Node Version Manager (nvm)**](https://github.com/nvm-sh/nvm) to manage Node.js versions. [Install `nvm`](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) if you haven't already. Once installed, switch to the correct Node.js version:
 
 ```bash
 nvm use
 ```
 
-Command above will switch the node version to the version that is defined in `.nvmrc`. You may need to install the version of the node according to nvm, please see [README.md](https://github.com/nvm-sh/nvm/blob/master/README.md)
+> If the required version is not installed, `nvm` will prompt you to install it. Refer to the [`nvm` README](https://github.com/nvm-sh/nvm/blob/master/README.md) for installation details.
 
-2. Switch to the right version of Yarn package manager
+### 2. Use the right version of Yarn package manager
+
+We use [**Yarn**](https://yarnpkg.com/) as the package manager. Enable it with:
 
 ```
 corepack enable
 ```
 
-Command above will switch to Yarn version that is defined in `package.json` in field `packageManager`.
+> [Corepack](https://nodejs.org/api/corepack.html#corepack) will switch to Yarn version that is defined in `package.json` in field `packageManager`.
 
-### Building Vue
+### 3. Running Initial Setup
 
-Running in the root of platform
+To initialize the project, including database migration and installing dependencies (node modules), run the following command in the project root:
 
 ```
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
-This command will install `node modules` and `compile Vue`. This is used in the pipelines.
+## Running the Development Environment
 
-### Development on your local machine
+> Before starting development, ensure that your **platform is on the correct branch**.
 
-> Make sure that your platform is in the proper branch.
+### 1. Start Vite Development Server
 
-1. Install dependencies in the platform.
-
-```
-yarn install --immutable
-```
-
-2. Start Vite to serve sources
+Start Vite to serve the frontend assets, with watching changes:
 
 ```
 vite dev
 ```
+> Is possible to run `vite build` to build the frontend assets without watching changes. (it's used in production)
 
 <!-- theme: danger -->
 > Do not kill it! Keep an eye on the console. Front compilation failures appear here.
 
-3. Launch rails server in another console
+### 2. Start the Rails server
+
+In a separate terminal, start the Rails backend:
 
 ```
 bundle exec rails server
 ```
 
-> From this point, you don't have to do anything with the backend. As long as it's running, it's fine. The server listens by default at http://localhost:3000/.
+### 3.Use the app in the browser
 
-4. Use the app in the browser
-
-> Vite is now serving the frontend assets. Its watching changes in the filesystem and recompiles new versions on the fly.
-
+Once the servers are running:
+- **Vite** serves the frontend assets.
+- Any changes to the source files trigger automatic recompilation.
+- The app can be accessed via **http://localhost:3000/**.

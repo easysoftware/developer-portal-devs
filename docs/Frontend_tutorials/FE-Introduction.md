@@ -29,7 +29,7 @@ nvm use
 
 We use [**Yarn**](https://yarnpkg.com/) as the package manager. Enable it with:
 
-```
+```bash
 corepack enable
 ```
 
@@ -39,7 +39,7 @@ corepack enable
 
 To initialize the project, including database migration and installing dependencies (node modules), run the following command in the project root:
 
-```
+```bash
 bundle exec rake easyproject:install RAILS_ENV=development
 ```
 
@@ -51,10 +51,10 @@ bundle exec rake easyproject:install RAILS_ENV=development
 
 Start Vite to serve the frontend assets, with watching changes:
 
-```
+```bash
 vite dev
 ```
-> Is possible to run `vite build` to build the frontend assets without watching changes. (it's used in production)
+> It is possible to run `vite build` to build the frontend assets without watching changes. (This is used in production.)
 
 <!-- theme: danger -->
 > Do not kill it! Keep an eye on the console. Front compilation failures appear here.
@@ -63,11 +63,11 @@ vite dev
 
 In a separate terminal, start the Rails backend:
 
-```
+```bash
 bundle exec rails server
 ```
 
-### 3.Use the app in the browser
+### 3. Use the app in the browser
 
 Once the servers are running:
 - **Vite** serves the frontend assets.

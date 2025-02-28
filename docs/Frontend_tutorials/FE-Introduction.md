@@ -74,13 +74,3 @@ bundle exec rails server
 
 > Vite is now serving the frontend assets. Its watching changes in the filesystem and recompiles new versions on the fly.
 
-#### Unit tests
-
-Unit tests can be find [here](https://vue-test-utils.vuejs.org/) and [here](https://vitest.dev/).
-
-#### Code formatting
-
-We use ESLint which does removes all original styling and ensures that all outputted code conforms to a consistent style.
-ESLint takes your code and reprints it from scratch by taking the line length into account.
-
-Find out how to use it [here](https://eslint.org/docs/user-guide/getting-started).

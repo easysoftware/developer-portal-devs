@@ -13,7 +13,7 @@ In case the pipeline passes, the changes can be found in the client's repository
 from a branch starting with repo-bot...
 
 <!-- theme: danger -->
-Each client with custom branding must have a CI variable `HAS_CUSTOM_BRANDING` set to true in the repository.
+> Each client with custom branding must have a CI variable `HAS_CUSTOM_BRANDING` set to true in the repository.
 
 1) In Esko, locate the client’s contract ID. From now on referred to as `CONTRACT_ID`  
    [Contract Link](https://es.easyproject.com/easy_contracts/ID)
@@ -61,7 +61,7 @@ NEXT: Proceed according to detailed documentation in
 ### Transition from V13 to V14
 
 <!-- theme: warning -->
-VALID ONLY FOR CLOUD CLIENTS
+> VALID ONLY FOR CLOUD CLIENTS
 
 #### Client repository exists
 

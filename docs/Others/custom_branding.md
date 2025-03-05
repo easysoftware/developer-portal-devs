@@ -1,57 +1,73 @@
-# Repository Preparation for Customizing Theme Design
+# Custom Branding
 
-We use Repobot actions which can be found here [GitLab Link](https://git.easy.cz/devops/repo-bot-actions).
-In case the pipeline passes entirely, the changes can be found in the client's repository in the form of a merge request
+Custom branding lives inside the modification plugin of each individual client. For this reason the first step is to
+prepare the required structure.
+
+If that's ready proceed according to detailed documentation in
+`app/frontend/src/shared/stylesheets/easy/themes/README.md`[[GitLab Link](https://git.easy.cz/devel/devel/-/blob/c3ae88a5b1dd2015c4cafc6fa5a898a175d31402/app/frontend/src/shared/stylesheets/easy/themes/README.md)].
+
+## Repository Preparation for Customizing Theme Design
+
+We use Repo Bot actions which can be found in [GitLab](https://git.easy.cz/devops/repo-bot-actions).
+In case the pipeline passes, the changes can be found in the client's repository in the form of a merge request
 from a branch starting with repo-bot...
 
-### ⚠️ Important: !!! Each client with custom branding must have a CI variable HAS_CUSTOM_BRANDING set to true in the repository. !!!
+<!-- theme: danger -->
+Each client with custom branding must have a CI variable `HAS_CUSTOM_BRANDING` set to true in the repository.
 
 1) In Esko, locate the client’s contract ID. From now on referred to as `CONTRACT_ID`  
    [Contract Link](https://es.easyproject.com/easy_contracts/ID)
 
-## Customization Theme Design for V14
+### Customization Theme Design for V14
 
-### With exist client repository
+#### Client repository exists
 
 2) Creating a modification plugin and custom branding folders
-   Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)
+   Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)].
 
    The action creates a CI variable `HAS_CUSTOM_BRANDING` in the repository.
    This variable ensures that subsequent updates do not delete modifications in
    `app/frontend/src/shared/stylesheets/easy/themes/_theme--brand.scss`.
-   Then if the modification plugin does not exist, repobot will create it with everything necessary for creating custom
-   branding.
+   Then, if the modification plugin does not exist, Repo Bot will create it with everything necessary for creating
+   custom branding.
    In the case that the plugin exists, it will only be extended with custom branding directories and files.
 
-### Non-existent client repository
+NEXT: Proceed according to detailed documentation in
+`app/frontend/src/shared/stylesheets/easy/themes/README.md`[[GitLab Link](https://git.easy.cz/devel/devel/-/blob/c3ae88a5b1dd2015c4cafc6fa5a898a175d31402/app/frontend/src/shared/stylesheets/easy/themes/README.md)]
 
-2) Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/create-repository/-/pipelines/new)  
+#### Client repository doesn't exist
+
+2) Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/create-repository/-/pipelines/new)].  
    This step will trigger a GitLab pipeline that creates the client's repository. The link to it can be found at the end
    of the pipeline:  
    `[RepoBot::Services::Cli::CreateRepository] New project is ready on https://git.easy.cz/clients/my_little_pony`
 
 3) Creating a modification plugin and custom branding folders
-   Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)
+   Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)].
 
    The action creates a CI variable `HAS_CUSTOM_BRANDING` in the repository.
    This variable ensures that subsequent updates do not delete modifications in
    `app/frontend/src/shared/stylesheets/easy/themes/_theme--brand.scss`.
-   Then if the modification plugin does not exist, repobot will create it with everything necessary for creating custom
-   branding.
+   Then, if the modification plugin does not exist, Repo Bot will create it with everything necessary for creating
+   custom branding.
    In the case that the plugin exists, it will only be extended with custom branding directories and files.
 
-## Transition from V13 to V14
+NEXT: Proceed according to detailed documentation in
+`app/frontend/src/shared/stylesheets/easy/themes/README.md`[[GitLab Link](https://git.easy.cz/devel/devel/-/blob/c3ae88a5b1dd2015c4cafc6fa5a898a175d31402/app/frontend/src/shared/stylesheets/easy/themes/README.md)]
 
-### ⚠️ Warning: !!! VALID ONLY FOR CLOUD CLIENTS !!!
+### Transition from V13 to V14
 
-### With exist client repository
+<!-- theme: warning -->
+VALID ONLY FOR CLOUD CLIENTS
+
+#### Client repository exists
 
 2) Creating an update template  
-   Now, we need to create an update template in the Repo-bot  
-   [RepoBot on GitLab](https://git.easy.cz/devops/repo-bot/-/tree/master/templates/update)  
+   Now, we need to create an update template
+   in [Repo Bot on GitLab](https://git.easy.cz/devops/repo-bot/-/tree/master/templates/update)  
    The naming convention requires that templates be named `CONTRACT_ID.yml`.
 
    This ensures that during updates, the modification plugin and most importantly the style adjustments, which are made
@@ -80,22 +96,19 @@ from a branch starting with repo-bot...
     - plugins/easyproject/easy_plugins/modification_*
    ```
 
-   We commit and push this template to the Repo-bot master. We wait for the Repo-bot pipeline  
-   [RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines)  
-   to release the Docker image.
+   We commit and push this template to the Repo-bot master. We wait
+   for [RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines) to release the Docker image.
 
 3) Running the client repository update
 
-   Using the `Update Repository` action  
-   [RepoBot Update](https://git.easy.cz/devops/repo-bot-actions/update-repository/-/pipelines/new)  
-   we trigger the update of the client's repository. Before submitting, we again fill in the `CONTRACT_ID` value just
+   Using the `Update Repository`
+   action [RepoBot Update](https://git.easy.cz/devops/repo-bot-actions/update-repository/-/pipelines/new) we trigger the
+   update of the client's repository. Before submitting, we again fill in the `CONTRACT_ID` value just
    like during the repository creation.
    This action will create a merge request in the client’s repository with the update into the master branch.
 
-4) In the Repo-bot  
-   [RepoBot on GitLab](https://git.easy.cz/devops/repo-bot)  
-   we uncomment the two commented lines in our update template. Then we commit and push the final version of the
-   template again.
+4) In [Repo Bot on GitLab](https://git.easy.cz/devops/repo-bot) we uncomment the two commented lines in
+   our update template. Then we commit and push the final version of the template again.
    The final version should look something like this:
 
    ```yaml
@@ -117,27 +130,30 @@ from a branch starting with repo-bot...
    ```
 
 5) Creating a modification plugin and custom branding folders
-   Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)
+   Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)].
 
    The action creates a CI variable `HAS_CUSTOM_BRANDING` in the repository.
    This variable ensures that subsequent updates do not delete modifications in
    `app/frontend/src/shared/stylesheets/easy/themes/_theme--brand.scss`.
-   Then if the modification plugin does not exist, repobot will create it with everything necessary for creating custom
-   branding.
+   Then, if the modification plugin does not exist, Repo Bot will create it with everything necessary for creating
+   custom branding.
    In the case that the plugin exists, it will only be extended with custom branding directories and files.
 
-### Non-existent client repository
+NEXT: Proceed according to detailed documentation in
+`app/frontend/src/shared/stylesheets/easy/themes/README.md`[[GitLab Link](https://git.easy.cz/devel/devel/-/blob/c3ae88a5b1dd2015c4cafc6fa5a898a175d31402/app/frontend/src/shared/stylesheets/easy/themes/README.md)]
 
-2) Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/create-repository/-/pipelines/new)  
+#### Client repository doesn't exist
+
+2) Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/create-repository/-/pipelines/new)].  
    This step will trigger a GitLab pipeline that creates the client's repository. The link to it can be found at the end
    of the pipeline:  
    `[RepoBot::Services::Cli::CreateRepository] New project is ready on https://git.easy.cz/clients/my_little_pony`
 
 3) Creating an update template  
-   Now, we need to create an update template in the Repo-bot  
-   [RepoBot on GitLab](https://git.easy.cz/devops/repo-bot/-/tree/master/templates/update)  
+   Now, we need to create an update template
+   in [Repo Bot on GitLab](https://git.easy.cz/devops/repo-bot/-/tree/master/templates/update)  
    The naming convention requires that templates be named `CONTRACT_ID.yml`.
 
    This ensures that during updates, the modification plugin and most importantly the style adjustments, which are made
@@ -166,20 +182,18 @@ from a branch starting with repo-bot...
     - plugins/easyproject/easy_plugins/modification_*
    ```
 
-   We commit and push this template to the Repo-bot master. We wait for the Repo-bot pipeline  
-   [RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines)  
-   to release the Docker image.
+   We commit and push this template to the Repo-bot master. We wait for
+   the [RepoBot pipeline](https://git.easy.cz/devops/repo-bot/-/pipelines) to release the Docker image.
 
 4) Running the client repository update
 
-   Using the `Update Repository` action  
-   [RepoBot Update](https://git.easy.cz/devops/repo-bot-actions/update-repository/-/pipelines/new)  
-   we trigger the update of the client's repository. Before submitting, we again fill in the `CONTRACT_ID` value just
+   Using the `Update Repository`
+   action [RepoBot Update](https://git.easy.cz/devops/repo-bot-actions/update-repository/-/pipelines/new) we trigger the
+   update of the client's repository. Before submitting, we again fill in the `CONTRACT_ID` value just
    like during the repository creation.
    This action will create a merge request in the client’s repository with the update into the master branch.
 
-5) In the Repo-bot  
-   [RepoBot on GitLab](https://git.easy.cz/devops/repo-bot)  
+5) In the [Repo Bot on GitLab](https://git.easy.cz/devops/repo-bot)  
    we uncomment the two commented lines in our update template. Then we commit and push the final version of the
    template again.
    The final version should look something like this:
@@ -203,12 +217,15 @@ from a branch starting with repo-bot...
    ```
 
 6) Creating a modification plugin and custom branding folders
-   Fill in the `CONTRACT_ID` value at the following link and submit the form.  
-   [GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)
+   Fill in the `CONTRACT_ID` value at the following link and submit the
+   form [[GitLab Link](https://git.easy.cz/devops/repo-bot-actions/add-custom-branding/-/pipelines/new)].
 
    The action creates a CI variable `HAS_CUSTOM_BRANDING` in the repository.
    This variable ensures that subsequent updates do not delete modifications in
    `app/frontend/src/shared/stylesheets/easy/themes/_theme--brand.scss`.
-   Then if the modification plugin does not exist, repobot will create it with everything necessary for creating custom
-   branding.
+   Then, if the modification plugin does not exist, Repo Bot will create it with everything necessary for creating
+   custom branding.
    In the case that the plugin exists, it will only be extended with custom branding directories and files.
+
+NEXT: Proceed according to detailed documentation in
+`app/frontend/src/shared/stylesheets/easy/themes/README.md`[[GitLab Link](https://git.easy.cz/devel/devel/-/blob/c3ae88a5b1dd2015c4cafc6fa5a898a175d31402/app/frontend/src/shared/stylesheets/easy/themes/README.md)]

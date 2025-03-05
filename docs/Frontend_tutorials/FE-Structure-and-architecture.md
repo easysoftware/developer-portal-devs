@@ -20,19 +20,15 @@ This document defines the frontend project structure, directory organization, na
 app/frontend/
 ├── entrypoints/              # Contains entry points files
 │   ├── <module_name>.ts      # Entry point for a specific module
-│   ├── application.js        # Global entrypoint aceessible in whole application
+│   ├── application.js        # Global entrypoint accessible in whole application
 ├── src/                      # Contains all frontend modules
-│   ├── <module_name>/        # Each module contain subset of module structure or submodules with shared folder
+│   ├── <module_name>/        # Each module contain subset of module structure or submodules and shared folder
 │   │   ├── <submodule_name>/ # Nested submodules (if needed) with same structure as module
 │   │   ├── shared/           # Shared between submodules, contain subset of module structure
-|   |   ├── stylesheets/      # Global stylesheets, contain structure using atomic design, more in detail in styling guidelines
 │   ├── easy_ui/              # Global shared UI components, from this module can be imported in any other module
 │   ├── shared/               # Global shared, contain subset of module structure
 │   ├── tests/                # Unit and integration frontend tests, contains tests structure, more in frontend testing guidelines
 ```
-
-<!-- theme: danger -->
-> **Note**: Module can contain submodules and shared folder or subset of module structure. Not submodules and subset of module structure at the same time. If we need to share somethig between submodules we can use shared folder.
 
 ### 3.2 Module Structure
 
@@ -48,9 +44,13 @@ app/frontend/
 │   ├── mutations/  # GraphQL mutations definitions
 │   ├── queries/    # GraphQL queries definitions
 ├── store/          # Module-specific state management stores
+├── stylesheets/    # Global stylesheets, contain structure using atomic design, more in detail in styling guidelines
 ├── types/          # TypeScript interfaces & types & enums
 ├── utils/          # Utility functions
 ```
+
+<!-- theme: danger -->
+> **Note**: Module can contain submodules and shared folder or subset of module structure. Not submodules and subset of module structure at the same time. If we need to share somethig between submodules we can use shared folder.
 
 ## 4. Naming Conventions
 

@@ -4,7 +4,25 @@
 
 ---
 
+## Tests Structure
 
+### Base Test Structure
+```
+app/frontend/src/tests/
+   ├── <module_name>/  # Tests for a specific module, contains subset of tests module structure
+   ├── shared/         # Shared between tests modules, contain subset of tests module structure
+```
+
+### Module Test Structure
+```
+<module_name>/
+├── fixtures/  # Test fixtures
+├── mocks/     # Test mocks
+├── stubs/     # Test stubs
+├── tests/     # Unit and integration tests, can be splitted into separate folders from module structure, but does not have to
+├── types/     # TypeScript interfaces & types & enums, typically enum with tests selectors
+├── utils/     # Utility functions for tests
+```
 
 ## Frontend tests
 

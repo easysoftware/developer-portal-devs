@@ -357,23 +357,3 @@ function toggleSubMenu(menu) {
 >**PREFER** new keywords, for instance creations.
 >
 >**PREFER** usage of `easyClasses.Widget` (*namespace will be moved to EASY in the future*).
-
-
-## Vue.js apllications
-
-For new microfrontend applications, it is recommended to use the Vue.js framework. Vue.js applications are located in the app/frontend/src folder, where there are folders for each application and a shared folder for shared code, such as components, API services, utils, types, and more.
-
-### Structure of Vue.js application
-
-These folders can be found in each application and in the shared folder. They may contain subfolders if a more logical division is needed:
-
-  - **components** - Vue.js components
-  - **api** - api services
-  - **utils** - utils methods
-  - **types** - TypeScript types
-  - **composables** - Vue.js composables
-  - **constants** - constants
-  - **styles** - Styles in Atomic design
-  - **graphql** - GraphQL queries and mutations definitions
-  - **store** - Vuex/Pinia stores
-  - **directives** - custom Vue.js directives

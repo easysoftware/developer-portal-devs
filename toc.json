@@ -164,6 +164,11 @@
     },
     {
       "type": "item",
+      "title": "Frontend Project Structure & Architecture",
+      "uri": "docs/Frontend_tutorials/FE-Structure-and-architecture.md"
+    },
+    {
+      "type": "item",
       "title": "Frontend code style",
       "uri": "docs/Frontend_tutorials/FE-Code_style.md"
     },

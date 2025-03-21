@@ -173,6 +173,18 @@
       "uri": "docs/Frontend_tutorials/FE-Code_style.md"
     },
     {
+      "type": "group",
+      "title": "Frontend standards",
+      "uri": "docs/Frontend_tutorials/standards/_readme.md",
+      "items": [
+        {
+          "type": "item",
+          "title": "Vue.js components",
+          "uri": "docs/Frontend_tutorials/standards/components.md"
+        }
+      ]
+    },
+    {
       "type": "item",
       "title": "Frontend code generator",
       "uri": "docs/Frontend_tutorials/FE-Codegen.md"

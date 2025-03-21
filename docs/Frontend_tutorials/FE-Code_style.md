@@ -1,10 +1,10 @@
-# Frontend Code Style
+# Frontend code style
 
 This document outlines rules and recommendations for creating clear, maintainable, and consistent JavaScript, TypeScript, and CSS/SCSS code.
 
 ---
 
-## Code Style Tools
+## Code style tools
 
 Frontend code style is defined by using these tools:
 

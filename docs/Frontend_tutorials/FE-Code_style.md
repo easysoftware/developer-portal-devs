@@ -1,4 +1,4 @@
-# Frontend code style
+# Frontend Code Style
 
 *Main goal of this document is to highlight rules and recommendations for creation nice and maintainable JavaScript code.*
 

@@ -169,17 +169,17 @@
     },
     {
       "type": "item",
-      "title": "Frontend code style",
+      "title": "Frontend Code Style",
       "uri": "docs/Frontend_tutorials/FE-Code_style.md"
     },
     {
       "type": "group",
-      "title": "Frontend standards",
+      "title": "Frontend Standards",
       "uri": "docs/Frontend_tutorials/standards/_readme.md",
       "items": [
         {
           "type": "item",
-          "title": "Vue.js components",
+          "title": "Vue.js Components",
           "uri": "docs/Frontend_tutorials/standards/components.md"
         }
       ]

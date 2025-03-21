@@ -1,29 +1,26 @@
-# Vue.js components
+# Vue.js Components
 
-In this section, we will cover the standards and best practices for developing Vue.js components in our projects.
+This section outlines the standards and best practices for developing Vue.js components within our projects.
 
-## Script Setup with TypeScript
+## Using Script Setup with TypeScript
 
-We use the `<script setup lang="ts">` syntax with TypeScript for all our Vue components. This approach provides a more concise and efficient way to write components, leveraging the full power of TypeScript for type safety and better developer experience.
+All Vue components should use the Composition API syntax along with TypeScript `<script setup lang="ts">`. This approach provides a concise, readable, and efficient way to define components, ensuring full type safety and a better developer experience.
 
 ## Single Responsibility Principle (SRP)
 
-Each component should adhere to the Single Responsibility Principle (SRP). This means that a component should have one clear purpose or responsibility. Avoid creating large components that handle multiple concerns. Instead, break them down into smaller, more focused components.
+Components should adhere to the Single Responsibility Principle. Each component should have one clear purpose or responsibility. Avoid creating overly large components that handle multiple concerns. Instead, break them down into smaller, more focused, reusable components.
 
-## Data Sharing
+## State Management
 
-When sharing data between components, prefer using a store (more in state management section) rather than passing a large number of props. This approach helps to keep components clean and maintainable, and it centralizes the state management.
+When sharing data between components, prefer utilizing a centralized store (refer to the state management section) instead of passing numerous props. This helps maintain clean, readable, and easily maintainable components by centralizing the state logic.
 
-## Descriptive Component Names
+## Descriptive Component Naming
 
-Components should have descriptive names that clearly indicate their purpose. This makes the codebase more readable and easier to navigate.
+Always use descriptive component names that clearly indicate their functionality. Descriptive naming significantly improves code readability and simplifies navigation within the codebase.
 
-By following these guidelines, you will ensure that your Vue.js components are clean, maintainable, and consistent with our project's standards.
+Following these guidelines will ensure your Vue.js components are clear, maintainable, and consistent with the project's overall standards.
 
-## Example
-
-Here is an example of a Vue component written in the `<script setup lang="ts">` syntax with TypeScript. This example demonstrates how to create a reusable and maintainable component following the guidelines mentioned above.
-
+## Example Component
 
 ```vue
 <template>
@@ -46,33 +43,36 @@ Here is an example of a Vue component written in the `<script setup lang="ts">` 
   </EasySlider>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import EasySlider from "../../../../easy-ui/components/EasySlider.vue";
+import EasyIcon from "@/src/easy-icons/EasyIcon.vue";
 import { computed } from "vue";
 import { useDataSourceWebStore } from "@/src/easy-ai/dataSourceWeb/shared/store/dataSourceWebStore";
-import EasyIcon from "@/src/easy-icons/EasyIcon.vue";
 
 const t = window.EasyLocale.getLocale;
-
 const dataSourceWebStore = useDataSourceWebStore();
 
 const depthValue = computed({
   get: () => dataSourceWebStore.depth,
-  set: (value: number) => {
-    dataSourceWebStore.setDepth(value);
-  },
+  set: (value: number) => dataSourceWebStore.setDepth(value),
 });
 </script>
 ```
 
 ### Explanation
 
-1. **Script Setup with TypeScript**: The component uses the `<script setup lang="ts">` syntax, which is a concise and efficient way to write Vue components. TypeScript provides type safety, making the code more robust and easier to maintain.
+1. **Script Setup with TypeScript:**
+   The example uses the concise `<script setup lang="ts">` syntax, leveraging TypeScript for better readability, robustness, and maintainability.
 
-2. **Single Responsibility Principle (SRP)**: The component adheres to SRP by focusing on a single responsibility - managing the depth value using a slider. This makes the component easier to understand, test, and maintain.
+2. **Single Responsibility Principle (SRP):**
+   The component clearly focuses on a single responsibility: managing the depth value with a slider. This simplicity ensures clarity and ease of maintenance.
 
-3. **Data Sharing**: Instead of passing multiple props, the component uses a store (`useDataSourceWebStore`) to manage the state. This centralizes state management and keeps the component clean.
+3. **Data Sharing:**
+   The component relies on a centralized store (`useDataSourceWebStore`), which promotes clean and maintainable state management.
 
-4. **Descriptive Component Names**: The components used here have descriptive names (`EasySlider`, `EasyIcon`), making the code more readable and easier to navigate.
+4. **Descriptive Component Naming:**
+   The use of descriptive names (`EasySlider`, `EasyIcon`) enhances readability and simplifies code navigation.
 
-5. **Smaller Components**: The example demonstrates a small, focused component that handles a specific functionality. This approach aligns with the guideline of creating smaller components with clear functionality.
+5. **Focused, Small Components:**
+   This example clearly illustrates the guideline of creating small, focused components to enhance maintainability and ease of testing.
+

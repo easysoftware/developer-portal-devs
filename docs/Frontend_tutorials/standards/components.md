@@ -13,12 +13,16 @@ Components should adhere to the Single Responsibility Principle. Each component 
 ## State Management
 
 When sharing data between components, prefer utilizing a centralized store (refer to the state management section) instead of passing numerous props. This helps maintain clean, readable, and easily maintainable components by centralizing the state logic.
+Except for universal components that are used in multiple use cases, then make sense use props and emits. 
 
 ## Descriptive Component Naming
 
 Always use descriptive component names that clearly indicate their functionality. Descriptive naming significantly improves code readability and simplifies navigation within the codebase.
-
 Following these guidelines will ensure your Vue.js components are clear, maintainable, and consistent with the project's overall standards.
+
+## Test attributes
+
+Element that have some functional meaning (elements with that can user interact or render some specific content) should have data-cy attribute that is used for testing.
 
 ## Example Component
 
@@ -44,7 +48,7 @@ Following these guidelines will ensure your Vue.js components are clear, maintai
 </template>
 
 <script setup lang="ts">
-import EasySlider from "../../../../easy-ui/components/EasySlider.vue";
+import EasySlider from "@/src/easy-ui/components/EasySlider.vue";
 import EasyIcon from "@/src/easy-icons/EasyIcon.vue";
 import { computed } from "vue";
 import { useDataSourceWebStore } from "@/src/easy-ai/dataSourceWeb/shared/store/dataSourceWebStore";

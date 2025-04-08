@@ -60,6 +60,7 @@ app/frontend/
 - Use **PascalCase** for Vue component filenames.
 - API services: Filename ends with `Api` suffix like `easyAIFeedbackApi.ts`
 - Composables: Filename starts with `use` prefix like `useScrollToBottomMessages.ts`
+- Stores: Filename has suffix `Store` like `easyAIFeedbackStore.ts`
 
 ### 4.2 Directory Naming
 

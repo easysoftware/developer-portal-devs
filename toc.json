@@ -180,7 +180,12 @@
         {
           "type": "item",
           "title": "Vue.js Components",
-          "uri": "docs/Frontend_tutorials/standards/components.md"
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-components.md"
+        },
+        {
+          "type": "item",
+          "title": "State management",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-state-management.md"
         }
       ]
     },

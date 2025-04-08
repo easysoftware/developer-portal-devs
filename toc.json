@@ -186,6 +186,11 @@
           "type": "item",
           "title": "State management",
           "uri": "docs/Frontend_tutorials/standards/FE-Standards-state-management.md"
+        },
+        {
+          "type": "item",
+          "title": "State management",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-composables.md"
         }
       ]
     },

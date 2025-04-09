@@ -145,3 +145,29 @@ export const collectionConfluenceDataSourcesQuery = gql`
 <!-- theme: danger -->
 > Note: When defining GraphQL queries with the gql tag, use the tagged template literal syntax without enclosing it in parentheses <code>gql\`...\`;</code>
 . Do not write <code>gql(\`...\`);</code> instead, use it directly followed by a template literal as shown in the examples below. Using parentheses will cause a parsing error—such as Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["—because it interferes with the proper tag processing of the template literal. For further details on tagged template syntax, please see the MDN documentation on tagged templates.
+
+### GraphQL Definitions with fields from plugins
+
+Plugins in our system might be inactive at times. Therefore, before adding their fields to a GraphQL query, we must first check if the plugin is active. For example, the getAssignCoworkersQuery function checks whether the isR4aActive variable is true. If it is, the query includes fields related to R4A; otherwise, those fields are omitted because they are not part of the GraphQL schema. As a result, we cannot use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include these fields.
+
+```ts
+import { gql } from "@apollo/client";
+
+export const getAssignCoworkersQuery = (isR4aActive: boolean) => {
+  return gql`query assignCoworker($id: ID!) {
+    easySprintBoard(id: $id) {
+      id
+      users {
+        someBaseUserFields
+        ${
+          isR4aActive
+            ? `
+            someR4aSpecificUserFields
+            `
+            : ""
+        }
+      }
+    }
+  }`;
+};
+```

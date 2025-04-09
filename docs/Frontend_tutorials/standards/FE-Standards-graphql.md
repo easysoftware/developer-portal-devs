@@ -143,4 +143,5 @@ export const collectionConfluenceDataSourcesQuery = gql`
 > Note: After each update of some graphql definition is needed to run generation of graphql types. [link](https://easysoftware.stoplight.io/docs/developer-portal-devs/a32e74fbf89d3-frontend-code-generator)
 
 <!-- theme: danger -->
-> Note: Don't use gql tag with parentheses like `gql(...)` use only form without parentheses like in examples bellow. In other case it can thor and error `Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["`. 
+> Note: When defining GraphQL queries with the gql tag, use the tagged template literal syntax without enclosing it in parentheses <code>gql\`...\`;</code>
+. Do not write <code>gql(\`...\`);</code> instead, use it directly followed by a template literal as shown in the examples below. Using parentheses will cause a parsing error—such as Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["—because it interferes with the proper tag processing of the template literal. For further details on tagged template syntax, please see the MDN documentation on tagged templates.

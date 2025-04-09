@@ -7,8 +7,7 @@ All Vue components should use the Composition API syntax along with TypeScript `
 
 ## Single Responsibility Principle (SRP)
 
-Components adhere to the Single Responsibility Principle. Each component have one clear purpose or responsibility.
-
+Components adhere to the Single Responsibility Principle. Each component has one clear purpose or responsibility.
 - Avoid overly complex or large components.
 - Extract functionality into separate composable functions or child components when complexity grows.
 

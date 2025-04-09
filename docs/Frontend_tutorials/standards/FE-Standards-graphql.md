@@ -75,6 +75,9 @@ GraphQL definitions—queries, mutations, and fragments—should be organized in
 
 - **Separation of Concerns:**  
   Keep your API service (responsible for request handling) separate from your GraphQL definitions.
+
+- **File Structure:**
+  Keep your GraphQL definitions organized in a dedicated [folder structure](https://easysoftware.stoplight.io/docs/developer-portal-devs/cfd453fb9e5be-frontend-project-structure-and-architecture#32-module-structure) and one graphql definition per file.
   
 - **Use of Fragments:**  
   Define fragments for recurring field sets. This avoids redundancy and simplifies future updates. Is possible to use fragments in fragments if it's suitable.

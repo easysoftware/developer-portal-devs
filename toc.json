@@ -169,8 +169,40 @@
     },
     {
       "type": "item",
-      "title": "Frontend code style",
+      "title": "Frontend Code Style",
       "uri": "docs/Frontend_tutorials/FE-Code_style.md"
+    },
+    {
+      "type": "group",
+      "title": "Frontend Standards",
+      "uri": "docs/Frontend_tutorials/standards/_readme.md",
+      "items": [
+        {
+          "type": "item",
+          "title": "Vue.js Components",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-components.md"
+        },
+        {
+          "type": "item",
+          "title": "State management",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-state-management.md"
+        },
+        {
+          "type": "item",
+          "title": "State composables",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-composables.md"
+        },
+        {
+          "type": "item",
+          "title": "GraphQL API Services & Definitions",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-graphql.md"
+        },
+        {
+          "type": "item",
+          "title": "Rest",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-rest.md"
+        }
+      ]
     },
     {
       "type": "item",

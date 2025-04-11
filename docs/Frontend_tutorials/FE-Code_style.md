@@ -1,4 +1,4 @@
-# Frontend code style
+# Frontend Code Style
 
 This document outlines rules and recommendations for creating clear, maintainable, and consistent JavaScript, TypeScript, and CSS/SCSS code.
 

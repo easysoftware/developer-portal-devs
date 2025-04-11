@@ -80,8 +80,7 @@ GraphQL definitions—queries, mutations, and fragments—should be organized in
   Keep your GraphQL definitions organized in a dedicated [folder structure](https://easysoftware.stoplight.io/docs/developer-portal-devs/cfd453fb9e5be-frontend-project-structure-and-architecture#32-module-structure) and one graphql definition per file.
   
 - **Use of Fragments:**  
-  Define fragments for recurring field sets. This avoids redundancy and simplifies future updates. Is possible to use fragments in fragments if it's suitable.
-
+  Define fragments for recurring field sets. This avoids redundancy and simplifies future updates. It is possible to nest fragments if suitable.
 - **Descriptive Naming:**  
   Use clear names for queries, mutations, and fragments. For instance, our query in **collectionConfluenceDataSources.ts** is named `collectionConfluenceDataSourcesQuery` and our reusable fragment defined in **webDataSource.ts** is called `webDataSourceFragment`.
   Name in the graphql definition is the same as const, only without `Fragment`, `Query`, `Mutation` or `Subscription` suffix.

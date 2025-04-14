@@ -1,4 +1,4 @@
-# Constants Guidelines
+# Frontend Constants Guidelines
 
 This section provides conventions and examples for defining and using constants in the frontend codebase. Constants improve readability, maintainability, and help eliminate magic numbers or strings scattered throughout the code.
 

@@ -1,4 +1,4 @@
-# Utils Guidelines
+# Frontend Utils Guidelines
 
 This section outlines best practices for creating and maintaining helper functions within the `utils/` folder. These functions provide reusable logic that is not specific to Vue or reactive state—typically dealing with DOM interactions, string/array manipulations, layout adjustments, or other side-effect–free helpers.
 

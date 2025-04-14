@@ -35,10 +35,10 @@ function createInitialMessage() {
 
 ## Best Practices
 
-- **Group constants by purpose** into logically named files (e.g., `constants/ui.ts`, `constants/messages.ts`).
-- **Use explicit type annotations** for structured or domain-specific constants.
-- **Write descriptive names** that clarify intent and usage.
-- **Use `export const`** to guarantee immutability.
-- **Use `UPPER_SNAKE_CASE`** for all constant names.
-- **Include unit suffixes** in names when applicable (e.g., `_PX`, `_MS`, `_CHARS`) to clarify what the value represents.
-- **Use `Readonly<Type>`** for object constants to prevent accidental mutation.
+- Group constants by purpose into logically named files (e.g., `constants/ui.ts`, `constants/messages.ts`).
+- Use explicit type annotations for structured or domain-specific constants.
+- Write descriptive names that clarify intent and usage.
+- Use `export const` to guarantee immutability.
+- Use `UPPER_SNAKE_CASE` for all constant names.
+- Include unit suffixes in names when applicable (e.g., `_PX`, `_MS`, `_CHARS`) to clarify what the value represents.
+- Use `Readonly<Type>` for object constants to prevent accidental mutation.

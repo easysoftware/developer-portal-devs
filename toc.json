@@ -184,6 +184,11 @@
         },
         {
           "type": "item",
+          "title": "Frontend Constants Guidelines",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-constants.md"
+        },
+        {
+          "type": "item",
           "title": "State management",
           "uri": "docs/Frontend_tutorials/standards/FE-Standards-state-management.md"
         },
@@ -201,6 +206,11 @@
           "type": "item",
           "title": "Rest",
           "uri": "docs/Frontend_tutorials/standards/FE-Standards-rest.md"
+        },
+        {
+          "type": "item",
+          "title": "Frontend Utils Guidelines",
+          "uri": "docs/Frontend_tutorials/standards/FE-Standards-utils.md"
         }
       ]
     },

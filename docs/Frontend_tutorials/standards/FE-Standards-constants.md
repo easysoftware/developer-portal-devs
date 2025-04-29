@@ -36,6 +36,7 @@ function createInitialMessage() {
 ## Best Practices
 
 - Group constants by purpose into logically named files (e.g., `constants/ui.ts`, `constants/messages.ts`).
+- If a module has only a few constants (1-4), it is allowed to use an `index.ts` file in the `constants` folder for simplicity.
 - Use explicit type annotations for structured or domain-specific constants.
 - Write descriptive names that clarify intent and usage.
 - Use `export const` to guarantee immutability.

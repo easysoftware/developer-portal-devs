@@ -215,6 +215,17 @@
       ]
     },
     {
+      "type": "group",
+      "title": "Design system",
+      "items": [
+        {
+          "type": "item",
+          "title": "Design System Validation",
+          "uri": "docs/Frontend_tutorials/design_system/DS-Validation.md"
+        }
+      ]
+    },
+    {
       "type": "item",
       "title": "Frontend code generator",
       "uri": "docs/Frontend_tutorials/FE-Codegen.md"

@@ -23,7 +23,7 @@ bundle exec rubocop
 ```
 
 ### Dealing with offenses
-#### Fixable offenses
+
 Every time you see the possibility to fix some offenses - please do it.
 We keep two ways of exempting specific offenses:
 1. `.rubocop_todo.yml`
@@ -31,17 +31,9 @@ We keep two ways of exempting specific offenses:
    - to regenerate use `bundle exec rubocop --regenerate-todo`
 2. `.rubocop_ignore.yml`
    - keeps offenses that we want to keep and should be ignored.
-   - exceptions are added manually
+   - exceptions are added manually, instead of [inline disabling](https://docs.rubocop.org/rubocop/configuration.html#disabling-cops-within-source-code)
 
 For more info, see https://docs.rubocop.org/rubocop/configuration.html#automatically-generated-configuration
-
-#### Unfixable offenses
-If it is not possible to easily fix offenses - refactor the code. It will probably make it looking different, but that's fine.
-If it is too difficult to refactor OR it is not possible for some reason you can disable the cop within source code
-https://docs.rubocop.org/rubocop/configuration.html#disabling-cops-within-source-code
-
-<!-- theme: info -->
-> Please do not overuse disabling!
 
 ---
 

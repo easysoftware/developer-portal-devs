@@ -24,9 +24,16 @@ bundle exec rubocop
 
 ### Dealing with offenses
 #### Fixable offenses
-Every time you see possibility to fix some offenses - please do it.
-You can also generate .rubocop_todo.yml, see: `Notes and known issues` section below
-https://docs.rubocop.org/rubocop/configuration.html#automatically-generated-configuration
+Every time you see the possibility to fix some offenses - please do it.
+We keep two ways of exempting specific offenses:
+1. `.rubocop_todo.yml`
+   - keeps offenses that are fixable and should be fixed eventually.
+   - to regenerate use `bundle exec rubocop --regenerate-todo`
+2. `.rubocop_ignore.yml`
+   - keeps offenses that we want to keep and should be ignored.
+   - exceptions are added manually
+
+For more info, see https://docs.rubocop.org/rubocop/configuration.html#automatically-generated-configuration
 
 #### Unfixable offenses
 If it is not possible to easily fix offenses - refactor the code. It will probably make it looking different, but that's fine.

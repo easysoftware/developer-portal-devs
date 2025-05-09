@@ -35,6 +35,15 @@
     },
     {
       "type": "divider",
+      "title": "Major Releases"
+    },
+    {
+      "type": "item",
+      "title": "Version 15",
+      "uri": "docs/Major_releases/v15.md"
+    },
+    {
+      "type": "divider",
       "title": "Hello RYS"
     },
     {

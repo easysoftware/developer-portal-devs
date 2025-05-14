@@ -25,13 +25,22 @@
     },
     {
       "type": "item",
-      "title": "File structure and Migration",
-      "uri": "docs/Zeitwerk_support/File-structure-and-migration.md"
+      "title": "File structure and Transition",
+      "uri": "docs/Zeitwerk_support/File-structure-and-transition.md"
     },
     {
       "type": "item",
       "title": "Easy Project initialization process with zeitwerk",
       "uri": "docs/Zeitwerk_support/Easy-Project-Initialization.md"
+    },
+    {
+      "type": "divider",
+      "title": "Major Releases"
+    },
+    {
+      "type": "item",
+      "title": "Version 15",
+      "uri": "docs/Major_releases/v15.md"
     },
     {
       "type": "divider",

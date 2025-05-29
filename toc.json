@@ -340,6 +340,15 @@
     },
     {
       "type": "divider",
+      "title": "Blue Spice & Knowledge Base"
+    },
+    {
+      "type": "item",
+      "title": "Testing Blue Spice",
+      "uri": "docs/Backend_tutorials/blue_spice/BS-KB-API.md"
+    },
+    {
+      "type": "divider",
       "title": "APIs"
     },
     {

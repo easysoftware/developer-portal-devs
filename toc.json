@@ -159,6 +159,11 @@
           "type": "item",
           "title": "JWT Token",
           "uri": "docs/Backend_tutorials/features/jwt_token.md"
+        },
+        {
+          "type": "item",
+          "title": "Easy Form",
+          "uri": "docs/Backend_tutorials/features/easy_form.md"
         }
       ]
     },

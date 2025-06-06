@@ -1,6 +1,6 @@
 # Easy Form
 
-Warning: V15 required!
+⚠️ **Warning:** Easy Form components require application code on version **v15 or higher**.
 
 Easy Form is a new approach for building forms in ERB templates for application version V15 and higher. 
 It aims to simplify form construction, reduce repetitive code, reduce level of customization 

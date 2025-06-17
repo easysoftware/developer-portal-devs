@@ -49,66 +49,23 @@ Optional arguments are:
 ## EasyFormBuilder
 `EasyFormBuilder` is a custom form builder that inherits from `ActionView::Helpers::FormBuilder` 
 and provides interface for creating form fields with consistent styling and structure.
-Source code is located in `app/utils/easy_extensions/easy_form_builder.rb`.
+Source code is located in `app/east_design/easy_form_builder.rb`.
 
-Builder methods either implements required html content or calls component to render it.
+Builder includes concerns that represents components or inputs. 
 Html structure, behaviour and usage of each method for individual form field/component are described
 in [Easy Storybook](https://es.easyproject.com/easy_storybook).
 
 ## Components
-To make form construction more modular and expressive, Easy Form supports the use of form components. 
-A form component is a plain Ruby class responsible for rendering a specific part of a form — such as an input field, field_set, etc.
-Each component follows consistent interface, making it easy to integrate and extend.
+To make form construction more modular and expressive, Easy Form supports the use of form components.
+A component is a plain Ruby module that encapsulates the rendering logic for a specific part of the form — such as an input field, fieldset, label, or hint.
+These components are structured as modular concerns and included directly into the custom form builder class. 
+This allows components to define helper methods that extend the form builder’s public interface in a consistent and reusable way.
 
-Base interface provides class and instance method for rendering `render`. 
-Instance method is responsible for rendering component content and accepts block as optional argument. 
-Class method accepts any named arguments and block as well. Passes named arguments to instance constructor. 
-With initialized instance, it calls `render` with (optional) block.
+Each component defines one or more instance methods on the form builder (e.g., radio_button_fieldset, radio_button, etc.), 
+which can be used directly in erb templates. This methods may optionally support yielding a block for advanced behavior.
+Each module may includes additional private methods exclusive for component logic.
 
-```ruby title="base component interface" lineNumbers
-module EasyFormComponents
-  class Base
-    include ActionView::Helpers::TagHelper
-    include ActionView::Context
-    include Redmine::I18n
+Components are organized in `app/east_design/easy_form/` directory. 
+They are distributed into subdirectories by its nature, such as `inputs`, `components`.
 
-    def self.render(**, &)
-      new(**).render(&)
-    end
-
-    def render(&_block)
-      raise NotImplementedError
-    end
-
-  end
-end
-```
-
-```Ruby title="example of component" lineNumbers
-module EasyFormComponents
-  class TextField < Base
-    
-    # @param [EasyExtensions::EasyFormBuilder] builder
-    # @param [Symbol] field
-    # @param [Hash] options
-    def initialize(builder:, field:, options: {})
-      @builder = builder
-      @field = field
-      @options = options
-    end
-    
-    def render
-      builder.text_field(field, options)
-    end
-
-    private
-
-    attr_reader :builder, :field, :options
-  end
-end
-```
-
-
-
-
-
+Also there is module `EasyForm::BuilderUtils` designated for shared private method across multiple components.

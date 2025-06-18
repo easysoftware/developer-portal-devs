@@ -9,7 +9,7 @@ and encourage consistent structure and styling across views accordingly to desig
 Implementation is included as helper module `easy_form_helper.rb` within `EasyExtensions`.
 It contains two methods `easy_form_for` and `easy_form_tag`, which are used to create forms in views.
 
-Both methods use `EasyExtensions::EasyFormBuilder` as a form builder to provide implementation of individual components.
+Both methods use `EasyFormBuilder` as a form builder to provide implementation of individual components.
 
 ## easy_form_for
 `easy_form_for` is used to create forms for specific model. Mandatory argument for this method is `model` instance. 

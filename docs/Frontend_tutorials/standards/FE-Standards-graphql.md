@@ -222,28 +222,94 @@ export const projectStatusReportUpdatedSubscription = gql`
 <!-- theme: danger -->
 > Note: When defining GraphQL with the gql tag, use the tagged template literal syntax without enclosing it in parentheses <code>gql\`...\`;</code>. Do not write <code>gql(\`...\`);</code> instead, use it directly followed by a template literal as shown in the examples below. Using parentheses will cause a parsing error—such as Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["—because it interferes with the proper tag processing of the template literal. For further details on tagged template syntax, please see the MDN documentation on tagged templates.
 
-### GraphQL Definitions with fields from plugins
+### GraphQL Definitions with directives
 
-Plugins in our system might be inactive at times. Therefore, before adding their fields to a GraphQL query, we must first check if the plugin is active. For example, the getAssignCoworkersQuery function checks whether the isR4aActive variable is true. If it is, the query includes fields related to R4A; otherwise, those fields are omitted because they are not part of the GraphQL schema. As a result, we cannot use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include these fields.
+In some cases, we can use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include/skip fields in our queries. This allows us to write cleaner code without needing to dynamically construct the query string.
 
 ```ts
-import { gql } from "@apollo/client";
-
-export const getAssignCoworkersQuery = (isR4aActive: boolean) => {
-  return gql`query assignCoworker($id: ID!) {
-    easySprintBoard(id: $id) {
-      id
-      users {
-        someBaseUserFields
-        ${
-          isR4aActive
-            ? `
-            someR4aSpecificUserFields
-            `
-            : ""
+export const easySprintBoardUpdateSwimlaneSubscription = gql`
+  subscription easySprintBoardUpdateSwimlaneAttributes($easySprintBoardId: ID!, $hasStickyNotes: Boolean!) {
+    easySprintBoardUpdateSwimlaneAttributes(easySprintBoardId: $easySprintBoardId) {
+      result {
+        mutationName
+        easySwimlane {
+          id
+          color
+          easyProductBacklogItem {
+            id
+            color
+          }
+          easyAgileSprint {
+            id
+          }
+          easySprintBoard @include(if: $hasStickyNotes) {
+            stickyNotesInheritColor
+          }
+          easyStickyNotes @include(if: $hasStickyNotes) {
+            ...StickyNote
+          }
         }
       }
     }
-  }`;
+  }
+  ${stickyNoteFragment}
+`;
+```
+
+### GraphQL Definitions with fields from plugins
+
+Plugins in our system might be inactive at times. Therefore, before adding their fields to a GraphQL query, we must first check if the plugin is active. For example, the getValidateIssueMutation function checks whether the sprintOn variable is true. If it is, the query includes fields related to sprint; otherwise, those fields are omitted because they are not part of the GraphQL schema. As a result, we cannot use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include these fields, and we must construct the query dynamically with js.
+
+<!-- theme: danger -->
+> Note: In this case, we cannot use template literals with the gql tag, and we must use a function to return the query. We need to ignore eslint rule with `// eslint-disable-next-line easy-rules/no-gql-function-call` in this case, because it is not possible to use the gql tag with template literals.
+
+<!-- theme: danger -->
+> Note: Using gql tag as a function is allowed only in cases where we need to dynamically construct the query, because of the plugin's. 
+
+```ts
+import { gql } from "@apollo/client";
+import { customValueFragment } from "@/src/shared/graphql/fragments/customValue";
+
+export const getValidateIssueMutation = (
+  sprintOn: boolean,
+  checklistOn: boolean,
+) => {
+  const sprintFields = `
+    easySprint {
+      capacity
+      closed
+      name
+    }
+    easyStoryPoints`;
+
+  const projectChecklistsFields = `
+    addableChecklists
+    addableChecklistItems
+    visibleChecklists
+  `;
+
+  const validateIssueMutation = `
+    mutation issueValidator ($id: ID!, $attributes: IssueAttributes!) {
+      validateModalIssue(attributes: $attributes, id: $id){
+        issue {
+          id
+          category
+          subject
+          project {
+            id
+            name
+            ${checklistOn ? projectChecklistsFields : ""}
+          }
+          ${sprintOn ? sprintFields : ""}
+        }
+        errors {
+          messages
+        }
+      }
+    }
+    ${customValueFragment}`;
+
+  // eslint-disable-next-line easy-rules/no-gql-function-call
+  return gql(validateIssueMutation);
 };
 ```

@@ -13,57 +13,85 @@ GraphQL API services abstract the complexity of communicating with external endp
 - **Reusability:** Share common query/mutation logic across multiple features.
 - **Separation:** Keep HTTP and GraphQL client details isolated from component code.
 
-### Example: DataSourceConfluenceApi
+### Example: ProjectStatusReportApi
 
-The **dataSourceConfluenceApi.ts** file implements a GraphQL service to interact with the Confluence API. For example:
+The **projectStatusReportApi.ts** file implements a GraphQL service to manage project status reports. It uses the Apollo Client to perform queries, mutations, and subscriptions, while also handling errors and notifications.
 
 ```ts
-import apolloClient from "../../../../shared/plugins/apolloClient";
-import { ApolloClient } from "@apollo/client/core";
-import { WebDataSourceFragment } from "@/src/easy-ai/dataSourceWeb/shared/graphql/fragments/webDataSource.generated";
+import { ApolloClient, FetchResult } from "@apollo/client/core";
+import apolloClient from "@/src/shared/plugins/apolloClient";
 import { notifyOnGraphqlValidationErrors } from "@/src/shared/api/utils";
-import { addConfluenceDataSource } from "@/src/easy-ai/dataSourceWeb/confluence/graphql/mutations/addConfluenceDataSource";
+import { ProjectStatusReportQuery } from "@/src/easy-ai/projectStatusReport/detail/graphql/queries/projectStatusReport.generated";
+import { projectStatusReportQuery } from "@/src/easy-ai/projectStatusReport/detail/graphql/queries/projectStatusReport";
+import { FullProjectStatusReportFragment } from "@/src/easy-ai/projectStatusReport/detail/graphql/fragments/fullProjectStatusReport.generated";
+import { useSubscription, UseSubscriptionReturn } from "@vue/apollo-composable";
+import { projectStatusReportUpdatedSubscription } from "@/src/easy-ai/projectStatusReport/detail/graphql/subscriptions/projectStatusReportUpdated";
+import { DeleteProjectStatusReportMutation } from "@/src/easy-ai/projectStatusReport/detail/graphql/mutation/deleteProjectStatusReport.generated";
+import { deleteProjectStatusReportMutation } from "@/src/easy-ai/projectStatusReport/detail/graphql/mutation/deleteProjectStatusReport";
 import {
-  AddConfluenceDataSourceMutation,
-  AddConfluenceDataSourceMutationVariables,
-} from "@/src/easy-ai/dataSourceWeb/confluence/graphql/mutations/addConfluenceDataSource.generated";
-import { CollectionConfluenceDataSourcesQuery } from "@/src/easy-ai/dataSourceWeb/confluence/graphql/queries/collectionConfluenceDataSources.generated";
-import { collectionConfluenceDataSourcesQuery } from "@/src/easy-ai/dataSourceWeb/confluence/graphql/queries/collectionConfluenceDataSources";
+  ProjectStatusReportUpdatedSubscription,
+  ProjectStatusReportUpdatedSubscriptionVariables,
+} from "@/src/easy-ai/projectStatusReport/detail/graphql/subscriptions/projectStatusReportUpdated.generated";
 
-export class DataSourceConfluenceApi {
+export class ProjectStatusReportApi {
   constructor(private readonly apolloClient: ApolloClient<object>) {}
 
-  public async addConfluenceDataSource(
-    variables: AddConfluenceDataSourceMutationVariables
-  ): Promise<WebDataSourceFragment[]> {
-    const { data } = await this.apolloClient.mutate<AddConfluenceDataSourceMutation>({
-      mutation: addConfluenceDataSource,
-      variables,
-    });
-
-    notifyOnGraphqlValidationErrors(data?.addConfluenceDataSource);
-
-    return data?.addConfluenceDataSource?.collection?.dataSourceConfluences || [];
-  }
-
-  public async getConfluenceDataSources(collectionId: string): Promise<WebDataSourceFragment[]> {
-    const response = await this.apolloClient.query<CollectionConfluenceDataSourcesQuery>({
-      query: collectionConfluenceDataSourcesQuery,
+  getProjectStatusReport = async (projectStatusReportId: string): Promise<FullProjectStatusReportFragment | null> => {
+    const { data }: FetchResult<ProjectStatusReportQuery> = await this.apolloClient.query({
+      query: projectStatusReportQuery,
       variables: {
-        collectionId,
+        id: projectStatusReportId,
       },
     });
 
-    return response.data.easyAiVectorDbCollection?.dataSourceConfluences || [];
-  }
+    return data?.easyAiProjectStatusReport || null;
+  };
+
+  deleteProjectStatusReport = async (projectStatusReportId: string): Promise<void> => {
+    const { data }: FetchResult<DeleteProjectStatusReportMutation> = await this.apolloClient.mutate({
+      mutation: deleteProjectStatusReportMutation,
+      variables: {
+        id: projectStatusReportId,
+      },
+    });
+
+    notifyOnGraphqlValidationErrors(data?.deleteEasyAiProjectStatusReport);
+  };
+
+  useProjectStatusReportSubscription = (
+    projectStatusReportId: string
+  ): UseSubscriptionReturn<ProjectStatusReportUpdatedSubscription, ProjectStatusReportUpdatedSubscriptionVariables> => {
+    return useSubscription(projectStatusReportUpdatedSubscription, { id: projectStatusReportId });
+  };
 }
 
-const dataSourceConfluenceApi = new DataSourceConfluenceApi(apolloClient);
-
-export default dataSourceConfluenceApi;
+export default new ProjectStatusReportApi(apolloClient);
 ```
 
 This service hides the details of setting up the GraphQL client and managing errors from the rest of the application.
+
+### Example: Using of useProjectStatusReportSubscription method
+
+This example shows how to use the `useProjectStatusReportSubscription` method from the `ProjectStatusReportApi` service to subscribe to updates for a specific project status report. It also demonstrates how to handle the subscription lifecycle, including stopping the previous subscription if it exists.
+
+```ts
+public initSubscription = (projectStatusReportId: string) => {
+  if (this.stopCurrentSubscription) {
+    this.stopCurrentSubscription();
+  }
+
+  if (this.shouldSubscribe()) {
+    const { onResult, stop } = projectStatusReportApi.useProjectStatusReportSubscription(projectStatusReportId);
+    this.stopCurrentSubscription = stop;
+    onResult(this.processProjectStatusReportSubscription);
+  }
+};
+
+private processProjectStatusReportSubscription = (response: FetchResult<ProjectStatusReportUpdatedSubscription>) => {
+  if (!response.data?.easyAiProjectStatusReportUpdated) return;
+  this.activeProjectStatusReport.value = response.data?.easyAiProjectStatusReportUpdated;
+};
+```
 
 ---
 
@@ -78,11 +106,12 @@ GraphQL definitions—queries, mutations, and fragments—should be organized in
 
 - **File Structure:**
   Keep your GraphQL definitions organized in a dedicated [folder structure](https://easysoftware.stoplight.io/docs/developer-portal-devs/cfd453fb9e5be-frontend-project-structure-and-architecture#32-module-structure) and one graphql definition per file.
-  
+
 - **Use of Fragments:**  
   Define fragments for recurring field sets. This avoids redundancy and simplifies future updates. It is possible to nest fragments if suitable.
+
 - **Descriptive Naming:**  
-  Use clear names for queries, mutations, and fragments. For instance, our query in **collectionConfluenceDataSources.ts** is named `collectionConfluenceDataSourcesQuery` and our reusable fragment defined in **webDataSource.ts** is called `webDataSourceFragment`.
+  Use clear names for queries, mutations, and fragments. For instance, our query in **projectStatusReport.ts** is named `projectStatusReportQuery` and our reusable fragment defined in **fullProjectStatusReport.ts** is called `fullProjectStatusReportFragment`.
   Name in the graphql definition is the same as const, only without `Fragment`, `Query`, `Mutation` or `Subscription` suffix.
 
 - **Generate Types:**  
@@ -90,51 +119,100 @@ GraphQL definitions—queries, mutations, and fragments—should be organized in
 
 ---
 
-### Example: Query and Fragment Definitions
+### Example of definitions
 
-#### GraphQL Fragment: webDataSourceFragment
+#### GraphQL Fragment: fullProjectStatusReport
 
-The **webDataSource.ts** file includes the fragment that defines the common fields for a web data source:
+The **fullProjectStatusReport.ts** file defines a fragment that includes all necessary fields for a project status report. This fragment can be reused in queries and mutations to ensure consistency and reduce duplication. Inside the fragment we can use other fragments to avoid duplication of code. For example, we can use `projectStatusReportBlockDataFragment` and `repeatingTemplateFragment` to include specific fields related to project status report blocks and repeating templates.
 
 ```ts
 import { gql } from "@apollo/client";
+import { projectStatusReportBlockDataFragment } from "@/src/easy-ai/projectStatusReport/detail/graphql/fragments/projectStatusReportBlockData";
+import { repeatingTemplateFragment } from "@/src/easy-ai/projectStatusReport/detail/graphql/fragments/repeatingTemplateFragment";
 
-export const webDataSourceFragment = gql`
-  fragment WebDataSource on DataSource {
+export const fullProjectStatusReportFragment = gql`
+  fragment FullProjectStatusReport on ProjectStatusReport {
+    blocksToReport
+    createdAt
+    blocksData {
+      ...ProjectStatusReportBlockData
+    }
     id
-    status
-    author {
-      id
-      name
+    interval
+    manageable
+    name
+    repeatingTemplate {
+      ...RepeatingTemplate
     }
-    type
-    url
-    attachment {
-      contentUrl
+    project {
+      identifier
     }
-    typeProperties
   }
+
+  ${projectStatusReportBlockDataFragment}
+  ${repeatingTemplateFragment}
 `;
 ```
 
-#### GraphQL Query: collectionConfluenceDataSourcesQuery
+#### GraphQL Query: projectStatusReport
 
-The **collectionConfluenceDataSources.ts** file contains a query that retrieves a collection of Confluence data sources while reusing the `webDataSourceFragment`:
+The **projectStatusReport.ts** file defines a query to fetch a project status report, using the `fullProjectStatusReportFragment`:
 
 ```ts
 import { gql } from "@apollo/client";
-import { webDataSourceFragment } from "@/src/easy-ai/dataSourceWeb/shared/graphql/fragments/webDataSource";
+import { fullProjectStatusReportFragment } from "@/src/easy-ai/projectStatusReport/detail/graphql/fragments/fullProjectStatusReport";
 
-export const collectionConfluenceDataSourcesQuery = gql`
-  query collectionConfluenceDataSources($collectionId: ID!) {
-    easyAiVectorDbCollection(id: $collectionId) {
-      dataSourceConfluences {
-        ...WebDataSource
+export const projectStatusReportQuery = gql`
+  query projectStatusReport($id: ID!) {
+    easyAiProjectStatusReport(id: $id) {
+      ...FullProjectStatusReport
+    }
+  }
+
+  ${fullProjectStatusReportFragment}
+`;
+```
+
+#### GraphQL Mutation: deleteProjectStatusReport
+
+The **deleteProjectStatusReport.ts** file defines a mutation to delete a project status report, reusing the `easyErrorFragment` for error handling:
+
+```ts
+import { gql } from "@apollo/client";
+import { easyErrorFragment } from "@/src/shared/graphql/fragments/error";
+
+export const deleteProjectStatusReportMutation = gql`
+  mutation deleteProjectStatusReport($id: ID!) {
+    deleteEasyAiProjectStatusReport(id: $id) {
+      errors {
+        ...EasyError
       }
     }
   }
 
-  ${webDataSourceFragment}
+  ${easyErrorFragment}
+`;
+```
+
+<!-- theme: danger -->
+> Note: Each mutation must return an `errors` field that contains the `EasyError` fragment. This is crucial for proper error handling.
+
+#### GraphQL Subscription: projectStatusReportUpdated
+
+The **projectStatusReportUpdated.ts** file defines a subscription to listen for updates to a project status report, using the `fullProjectStatusReportFragment`:
+
+```ts
+import { gql } from "@apollo/client";
+import { fullProjectStatusReportFragment } from "@/src/easy-ai/projectStatusReport/detail/graphql/fragments/fullProjectStatusReport";
+
+export const projectStatusReportUpdatedSubscription = gql`
+  subscription projectStatusReportUpdated($id: ID!) {
+    easyAiProjectStatusReportUpdated(id: $id) {
+      ...FullProjectStatusReport
+    }
+  }
+
+  ${fullProjectStatusReportFragment}
 `;
 ```
 
@@ -142,30 +220,96 @@ export const collectionConfluenceDataSourcesQuery = gql`
 > Note: After each update of some graphql definition is needed to run generation of graphql types. [link](https://easysoftware.stoplight.io/docs/developer-portal-devs/a32e74fbf89d3-frontend-code-generator)
 
 <!-- theme: danger -->
-> Note: When defining GraphQL queries with the gql tag, use the tagged template literal syntax without enclosing it in parentheses <code>gql\`...\`;</code>. Do not write <code>gql(\`...\`);</code> instead, use it directly followed by a template literal as shown in the examples below. Using parentheses will cause a parsing error—such as Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["—because it interferes with the proper tag processing of the template literal. For further details on tagged template syntax, please see the MDN documentation on tagged templates.
+> Note: When defining GraphQL with the gql tag, use the tagged template literal syntax without enclosing it in parentheses <code>gql\`...\`;</code>. Do not write <code>gql(\`...\`);</code> instead, use it directly followed by a template literal as shown in the examples below. Using parentheses will cause a parsing error—such as Uncaught (in promise) GraphQLError: Syntax Error: Unexpected "["—because it interferes with the proper tag processing of the template literal. For further details on tagged template syntax, please see the MDN documentation on tagged templates.
 
-### GraphQL Definitions with fields from plugins
+### GraphQL Definitions with directives
 
-Plugins in our system might be inactive at times. Therefore, before adding their fields to a GraphQL query, we must first check if the plugin is active. For example, the getAssignCoworkersQuery function checks whether the isR4aActive variable is true. If it is, the query includes fields related to R4A; otherwise, those fields are omitted because they are not part of the GraphQL schema. As a result, we cannot use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include these fields.
+In some cases, we can use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include/skip fields in our queries. This allows us to write cleaner code without needing to dynamically construct the query string.
 
 ```ts
-import { gql } from "@apollo/client";
-
-export const getAssignCoworkersQuery = (isR4aActive: boolean) => {
-  return gql`query assignCoworker($id: ID!) {
-    easySprintBoard(id: $id) {
-      id
-      users {
-        someBaseUserFields
-        ${
-          isR4aActive
-            ? `
-            someR4aSpecificUserFields
-            `
-            : ""
+export const easySprintBoardUpdateSwimlaneSubscription = gql`
+  subscription easySprintBoardUpdateSwimlaneAttributes($easySprintBoardId: ID!, $hasStickyNotes: Boolean!) {
+    easySprintBoardUpdateSwimlaneAttributes(easySprintBoardId: $easySprintBoardId) {
+      result {
+        mutationName
+        easySwimlane {
+          id
+          color
+          easyProductBacklogItem {
+            id
+            color
+          }
+          easyAgileSprint {
+            id
+          }
+          easySprintBoard @include(if: $hasStickyNotes) {
+            stickyNotesInheritColor
+          }
+          easyStickyNotes @include(if: $hasStickyNotes) {
+            ...StickyNote
+          }
         }
       }
     }
-  }`;
+  }
+  ${stickyNoteFragment}
+`;
+```
+
+### GraphQL Definitions with fields from plugins
+
+Plugins in our system might be inactive at times. Therefore, before adding their fields to a GraphQL query, we must first check if the plugin is active. For example, the getValidateIssueMutation function checks whether the sprintOn variable is true. If it is, the query includes fields related to sprint; otherwise, those fields are omitted because they are not part of the GraphQL schema. As a result, we cannot use [GraphQL directives](https://graphql.org/learn/queries/#directives) to conditionally include these fields, and we must construct the query dynamically with js.
+
+<!-- theme: danger -->
+> Note: In this case, we cannot use template literals with the gql tag, and we must use a function to return the query. We need to ignore eslint rule with `// eslint-disable-next-line easy-rules/no-gql-function-call` in this case, because it is not possible to use the gql tag with template literals.
+
+<!-- theme: danger -->
+> Note: Using gql tag as a function is allowed only in cases where we need to dynamically construct the query, because of the plugin's. 
+
+```ts
+import { gql } from "@apollo/client";
+import { customValueFragment } from "@/src/shared/graphql/fragments/customValue";
+
+export const getValidateIssueMutation = (
+  sprintOn: boolean,
+  checklistOn: boolean,
+) => {
+  const sprintFields = `
+    easySprint {
+      capacity
+      closed
+      name
+    }
+    easyStoryPoints`;
+
+  const projectChecklistsFields = `
+    addableChecklists
+    addableChecklistItems
+    visibleChecklists
+  `;
+
+  const validateIssueMutation = `
+    mutation issueValidator ($id: ID!, $attributes: IssueAttributes!) {
+      validateModalIssue(attributes: $attributes, id: $id){
+        issue {
+          id
+          category
+          subject
+          project {
+            id
+            name
+            ${checklistOn ? projectChecklistsFields : ""}
+          }
+          ${sprintOn ? sprintFields : ""}
+        }
+        errors {
+          messages
+        }
+      }
+    }
+    ${customValueFragment}`;
+
+  // eslint-disable-next-line easy-rules/no-gql-function-call
+  return gql(validateIssueMutation);
 };
 ```

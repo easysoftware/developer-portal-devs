@@ -259,6 +259,40 @@
     },
     {
       "type": "divider",
+      "title": "Python Developer Guide"
+    },
+    {
+      "type": "item",
+      "title": "Python Developer Guide",
+      "uri": "docs/Python_tutorials/_index.md"
+    },
+    {
+      "type": "item",
+      "title": "Getting Started",
+      "uri": "docs/Python_tutorials/getting_started.md"
+    },
+    {
+      "type": "item",
+      "title": "Development",
+      "uri": "docs/Python_tutorials/development.md"
+    },
+    {
+      "type": "item",
+      "title": "Release new version",
+      "uri": "docs/Python_tutorials/release_new_version.md"
+    },
+    {
+      "type": "item",
+      "title": "Useful links",
+      "uri": "docs/Python_tutorials/useful_links.md"
+    },
+    {
+      "type": "item",
+      "title": "Azure OpenAI",
+      "uri": "docs/Python_tutorials/azure_openai.md"
+    },
+    {
+      "type": "divider",
       "title": "Release guides"
     },
     {
